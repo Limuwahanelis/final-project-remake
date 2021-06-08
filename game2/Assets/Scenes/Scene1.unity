@@ -367,6 +367,8 @@ GameObject:
   - component: {fileID: 788093016}
   - component: {fileID: 788093018}
   - component: {fileID: 788093019}
+  - component: {fileID: 788093021}
+  - component: {fileID: 788093020}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -442,6 +444,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 17fe6f6569667854ead0ac287505576e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _player: {fileID: 788093020}
   speed: 5
   toRotate: {fileID: 248530505}
 --- !u!114 &788093019
@@ -461,6 +464,34 @@ MonoBehaviour:
   - Idle
   - Walk
   - Attack1
+--- !u!114 &788093020
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 788093014}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0d44233102f10d74181703e0d290f222, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerMovement: {fileID: 788093018}
+  playerInput: {fileID: 788093021}
+  isMovableByPlayer: 1
+--- !u!114 &788093021
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 788093014}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b3831b560bb8ed84984ff6b506102f84, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _player: {fileID: 788093020}
 --- !u!1 &832398104
 GameObject:
   m_ObjectHideFlags: 0
