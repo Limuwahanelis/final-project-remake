@@ -2,19 +2,22 @@
 using System.Collections.Generic;
 using UnityEngine;
 using System;
-public class MushroomGuyEnemy : Enemy, IDamagable
+public class MushroomGuyEnemy : Enemy, IDamagable,IAnimatable
 {
     public float attackDelay = 3f;
-    private bool attack;
-    private bool isAttacking;
+    private bool _attack;
+    private bool _isAttacking;
     private Vector3[] patrolPos = new Vector3[2]; // first is left
     public Transform[] patrolTransofrms = new Transform[2];
 
-    private bool isPatrollingLeft = false;
-    private bool isPatrollingRight = true;
+    private bool _isPatrollingLeft = false;
+    private bool _isPatrollingRight = true;
 
     private int lastPatrol=1;
     Coroutine cor;
+
+    public event Action<string> OnPlayAnimation;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -27,20 +30,20 @@ public class MushroomGuyEnemy : Enemy, IDamagable
     // Update is called once per frame
     void Update()
     {
-        if (attack)
+        if (_attack)
         {
-            if (!isAttacking)
+            if (!_isAttacking)
             {
                 cor=StartCoroutine(AttackDelayCor());
             }
         }
-        if (!isAttacking)
+        if (!_isAttacking)
         {
-            if (isPatrollingLeft)
+            if (_isPatrollingLeft)
             {
                 MoveLeft();
             }
-            if (isPatrollingRight)
+            if (_isPatrollingRight)
             {
                 MoveRight();
             }
@@ -48,28 +51,27 @@ public class MushroomGuyEnemy : Enemy, IDamagable
     }
     private void MoveLeft()
     {
-        anim.SetBool("isWalking", true);
+        PlayAnimation("Move");
         transform.position = Vector3.MoveTowards(transform.position, patrolPos[0], speed * Time.deltaTime);
         //RaiseOnWalkEvent();
         if (transform.position.x <= patrolPos[0].x)
         {
             transform.localScale = new Vector3(-transform.localScale.x, transform.localScale.y, transform.localScale.z);
-            isPatrollingRight = true;
-            isPatrollingLeft = false;
+            _isPatrollingRight = true;
+            _isPatrollingLeft = false;
             lastPatrol = 1;
-
         }
     }
     private void MoveRight()
     {
-        anim.SetBool("isWalking", true);
+        PlayAnimation("Move");
         transform.position = Vector3.MoveTowards(transform.position, patrolPos[1], speed * Time.deltaTime);
         //RaiseOnWalkEvent();
         if (transform.position.x >= patrolPos[1].x)
         {
             transform.localScale = new Vector3(-transform.localScale.x, transform.localScale.y, transform.localScale.z);
-            isPatrollingRight = false;
-            isPatrollingLeft = true;
+            _isPatrollingRight = false;
+            _isPatrollingLeft = true;
             lastPatrol = 0;
         }
     }
@@ -86,15 +88,15 @@ public class MushroomGuyEnemy : Enemy, IDamagable
 
     public override void SetPlayerInRange()
     {
-        attack = true;
-        isPatrollingLeft = false;
-        isPatrollingRight = false;
-        anim.SetBool("isWalking", false);
+        _attack = true;
+        _isPatrollingLeft = false;
+        _isPatrollingRight = false;
+        PlayAnimation("Idle");
     }
 
     public override void SetPlayerNotInRange()
     {
-        attack = false;
+        _attack = false;
         //isAttacking = true;
     }
 
@@ -106,8 +108,8 @@ public class MushroomGuyEnemy : Enemy, IDamagable
     public void TakeDamage(int dmg)
     {
         hpSys.TakeDamage(dmg);
-        anim.SetTrigger("hit");
-        if(!attack)
+        PlayAnimation("Hit");
+        if(!_attack)
         {
             Rotate();
         }
@@ -116,22 +118,27 @@ public class MushroomGuyEnemy : Enemy, IDamagable
 
     IEnumerator AttackDelayCor()
     {
-        isAttacking = true;
+        _isAttacking = true;
         yield return new WaitForSeconds(attackDelay);
-        
-        anim.SetTrigger("Attack");
+
+        PlayAnimation("Attack");
         RaiseOnAttackEvent();
         
     }
     public void EndAttack()
     {
-        isAttacking = false;
-        if (lastPatrol == 0) isPatrollingLeft = true;
-        else isPatrollingRight = true;
+        _isAttacking = false;
+        if (lastPatrol == 0) _isPatrollingLeft = true;
+        else _isPatrollingRight = true;
     }
 
     void Rotate()
     {
         transform.localScale = new Vector3(-transform.localScale.x, transform.localScale.y, transform.localScale.z);
+    }
+
+    public void PlayAnimation(string name)
+    {
+        OnPlayAnimation?.Invoke(name);
     }
 }

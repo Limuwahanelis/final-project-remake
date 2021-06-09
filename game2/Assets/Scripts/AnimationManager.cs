@@ -36,12 +36,13 @@ public class AnimationManager : MonoBehaviour
         }
         
         //Debug.Log("to play: " + clipToPlay.name);
-        if (_currentAnimation == clipToPlay.name) return;
+        
         if (clipToPlay == null)
         {
             Debug.LogError("There is no state with name: " + name);
             return ;
         }
+        if (_currentAnimation == clipToPlay.name) return;
         Debug.Log(clipToPlay.name);
         _anim.Play(clipToPlay.nameHash);
         _currentAnimation = clipToPlay.name;
