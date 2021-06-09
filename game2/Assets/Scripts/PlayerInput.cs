@@ -17,28 +17,20 @@ public class PlayerInput : MonoBehaviour
     void Update()
     {
         float direction = Input.GetAxisRaw("Horizontal");
-        if (direction != 0)
+        if (_player.isControlledByPlayer)
         {
-
-            //_player.
-            //_currentState = PlayerSate.MOVE;
-            Move(direction);
-        }
-        else
-        {
-            SetIdle();
-            //_rb.velocity = new Vector3(0, _rb.velocity.y, 0);
-            //_currentState = PlayerSate.IDLE;
-            //PlayAnimation("Idle");
-        }
-        if (Input.GetButtonDown("Attack"))
-        {
-            //Debug.Log("attack");
-            //_isMovableByPlayer = false;
-            //PlayAnimation("Attack1");
-            //_currentState = PlayerSate.ATTACK;
-
-
+            if (direction != 0)
+            {
+                Move(direction);
+            }
+            else
+            {
+                SetIdle();
+            }
+            if (Input.GetButtonDown("Attack"))
+            {
+                Attack();
+            }
         }
     }
 
@@ -50,5 +42,10 @@ public class PlayerInput : MonoBehaviour
     private void SetIdle()
     {
         _player.playerMovement.MakePlayerIdle();
+    }
+    private void Attack()
+    {
+        _player.playerCombat.Attack();
+        _player.playerMovement.StopPlayer();
     }
 }

@@ -4,13 +4,6 @@ using UnityEngine;
 using System;
 public class Player : MonoBehaviour,IAnimatable
 {
-    public PlayerMovement playerMovement;
-    public PlayerInput playerInput;
-    private Animator _anim;
-    private AnimatorStateInfo _currentAnimatorState;
-    private bool _isAnimationPlaying = false;
-    public event Action<string> OnPlayAnimation;
-    public bool isMovableByPlayer = true;
     public enum PlayerSate
     {
         NONE,
@@ -19,6 +12,15 @@ public class Player : MonoBehaviour,IAnimatable
         ATTACK,
     }
     private PlayerSate _currentState;
+    public PlayerMovement playerMovement;
+    public PlayerInput playerInput;
+    public PlayerCombat playerCombat;
+    private Animator _anim;
+    private AnimatorStateInfo _currentAnimatorState;
+    private bool _isAnimationPlaying = false;
+    public event Action<string> OnPlayAnimation;
+    public bool isControlledByPlayer = true;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -61,7 +63,7 @@ public class Player : MonoBehaviour,IAnimatable
             _isAnimationPlaying = true;
         }
         yield return new WaitForSeconds(animationTime);
-        isMovableByPlayer = true;
+        isControlledByPlayer = true;
         _isAnimationPlaying = false;
     }
     public void PlayAnimation(string name)
@@ -75,12 +77,12 @@ public class Player : MonoBehaviour,IAnimatable
 
     public void ReturnControlToPlayer()
     {
-        isMovableByPlayer = true;
+        isControlledByPlayer = true;
         Debug.Log("End");
     }
     public void TakeControlFromPlayer()
     {
-        isMovableByPlayer = false;
+        isControlledByPlayer = false;
         Debug.Log("take");
     }
 }
