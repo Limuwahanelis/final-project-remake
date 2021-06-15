@@ -53,11 +53,12 @@ public class PlayerMovement : MonoBehaviour
     }
     public void Jump()
     {
-        if (!_player.isJumping)
+        if (!_player.isJumping && _player.isOnGround)
         {
             _player.isJumping = true;
             _player.canPlayIdleAnim = false;
             _player.canPlayWalkAnim = false;
+            _player.ChangePlayerState(Player.PlayerSate.JUMP);
         }
     }
     public void JumpAnimationLogic()
@@ -66,6 +67,7 @@ public class PlayerMovement : MonoBehaviour
         _rb.velocity = new Vector3(0, 0, 0);
         _rb.AddForce(new Vector2(0, jumpStrength));
         _player.isJumping = false;
+        _player.isAnimationPlaying = false;
     }
     private void CheckIfPlayerIsFalling()
     {

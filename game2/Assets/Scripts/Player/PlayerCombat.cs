@@ -18,10 +18,13 @@ public class PlayerCombat : MonoBehaviour
     }
     public void Attack()
     {
-        _player.isAttacking = true;
-        _player.StopWalkAndIdleAnimFromPlaying();
-        _player.ChangePlayerState(Player.PlayerSate.ATTACK);
-        _player.TakeControlFromPlayer();
+        if (_player.isOnGround && !_player.isAnimationPlaying)
+        {
+            _player.isAttacking = true;
+            _player.StopWalkAndIdleAnimFromPlaying();
+            _player.ChangePlayerState(Player.PlayerSate.ATTACK);
+            _player.TakeControlFromPlayer();
+        }
     }
     public void AttackAnimFunc()
     {

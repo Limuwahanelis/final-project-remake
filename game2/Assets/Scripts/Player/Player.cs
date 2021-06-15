@@ -81,7 +81,11 @@ public class Player : MonoBehaviour,IAnimatable
         {
             case PlayerSate.IDLE: break;
             case PlayerSate.MOVE: break;
-            case PlayerSate.JUMP: break;
+            case PlayerSate.JUMP:
+                {
+                    StartCoroutine(WaitForAnimationToEnd(GetAnimationLength("Jump"), (result => isJumping = result), isJumping));
+                    break;
+                }
             case PlayerSate.ATTACK:
                 {
                     Debug.Log("Should play at");
