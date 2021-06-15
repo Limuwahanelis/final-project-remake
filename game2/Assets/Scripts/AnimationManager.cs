@@ -15,6 +15,7 @@ public class AnimationManager : MonoBehaviour
     {
         _objectToAnimate = GetComponent<IAnimatable>();
        _objectToAnimate.OnPlayAnimation += PlayAnimation;
+        _objectToAnimate.OnGetAnimationLength += GetStateLength;
        _anim = GetComponent<Animator>();
         
     }
@@ -25,16 +26,21 @@ public class AnimationManager : MonoBehaviour
         {
             stateNames.Add(_animController.layers[0].stateMachine.states[i].state.name);
         }
+        
     }
     public void PlayAnimation(string name)
     {
         
         AnimatorState clipToPlay=null;
+        float clipDuration = 0;
         for (int i = 0; i < _animController.layers[0].stateMachine.states.Length; i++)
         {
-            if (_animController.layers[0].stateMachine.states[i].state.name == name) clipToPlay = _animController.layers[0].stateMachine.states[i].state;
+            if (_animController.layers[0].stateMachine.states[i].state.name == name)
+            {
+                clipToPlay = _animController.layers[0].stateMachine.states[i].state;
+               clipDuration = _animController.layers[0].stateMachine.states[i].state.motion.averageDuration;
+            }
         }
-        
         //Debug.Log("to play: " + clipToPlay.name);
         
         if (clipToPlay == null)
@@ -55,5 +61,18 @@ public class AnimationManager : MonoBehaviour
     private void OnDestroy()
     {
         _objectToAnimate.OnPlayAnimation -= PlayAnimation;
+        _objectToAnimate.OnGetAnimationLength -= GetStateLength;
+    }
+    public float GetStateLength(string name)
+    {
+        float clipDuration = 0;
+        for (int i = 0; i < _animController.layers[0].stateMachine.states.Length; i++)
+        {
+            if (_animController.layers[0].stateMachine.states[i].state.name == name)
+            {
+                clipDuration = _animController.layers[0].stateMachine.states[i].state.motion.averageDuration;
+            }
+        }
+        return clipDuration;
     }
 }

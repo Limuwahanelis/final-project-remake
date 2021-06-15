@@ -17,6 +17,7 @@ public class MushroomGuyEnemy : Enemy, IDamagable,IAnimatable
     Coroutine cor;
 
     public event Action<string> OnPlayAnimation;
+    public event Func<string, float> OnGetAnimationLength;
 
     // Start is called before the first frame update
     void Start()
@@ -140,5 +141,10 @@ public class MushroomGuyEnemy : Enemy, IDamagable,IAnimatable
     public void PlayAnimation(string name)
     {
         OnPlayAnimation?.Invoke(name);
+    }
+
+    public float GetAnimationLength(string name)
+    {
+        throw new NotImplementedException();
     }
 }

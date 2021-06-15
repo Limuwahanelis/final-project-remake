@@ -31,6 +31,10 @@ public class PlayerInput : MonoBehaviour
             {
                 Attack();
             }
+            if (Input.GetButtonDown("Jump"))
+            {
+                Jump();
+            }
         }
     }
 
@@ -47,5 +51,9 @@ public class PlayerInput : MonoBehaviour
     {
         _player.playerCombat.Attack();
         _player.playerMovement.StopPlayer();
+    }
+    private void Jump()
+    {
+        _player.playerMovement.Jump();
     }
 }

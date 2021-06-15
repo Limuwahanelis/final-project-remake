@@ -6,7 +6,7 @@ AnimationClip:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Player jump
+  m_Name: Player fall down
   serializedVersion: 6
   m_Legacy: 0
   m_Compressed: 0
@@ -20,13 +20,13 @@ AnimationClip:
   m_PPtrCurves:
   - curve:
     - time: 0
-      value: {fileID: 101571700091508751, guid: 6bbb02d327c065c4ba9046bf68ba3a62, type: 3}
-    - time: 0.05
-      value: {fileID: -6829922608690292844, guid: 6bbb02d327c065c4ba9046bf68ba3a62, type: 3}
-    - time: 0.1
-      value: {fileID: 9007157022648109736, guid: 6bbb02d327c065c4ba9046bf68ba3a62, type: 3}
+      value: {fileID: 5695235962273761828, guid: 473f357f441c84c4c8fdedf3c31eef0a, type: 3}
+    - time: 0.083333336
+      value: {fileID: 8248592303025495236, guid: 473f357f441c84c4c8fdedf3c31eef0a, type: 3}
+    - time: 0.16666667
+      value: {fileID: 5695235962273761828, guid: 473f357f441c84c4c8fdedf3c31eef0a, type: 3}
     attribute: m_Sprite
-    path: FlipScale/Sprite
+    path: main body/sprite
     classID: 212
     script: {fileID: 0}
   m_SampleRate: 60
@@ -37,22 +37,22 @@ AnimationClip:
   m_ClipBindingConstant:
     genericBindings:
     - serializedVersion: 2
-      path: 718052667
+      path: 3459525280
       attribute: 0
       script: {fileID: 0}
       typeID: 212
       customType: 23
       isPPtrCurve: 1
     pptrCurveMapping:
-    - {fileID: 101571700091508751, guid: 6bbb02d327c065c4ba9046bf68ba3a62, type: 3}
-    - {fileID: -6829922608690292844, guid: 6bbb02d327c065c4ba9046bf68ba3a62, type: 3}
-    - {fileID: 9007157022648109736, guid: 6bbb02d327c065c4ba9046bf68ba3a62, type: 3}
+    - {fileID: 5695235962273761828, guid: 473f357f441c84c4c8fdedf3c31eef0a, type: 3}
+    - {fileID: 8248592303025495236, guid: 473f357f441c84c4c8fdedf3c31eef0a, type: 3}
+    - {fileID: 5695235962273761828, guid: 473f357f441c84c4c8fdedf3c31eef0a, type: 3}
   m_AnimationClipSettings:
     serializedVersion: 2
     m_AdditiveReferencePoseClip: {fileID: 0}
     m_AdditiveReferencePoseTime: 0
     m_StartTime: 0
-    m_StopTime: 0.13333334
+    m_StopTime: 0.18333334
     m_OrientationOffsetY: 0
     m_Level: 0
     m_CycleOffset: 0
@@ -71,25 +71,4 @@ AnimationClip:
   m_EulerEditorCurves: []
   m_HasGenericRootTransform: 0
   m_HasMotionFloatCurves: 0
-  m_Events:
-  - time: 0.05
-    functionName: TakeControlFromPlayer
-    data: 
-    objectReferenceParameter: {fileID: 0}
-    floatParameter: 0
-    intParameter: 8
-    messageOptions: 0
-  - time: 0.05
-    functionName: JumpFunc
-    data: 
-    objectReferenceParameter: {fileID: 0}
-    floatParameter: 0
-    intParameter: 0
-    messageOptions: 0
-  - time: 0.13333334
-    functionName: JumpFunc
-    data: 
-    objectReferenceParameter: {fileID: 0}
-    floatParameter: 0
-    intParameter: 0
-    messageOptions: 0
+  m_Events: []
