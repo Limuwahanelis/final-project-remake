@@ -41,16 +41,11 @@ public class PlayerMovement : MonoBehaviour
             toRotate.transform.localScale = new Vector3(_flipSide, toRotate.transform.localScale.y, toRotate.transform.localScale.z);
         }
         _player.isMoving = true;
-            //_player.ChangePlayerState(Player.PlayerSate.MOVE);
-
-            //_player.PlayAnimation("Walk");
     }
     public void MakePlayerIdle()
     {
         _rb.velocity = new Vector3(0, _rb.velocity.y, 0);
         _player.isMoving = false;
-        //_player.ChangePlayerState(Player.PlayerSate.IDLE);
-        //_player.PlayAnimation("Idle");
     }
     public void StopPlayer()
     {
@@ -58,14 +53,12 @@ public class PlayerMovement : MonoBehaviour
     }
     public void Jump()
     {
-        //_player.ChangePlayerState(Player.PlayerSate.JUMP);
         if (!_player.isJumping)
         {
             _player.isJumping = true;
             _player.canPlayIdleAnim = false;
             _player.canPlayWalkAnim = false;
         }
-        //_player.PlayAnimation("Jump");
     }
     public void JumpAnimationLogic()
     {

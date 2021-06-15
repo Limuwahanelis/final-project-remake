@@ -32,16 +32,13 @@ public class AnimationManager : MonoBehaviour
     {
         
         AnimatorState clipToPlay=null;
-        float clipDuration = 0;
         for (int i = 0; i < _animController.layers[0].stateMachine.states.Length; i++)
         {
             if (_animController.layers[0].stateMachine.states[i].state.name == name)
             {
                 clipToPlay = _animController.layers[0].stateMachine.states[i].state;
-               clipDuration = _animController.layers[0].stateMachine.states[i].state.motion.averageDuration;
             }
         }
-        //Debug.Log("to play: " + clipToPlay.name);
         
         if (clipToPlay == null)
         {
@@ -49,14 +46,9 @@ public class AnimationManager : MonoBehaviour
             return ;
         }
         if (_currentAnimation == clipToPlay.name) return;
-        Debug.Log(clipToPlay.name);
         _anim.Play(clipToPlay.nameHash);
         _currentAnimation = clipToPlay.name;
         return ;
-    }
-    private void Update()
-    {
-        if (_anim.GetCurrentAnimatorStateInfo(0).IsName("Attack1")) Debug.Log("Attacking");
     }
     private void OnDestroy()
     {
