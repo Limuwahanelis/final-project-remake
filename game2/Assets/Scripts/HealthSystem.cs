@@ -9,25 +9,39 @@ public class HealthSystem : MonoBehaviour
 
     public HealthBar hpBar;
     public int maxHP;
-    public int currentHP;
-    public bool isInvicible;
+    public IntReference currentHP;
     // Start is called before the first frame update
     void Start()
     {
         hpBar.SetMaxHealth(maxHP);
-        currentHP = maxHP;
-        hpBar.SetHealth(currentHP);
+        currentHP.value = maxHP;
+        hpBar.SetHealth(currentHP.value);
     }
     public void TakeDamage(int dmg)
     {
-        if (isInvicible) return;
-        currentHP -= dmg;
-        hpBar.SetHealth(currentHP);
+        //StartCoroutine(InvincibilityCor());
+        currentHP.value -= dmg;
+        hpBar.SetHealth(currentHP.value);
     }
 
-    public void IncreaseMaxHP(int amount)
+    public void Kill()
     {
-        maxHP += amount;
-        hpBar.SetMaxHealth(maxHP);
+        throw new NotImplementedException();
     }
+
+    public void Knockback()
+    {
+        throw new NotImplementedException();
+    }
+
+    public void SlowDown(float slowDownFactorx, float slowDownFactory)
+    {
+        throw new NotImplementedException();
+    }
+
+    //public void IncreaseMaxHP(int amount)
+    //{
+    //    maxHP += amount;
+    //    hpBar.SetMaxHealth(maxHP);
+    //}
 }

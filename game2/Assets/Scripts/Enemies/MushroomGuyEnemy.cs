@@ -114,7 +114,7 @@ public class MushroomGuyEnemy : Enemy, IDamagable,IAnimatable
         {
             Rotate();
         }
-        if (hpSys.currentHP <= 0) Kill();
+        if (hpSys.currentHP.value <= 0) Kill();
     }
 
     IEnumerator AttackDelayCor()
