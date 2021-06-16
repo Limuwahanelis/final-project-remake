@@ -9,6 +9,7 @@ public class PlayerMovement : MonoBehaviour
     private Rigidbody2D _rb;
     public float speed;
     public float jumpStrength;
+    public float airAttackSpeed;
     public GameObject toRotate;
 
     private int _flipSide = 1;
@@ -73,5 +74,19 @@ public class PlayerMovement : MonoBehaviour
     {
         if (_rb.velocity.y < 0) _player.isFalling = true;
         else _player.isFalling = false;
+    }
+    public void AirAttackAnimationLogic(float airAttackDuration)
+    {
+        _rb.gravityScale = 0;
+        _rb.velocity = new Vector2(airAttackSpeed * _player.mainBody.transform.localScale.x, 0);
+        StartCoroutine(AirAttackCor(airAttackDuration));
+    }
+
+    IEnumerator AirAttackCor(float airAttackDuration)
+    {
+
+        yield return new WaitForSeconds(airAttackDuration);
+        _rb.velocity = new Vector2(0, 0);
+        _rb.gravityScale = 2;
     }
 }

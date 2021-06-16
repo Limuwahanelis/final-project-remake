@@ -25,6 +25,7 @@ public class PlayerChecks : MonoBehaviour
             {
                 _player.canPlayIdleAnim = true;
                 _player.canPlayWalkAnim = true;
+                if (_player.canPerformAirAttack == false) _player.canPerformAirAttack = true;
             }
         }
         else

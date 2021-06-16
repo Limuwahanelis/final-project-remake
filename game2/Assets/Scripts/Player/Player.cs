@@ -12,11 +12,14 @@ public class Player : MonoBehaviour,IAnimatable
         ATTACK,
         JUMP,
         FALLING,
+        AIRATTACK,
+
     }
     private PlayerSate _currentState;
     public PlayerMovement playerMovement;
     public PlayerInput playerInput;
     public PlayerCombat playerCombat;
+    public GameObject mainBody;
     private Animator _anim;
     public bool isAnimationPlaying = false;
     public bool isJumping = false;
@@ -29,8 +32,13 @@ public class Player : MonoBehaviour,IAnimatable
     public bool isMoving = false;
     public bool isAttacking = false;
     public bool canPlayIdleAnim = true;
-    public bool isFalling = false;
     public bool canPlayWalkAnim = true;
+    public bool isFalling = false;
+    
+
+    public bool isAirAttacking = false;
+    public bool canPerformAirAttack = true;
+
     public bool test = false;
 
     // Start is called before the first frame update
@@ -43,36 +51,40 @@ public class Player : MonoBehaviour,IAnimatable
     // Update is called once per frame
     void Update()
     {
-        SelectAnimationLogic();
+        
     }
     private void LateUpdate()
     {
         SelectAnimationToPlay();
+        SelectAnimationLogic();
         //SelectAnimationLogic();
         //if (!_isPlayingOtherAnimation) PlayAnimation("Idle");
     }
     private void SelectAnimationToPlay()
     {
-        
-        if(isOnGround)
+        if (!isAnimationPlaying)
         {
-            if (isControlledByPlayer)
+            if (isOnGround)
             {
-                if (isMoving)
+                if (isControlledByPlayer)
                 {
-                    if (canPlayWalkAnim) PlayAnimation("Walk");
+                    if (isMoving)
+                    {
+                        if (canPlayWalkAnim) PlayAnimation("Walk");
+                    }
+                    else if (canPlayIdleAnim)
+                    {
+                        PlayAnimation("Idle");
+                    }
                 }
-                else if (canPlayIdleAnim)
-                {
-                    PlayAnimation("Idle");
-                }
+                if (isJumping) PlayAnimation("Jump");
+                if (isAttacking) PlayAnimation("Attack1");
             }
-            if (isJumping) PlayAnimation("Jump");
-            if (isAttacking) PlayAnimation("Attack1");
-        }
-        else
-        {
-            if (isFalling) PlayAnimation("Fall");
+            else
+            {
+                if (isFalling) PlayAnimation("Fall");
+                if (isAirAttacking) PlayAnimation("Air attack");
+            }
         }
     }
     private void SelectAnimationLogic()
@@ -83,6 +95,8 @@ public class Player : MonoBehaviour,IAnimatable
             case PlayerSate.MOVE: break;
             case PlayerSate.JUMP:
                 {
+                    canPlayIdleAnim = false;
+                    canPlayWalkAnim = false;
                     StartCoroutine(WaitForAnimationToEnd(GetAnimationLength("Jump"), (result => isJumping = result), isJumping));
                     break;
                 }
@@ -93,6 +107,13 @@ public class Player : MonoBehaviour,IAnimatable
                     
 
                     StartCoroutine(WaitForAnimationToEnd(GetAnimationLength("Attack1"), (result => isAttacking = result), isAttacking));
+                    break;
+                }
+            case PlayerSate.AIRATTACK:
+                {
+                    canPerformAirAttack = false;
+                    StartCoroutine(WaitForAnimationToEnd(GetAnimationLength("Air attack"), (result => isAirAttacking = result), isAirAttacking));
+                    playerMovement.AirAttackAnimationLogic(GetAnimationLength("Air attack"));
                     break;
                 }
             default:
@@ -157,21 +178,6 @@ public class Player : MonoBehaviour,IAnimatable
         canPlayIdleAnim = true;
         ReturnControlToPlayer();
         isAnimationPlaying = false;
-    }
-    IEnumerator WaitForAnimationToEnd(float animationTime)
-    {
-        if (isAnimationPlaying)
-        {
-            yield break;
-        }
-        else
-        {
-            isAnimationPlaying = true;
-        }
-        yield return new WaitForSeconds(animationTime);
-        isAnimationPlaying = false;
-        canPlayWalkAnim = true;
-        canPlayIdleAnim = true;
     }
     private void Function1(ref bool val)
     {

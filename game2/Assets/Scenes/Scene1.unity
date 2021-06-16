@@ -472,7 +472,7 @@ MonoBehaviour:
   - Attack1
   - Jump
   - Fall
-  stateHashes: 2b1a167c6bd5a32d22ff2dfd28a981073270625b
+  - Player air attack
 --- !u!114 &788093020
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -488,7 +488,7 @@ MonoBehaviour:
   playerMovement: {fileID: 788093018}
   playerInput: {fileID: 788093021}
   playerCombat: {fileID: 788093022}
-  _isAnimationPlaying: 0
+  isAnimationPlaying: 0
   isJumping: 0
   isControlledByPlayer: 1
   isOnGround: 1
@@ -1515,7 +1515,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1618744460}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.017, y: -1.187, z: 0}
+  m_LocalPosition: {x: 0.017, y: -1.18, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 248530506}
