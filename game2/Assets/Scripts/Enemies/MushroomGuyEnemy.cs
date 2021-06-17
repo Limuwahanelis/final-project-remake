@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using System;
-public class MushroomGuyEnemy : Enemy, IDamagable,IAnimatable
+public class MushroomGuyEnemy : Enemy,IAnimatable
 {
     public float attackDelay = 3f;
     private bool _attack;
@@ -24,6 +24,7 @@ public class MushroomGuyEnemy : Enemy, IDamagable,IAnimatable
     {
         anim = GetComponent<Animator>();
         hpSys = transform.GetComponent<HealthSystem>();
+        hpSys.OnHitEvent += TakeDamage;
         patrolPos[0] = patrolTransofrms[0].position;
         patrolPos[1] = patrolTransofrms[1].position;
     }
@@ -82,11 +83,6 @@ public class MushroomGuyEnemy : Enemy, IDamagable,IAnimatable
         Destroy(this.gameObject);
     }
 
-    public void Knockback()
-    {
-        throw new System.NotImplementedException();
-    }
-
     public override void SetPlayerInRange()
     {
         _attack = true;
@@ -100,21 +96,13 @@ public class MushroomGuyEnemy : Enemy, IDamagable,IAnimatable
         _attack = false;
         //isAttacking = true;
     }
-
-    public void SlowDown(float slowDownFactorx, float slowDownFactory)
+    public void TakeDamage()
     {
-        throw new System.NotImplementedException();
-    }
-
-    public void TakeDamage(int dmg)
-    {
-        hpSys.TakeDamage(dmg);
         PlayAnimation("Hit");
         if(!_attack)
         {
             Rotate();
         }
-        if (hpSys.currentHP.value <= 0) Kill();
     }
 
     IEnumerator AttackDelayCor()
