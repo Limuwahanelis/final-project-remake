@@ -22,8 +22,7 @@ public class PlayerCombat : MonoBehaviour
         {
             _player.isAttacking = true;
             _player.StopWalkAndIdleAnimFromPlaying();
-            _player.ChangePlayerState(Player.PlayerSate.ATTACK);
-            _player.TakeControlFromPlayer();
+            _player.TakeControlFromPlayer(Player.Cause.ATTACK);
         }
         if(!_player.isOnGround)
         {
@@ -32,8 +31,7 @@ public class PlayerCombat : MonoBehaviour
                 if (_player.canPerformAirAttack)
                 {
                     _player.isAirAttacking = true;
-                    _player.ChangePlayerState(Player.PlayerSate.AIRATTACK);
-                    _player.TakeControlFromPlayer();
+                    _player.TakeControlFromPlayer(Player.Cause.ATTACK);
                 }
             }
         }

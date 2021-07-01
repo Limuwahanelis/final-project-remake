@@ -10,42 +10,27 @@ public class PlayerInput : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        //_player = GetComponent<Player>();
+        _player = GetComponent<Player>();
     }
 
     // Update is called once per frame
     void Update()
     {
         float direction = Input.GetAxisRaw("Horizontal");
-        if (_player.isControlledByPlayer)
+        Move(direction);
+        if (Input.GetButtonDown("Attack"))
         {
-            if (direction != 0)
-            {
-                Move(direction);
-            }
-            else
-            {
-                SetIdle();
-            }
-            if (Input.GetButtonDown("Attack"))
-            {
-                Attack();
-            }
-            if (Input.GetButtonDown("Jump"))
-            {
-                Jump();
-            }
+            Attack();
+        }
+        if (Input.GetButtonDown("Jump"))
+        {
+            Jump();
         }
     }
 
     private void Move(float direction)
     {
         _player.playerMovement.MovePlayer(direction);
-    }
-
-    private void SetIdle()
-    {
-        _player.playerMovement.MakePlayerIdle();
     }
     private void Attack()
     {

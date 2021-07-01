@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using System;
-public class MushroomGuyEnemy : Enemy,IAnimatable
+public class MushroomGuyEnemy : Enemy
 {
     public float attackDelay = 3f;
     private bool _attack;

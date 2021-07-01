@@ -2,39 +2,38 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using System;
-public class Player : MonoBehaviour,IAnimatable
+public class Player : MonoBehaviour
 {
-    public enum PlayerSate
+    public enum Cause
     {
         NONE,
-        IDLE,
-        MOVE,
+        ENEMY,
+        COLLISION,
+        OVERRIDE,
         ATTACK,
         JUMP,
-        FALLING,
-        AIRATTACK,
-
+        DEATH
     }
-    private PlayerSate _currentState;
+    public Cause NoControlCause = Cause.NONE;
     public PlayerMovement playerMovement;
     public PlayerInput playerInput;
     public PlayerCombat playerCombat;
     public GameObject mainBody;
-    private Animator _anim;
+    public AnimationManager anim;
     public bool isAnimationPlaying = false;
     public bool isJumping = false;
 
-    public event Action<string> OnPlayAnimation;
-    public event Func<string,float> OnGetAnimationLength;
+    //public event Action<string> OnPlayAnimation;
+    //public event Func<string,float> OnGetAnimationLength;
 
-    public bool isControlledByPlayer = true;
+    public bool isMovableByPlayer = true;
     public bool isOnGround = true;
     public bool isMoving = false;
     public bool isAttacking = false;
     public bool canPlayIdleAnim = true;
     public bool canPlayWalkAnim = true;
     public bool isFalling = false;
-    
+    public bool isAlive = true;
 
     public bool isAirAttacking = false;
     public bool canPerformAirAttack = true;
@@ -44,123 +43,65 @@ public class Player : MonoBehaviour,IAnimatable
     // Start is called before the first frame update
     void Start()
     {
-        _anim = GetComponent<Animator>();
+        anim = GetComponent<AnimationManager>();
         //StartCoroutine(WaitForAnimationToEnd(10f, (result => test = result),test));
     }
     
     // Update is called once per frame
     void Update()
     {
-        
-    }
-    private void LateUpdate()
-    {
-        SelectAnimationToPlay();
-        SelectAnimationLogic();
-        //SelectAnimationLogic();
-        //if (!_isPlayingOtherAnimation) PlayAnimation("Idle");
-    }
-    private void SelectAnimationToPlay()
-    {
-        if (!isAnimationPlaying)
+        if (isAlive)
         {
-            if (isOnGround)
+            if (isMovableByPlayer)
             {
-                if (isControlledByPlayer)
+                if(isOnGround)
                 {
-                    if (isMoving)
-                    {
-                        if (canPlayWalkAnim) PlayAnimation("Walk");
-                    }
-                    else if (canPlayIdleAnim)
-                    {
-                        PlayAnimation("Idle");
-                    }
+                    if (isMoving) anim.PlayAnimation("Walk");
+                    else anim.PlayAnimation("Idle");
                 }
-                if (isJumping) PlayAnimation("Jump");
-                if (isAttacking) PlayAnimation("Attack1");
+                else
+                {
+                    if (isFalling) anim.PlayAnimation("Fall");
+                }
             }
-            else
-            {
-                if (isFalling) PlayAnimation("Fall");
-                if (isAirAttacking) PlayAnimation("Air attack");
-            }
+
         }
     }
-    private void SelectAnimationLogic()
+    public void ReturnControlToPlayer(Cause returnControlCause)
     {
-        switch (_currentState)
+        if (NoControlCause == Cause.NONE) return;
+        if (returnControlCause == Cause.OVERRIDE)
         {
-            case PlayerSate.IDLE: break;
-            case PlayerSate.MOVE: break;
-            case PlayerSate.JUMP:
-                {
-                    canPlayIdleAnim = false;
-                    canPlayWalkAnim = false;
-                    StartCoroutine(WaitForAnimationToEnd(GetAnimationLength("Jump"), (result => isJumping = result), isJumping));
-                    break;
-                }
-            case PlayerSate.ATTACK:
-                {
-                    Debug.Log("Should play at");
-
-                    
-
-                    StartCoroutine(WaitForAnimationToEnd(GetAnimationLength("Attack1"), (result => isAttacking = result), isAttacking));
-                    break;
-                }
-            case PlayerSate.AIRATTACK:
-                {
-                    canPerformAirAttack = false;
-                    StartCoroutine(WaitForAnimationToEnd(GetAnimationLength("Air attack"), (result => isAirAttacking = result), isAirAttacking));
-                    playerMovement.AirAttackAnimationLogic(GetAnimationLength("Air attack"));
-                    break;
-                }
-            default:
-                {
-                    //PlayAnimation("Idle");
-                    break;
-                }
-
+            isMovableByPlayer = true;
+            NoControlCause = Cause.NONE;
+            return;
         }
-        _currentState = PlayerSate.NONE;
-    }
-
-
-    public void PlayAnimation(string name)
-    {
-        OnPlayAnimation?.Invoke(name);
-    }
-    public float GetAnimationLength(string name)
-    {
-        if (OnGetAnimationLength != null)
+        if (NoControlCause != returnControlCause) return;
+        else
         {
-            Debug.Log(OnGetAnimationLength.Invoke(name));
-            
+            isMovableByPlayer = true;
         }
-        return OnGetAnimationLength.Invoke(name);
-    }
-    public void ChangePlayerState(PlayerSate newState)
-    {
-        _currentState = newState;
+        NoControlCause = Cause.NONE;
     }
 
-    public void ReturnControlToPlayer()
+    public void TakeControlFromPlayer(Cause takeAwayCause)
     {
-        isControlledByPlayer = true;
-        Debug.Log("End");
+        isMovableByPlayer = false;
+        NoControlCause = takeAwayCause;
+        playerMovement.StopPlayer();
     }
-    public void TakeControlFromPlayer()
-    {
-        isControlledByPlayer = false;
-        Debug.Log("take");
-    }
+
+  
     public void StopWalkAndIdleAnimFromPlaying()
     {
         canPlayWalkAnim = false;
         canPlayIdleAnim = false;
     }
-
+    IEnumerator WaitAndExecuteFunction(float timeToWait,Action function)
+    {
+        yield return new WaitForSeconds(timeToWait);
+        function();
+    }
     IEnumerator WaitForAnimationToEnd(float animationTime,Action<bool> myVar,bool currentValue)
     {
         if (isAnimationPlaying)
@@ -176,12 +117,8 @@ public class Player : MonoBehaviour,IAnimatable
         myVar(!currentValue);
         canPlayWalkAnim = true;
         canPlayIdleAnim = true;
-        ReturnControlToPlayer();
+        //ReturnControlToPlayer();
         isAnimationPlaying = false;
-    }
-    private void Function1(ref bool val)
-    {
-        val = !val;
     }
 
 

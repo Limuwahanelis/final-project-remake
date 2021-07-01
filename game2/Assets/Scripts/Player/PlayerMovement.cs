@@ -13,7 +13,9 @@ public class PlayerMovement : MonoBehaviour
     public GameObject toRotate;
 
     private int _flipSide = 1;
-    private bool _isMovableByPlayer = true;
+    //private bool _isMovableByPlayer = true;
+
+    private float _previousDirection;
 
     void Start()
     {
@@ -30,27 +32,49 @@ public class PlayerMovement : MonoBehaviour
 
     public void MovePlayer(float direction)
     {
-        _rb.velocity = new Vector3(Input.GetAxisRaw("Horizontal") * speed, _rb.velocity.y, 0);
-        if (direction > 0)
+        if (direction != 0)
         {
-            _flipSide = 1;
-            toRotate.transform.localScale = new Vector3(_flipSide, toRotate.transform.localScale.y, toRotate.transform.localScale.z);
+            if (_player.isMovableByPlayer)
+            {
+                _rb.velocity = new Vector3(direction * speed, _rb.velocity.y, 0);
+                if (direction > 0)
+                {
+                    _flipSide = 1;
+                    _player.mainBody.transform.localScale = new Vector3(_flipSide, _player.mainBody.transform.localScale.y, _player.mainBody.transform.localScale.z);
+                }
+                if (direction < 0)
+                {
+                    _flipSide = -1;
+                    _player.mainBody.transform.localScale = new Vector3(_flipSide, _player.mainBody.transform.localScale.y, _player.mainBody.transform.localScale.z);
+                }
+                _player.isMoving = true;
+            }
         }
-        if (direction < 0)
+        else
         {
-            _flipSide = -1;
-            toRotate.transform.localScale = new Vector3(_flipSide, toRotate.transform.localScale.y, toRotate.transform.localScale.z);
+            if (_previousDirection != 0) StopPlayerOnXAxis();
         }
-        _player.isMoving = true;
+        _previousDirection = direction;
+    }
+    public void StopPlayer()
+    {
+        _player.isMoving = false;
+        _rb.velocity = new Vector2(0, 0);
+    }
+    public void StopPlayerOnXAxis()
+    {
+        _player.isMoving = false;
+        _rb.velocity = new Vector2(0, _rb.velocity.y);
+    }
+    public void StopPlayerOnYAxis()
+    {
+        _player.isMoving = false;
+        _rb.velocity = new Vector2(_rb.velocity.x, 0);
     }
     public void MakePlayerIdle()
     {
         _rb.velocity = new Vector3(0, _rb.velocity.y, 0);
         _player.isMoving = false;
-    }
-    public void StopPlayer()
-    {
-        _rb.velocity = new Vector3(0, _rb.velocity.y, 0);
     }
     public void Jump()
     {
@@ -59,7 +83,10 @@ public class PlayerMovement : MonoBehaviour
             _player.isJumping = true;
             _player.canPlayIdleAnim = false;
             _player.canPlayWalkAnim = false;
-            _player.ChangePlayerState(Player.PlayerSate.JUMP);
+            _player.isMovableByPlayer = false;
+            _player.TakeControlFromPlayer(Player.Cause.JUMP);
+            _player.anim.PlayAnimation("Jump");
+            StartCoroutine(JumpCor());
         }
     }
     public void JumpAnimationLogic()
@@ -88,5 +115,12 @@ public class PlayerMovement : MonoBehaviour
         yield return new WaitForSeconds(airAttackDuration);
         _rb.velocity = new Vector2(0, 0);
         _rb.gravityScale = 2;
+    }
+
+    IEnumerator JumpCor()
+    {
+        while (_player.isOnGround) yield return null;
+        _player.isJumping = false;
+        _player.ReturnControlToPlayer(Player.Cause.JUMP);
     }
 }
