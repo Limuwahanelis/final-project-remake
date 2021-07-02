@@ -81,8 +81,6 @@ public class PlayerMovement : MonoBehaviour
         if (!_player.isJumping && _player.isOnGround)
         {
             _player.isJumping = true;
-            _player.canPlayIdleAnim = false;
-            _player.canPlayWalkAnim = false;
             _player.isMovableByPlayer = false;
             _player.TakeControlFromPlayer(Player.Cause.JUMP);
             _player.anim.PlayAnimation("Jump");
@@ -95,7 +93,6 @@ public class PlayerMovement : MonoBehaviour
         _rb.velocity = new Vector3(0, 0, 0);
         _rb.AddForce(new Vector2(0, jumpStrength));
         _player.isJumping = false;
-        _player.isAnimationPlaying = false;
     }
     private void CheckIfPlayerIsFalling()
     {

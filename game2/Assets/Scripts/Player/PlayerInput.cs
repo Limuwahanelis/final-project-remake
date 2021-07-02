@@ -34,7 +34,7 @@ public class PlayerInput : MonoBehaviour
     }
     private void Attack()
     {
-        _player.playerMovement.StopPlayer();
+        
         _player.playerCombat.Attack();
        
     }

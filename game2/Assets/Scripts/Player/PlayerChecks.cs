@@ -18,20 +18,9 @@ public class PlayerChecks : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (!_player.isOnGround)
-        {
-            //_player.canPlayIdleAnim = false;
-            if (_player.isOnGround = Physics2D.OverlapBox(groundCheckPos.position, new Vector2(groundCheckWidth, groundCheckHeight), 0, ground))
-            {
-                _player.canPlayIdleAnim = true;
-                _player.canPlayWalkAnim = true;
-                if (_player.canPerformAirAttack == false) _player.canPerformAirAttack = true;
-            }
-        }
-        else
-        {
-            _player.isOnGround = Physics2D.OverlapBox(groundCheckPos.position, new Vector2(groundCheckWidth, groundCheckHeight), 0, ground);
-        }
+
+        _player.isOnGround = Physics2D.OverlapBox(groundCheckPos.position, new Vector2(groundCheckWidth, groundCheckHeight), 0, ground);
+
     }
 
     private void OnDrawGizmos()

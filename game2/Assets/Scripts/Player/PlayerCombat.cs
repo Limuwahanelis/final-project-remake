@@ -5,10 +5,12 @@ using UnityEngine;
 public class PlayerCombat : MonoBehaviour
 {
     private Player _player;
+    private AnimationManager anim;
     // Start is called before the first frame update
     void Start()
     {
         _player = GetComponent<Player>();
+        anim = _player.anim;
     }
 
     // Update is called once per frame
@@ -18,21 +20,34 @@ public class PlayerCombat : MonoBehaviour
     }
     public void Attack()
     {
-        if (_player.isOnGround && !_player.isAnimationPlaying)
+        if (_player.isOnGround && !_player.isAttacking && _player.isMovableByPlayer)
         {
+            _player.playerMovement.StopPlayer();
             _player.isAttacking = true;
-            _player.StopWalkAndIdleAnimFromPlaying();
             _player.TakeControlFromPlayer(Player.Cause.ATTACK);
+            _player.anim.PlayAnimation("Attack1");
+            StartCoroutine(_player.WaitAndExecuteFunction(_player.anim.GetAnimationLength("Attack1"), () =>
+             {
+                 _player.isAttacking = false;
+                 _player.ReturnControlToPlayer(Player.Cause.ATTACK);
+             }));
         }
-        if(!_player.isOnGround)
+        if (!_player.isOnGround && !_player.isAttacking && _player.isMovableByPlayer)
         {
-            if(!_player.isAirAttacking)
+            if (_player.canPerformAirAttack)
             {
-                if (_player.canPerformAirAttack)
-                {
-                    _player.isAirAttacking = true;
-                    _player.TakeControlFromPlayer(Player.Cause.ATTACK);
-                }
+                _player.canPerformAirAttack = false;
+                _player.isAirAttacking = true;
+                _player.isAttacking = true;
+                _player.anim.PlayAnimation("Air attack");
+                _player.TakeControlFromPlayer(Player.Cause.ATTACK);
+                _player.playerMovement.AirAttackAnimationLogic(anim.GetAnimationLength("Air attack"));
+                StartCoroutine(_player.WaitAndExecuteFunction(anim.GetAnimationLength("Air attack"), () =>
+                 {
+                     _player.isAirAttacking = false;
+                     _player.isAttacking = false;
+                     _player.ReturnControlToPlayer(Player.Cause.ATTACK);
+                 }));
             }
         }
     }

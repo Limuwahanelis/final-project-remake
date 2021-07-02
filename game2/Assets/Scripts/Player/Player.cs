@@ -20,18 +20,12 @@ public class Player : MonoBehaviour
     public PlayerCombat playerCombat;
     public GameObject mainBody;
     public AnimationManager anim;
-    public bool isAnimationPlaying = false;
+
     public bool isJumping = false;
-
-    //public event Action<string> OnPlayAnimation;
-    //public event Func<string,float> OnGetAnimationLength;
-
     public bool isMovableByPlayer = true;
     public bool isOnGround = true;
     public bool isMoving = false;
     public bool isAttacking = false;
-    public bool canPlayIdleAnim = true;
-    public bool canPlayWalkAnim = true;
     public bool isFalling = false;
     public bool isAlive = true;
 
@@ -44,7 +38,6 @@ public class Player : MonoBehaviour
     void Start()
     {
         anim = GetComponent<AnimationManager>();
-        //StartCoroutine(WaitForAnimationToEnd(10f, (result => test = result),test));
     }
     
     // Update is called once per frame
@@ -56,15 +49,16 @@ public class Player : MonoBehaviour
             {
                 if(isOnGround)
                 {
+                    canPerformAirAttack = true;
                     if (isMoving) anim.PlayAnimation("Walk");
                     else anim.PlayAnimation("Idle");
                 }
-                else
-                {
-                    if (isFalling) anim.PlayAnimation("Fall");
-                }
             }
 
+            if(!isOnGround)
+            {
+                if (isFalling) anim.PlayAnimation("Fall");
+            }
         }
     }
     public void ReturnControlToPlayer(Cause returnControlCause)
@@ -90,35 +84,10 @@ public class Player : MonoBehaviour
         NoControlCause = takeAwayCause;
         playerMovement.StopPlayer();
     }
-
-  
-    public void StopWalkAndIdleAnimFromPlaying()
-    {
-        canPlayWalkAnim = false;
-        canPlayIdleAnim = false;
-    }
-    IEnumerator WaitAndExecuteFunction(float timeToWait,Action function)
+    public IEnumerator WaitAndExecuteFunction(float timeToWait,Action function)
     {
         yield return new WaitForSeconds(timeToWait);
         function();
-    }
-    IEnumerator WaitForAnimationToEnd(float animationTime,Action<bool> myVar,bool currentValue)
-    {
-        if (isAnimationPlaying)
-        {
-            yield break;
-        }
-        else
-        {
-            isAnimationPlaying = true;
-        }
-       
-        yield return new WaitForSeconds(animationTime);
-        myVar(!currentValue);
-        canPlayWalkAnim = true;
-        canPlayIdleAnim = true;
-        //ReturnControlToPlayer();
-        isAnimationPlaying = false;
     }
 
 
