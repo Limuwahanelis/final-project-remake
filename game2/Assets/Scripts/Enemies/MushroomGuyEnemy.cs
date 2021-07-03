@@ -16,13 +16,10 @@ public class MushroomGuyEnemy : Enemy
     private int lastPatrol=1;
     Coroutine cor;
 
-    public event Action<string> OnPlayAnimation;
-    public event Func<string, float> OnGetAnimationLength;
-
     // Start is called before the first frame update
     void Start()
     {
-        anim = GetComponent<Animator>();
+        _anim = GetComponent<AnimationManager>();
         hpSys = transform.GetComponent<HealthSystem>();
         hpSys.OnHitEvent += TakeDamage;
         patrolPos[0] = patrolTransofrms[0].position;
@@ -53,7 +50,7 @@ public class MushroomGuyEnemy : Enemy
     }
     private void MoveLeft()
     {
-        PlayAnimation("Move");
+        _anim.PlayAnimation("Move");
         transform.position = Vector3.MoveTowards(transform.position, patrolPos[0], speed * Time.deltaTime);
         //RaiseOnWalkEvent();
         if (transform.position.x <= patrolPos[0].x)
@@ -66,7 +63,7 @@ public class MushroomGuyEnemy : Enemy
     }
     private void MoveRight()
     {
-        PlayAnimation("Move");
+        _anim.PlayAnimation("Move");
         transform.position = Vector3.MoveTowards(transform.position, patrolPos[1], speed * Time.deltaTime);
         //RaiseOnWalkEvent();
         if (transform.position.x >= patrolPos[1].x)
@@ -88,7 +85,7 @@ public class MushroomGuyEnemy : Enemy
         _attack = true;
         _isPatrollingLeft = false;
         _isPatrollingRight = false;
-        PlayAnimation("Idle");
+       _anim.PlayAnimation("Idle");
     }
 
     public override void SetPlayerNotInRange()
@@ -98,7 +95,7 @@ public class MushroomGuyEnemy : Enemy
     }
     public void TakeDamage()
     {
-        PlayAnimation("Hit");
+        _anim.PlayAnimation("Hit");
         if(!_attack)
         {
             Rotate();
@@ -110,7 +107,7 @@ public class MushroomGuyEnemy : Enemy
         _isAttacking = true;
         yield return new WaitForSeconds(attackDelay);
 
-        PlayAnimation("Attack");
+        _anim.PlayAnimation("Attack");
         RaiseOnAttackEvent();
         
     }
@@ -124,15 +121,5 @@ public class MushroomGuyEnemy : Enemy
     void Rotate()
     {
         transform.localScale = new Vector3(-transform.localScale.x, transform.localScale.y, transform.localScale.z);
-    }
-
-    public void PlayAnimation(string name)
-    {
-        OnPlayAnimation?.Invoke(name);
-    }
-
-    public float GetAnimationLength(string name)
-    {
-        throw new NotImplementedException();
     }
 }

@@ -11,7 +11,7 @@ public abstract class Enemy : MonoBehaviour
     // Start is called before the first frame update
     [SerializeField]
     private float invicibilityProgress=0.2f;
-    public Animator anim;
+    protected AnimationManager _anim;
     protected HealthSystem hpSys;
     public float speed;
     public int dmg;
