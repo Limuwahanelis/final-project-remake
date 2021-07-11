@@ -190,6 +190,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7801763715194258495, guid: cb9e7c68cff6ed44d903fe9b24f066b8, type: 3}
+      propertyPath: attackDelay
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 8811187578367163257, guid: cb9e7c68cff6ed44d903fe9b24f066b8, type: 3}
       propertyPath: m_AnchorMax.x
       value: 0
@@ -657,7 +661,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6c02345f6b4e23846bb862f3ee53d9d5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  animatorController: {fileID: 9100000, guid: 04a28c8199290124c925dcea322c3600, type: 2}
   stateNames:
   - Idle
   - Walk
@@ -672,6 +675,7 @@ MonoBehaviour:
   - 0.11666667
   - 0.18333334
   - 0.23333333
+  animatorController: {fileID: 9100000, guid: 04a28c8199290124c925dcea322c3600, type: 2}
 --- !u!114 &788093020
 MonoBehaviour:
   m_ObjectHideFlags: 0

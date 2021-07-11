@@ -105,11 +105,9 @@ public class MushroomGuyEnemy : Enemy
     IEnumerator AttackDelayCor()
     {
         _isAttacking = true;
-        yield return new WaitForSeconds(attackDelay);
-
         _anim.PlayAnimation("Attack");
         RaiseOnAttackEvent();
-        
+        yield return new WaitForSeconds(attackDelay);
     }
     public void EndAttack()
     {

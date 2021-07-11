@@ -9,10 +9,6 @@ using System;
 [RequireComponent(typeof(Animator))]
 public class AnimationManager : MonoBehaviour
 {
-#if UNITY_EDITOR
-    [HideInInspector]
-    public AnimatorController animatorController;
-#endif
     private string _currentAnimation;
     private Animator _anim;
     [SerializeField]
@@ -21,10 +17,32 @@ public class AnimationManager : MonoBehaviour
     private float _animLength;
     private bool _overPlayAnimationEnded = true;
     private Coroutine _currentTimer;
+#if UNITY_EDITOR
+    [HideInInspector]
+    public AnimatorController animatorController;
+    private void Start()
+    {
+        _anim = GetComponent<Animator>();
+        for (int i = 0; i < animatorController.layers[0].stateMachine.states.Length; i++)
+        {
+            AnimatorState state = animatorController.layers[0].stateMachine.states[i].state;
+            
+            if (state.motion != null)
+            {
+                stateNames.Add(state.name);
+                stateLengths.Add(state.motion.averageDuration);
+            }
+        }
+    }
+#else
     private void Start()
     {
         _anim = GetComponent<Animator>();
     }
+#endif
+
+
+
 
     public void PlayAnimation(string name, bool canBePlayedOver = true)
     {
@@ -39,7 +57,6 @@ public class AnimationManager : MonoBehaviour
         if (_currentAnimation == clipToPlayName) return;
         if (!canBePlayedOver)
         {
-
             _overPlayAnimationEnded = false;
             _animLength = stateLengths[index];
             _currentTimer = StartCoroutine(TimerCor(_animLength, SetOverPlayAnimAsEnded));
