@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class PlayerHealthSystem : HealthSystem
 {
-    public bool isInvincible = false;
     [SerializeField]
     private float _invincibilityAfterHitDuration;
     public override void TakeDamage(int dmg)

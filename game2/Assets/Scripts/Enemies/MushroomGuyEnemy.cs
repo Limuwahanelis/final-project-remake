@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using System;
-public class MushroomGuyEnemy : Enemy
+public class MushroomGuyEnemy : PatrollingEnemy
 {
     public float attackDelay = 3f;
     private bool _attack;
@@ -12,6 +12,7 @@ public class MushroomGuyEnemy : Enemy
 
     private bool _isPatrollingLeft = false;
     private bool _isPatrollingRight = true;
+    private PlayerDetection _detection;
 
     private int lastPatrol=1;
     Coroutine cor;
@@ -19,62 +20,72 @@ public class MushroomGuyEnemy : Enemy
     // Start is called before the first frame update
     void Start()
     {
-        _anim = GetComponent<AnimationManager>();
-        hpSys = transform.GetComponent<HealthSystem>();
-        hpSys.OnHitEvent += TakeDamage;
-        patrolPos[0] = patrolTransofrms[0].position;
-        patrolPos[1] = patrolTransofrms[1].position;
+        //_anim = GetComponent<AnimationManager>();
+        //hpSys = transform.GetComponent<HealthSystem>();
+        //hpSys.OnHitEvent += TakeDamage;
+        //patrolPos[0] = patrolTransofrms[0].position;
+        //patrolPos[1] = patrolTransofrms[1].position;
+        SetUpBehaviour();
+        SetUpComponents();
     }
-
+    protected override void SetUpComponents()
+    {
+        base.SetUpComponents();
+        _detection = GetComponentInChildren<PlayerDetection>();
+        _detection.OnPlayerDetected = SetPlayerInRange;
+        _detection.OnPlayerLeft = SetPlayerNotInRange;
+        //hpSys.OnHit += Hit;
+        //hpSys.OnDeath = Kill;
+    }
     // Update is called once per frame
     void Update()
     {
-        if (_attack)
+        if (_isAlive)
         {
-            if (!_isAttacking)
+            if (!_isHit)
             {
-                cor=StartCoroutine(AttackDelayCor());
-            }
-        }
-        if (!_isAttacking)
-        {
-            if (_isPatrollingLeft)
-            {
-                MoveLeft();
-            }
-            if (_isPatrollingRight)
-            {
-                MoveRight();
+                if (currentState == EnemyEnums.State.PATROLLING)
+                {
+                    _anim.PlayAnimation("Move");
+                    MoveToPatrolPoint();
+                }
+                if (currentState == EnemyEnums.State.ALWAYS_IDLE)
+                {
+                    if (!_isIdle) StartCoroutine(StayIdleCor());
+                }
+                if (currentState == EnemyEnums.State.IDLE_AT_PATROL_POINT)
+                {
+                    if (!_isIdle) StayIdleAtPatrolPoint();
+                }
+                if (currentState == EnemyEnums.State.ATTACKING)
+                {
+                    Attack();
+                }
+                if (currentState == EnemyEnums.State.IDLE_AFTER_HIT)
+                {
+                    if (!_isIdle) StayIdleAfterHit();
+                }
             }
         }
     }
-    private void MoveLeft()
+    private void Attack()
     {
-        _anim.PlayAnimation("Move");
-        transform.position = Vector3.MoveTowards(transform.position, patrolPos[0], speed * Time.deltaTime);
-        //RaiseOnWalkEvent();
-        if (transform.position.x <= patrolPos[0].x)
+        if (_isAttacking) return;
+        _isAttacking = true;
+        _anim.PlayAnimation("Attack");
+        RaiseOnAttackEvent();
+        StartCoroutine(WaitAndExecuteFunction(_anim.GetAnimationLength("Attack"), () =>
         {
-            transform.localScale = new Vector3(-transform.localScale.x, transform.localScale.y, transform.localScale.z);
-            _isPatrollingRight = true;
-            _isPatrollingLeft = false;
-            lastPatrol = 1;
-        }
+            _anim.PlayAnimation("Idle");
+            StartCoroutine(WaitAndExecuteFunction(_anim.GetAnimationLength("Idle"), () => { _isAttacking = false; }));
+        }));
     }
-    private void MoveRight()
+    private void StayIdleAfterHit()
     {
-        _anim.PlayAnimation("Move");
-        transform.position = Vector3.MoveTowards(transform.position, patrolPos[1], speed * Time.deltaTime);
-        //RaiseOnWalkEvent();
-        if (transform.position.x >= patrolPos[1].x)
-        {
-            transform.localScale = new Vector3(-transform.localScale.x, transform.localScale.y, transform.localScale.z);
-            _isPatrollingRight = false;
-            _isPatrollingLeft = true;
-            lastPatrol = 0;
-        }
+        StartCoroutine(StayIdleCor());
+        StartCoroutine(WaitAndExecuteFunction(_anim.GetAnimationLength("Idle"), ResumeActions));
     }
-    public void Kill()
+    protected override void Kill()
     {
         IncreaseInvicibilityProgress();
         Destroy(this.gameObject);
@@ -82,16 +93,21 @@ public class MushroomGuyEnemy : Enemy
 
     public override void SetPlayerInRange()
     {
-        _attack = true;
-        _isPatrollingLeft = false;
-        _isPatrollingRight = false;
-       _anim.PlayAnimation("Idle");
+        if (currentState != EnemyEnums.State.DEAD)
+        {
+            states.Push(currentState);
+            currentState = EnemyEnums.State.ATTACKING;
+            StopCurrentActions();
+            //Attack();
+        }
     }
 
     public override void SetPlayerNotInRange()
     {
-        _attack = false;
-        //isAttacking = true;
+        if (currentState != EnemyEnums.State.DEAD)
+        {
+            StartCoroutine(WaitAndExecuteFunction(_anim.GetCurrentAnimationRemainingLength(), ResumeActions));
+        }
     }
     public void TakeDamage()
     {
@@ -108,12 +124,6 @@ public class MushroomGuyEnemy : Enemy
         _anim.PlayAnimation("Attack");
         RaiseOnAttackEvent();
         yield return new WaitForSeconds(attackDelay);
-    }
-    public void EndAttack()
-    {
-        _isAttacking = false;
-        if (lastPatrol == 0) _isPatrollingLeft = true;
-        else _isPatrollingRight = true;
     }
 
     void Rotate()

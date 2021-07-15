@@ -99,7 +99,7 @@ public class AnimationManager : MonoBehaviour
         return clipDuration;
     }
 
-    public float GetCurrentStateRemainingTime()
+    public float GetCurrentAnimationRemainingLength()
     {
         return _anim.GetCurrentAnimatorStateInfo(0).normalizedTime * _animLength;
     }

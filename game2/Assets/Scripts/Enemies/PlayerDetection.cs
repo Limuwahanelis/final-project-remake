@@ -1,29 +1,20 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System;
 
 public class PlayerDetection : MonoBehaviour
 {
-    public Enemy parent;
-
-    // Start is called before the first frame update
-    void Start()
-    {
-        parent = transform.GetComponentInParent<Enemy>();
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
+    public Action OnPlayerDetected;
+    public Action OnPlayerLeft;
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        parent.SetPlayerInRange();
+        OnPlayerDetected?.Invoke();
+        Debug.Log("Detec");
     }
+
     private void OnTriggerExit2D(Collider2D collision)
     {
-        parent.SetPlayerNotInRange();
+        OnPlayerLeft?.Invoke();
     }
 }

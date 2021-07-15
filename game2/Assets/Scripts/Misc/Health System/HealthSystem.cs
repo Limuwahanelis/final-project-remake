@@ -6,7 +6,7 @@ using UnityEngine.UI;
 
 public class HealthSystem : MonoBehaviour,IDamagable
 {
-
+    public bool isInvincible;
     public HealthBar hpBar;
     public int maxHP;
     public IntReference currentHP;
