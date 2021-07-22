@@ -7,14 +7,16 @@ public class PlayerDetection : MonoBehaviour
 {
     public Action OnPlayerDetected;
     public Action OnPlayerLeft;
+    public Vector3 playerPos;
     private void OnTriggerEnter2D(Collider2D collision)
     {
         OnPlayerDetected?.Invoke();
-        Debug.Log("Detec");
+        playerPos = collision.transform.position;
     }
 
     private void OnTriggerExit2D(Collider2D collision)
     {
+        playerPos = Vector3.zero;
         OnPlayerLeft?.Invoke();
     }
 }

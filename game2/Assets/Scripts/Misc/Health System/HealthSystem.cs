@@ -21,7 +21,6 @@ public class HealthSystem : MonoBehaviour,IDamagable
     }
     public virtual void TakeDamage(int dmg)
     {
-        Debug.Log("Hot");
         currentHP.value -= dmg;
         hpBar.SetHealth(currentHP.value);
         OnHitEvent?.Invoke();

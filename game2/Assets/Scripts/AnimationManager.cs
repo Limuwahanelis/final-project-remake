@@ -18,11 +18,12 @@ public class AnimationManager : MonoBehaviour
     private bool _overPlayAnimationEnded = true;
     private Coroutine _currentTimer;
 #if UNITY_EDITOR
-    [HideInInspector]
     public AnimatorController animatorController;
     private void Start()
     {
         _anim = GetComponent<Animator>();
+        stateLengths.Clear();
+        stateNames.Clear();
         for (int i = 0; i < animatorController.layers[0].stateMachine.states.Length; i++)
         {
             AnimatorState state = animatorController.layers[0].stateMachine.states[i].state;
@@ -31,6 +32,11 @@ public class AnimationManager : MonoBehaviour
             {
                 stateNames.Add(state.name);
                 stateLengths.Add(state.motion.averageDuration);
+            }
+            else
+            {
+                stateNames.Add("Empty");
+                stateLengths.Add(0);
             }
         }
     }
@@ -63,7 +69,6 @@ public class AnimationManager : MonoBehaviour
             _anim.Play(Animator.StringToHash(clipToPlayName)); //clipToPlay.nameHash);
             _currentAnimation = clipToPlayName;
         }
-
         if (_overPlayAnimationEnded)
         {
             _animLength = stateLengths[index];
