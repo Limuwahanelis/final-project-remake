@@ -1,5 +1,52 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &319436317
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 319436318}
+  - component: {fileID: 319436319}
+  m_Layer: 8
+  m_Name: Collider
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &319436318
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 319436317}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 7801763715194258492}
+  m_RootOrder: 7
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!70 &319436319
+CapsuleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 319436317}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: -0.3641355}
+  m_Size: {x: 1.0953168, y: 1.8313894}
+  m_Direction: 0
 --- !u!114 &8360096286388157037
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -165,8 +212,8 @@ GameObject:
   m_Component:
   - component: {fileID: 7801763714972997063}
   - component: {fileID: 7801763714972997057}
-  - component: {fileID: 397353804391466209}
-  m_Layer: 12
+  - component: {fileID: 159930233}
+  m_Layer: 10
   m_Name: Player detector
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -213,7 +260,7 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 6.975647, y: 3.7502117}
   m_EdgeRadius: 0
---- !u!114 &397353804391466209
+--- !u!114 &159930233
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -222,10 +269,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 7801763714972997060}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 57cc9bf1446c5b04e903467246828fa4, type: 3}
+  m_Script: {fileID: 11500000, guid: 8bfde02d1bc295245a5dcb2805fff979, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  parent: {fileID: 0}
+  playerPos: {x: 0, y: 0, z: 0}
 --- !u!1 &7801763715194258482
 GameObject:
   m_ObjectHideFlags: 0
@@ -242,7 +289,7 @@ GameObject:
   - component: {fileID: 1462034633}
   - component: {fileID: 5270132975700377586}
   - component: {fileID: 3866765878633191332}
-  m_Layer: 15
+  m_Layer: 0
   m_Name: Mushroom Enemy
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -267,6 +314,7 @@ Transform:
   - {fileID: 656716534033261379}
   - {fileID: 7801763714006063704}
   - {fileID: 7801763714972997063}
+  - {fileID: 319436318}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -304,10 +352,12 @@ MonoBehaviour:
   invicibilityProgress: 0.35
   speed: 2
   dmg: 0
-  attackDelay: 1
-  patrolTransofrms:
+  collisionDmg: 0
+  idleCycles: 0
+  patrolPoints:
   - {fileID: 7801763713472150753}
   - {fileID: 7801763713690497050}
+  attackDelay: 3
 --- !u!70 &7801763715194258489
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
@@ -315,7 +365,7 @@ CapsuleCollider2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7801763715194258482}
-  m_Enabled: 1
+  m_Enabled: 0
   m_Density: 1
   m_Material: {fileID: 0}
   m_IsTrigger: 0
@@ -446,6 +496,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 55289b7a1a56b4f43969e1407df7bd4f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isInvincible: 0
   hpBar: {fileID: 8360096286388157037}
   maxHP: 20
   currentHP:
@@ -464,7 +515,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6c02345f6b4e23846bb862f3ee53d9d5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  animatorController: {fileID: 9100000, guid: 6db6810008abb9c4eb75fb5dfc71d27a, type: 2}
+  _anim: {fileID: 7801763715194258493}
   stateNames:
   - Idle
   - Attack
@@ -475,6 +526,7 @@ MonoBehaviour:
   - 1.4833333
   - 1.4166666
   - 0.18333334
+  animatorController: {fileID: 9100000, guid: 6db6810008abb9c4eb75fb5dfc71d27a, type: 2}
 --- !u!61 &7801763713535736988
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -513,7 +565,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2806b4a91d5e39641aae29984d54db31, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damage: 0
+  damage: 5
 --- !u!1001 &2815652939067735902
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -708,11 +760,6 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 3484654163008205522, guid: 219f1a43d66fa2c4a805b99c88dbf8d9, type: 3}
   m_PrefabInstance: {fileID: 5728387854599105660}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &568817717703651751 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 5231928035739311579, guid: 219f1a43d66fa2c4a805b99c88dbf8d9, type: 3}
-  m_PrefabInstance: {fileID: 5728387854599105660}
-  m_PrefabAsset: {fileID: 0}
 --- !u!114 &5096280557011291752 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 704516804749943316, guid: 219f1a43d66fa2c4a805b99c88dbf8d9, type: 3}
@@ -724,6 +771,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 67db9e8f0e2ae9c40bc1e2b64352a6b4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &568817717703651751 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5231928035739311579, guid: 219f1a43d66fa2c4a805b99c88dbf8d9, type: 3}
+  m_PrefabInstance: {fileID: 5728387854599105660}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &7519948766608610364
 PrefabInstance:
   m_ObjectHideFlags: 0

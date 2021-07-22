@@ -87,20 +87,20 @@ public class FlyingEyeEnemy : Enemy,IDamagable
         Instantiate(missilePrefab, sprite.transform.position, missilePrefab.transform.rotation);
         
     }
-    //public void Attack()
-    //{
-    //    missilePrefab.transform.up =_playerPos - sprite.transform.position;
-    //    RaiseOnAttackEvent();
-    //    Instantiate(missilePrefab, sprite.transform.position, missilePrefab.transform.rotation);
-    //    _attackCount++;
-    //    if(_attackCount==_attacksInSeries)
-    //    {
-    //        _attackCount = 0;
-    //        _anim.PlayAnimation("Attack",false);
-    //        StartCoroutine(AttackCor());
-    //    }
-        
-    //}
+    public void Attack()
+    {
+        missilePrefab.transform.up = _playerPos - sprite.transform.position;
+        RaiseOnAttackEvent();
+        Instantiate(missilePrefab, sprite.transform.position, missilePrefab.transform.rotation);
+        _attackCount++;
+        if (_attackCount == _attacksInSeries)
+        {
+            _attackCount = 0;
+            _anim.PlayAnimation("Attack", false);
+            StartCoroutine(AttackCor());
+        }
+
+    }
 
     public override void SetPlayerInRange()
     {
@@ -108,7 +108,7 @@ public class FlyingEyeEnemy : Enemy,IDamagable
         {
             states.Push(currentState);
             currentState = EnemyEnums.State.ATTACKING;
-            StopCurrentActions();
+            //StopCurrentActions();
             //Attack();
         }
         //_playerInRange = true;

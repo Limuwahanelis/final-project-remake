@@ -6,9 +6,17 @@ using UnityEditor.Animations;
 [CustomEditor(typeof(AnimationManager))]
 public class AnimationManagerEditor : Editor
 {
+    AnimationManager man;
     private void OnEnable()
     {
-        AnimationManager man = (AnimationManager)target;
+        man = (AnimationManager)target;
+        
+    }
+    public override void OnInspectorGUI()
+    {
+        base.OnInspectorGUI();
+        man._anim = man.GetComponent<Animator>();
+        man.animatorController = (AnimatorController)man.GetComponent<Animator>().runtimeAnimatorController;
         man.stateNames.Clear();
         man.stateLengths.Clear();
         for (int i = 0; i < man.animatorController.layers[0].stateMachine.states.Length; i++)
@@ -22,20 +30,11 @@ public class AnimationManagerEditor : Editor
             }
             else
             {
-                man.stateNames.Add("Empty");
+                man.stateNames.Add(state.name);
                 man.stateLengths.Add(0);
             }
         }
     }
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
 }
+

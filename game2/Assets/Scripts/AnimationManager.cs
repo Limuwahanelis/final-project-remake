@@ -10,7 +10,7 @@ using System;
 public class AnimationManager : MonoBehaviour
 {
     private string _currentAnimation;
-    private Animator _anim;
+    public Animator _anim;
     [SerializeField]
     public List<string> stateNames = new List<string>();
     public List<float> stateLengths = new List<float>();
@@ -19,27 +19,6 @@ public class AnimationManager : MonoBehaviour
     private Coroutine _currentTimer;
 #if UNITY_EDITOR
     public AnimatorController animatorController;
-    private void Start()
-    {
-        _anim = GetComponent<Animator>();
-        stateLengths.Clear();
-        stateNames.Clear();
-        for (int i = 0; i < animatorController.layers[0].stateMachine.states.Length; i++)
-        {
-            AnimatorState state = animatorController.layers[0].stateMachine.states[i].state;
-            
-            if (state.motion != null)
-            {
-                stateNames.Add(state.name);
-                stateLengths.Add(state.motion.averageDuration);
-            }
-            else
-            {
-                stateNames.Add("Empty");
-                stateLengths.Add(0);
-            }
-        }
-    }
 #else
     private void Start()
     {
@@ -48,7 +27,10 @@ public class AnimationManager : MonoBehaviour
 #endif
 
 
-
+    public void TestPlay(string name)
+    {
+        _anim.Play(name); //clipToPlay.nameHash);
+    }
 
     public void PlayAnimation(string name, bool canBePlayedOver = true)
     {
