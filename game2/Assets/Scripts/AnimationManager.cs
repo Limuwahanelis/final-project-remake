@@ -26,12 +26,6 @@ public class AnimationManager : MonoBehaviour
     }
 #endif
 
-
-    public void TestPlay(string name)
-    {
-        _anim.Play(name); //clipToPlay.nameHash);
-    }
-
     public void PlayAnimation(string name, bool canBePlayedOver = true)
     {
         string clipToPlayName = null;
