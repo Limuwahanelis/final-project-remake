@@ -77,12 +77,13 @@ public class AnimationManager : MonoBehaviour
         float clipDuration = 0;
         int index = stateNames.FindIndex((x) => x == name);
         clipDuration = stateLengths[index];
+        
         return clipDuration;
     }
 
     public float GetCurrentAnimationRemainingLength()
     {
-        return _anim.GetCurrentAnimatorStateInfo(0).normalizedTime * _animLength;
+        return (1- _anim.GetCurrentAnimatorStateInfo(0).normalizedTime) * _animLength;
     }
 
     IEnumerator TimerCor(float time, Action functionToPerform)

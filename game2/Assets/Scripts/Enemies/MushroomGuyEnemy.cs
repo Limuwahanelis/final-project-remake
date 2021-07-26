@@ -82,7 +82,7 @@ public class MushroomGuyEnemy : PatrollingEnemy
     {
         if (currentState != EnemyEnums.State.DEAD)
         {
-            states.Push(currentState);
+            AddState(currentState);
             currentState = EnemyEnums.State.ATTACKING;
             StopCurrentActions();
             //Attack();
@@ -102,7 +102,21 @@ public class MushroomGuyEnemy : PatrollingEnemy
         _isIdle = false;
         _isAttacking = false;
     }
-
+    protected override void ResumeActions()
+    {
+        base.ResumeActions();
+        _isAttacking = false;
+        _isIdle = false;
+    }
+    void AddState(EnemyEnums.State newState)
+    {
+        if (states.Count > 0)
+        {
+            if (states.Peek() == newState) return;
+            states.Push(newState);
+        }
+        else states.Push(newState);
+    }
     void Rotate()
     {
         transform.localScale = new Vector3(-transform.localScale.x, transform.localScale.y, transform.localScale.z);

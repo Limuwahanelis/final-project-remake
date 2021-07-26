@@ -130,6 +130,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 6603711404486159495, guid: cb9e7c68cff6ed44d903fe9b24f066b8, type: 3}
+      propertyPath: m_PresetInfoIsWorld
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7801763715194258482, guid: cb9e7c68cff6ed44d903fe9b24f066b8, type: 3}
       propertyPath: m_Name
       value: Mushroom Enemy
@@ -1860,6 +1864,18 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 846283103483900934, guid: 14797c7994338e345afb1e349665a25d, type: 3}
+      propertyPath: m_Layer
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4057251753904947300, guid: 14797c7994338e345afb1e349665a25d, type: 3}
+      propertyPath: m_Layer
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4312840744128540692, guid: 14797c7994338e345afb1e349665a25d, type: 3}
+      propertyPath: m_Layer
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 5038745273549048506, guid: 14797c7994338e345afb1e349665a25d, type: 3}
       propertyPath: m_AnchorMax.x
       value: 0
@@ -1875,6 +1891,18 @@ PrefabInstance:
     - target: {fileID: 6298979739611693196, guid: 14797c7994338e345afb1e349665a25d, type: 3}
       propertyPath: maxHP
       value: 15
+      objectReference: {fileID: 0}
+    - target: {fileID: 6298979739611693196, guid: 14797c7994338e345afb1e349665a25d, type: 3}
+      propertyPath: currentHP.useConstant
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7975553810193534677, guid: 14797c7994338e345afb1e349665a25d, type: 3}
+      propertyPath: m_Layer
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 8494397106052661850, guid: 14797c7994338e345afb1e349665a25d, type: 3}
+      propertyPath: m_Layer
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8494397106440022032, guid: 14797c7994338e345afb1e349665a25d, type: 3}
       propertyPath: m_RootOrder
@@ -1923,6 +1951,18 @@ PrefabInstance:
     - target: {fileID: 8494397106440022034, guid: 14797c7994338e345afb1e349665a25d, type: 3}
       propertyPath: m_Name
       value: Flying eye
+      objectReference: {fileID: 0}
+    - target: {fileID: 8494397106440022034, guid: 14797c7994338e345afb1e349665a25d, type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8494397107146485173, guid: 14797c7994338e345afb1e349665a25d, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 8494397107163713558, guid: 14797c7994338e345afb1e349665a25d, type: 3}
+      propertyPath: m_Layer
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 8494397107214717190, guid: 14797c7994338e345afb1e349665a25d, type: 3}
