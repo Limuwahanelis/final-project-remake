@@ -4,6 +4,7 @@ using UnityEngine;
 using System;
 
 [RequireComponent(typeof(HealthSystem))]
+[RequireComponent(typeof(AnimationManager))]
 public abstract class Enemy : MonoBehaviour
 {
     //[SerializeField]
@@ -23,13 +24,16 @@ public abstract class Enemy : MonoBehaviour
 
     public event Action OnWalkEvent;
     public event Action OnAttackEvent;
-
-    protected EnemyEnums.State currentState;
-    protected Stack<EnemyEnums.State> states = new Stack<EnemyEnums.State>();
+    protected EnemyState state;
+    protected Stack<EnemyState> states = new Stack<EnemyState>();
     protected virtual void SetUpComponents()
     {
         hpSys = GetComponent<HealthSystem>();
         _anim = GetComponent<AnimationManager>();
+    }
+    public AnimationManager  GetAnimationManager()
+    {
+        return _anim;
     }
     public abstract void SetPlayerInRange();
     public abstract void SetPlayerNotInRange();
@@ -41,36 +45,38 @@ public abstract class Enemy : MonoBehaviour
     {
         StopAllCoroutines();
     }
-    protected virtual void ResumeActions()
-    {
-        currentState = states.Pop();
-    }
+    //protected virtual void ResumeActions()
+    //{
+    //    currentState = states.Pop();
+    //}
 
-    protected virtual void Kill()
-    {
-        StopCurrentActions();
-        //mainCollider.SetActive(false);
-        _isAlive = false;
-        currentState = EnemyEnums.State.DEAD;
-        hpSys.isInvincible = true;
-        _anim.PlayAnimation("Death");
-        StartCoroutine(WaitAndExecuteFunction(_anim.GetAnimationLength("Death"), () => Destroy(gameObject)));
-    }
+    //protected virtual void Kill()
+    //{
+    //    StopCurrentActions();
+    //    //mainCollider.SetActive(false);
+    //    _isAlive = false;
+    //    currentState = EnemyEnums.State.DEAD;
+    //    hpSys.isInvincible = true;
+    //    _anim.PlayAnimation("Death");
+    //    StartCoroutine(WaitAndExecuteFunction(_anim.GetAnimationLength("Death"), () => Destroy(gameObject)));
+    //}
 
-    protected virtual void Hit()
-    {
-        StopCurrentActions();
-        states.Push(currentState);
-        _isHit = true;
-        _anim.PlayAnimation("Hit");
-        StartCoroutine(WaitAndExecuteFunction(_anim.GetAnimationLength("Hit"), () =>
-        {
-            states.Push(EnemyEnums.State.IDLE_AFTER_HIT);
-            _isHit = false;
-            ResumeActions();
-        }));
-    }
-
+    //protected virtual void Hit()
+    //{
+    //    StopCurrentActions();
+    //    states.Push(currentState);
+    //    _isHit = true;
+    //    _anim.PlayAnimation("Hit");
+    //    StartCoroutine(WaitAndExecuteFunction(_anim.GetAnimationLength("Hit"), () =>
+    //    {
+    //        states.Push(EnemyEnums.State.IDLE_AFTER_HIT);
+    //        _isHit = false;
+    //        ResumeActions();
+    //    }));
+    //}
+    public virtual void ChangeState(EnemyEnums.State newState) { }
+    protected virtual void ResumePreviousState() { }
+    protected virtual void AddNewState(EnemyEnums.State newState) {}
     protected IEnumerator StayIdleCor(int numberOfIdleCycles = 1)
     {
         _isIdle = true;
@@ -78,7 +84,7 @@ public abstract class Enemy : MonoBehaviour
         yield return new WaitForSeconds(numberOfIdleCycles * _anim.GetAnimationLength("Idle"));
         _isIdle = false;
     }
-    protected IEnumerator WaitAndExecuteFunction(float timeToWait, Action functionToPerform)
+    public IEnumerator WaitAndExecuteFunction(float timeToWait, Action functionToPerform)
     {
         yield return new WaitForSeconds(timeToWait);
         functionToPerform();
@@ -87,7 +93,7 @@ public abstract class Enemy : MonoBehaviour
     {
         OnWalkEvent?.Invoke();
     }
-    protected void RaiseOnAttackEvent()
+    public void RaiseOnAttackEvent()
     {
         OnAttackEvent?.Invoke();
     }
