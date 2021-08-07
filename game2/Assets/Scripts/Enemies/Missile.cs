@@ -19,11 +19,6 @@ public class Missile : MonoBehaviour
     {
         transform.Translate(new Vector2(0, ySpeed * Time.deltaTime));
     }
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-        //GameObject.FindGameObjectWithTag("GameManager").GetComponent<GameManager>().GetPlayer().GetComponent<IDamagable>().TakeDamage(damage);
-        Debug.Log("dasdsasa");
-    }
     public void SetSpeed(float speed)
     {
         ySpeed = speed;

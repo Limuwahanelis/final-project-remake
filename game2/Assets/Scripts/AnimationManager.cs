@@ -12,8 +12,6 @@ public class AnimationManager : MonoBehaviour
     private string _currentAnimation;
     public Animator _anim;
     [SerializeField]
-    public List<string> stateNames = new List<string>();
-    public List<float> stateLengths = new List<float>();
     private float _animLength;
     private bool _overPlayAnimationEnded = true;
     private Coroutine _currentTimer;
@@ -28,42 +26,29 @@ public class AnimationManager : MonoBehaviour
 
     public void PlayAnimation(string name, bool canBePlayedOver = true)
     {
-        string clipToPlayName = null;
-        int index = stateNames.FindIndex((x) => x == name);
-        if (index == -1)
-        {
-            Debug.LogError("There is no state with name: " + name);
-            return;
-        }
-        clipToPlayName = stateNames[index];
-        if (_currentAnimation == clipToPlayName) return;
+        if (_currentAnimation == name) return;
         if (!canBePlayedOver)
         {
             _overPlayAnimationEnded = false;
-            _animLength = stateLengths[index];
+            _animLength = GetAnimationLength(name);
             _currentTimer = StartCoroutine(TimerCor(_animLength, SetOverPlayAnimAsEnded));
-            _anim.Play(Animator.StringToHash(clipToPlayName)); //clipToPlay.nameHash);
-            _currentAnimation = clipToPlayName;
+            _anim.Play(Animator.StringToHash(name)); //clipToPlay.nameHash);
+            _currentAnimation = name;
         }
         if (_overPlayAnimationEnded)
         {
-            _animLength = stateLengths[index];
+            _animLength = GetAnimationLength(name);
             StartCoroutine(TimerCor(_animLength, SetNormalAnimAsEneded));
-            _anim.Play(Animator.StringToHash(clipToPlayName)); //clipToPlay.nameHash);
-            _currentAnimation = clipToPlayName;
+            _anim.Play(Animator.StringToHash(name)); //clipToPlay.nameHash);
+            _currentAnimation = name;
         }
     }
 
     public void OverPlayAnimation(string name)
     {
         string clipToPlayName = null;
-        clipToPlayName = stateNames.Find((x) => x == name);
+        clipToPlayName = name;
 
-        if (clipToPlayName == null)
-        {
-            Debug.LogError("There is no state with name: " + name);
-            return;
-        }
         //if (_currentAnimation == clipToPlay.name) return;
         if (_currentTimer != null) StopCoroutine(_currentTimer);
         _overPlayAnimationEnded = true;
@@ -75,9 +60,15 @@ public class AnimationManager : MonoBehaviour
     public float GetAnimationLength(string name)
     {
         float clipDuration = 0;
-        int index = stateNames.FindIndex((x) => x == name);
-        clipDuration = stateLengths[index];
-        
+        for (int i = 0; i < animatorController.layers[0].stateMachine.states.Length; i++)
+        {
+            AnimatorState state = animatorController.layers[0].stateMachine.states[i].state;
+            if (state.name == name)
+            {
+                clipDuration = state.motion.averageDuration;
+            }
+        }
+
         return clipDuration;
     }
 
@@ -100,5 +91,4 @@ public class AnimationManager : MonoBehaviour
     {
         _currentAnimation = null;
     }
-
 }

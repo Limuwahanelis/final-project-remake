@@ -9,11 +9,11 @@ public class PlayerHealthSystem : HealthSystem
     public override void TakeDamage(int dmg)
     {
         if (isInvincible) return;
-        currentHP.value -= dmg;
-        hpBar.SetHealth(currentHP.value);
+        currentHP -= dmg;
+        hpBar.SetHealth(currentHP);
         OnHitEvent?.Invoke();
         StartCoroutine(InvincibilityCor());
-        if (currentHP.value < 0) Kill();
+        if (currentHP < 0) Kill();
 
     }
 

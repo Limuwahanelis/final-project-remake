@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class FlyingEyeV2 : Enemy,IDamagable
+public class FlyingEyeV2 : Enemy
 {
 
     public float radius = 20;
@@ -94,14 +94,5 @@ public class FlyingEyeV2 : Enemy,IDamagable
         _isPlayerInRange = false;
         sprite.transform.right = new Vector2(1f, 0);
         sprite.GetComponent<SpriteRenderer>().flipY = false;
-    }
-    public void TakeDamage(int dmg)
-    {
-        throw new System.NotImplementedException();
-    }
-
-    public void Kill()
-    {
-        throw new System.NotImplementedException();
     }
 }
