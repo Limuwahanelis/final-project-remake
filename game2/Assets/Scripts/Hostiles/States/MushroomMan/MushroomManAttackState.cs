@@ -6,10 +6,12 @@ public class MushroomManAttackState : EnemyState
     private bool _isAttacking;
     private bool _isIdle;
     private AnimationManager _anim;
-    public MushroomManAttackState(Enemy enemy,AnimationManager animationManager)
+    private MushroomGuyEnemy _enemy;
+    public MushroomManAttackState(MushroomGuyEnemy enemy)
     {
-        this.enemy = enemy;
-        _anim = animationManager;
+        _enemy = enemy;
+        _anim = _enemy.GetAnimationManager();
+
     }
     public override void Update()
     {
@@ -22,13 +24,13 @@ public class MushroomManAttackState : EnemyState
         if (_isAttacking || _isIdle) return;
         _isAttacking = true;
         _anim.PlayAnimation("Attack");
-        enemy.RaiseOnAttackEvent();
-        enemy.StartCoroutine(enemy.WaitAndExecuteFunction(_anim.GetAnimationLength("Attack"), () =>
+        _enemy.RaiseOnAttackEvent();
+        _enemy.StartCoroutine(_enemy.WaitAndExecuteFunction(_anim.GetAnimationLength("Attack"), () =>
         {
             _anim.PlayAnimation("Idle");
             _isIdle = true;
             _isAttacking = false;
-            enemy.StartCoroutine(enemy.WaitAndExecuteFunction(_anim.GetAnimationLength("Idle"), () => { _isIdle = false; }));
+            _enemy.StartCoroutine(_enemy.WaitAndExecuteFunction(_anim.GetAnimationLength("Idle"), () => { _isIdle = false; }));
         }));
     }
     public override void SetUpState()

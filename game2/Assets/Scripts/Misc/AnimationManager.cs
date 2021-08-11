@@ -44,10 +44,9 @@ public class AnimationManager : MonoBehaviour
         }
     }
 
-    public void OverPlayAnimation(string name)
+    public void OverPlayAnimation(string name) 
     {
-        string clipToPlayName = null;
-        clipToPlayName = name;
+        string clipToPlayName = name;
 
         //if (_currentAnimation == clipToPlay.name) return;
         if (_currentTimer != null) StopCoroutine(_currentTimer);

@@ -924,20 +924,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _anim: {fileID: 788093016}
-  stateNames:
-  - Idle
-  - Walk
-  - Attack1
-  - Jump
-  - Fall
-  - Air attack
-  stateLengths:
-  - 0.76666665
-  - 0.51666665
-  - 0.4
-  - 0.11666667
-  - 0.18333334
-  - 0.23333333
+  _animLength: 0
   animatorController: {fileID: 9100000, guid: 04a28c8199290124c925dcea322c3600, type: 2}
 --- !u!114 &788093020
 MonoBehaviour:
@@ -2470,16 +2457,13 @@ GameObject:
   - component: {fileID: 1611291015}
   - component: {fileID: 1611291014}
   - component: {fileID: 1611291013}
-  - component: {fileID: 1611291012}
-  - component: {fileID: 1611291011}
-  - component: {fileID: 1611291010}
-  - component: {fileID: 1611291009}
   - component: {fileID: 1611291008}
-  - component: {fileID: 1611291007}
   - component: {fileID: 1611291006}
   - component: {fileID: 1611291005}
   - component: {fileID: 1611291004}
   - component: {fileID: 1611291003}
+  - component: {fileID: 1611291017}
+  - component: {fileID: 1611291007}
   m_Layer: 0
   m_Name: Player (1)
   m_TagString: Untagged
@@ -2516,19 +2500,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 02a51b4eddc92ca4eb41595e974d0578, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  NoControlCause: 0
   playerMovement: {fileID: 1611291003}
-  playerInput: {fileID: 0}
-  playerCombat: {fileID: 0}
+  playerInput: {fileID: 1611291005}
+  playerCombat: {fileID: 1611291017}
   mainBody: {fileID: 568555280}
   anim: {fileID: 0}
   isJumping: 0
-  isMovableByPlayer: 1
   isOnGround: 1
-  isMoving: 0
-  isAttacking: 0
-  isFalling: 0
   isAlive: 1
+  isAttacking: 0
   isAirAttacking: 0
   canPerformAirAttack: 1
 --- !u!114 &1611291005
@@ -2571,9 +2551,9 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1611291002}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 590671678f6d46045b1efe66cdbfdf50, type: 3}
+  m_Script: {fileID: 11500000, guid: 05a48c17994352c428dcf9abd16f7e1b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   ground:
@@ -2594,82 +2574,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4da5334ed368e0244b208b902c89a0c8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &1611291009
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1611291002}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6991610643ab48740851a3be074d762b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  attackPos: {fileID: 1753164129}
-  enemyLayer:
-    serializedVersion: 2
-    m_Bits: 256
-  attackRange: 0.54
-  attackDamage: 2
---- !u!114 &1611291010
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1611291002}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b3831b560bb8ed84984ff6b506102f84, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _player: {fileID: 1611291012}
---- !u!114 &1611291011
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1611291002}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 17fe6f6569667854ead0ac287505576e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _player: {fileID: 1611291012}
-  speed: 7
-  jumpStrength: 250
-  airAttackSpeed: 30
-  toRotate: {fileID: 568555280}
---- !u!114 &1611291012
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1611291002}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0d44233102f10d74181703e0d290f222, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  NoControlCause: 0
-  playerMovement: {fileID: 1611291011}
-  playerInput: {fileID: 1611291010}
-  playerCombat: {fileID: 1611291009}
-  mainBody: {fileID: 568555280}
-  anim: {fileID: 0}
-  isJumping: 0
-  isMovableByPlayer: 1
-  isOnGround: 1
-  isMoving: 0
-  isAttacking: 0
-  isFalling: 0
-  isAlive: 1
-  isAirAttacking: 0
-  canPerformAirAttack: 1
-  test: 0
 --- !u!114 &1611291013
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2683,20 +2587,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _anim: {fileID: 1611291014}
-  stateNames:
-  - Idle
-  - Walk
-  - Attack1
-  - Jump
-  - Fall
-  - Air attack
-  stateLengths:
-  - 0.76666665
-  - 0.51666665
-  - 0.4
-  - 0.11666667
-  - 0.18333334
-  - 0.23333333
+  _animLength: 0
   animatorController: {fileID: 9100000, guid: 04a28c8199290124c925dcea322c3600, type: 2}
 --- !u!95 &1611291014
 Animator:
@@ -2754,6 +2645,24 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1611291017
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1611291002}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5d16ea6da2bd8f64b80e81b39accce45, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  attackPos: {fileID: 1753164129}
+  enemyLayer:
+    serializedVersion: 2
+    m_Bits: 256
+  attackRange: 0.54
+  attackDamage: 2
 --- !u!1 &1618744460
 GameObject:
   m_ObjectHideFlags: 0
@@ -3747,7 +3656,7 @@ MonoBehaviour:
   hpBar: {fileID: 7957314841073188187}
   maxHP:
     useConstant: 1
-    constantValue: 0
+    constantValue: 15
     variable: {fileID: 0}
   currentHP: 0
 --- !u!4 &838220596915614631
@@ -3785,7 +3694,7 @@ AudioSource:
   Priority: 128
   DopplerLevel: 1
   MinDistance: 1
-  MaxDistance: 500
+  MaxDistance: 13.2
   Pan2D: 0
   rolloffMode: 0
   BypassEffects: 0
@@ -3963,7 +3872,7 @@ RectTransform:
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0.16, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -4031,16 +3940,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _anim: {fileID: 5144542354517016461}
-  stateNames:
-  - Idle
-  - Attack
-  - Move
-  - Hit
-  stateLengths:
-  - 0.68333334
-  - 1.4833333
-  - 1.4166666
-  - 0.18333334
+  _animLength: 0
   animatorController: {fileID: 9100000, guid: 6db6810008abb9c4eb75fb5dfc71d27a, type: 2}
 --- !u!1 &2248555659290508917
 GameObject:
@@ -4339,13 +4239,13 @@ GameObject:
   - component: {fileID: 678434520471967444}
   - component: {fileID: 3162117378450308683}
   - component: {fileID: 3162117378450308684}
-  m_Layer: 15
+  m_Layer: 8
   m_Name: Flying eye (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &3162117378450308683
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4363,7 +4263,7 @@ MonoBehaviour:
   dmg: 0
   collisionDmg: 0
   radius: 7
-  angularVelocity: 72.26
+  angularVelocity: 26.8
   sprite: {fileID: 3162117379906946637}
   mainBody: {fileID: 3162117378599818241}
   missilePrefab: {fileID: 5412205482993720714, guid: 5b582c5f7063a8a43bd891c32441d509, type: 3}
@@ -4381,14 +4281,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _anim: {fileID: 3162117378450308687}
-  stateNames:
-  - Idle
-  - Attack
-  - New State
-  stateLengths:
-  - 0.65
-  - 0.43333334
-  - 0
+  _animLength: 0
   animatorController: {fileID: 9100000, guid: bd302d87578efa84e8e506c59afa0fca, type: 2}
 --- !u!95 &3162117378450308687
 Animator:
@@ -4652,7 +4545,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3162117379890772972}
   - component: {fileID: 3162117379890772963}
-  m_Layer: 15
+  m_Layer: 8
   m_Name: GameObject
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4961,7 +4854,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &5144542354517016451
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4978,7 +4871,7 @@ MonoBehaviour:
   speed: 2
   dmg: 0
   collisionDmg: 0
-  idleCycles: 0
+  idleCycles: 2
   patrolPoints:
   - {fileID: 5144542354943084369}
   - {fileID: 5144542355194530730}
@@ -5257,7 +5150,7 @@ RectTransform:
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 1, y: 1}
+  m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0.16, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -5446,7 +5339,7 @@ MonoBehaviour:
   hpBar: {fileID: 6856026228145897949}
   maxHP:
     useConstant: 1
-    constantValue: 0
+    constantValue: 6
     variable: {fileID: 0}
   currentHP: 0
 --- !u!114 &7318545570607297147

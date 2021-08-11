@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class FlyingEyeV2 : Enemy
+public class FlyingEyeEnemy : Enemy
 {
 
     public float radius = 20;
@@ -36,17 +36,11 @@ public class FlyingEyeV2 : Enemy
     // Update is called once per frame
     void Update()
     {
-        curAngle += angularVelocity * Time.deltaTime;
-        mainBody.transform.localPosition = new Vector3(Mathf.Sin(Convert(curAngle)) * radius, Mathf.Cos(Convert(curAngle)) * radius);
-        if (curAngle >= 360) curAngle = 0;
 
+        Move();
         if(_isPlayerInRange)
         {
-            _playerPos = _detection.playerPos;
-            sprite.transform.right = _playerPos - sprite.transform.position;
-            if (sprite.transform.right.x < 0) sprite.GetComponent<SpriteRenderer>().flipY = true;
-            else sprite.GetComponent<SpriteRenderer>().flipY = false;
-
+            RotateTowardsPlayer();
             StartCoroutine(AttackCor());
         }
 
@@ -77,6 +71,20 @@ public class FlyingEyeV2 : Enemy
         return Mathf.Deg2Rad * angleInDeg;
     }
 
+    private void Move()
+    {
+        curAngle += angularVelocity * Time.deltaTime;
+        mainBody.transform.localPosition = new Vector3(Mathf.Sin(Convert(curAngle)) * radius, Mathf.Cos(Convert(curAngle)) * radius);
+        if (curAngle >= 360) curAngle = 0;
+    }
+
+    private void RotateTowardsPlayer()
+    {
+        _playerPos = _detection.playerPos;
+        sprite.transform.right = _playerPos - sprite.transform.position;
+        if (sprite.transform.right.x < 0) sprite.GetComponent<SpriteRenderer>().flipY = true;
+        else sprite.GetComponent<SpriteRenderer>().flipY = false;
+    }
 
     private void OnDrawGizmos()
     {

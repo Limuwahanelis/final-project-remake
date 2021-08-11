@@ -25,7 +25,7 @@ public abstract class Enemy : MonoBehaviour
     public event Action OnWalkEvent;
     public event Action OnAttackEvent;
     protected EnemyState state;
-    protected Stack<EnemyState> states = new Stack<EnemyState>();
+
     protected virtual void SetUpComponents()
     {
         hpSys = GetComponent<HealthSystem>();
@@ -45,10 +45,6 @@ public abstract class Enemy : MonoBehaviour
     {
         StopAllCoroutines();
     }
-    //protected virtual void ResumeActions()
-    //{
-    //    currentState = states.Pop();
-    //}
 
     //protected virtual void Kill()
     //{
@@ -74,10 +70,7 @@ public abstract class Enemy : MonoBehaviour
     //        ResumeActions();
     //    }));
     //}
-    public virtual void ChangeState(EnemyEnums.State newState) { }
-    protected virtual void ResumePreviousState() { }
-    protected virtual void AddNewState(EnemyEnums.State newState) {}
-    protected IEnumerator StayIdleCor(int numberOfIdleCycles = 1)
+    public IEnumerator StayIdleCor(int numberOfIdleCycles = 1)
     {
         _isIdle = true;
         if (numberOfIdleCycles > 0) _anim.PlayAnimation("Idle");

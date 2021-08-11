@@ -4,7 +4,7 @@ using UnityEngine;
 
 public abstract class EnemyState 
 {
-    protected Enemy enemy;
+    //protected Enemy enemy;
     protected bool canChangeState;
     public abstract void Update();
     public virtual void SetUpState( ) { }
