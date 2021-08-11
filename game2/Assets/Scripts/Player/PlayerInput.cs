@@ -30,16 +30,16 @@ public class PlayerInput : MonoBehaviour
 
     private void Move(float direction)
     {
-        _player.playerMovement.MovePlayer(direction);
+        _player.currentState.Move(direction);
     }
     private void Attack()
     {
-        
-        _player.playerCombat.Attack();
-       
+
+        _player.currentState.Attack();
+
     }
     private void Jump()
     {
-        _player.playerMovement.Jump();
+        _player.currentState.Jump();
     }
 }

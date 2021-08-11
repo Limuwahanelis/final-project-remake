@@ -5,7 +5,7 @@ using UnityEngine;
 public class PlayerJumpingState : PlayerState
 {
     private bool _isJumping;
-    public PlayerJumpingState(PlayerV2 player):base(player)
+    public PlayerJumpingState(Player player):base(player)
     { }
     public override void Update()
     {

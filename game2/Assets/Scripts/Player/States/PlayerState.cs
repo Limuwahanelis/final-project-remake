@@ -4,9 +4,9 @@ using UnityEngine;
 
 public abstract class PlayerState
 {
-    protected PlayerV2 _player;
+    protected Player _player;
 
-    public PlayerState(PlayerV2 player)
+    public PlayerState(Player player)
     {
         _player = player;
     }

@@ -6,7 +6,7 @@ public class PlayerNormalState : PlayerState
 {
 
     private bool _isMoving = false;
-    public PlayerNormalState(PlayerV2 player) : base(player)
+    public PlayerNormalState(Player player) : base(player)
     {
 
     }
