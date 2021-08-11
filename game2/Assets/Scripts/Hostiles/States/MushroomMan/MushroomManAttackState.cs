@@ -7,8 +7,10 @@ public class MushroomManAttackState : EnemyState
     private bool _isIdle;
     private AnimationManager _anim;
     private MushroomGuyEnemy _enemy;
+    private EnemyAudioManager _audio;
     public MushroomManAttackState(MushroomGuyEnemy enemy)
     {
+        _audio = enemy.GetAudioManager();
         _enemy = enemy;
         _anim = _enemy.GetAnimationManager();
 
@@ -24,7 +26,7 @@ public class MushroomManAttackState : EnemyState
         if (_isAttacking || _isIdle) return;
         _isAttacking = true;
         _anim.PlayAnimation("Attack");
-        _enemy.RaiseOnAttackEvent();
+        _audio.PlayAttackSound();
         _enemy.StartCoroutine(_enemy.WaitAndExecuteFunction(_anim.GetAnimationLength("Attack"), () =>
         {
             _anim.PlayAnimation("Idle");

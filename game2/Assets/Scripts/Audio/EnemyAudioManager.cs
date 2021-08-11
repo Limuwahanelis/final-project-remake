@@ -9,16 +9,10 @@ public class EnemyAudioManager : MonoBehaviour
     AudioEvent walkingAudioEvent;
     [SerializeField]
     AudioEvent combatAudioEvent;
-
-    Enemy enemy;
-    PlayerCombat combat;
     // Start is called before the first frame update
     void Start()
     {
         audioSource = GetComponent<AudioSource>();
-        combat = GetComponent<PlayerCombat>();
-        enemy = GetComponent<Enemy>();
-        enemy.OnAttackEvent += PlayAttackSound;
         //combat.OnAttackEvent += PlayAttackSound;
     }
 
@@ -28,11 +22,11 @@ public class EnemyAudioManager : MonoBehaviour
 
     }
 
-    void PlayWalkingSound()
+   public void PlayWalkingSound()
     {
         walkingAudioEvent.Play(audioSource);
     }
-    void PlayAttackSound()
+    public void PlayAttackSound()
     {
         combatAudioEvent.Play(audioSource);
     }

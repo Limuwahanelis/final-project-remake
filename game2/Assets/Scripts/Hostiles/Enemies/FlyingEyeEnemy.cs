@@ -62,7 +62,7 @@ public class FlyingEyeEnemy : Enemy
     public void SpawnMissile()
     {
         missilePrefab.transform.up = _playerPos - sprite.transform.position;
-        RaiseOnAttackEvent();
+        _audioMan.PlayAttackSound();
         Instantiate(missilePrefab, sprite.transform.position, missilePrefab.transform.rotation);
     }
 

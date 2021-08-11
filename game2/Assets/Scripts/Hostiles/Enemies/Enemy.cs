@@ -14,6 +14,7 @@ public abstract class Enemy : MonoBehaviour
     private float invicibilityProgress=0.2f;
     protected AnimationManager _anim;
     protected HealthSystem hpSys;
+    protected EnemyAudioManager _audioMan;
     public float speed;
     public int dmg;
     public int collisionDmg;
@@ -22,14 +23,13 @@ public abstract class Enemy : MonoBehaviour
     protected bool _isIdle = false;
     protected bool _isHit = false;
 
-    public event Action OnWalkEvent;
-    public event Action OnAttackEvent;
     protected EnemyState state;
 
     protected virtual void SetUpComponents()
     {
         hpSys = GetComponent<HealthSystem>();
         _anim = GetComponent<AnimationManager>();
+        _audioMan = GetComponent<EnemyAudioManager>();
     }
     public AnimationManager  GetAnimationManager()
     {
@@ -81,13 +81,5 @@ public abstract class Enemy : MonoBehaviour
     {
         yield return new WaitForSeconds(timeToWait);
         functionToPerform();
-    }
-    protected void RaiseOnWalkEvent()
-    {
-        OnWalkEvent?.Invoke();
-    }
-    public void RaiseOnAttackEvent()
-    {
-        OnAttackEvent?.Invoke();
     }
 }

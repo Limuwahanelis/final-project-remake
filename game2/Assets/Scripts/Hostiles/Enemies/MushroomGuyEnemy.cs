@@ -45,6 +45,10 @@ public class MushroomGuyEnemy : PatrollingEnemy
         _isPlayerInRange = false;
         StartCoroutine(CheckForPlayerReEnterCor());
     }
+    public EnemyAudioManager GetAudioManager()
+    {
+        return _audioMan;
+    }
     IEnumerator CheckForPlayerReEnterCor()
     {
         if (_isChecking) yield break;
