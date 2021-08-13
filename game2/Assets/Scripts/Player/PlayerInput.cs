@@ -22,7 +22,6 @@ public class PlayerInput : MonoBehaviour
         {
             Attack();
         }
-        Debug.Log(direction * _player.mainBody.transform.localScale.x);
         if (Input.GetButtonDown("Jump"))
         {
             
