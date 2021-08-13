@@ -10,6 +10,7 @@ public class PlayerMovement : MonoBehaviour
     public float speed;
     public float jumpStrength;
     public float airAttackSpeed;
+    public float slideTime = 2f;
     public GameObject toRotate;
 
     private int _flipSide = 1;
@@ -26,7 +27,7 @@ public class PlayerMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        CheckIfPlayerIsFalling();
+        //CheckIfPlayerIsFalling();
     }
 
 
@@ -52,6 +53,10 @@ public class PlayerMovement : MonoBehaviour
         }
         _previousDirection = direction;
     }
+    public void ChangeRb2DMat(PhysicsMaterial2D material)
+    {
+        _rb.sharedMaterial = material;
+    }
     public void StopPlayer()
     {
         _rb.velocity = new Vector2(0, 0);
@@ -59,14 +64,6 @@ public class PlayerMovement : MonoBehaviour
     public void StopPlayerOnXAxis()
     {
         _rb.velocity = new Vector2(0, _rb.velocity.y);
-    }
-    public void StopPlayerOnYAxis()
-    {
-        _rb.velocity = new Vector2(_rb.velocity.x, 0);
-    }
-    public void MakePlayerIdle()
-    {
-        _rb.velocity = new Vector3(0, _rb.velocity.y, 0);
     }
     public void Jump()
     {
@@ -101,6 +98,7 @@ public class PlayerMovement : MonoBehaviour
     public IEnumerator JumpCor()
     {
         while (_player.isOnGround) yield return null;
+        _rb.sharedMaterial = _player.noFrictionMat;
         _player.isJumping = false;
         _player.ChangeState(new PlayerInAirState(_player));
     }

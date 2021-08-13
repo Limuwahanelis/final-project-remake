@@ -13,7 +13,10 @@ public abstract class PlayerState
     public virtual void Attack() { }
     public virtual void AttackIsOver() { }
     public virtual void Jump() { }
-
     public virtual void Move(float direction) { }
+
+    public virtual void SetUpState() { }
+
+    public virtual void Slide() {; }
     public abstract void Update();
 }

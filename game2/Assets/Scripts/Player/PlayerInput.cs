@@ -22,9 +22,12 @@ public class PlayerInput : MonoBehaviour
         {
             Attack();
         }
+        Debug.Log(direction * _player.mainBody.transform.localScale.x);
         if (Input.GetButtonDown("Jump"))
         {
-            Jump();
+            
+            if (direction * _player.mainBody.transform.localScale.x > 0 && Input.GetKey(KeyCode.DownArrow)) Slide();
+            else Jump();
         }
     }
 
@@ -41,5 +44,10 @@ public class PlayerInput : MonoBehaviour
     private void Jump()
     {
         _player.currentState.Jump();
+    }
+
+    private void Slide()
+    {
+        _player.currentState.Slide();
     }
 }

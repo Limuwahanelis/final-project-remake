@@ -47,4 +47,8 @@ public class PlayerNormalState : PlayerState
     {
         if(!_isMoving && !_player.isAttacking) _player.anim.PlayAnimation("Idle");
     }
+    public override void Slide()
+    {
+        _player.ChangeState(new PlayerSlideState(_player));
+    }
 }

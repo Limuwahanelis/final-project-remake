@@ -20,7 +20,11 @@ public class PlayerInAirState : PlayerState
             }
             else _isFalling = false;
         }
-        if (_player.isOnGround) _player.ChangeState(new PlayerNormalState(_player));
+        if (_player.isOnGround)
+        {
+            _player.playerMovement.ChangeRb2DMat(null);
+            _player.ChangeState(new PlayerNormalState(_player));
+        }
     }
 
     public override void Move(float direction)

@@ -9,10 +9,16 @@ public class Player : MonoBehaviour
     public PlayerMovement playerMovement;
     public PlayerInput playerInput;
     public PlayerCombat playerCombat;
+    public PlayerChecks playerChecks;
     public GameObject mainBody;
     public AnimationManager anim;
 
+    public GameObject slideColliders;
+    public GameObject normalColliders;
+
     public PlayerState currentState;
+
+    public PhysicsMaterial2D noFrictionMat;
 
     public bool isJumping = false;
     public bool isOnGround = true;
@@ -34,6 +40,10 @@ public class Player : MonoBehaviour
         currentState.Update();
     }
 
+    public void Slide()
+    {
+        ChangeState(new PlayerSlideState(this));
+    }
     public IEnumerator WaitAndExecuteFunction(float timeToWait, Action function)
     {
         yield return new WaitForSeconds(timeToWait);
@@ -42,5 +52,6 @@ public class Player : MonoBehaviour
     public void ChangeState(PlayerState newState)
     {
         currentState = newState;
+        currentState.SetUpState();
     }
 }
