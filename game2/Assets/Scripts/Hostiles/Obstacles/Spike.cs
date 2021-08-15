@@ -4,12 +4,12 @@ using UnityEngine;
 
 public class Spike : MonoBehaviour
 {
-    int dmg = 40;
+    int dmg = 4;
     private void OnCollisionStay2D(Collision2D collision)
     {
-        Debug.Log("spikesall");
         IDamagable player = collision.transform.GetComponent<PlayerHealthSystem>();
+        IPushable toPush = collision.transform.GetComponent<PlayerHealthSystem>();
+        toPush.Push();
         player.TakeDamage(dmg);
-        Debug.Log("spikes");
     }
 }

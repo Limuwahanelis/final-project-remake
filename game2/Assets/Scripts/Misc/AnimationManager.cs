@@ -58,6 +58,7 @@ public class AnimationManager : MonoBehaviour
 
     public float GetAnimationLength(string name)
     {
+        if (name == "Empty") return 0;
         float clipDuration = 0;
         for (int i = 0; i < animatorController.layers[0].stateMachine.states.Length; i++)
         {

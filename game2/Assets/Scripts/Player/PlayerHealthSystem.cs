@@ -2,10 +2,14 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerHealthSystem : HealthSystem
+public class PlayerHealthSystem : HealthSystem,IPushable
 {
     [SerializeField]
     private float _invincibilityAfterHitDuration;
+    public Player player;
+    public PushHandle pushHandle;
+    public float pushForce=2f;
+
     public override void TakeDamage(int dmg)
     {
         if (isInvincible) return;
@@ -28,5 +32,10 @@ public class PlayerHealthSystem : HealthSystem
         isInvincible = true;
         yield return new WaitForSeconds(_invincibilityAfterHitDuration);
         isInvincible = false;
+    }
+
+    public void Push()
+    {
+        player.playerMovement.PushPlayer(pushHandle.GetPushVector() * pushForce);
     }
 }

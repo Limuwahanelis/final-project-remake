@@ -27,7 +27,11 @@ public class PlayerMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        //CheckIfPlayerIsFalling();
+        //if (CheckIfPlayerIsFalling() && !_player.isOnGround)
+        //{
+        //    ChangeRb2DMat(_player.noFrictionMat);
+        //    _player.ChangeState(new PlayerInAirState(_player));
+        //}
     }
 
 
@@ -87,7 +91,16 @@ public class PlayerMovement : MonoBehaviour
         _rb.velocity = new Vector2(airAttackSpeed * _player.mainBody.transform.localScale.x, 0);
         StartCoroutine(AirAttackCor(airAttackDuration));
     }
-
+    public void PushPlayer(Vector3 PushForce)
+    {
+        StopPlayer();
+        _player.ChangeState(new PlayerPushedState(_player));
+        _rb.AddForce(PushForce, ForceMode2D.Impulse);
+        
+        StartCoroutine(PushCor());
+        
+        
+    }
     IEnumerator AirAttackCor(float airAttackDuration)
     {
 
@@ -101,5 +114,12 @@ public class PlayerMovement : MonoBehaviour
         _rb.sharedMaterial = _player.noFrictionMat;
         _player.isJumping = false;
         _player.ChangeState(new PlayerInAirState(_player));
+    }
+    public IEnumerator PushCor()
+    {
+        while (_player.isOnGround) yield return null;
+        _player.isInAirAfterPush = true;
+        _rb.sharedMaterial = _player.noFrictionMat;
+        //_player.ChangeState(new PlayerPushedState(_player));
     }
 }

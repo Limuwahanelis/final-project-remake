@@ -12,6 +12,7 @@ public class PlayerCombat : MonoBehaviour
     public LayerMask enemyLayer;
     public float attackRange;
     public int attackDamage;
+    public Sprite playerHitSprite;
     // Start is called before the first frame update
     void Start()
     {

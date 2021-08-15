@@ -15,7 +15,7 @@ public class Player : MonoBehaviour
 
     public GameObject slideColliders;
     public GameObject normalColliders;
-
+    public Transform knockbackDir;
     public PlayerState currentState;
 
     public PhysicsMaterial2D noFrictionMat;
@@ -26,6 +26,7 @@ public class Player : MonoBehaviour
     public bool isAttacking = false;
     public bool isAirAttacking = false;
     public bool canPerformAirAttack = true;
+    public bool isInAirAfterPush = false;
 
     // Start is called before the first frame update
     void Start()
