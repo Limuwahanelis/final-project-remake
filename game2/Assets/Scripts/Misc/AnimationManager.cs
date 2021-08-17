@@ -83,6 +83,10 @@ public class AnimationManager : MonoBehaviour
         functionToPerform();
     }
 
+    public void SetAnimator(bool active)
+    {
+        _anim.enabled = active;
+    }
     private void SetOverPlayAnimAsEnded()
     {
         _overPlayAnimationEnded = true;

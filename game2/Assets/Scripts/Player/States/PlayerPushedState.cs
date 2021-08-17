@@ -7,8 +7,11 @@ public class PlayerPushedState : PlayerState
     public PlayerPushedState(Player player):base(player)
     {
         _player = player;
-        player.anim.PlayAnimation("Empty");
-        player.GetComponentInChildren<SpriteRenderer>().sprite = player.playerCombat.playerHitSprite;
+
+        
+        //player.anim.PlayAnimation("Empty");
+
+        
     }
     public override void Update()
     {
@@ -18,7 +21,14 @@ public class PlayerPushedState : PlayerState
             _player.playerMovement.ChangeRb2DMat(null);
             _player.playerMovement.StopPlayer();
             _player.isInAirAfterPush = false;
+            _player.anim.SetAnimator(true);
             _player.ChangeState(new PlayerNormalState(_player));
         }
+    }
+
+    public override void SetUpState()
+    {
+        _player.anim.SetAnimator(false);
+        _player.GetComponentInChildren<SpriteRenderer>().sprite = _player.playerCombat.playerHitSprite;
     }
 }

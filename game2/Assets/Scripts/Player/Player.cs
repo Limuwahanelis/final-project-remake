@@ -10,6 +10,8 @@ public class Player : MonoBehaviour
     public PlayerInput playerInput;
     public PlayerCombat playerCombat;
     public PlayerChecks playerChecks;
+    public PlayerGroundCollider groundCol;
+
     public GameObject mainBody;
     public AnimationManager anim;
 

@@ -36,6 +36,7 @@ public class PlayerHealthSystem : HealthSystem,IPushable
 
     public void Push()
     {
+        if (isInvincible) return;
         player.playerMovement.PushPlayer(pushHandle.GetPushVector() * pushForce);
     }
 }
