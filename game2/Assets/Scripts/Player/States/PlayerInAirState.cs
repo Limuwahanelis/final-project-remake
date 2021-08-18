@@ -20,7 +20,7 @@ public class PlayerInAirState : PlayerState
             }
             else _isFalling = false;
         }
-        if (_player.isOnGround)
+        if (_player.isOnGround && Mathf.Abs(_player.playerMovement.GetPlayerVelocity().y)<0.0004 )
         {
             _player.playerMovement.ChangeRb2DMat(null);
             _player.ChangeState(new PlayerNormalState(_player));
