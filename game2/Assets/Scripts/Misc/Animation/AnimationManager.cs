@@ -11,16 +11,15 @@ public class AnimationManager : MonoBehaviour
 {
     private string _currentAnimation;
     public Animator _anim;
-    [SerializeField]
     private float _animLength;
     private bool _overPlayAnimationEnded = true;
     private Coroutine _currentTimer;
 #if UNITY_EDITOR
-    public AnimatorController animatorController;
-#else
-    private void Start()
+    private AnimatorController animatorController;
+    private void Awake()
     {
         _anim = GetComponent<Animator>();
+        animatorController = (AnimatorController)_anim.runtimeAnimatorController;
     }
 #endif
 
