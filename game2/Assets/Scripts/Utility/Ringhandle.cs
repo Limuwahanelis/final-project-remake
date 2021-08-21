@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [ExecuteInEditMode]
-public class PushHandle : MonoBehaviour
+public class Ringhandle : MonoBehaviour
 {
     public Transform handle;
     private Vector3 normalized;
@@ -16,7 +16,7 @@ public class PushHandle : MonoBehaviour
 
     public Vector3 GetPushVector()
     {
-        return normalized;
+        return normalized / 2;
     }
 
 }

@@ -14,10 +14,6 @@ public class Platform : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
-    }
-    private void OnValidate()
-    {
         spriteRend.size = new Vector2(platformX, platformY);
         col.size = new Vector2(spriteRend.size.x, platformY);
     }

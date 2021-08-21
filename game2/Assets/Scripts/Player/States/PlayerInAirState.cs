@@ -25,6 +25,10 @@ public class PlayerInAirState : PlayerState
             _player.playerMovement.ChangeRb2DMat(null);
             _player.ChangeState(new PlayerNormalState(_player));
         }
+        if(_player.isNearWall && !_player.hasWallJumped)
+        {
+            _player.ChangeState(new PlayerWallHangState(_player));
+        }
     }
 
     public override void Move(float direction)

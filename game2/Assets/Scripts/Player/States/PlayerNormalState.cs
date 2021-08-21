@@ -8,7 +8,7 @@ public class PlayerNormalState : PlayerState
     private bool _isMoving = false;
     public PlayerNormalState(Player player) : base(player)
     {
-
+        _player.hasWallJumped = false;
     }
     public override void Jump()
     {

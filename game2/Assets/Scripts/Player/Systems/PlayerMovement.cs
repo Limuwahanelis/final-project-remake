@@ -4,15 +4,25 @@ using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
+   public enum playerSide
+    {
+        LEFT=-1,
+        RIGHT=1
+    }
+
+
+    public Ringhandle wallJumpHandle;
     [SerializeField]
     private Player _player;
     private Rigidbody2D _rb;
     public float speed;
     public float jumpStrength;
+    public float wallJumpStrength = Mathf.Abs( 0.5f * (7 / ((-1.154064f / 2) * 0.02f))); // player mass * (wanted speed/((walljumphandle vector.x/2)*fixed time))
     public float airAttackSpeed;
     public float slideTime = 2f;
     public GameObject toRotate;
-
+    public Sprite wallHangSprite;
+    public Sprite wallJumpSprite;
     private int _flipSide = 1;
     //private bool _isMovableByPlayer = true;
 
@@ -21,17 +31,11 @@ public class PlayerMovement : MonoBehaviour
     void Start()
     {
         _rb = GetComponent<Rigidbody2D>();
-
     }
 
     // Update is called once per frame
     void Update()
     {
-        //if (CheckIfPlayerIsFalling() && !_player.isOnGround)
-        //{
-        //    ChangeRb2DMat(_player.noFrictionMat);
-        //    _player.ChangeState(new PlayerInAirState(_player));
-        //}
     }
 
 
@@ -53,9 +57,17 @@ public class PlayerMovement : MonoBehaviour
         }
         else
         {
-            if (_previousDirection != 0) StopPlayerOnXAxis();
+            if (_previousDirection != 0)
+            {
+                StopPlayerOnXAxis();
+            }
         }
         _previousDirection = direction;
+    }
+    public void RotatePlayer(int sideToFlipTo)
+    {
+        _flipSide = sideToFlipTo;
+        _player.mainBody.transform.localScale = new Vector3(_flipSide, _player.mainBody.transform.localScale.y, _player.mainBody.transform.localScale.z);
     }
     public void ChangeRb2DMat(PhysicsMaterial2D material)
     {
@@ -69,17 +81,26 @@ public class PlayerMovement : MonoBehaviour
     {
         _rb.velocity = new Vector2(0, _rb.velocity.y);
     }
+
+    public void WallJump()
+    {
+        _player.isJumping = true;
+        Debug.Log(wallJumpHandle.GetPushVector() * wallJumpStrength);
+        _rb.AddForce(wallJumpHandle.GetPushVector()*wallJumpStrength ,ForceMode2D.Impulse);
+        //_rb.AddForce(new Vector2(0.5f,0.5f) * wallJumpStrength, ForceMode2D.Impulse);
+    }
     public void Jump()
     {
         _player.isJumping = true;
         _player.anim.PlayAnimation("Jump");
+        StartCoroutine( _player.WaitAndExecuteFunction(_player.anim.GetAnimationLength("Jump"), () =>
+         {
+             _rb.velocity = new Vector3(0, 0, 0);
+             _rb.AddForce(new Vector2(0, jumpStrength));
+             _player.isJumping = false;
+         }));
     }
-    public void JumpAnimationLogic()
-    {
-        _rb.velocity = new Vector3(0, 0, 0);
-        _rb.AddForce(new Vector2(0, jumpStrength));
-        _player.isJumping = false;
-    }
+
     public bool CheckIfPlayerIsFalling()
     {
         if (_rb.velocity.y < 0) return true;
@@ -100,6 +121,11 @@ public class PlayerMovement : MonoBehaviour
         StartCoroutine(PushCor());
         
     }
+    public void SetGravityScale(float value) // normal scale is 2
+    {
+        _rb.gravityScale = value;
+    }    
+
 
     public Vector2 GetPlayerVelocity()
     {

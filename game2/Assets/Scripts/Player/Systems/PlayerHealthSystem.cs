@@ -7,7 +7,7 @@ public class PlayerHealthSystem : HealthSystem,IPushable
     [SerializeField]
     private float _invincibilityAfterHitDuration;
     public Player player;
-    public PushHandle pushHandle;
+    public Ringhandle pushHandle;
     public float pushForce=2f;
 
     public override void TakeDamage(int dmg)

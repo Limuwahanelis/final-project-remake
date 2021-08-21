@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEditor;
-[CustomEditor(typeof(PushHandle))]
+[CustomEditor(typeof(Ringhandle))]
 public class TestEditor : Editor
 {
     // draw lines between a chosen game object
