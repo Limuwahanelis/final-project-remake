@@ -7,49 +7,44 @@ public class Boss : Enemy,IDamagable
 {
     public static Action OnGameCompleteEvent;
 
-    public static Action OnBossMissileAttack;
-
     public GameObject[] beams;
-    private GameObject player;
+    public Player player;
     public Transform missileSpawn;
     public GameObject missilePrefab;
     public BossCrystalManager crystals;
     public Vector3 delayedBeamPos;
     public Transform attackTrans;
     public Transform vulnerableTrans;
-    public Vector3 attackPos;
-    public Vector3 vulnerablePos;
+    private Vector3 _attackPos;
+    private Vector3 _vulnerablePos;
     //public GameObject credits;
     public float attackDelay = 1f;
     public float vulnerableTime = 2f;
-    private int attackPatten = 1;
-    public bool attack = false;
-    private bool isAlive = true;
-    private bool moveToVulnerablePos = false;
-    private bool moveToAttackPos= false;
+    private int _attackPatten = 1;
+    public bool attack = true;
+    private bool _moveToVulnerablePos = false;
+    private bool _moveToAttackPos= false;
 
     void Awake()
     {
-        attackPos = attackTrans.position;
-        vulnerablePos = vulnerableTrans.position;
-        player = GameObject.FindGameObjectWithTag("Player");
-        hpSys = GetComponent<HealthSystem>();
-        anim = GetComponent<Animator>();
+
         
     }
     // Start is called before the first frame update
     void Start()
     {
-        player = GameObject.FindGameObjectWithTag("Player");
+        _attackPos = attackTrans.position;
+        _vulnerablePos = vulnerableTrans.position;
+        hpSys = GetComponent<HealthSystem>();
     }
 
     void Update()
     {
-        if (isAlive)
+        if (_isAlive)
         {
             if (attack)
             {
-                switch (attackPatten)
+                switch (_attackPatten)
                 {
                     case 1: StartCoroutine(AttackCor1()); break;
                     case 2: StartCoroutine(AttackCor2()); break;
@@ -57,41 +52,41 @@ public class Boss : Enemy,IDamagable
                     default: break;
                 }
                 attack = false;
-                attackPatten++;
-                if (attackPatten > 3) attackPatten = 1;
+                _attackPatten++;
+                if (_attackPatten > 3) _attackPatten = 1;
             }
-            if(moveToVulnerablePos)
+            if(_moveToVulnerablePos)
             {
                 float step = speed * Time.deltaTime;
-                transform.position = Vector3.MoveTowards(transform.position, vulnerablePos, step);
-                if(Vector3.Distance(transform.position,vulnerablePos)<0.001f)
+                transform.position = Vector3.MoveTowards(transform.position, _vulnerablePos, step);
+                if(Vector3.Distance(transform.position,_vulnerablePos)<0.001f)
                 {
-                    moveToVulnerablePos = false;
+                    _moveToVulnerablePos = false;
                     StartCoroutine(VulnerableCor());
                 }
             }
-            if (moveToAttackPos)
+            if (_moveToAttackPos)
             {
                 float step = speed * Time.deltaTime;
-                transform.position = Vector3.MoveTowards(transform.position, attackPos, step);
-                if (Vector3.Distance(transform.position, attackPos) < 0.001f)
+                transform.position = Vector3.MoveTowards(transform.position, _attackPos, step);
+                if (Vector3.Distance(transform.position, _attackPos) < 0.001f)
                 {
-                    moveToAttackPos = false;
+                    _moveToAttackPos = false;
                     crystals.StartCrystalAttacks();
                 }
             }
         }
         else
         {
-            if (moveToVulnerablePos)
+            if (_moveToVulnerablePos)
             {
                 
                 float step = speed * Time.deltaTime;
-                transform.position = Vector3.MoveTowards(transform.position, vulnerablePos, step);
-                if (Vector3.Distance(transform.position, vulnerablePos) < 0.001f)
+                transform.position = Vector3.MoveTowards(transform.position, _vulnerablePos, step);
+                if (Vector3.Distance(transform.position, _vulnerablePos) < 0.001f)
                 {
                     Kill();
-                    moveToVulnerablePos = false;
+                    _moveToVulnerablePos = false;
                 }
             }
         }
@@ -119,22 +114,21 @@ public class Boss : Enemy,IDamagable
         }
         yield return new WaitForSeconds(attackDelay);
         Debug.Log("end attack");
-        moveToVulnerablePos = true;
+        _moveToVulnerablePos = true;
     }
     IEnumerator AttackCor2()
     {
         yield return new WaitForSeconds(attackDelay);
         for (int i=0;i<60;i++)
         {
-            //OnBossMissileAttack?.Invoke();
             GameObject missile =  Instantiate(missilePrefab, missileSpawn.transform.position, Quaternion.Euler(0,0,90+i*20));
             AudioSource tmpSource = missile.AddComponent<AudioSource>();
-            GetComponent<BossAudioManager>().bossMissileAudio.Play(tmpSource);
+            GetComponent<BossAudioManager>().PlayAttackSound(tmpSource);
             missile.GetComponent<Missile>().SetSpeed(10);
             yield return new WaitForSeconds(0.05f);
         }
         yield return new WaitForSeconds(attackDelay);
-        moveToVulnerablePos = true;
+        _moveToVulnerablePos = true;
     }
     IEnumerator AttackCor3()
     {
@@ -144,17 +138,17 @@ public class Boss : Enemy,IDamagable
             GameObject missile = Instantiate(missilePrefab, missileSpawn.transform.position,missilePrefab.transform.rotation);
             missile.transform.up = player.transform.position - missileSpawn.transform.position;
             AudioSource tmpSource = missile.AddComponent<AudioSource>();
-            GetComponent<BossAudioManager>().bossMissileAudio.Play(tmpSource);
+            GetComponent<BossAudioManager>().PlayAttackSound(tmpSource);
             missile.GetComponent<Missile>().SetSpeed(10);
             yield return new WaitForSeconds(0.4f);
         }
         yield return new WaitForSeconds(attackDelay);
-        moveToVulnerablePos = true;
+        _moveToVulnerablePos = true;
     }
     IEnumerator VulnerableCor()
     {
         yield return new WaitForSeconds(vulnerableTime);
-        moveToAttackPos = true;
+        _moveToAttackPos = true;
     }
     public void StartAttacking()
     {
@@ -165,32 +159,16 @@ public class Boss : Enemy,IDamagable
         hpSys.TakeDamage(dmg);
         if(hpSys.currentHP<=0)
         {
-            isAlive = false;
-            moveToVulnerablePos = true;
+            _isAlive = false;
+            _moveToVulnerablePos = true;
         }
     }
 
     public void Kill()
     {
-        anim.SetTrigger("dead");
+        _anim.PlayAnimation("Dead");
         StopAllCoroutines();
         crystals.DestroyCrystals();
-    }
-
-    public void Knockback()
-    {
-    }
-
-    public void SlowDown(float slowDownFactorx, float slowDownFactory)
-    {
-    }
-
-    public override void SetPlayerInRange()
-    {
-    }
-
-    public override void SetPlayerNotInRange()
-    {
     }
     public void ShowCredits()
     {

@@ -35,8 +35,8 @@ public abstract class Enemy : MonoBehaviour
     {
         return _anim;
     }
-    public abstract void SetPlayerInRange();
-    public abstract void SetPlayerNotInRange();
+    public virtual void SetPlayerInRange() { }
+    public virtual void SetPlayerNotInRange() { }
     public void IncreaseInvicibilityProgress()
     {
 

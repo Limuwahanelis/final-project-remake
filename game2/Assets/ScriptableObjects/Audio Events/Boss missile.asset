@@ -15,4 +15,8 @@ MonoBehaviour:
   volume: 0.571
   pitch: 0.193
   audioClip: {fileID: 8300000, guid: 49b6ff6864374a84882eb6eb4638a707, type: 3}
+  globalAudioVolume:
+    useConstant: 1
+    constantValue: 1
+    variable: {fileID: 0}
   test: 0

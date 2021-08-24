@@ -10,7 +10,7 @@ public class Beam : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        //man = GameObject.FindGameObjectWithTag("GameManager").GetComponent<GameManager>();
+
     } 
 
     // Update is called once per frame
@@ -21,8 +21,5 @@ public class Beam : MonoBehaviour
     private void OnTriggerStay2D(Collider2D collision)
     {
         collision.GetComponentInParent<IDamagable>().TakeDamage(damage);
-        //collision.GetComponentInParent<IDamagable>().Knockback();
-        //man.GetPlayer().GetComponent<IDamagable>().TakeDamage(damage);
-        //man.GetPlayer().GetComponent<IDamagable>().Knockback();
     }
 }
