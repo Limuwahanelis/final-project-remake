@@ -29,20 +29,39 @@ public class EnemyPatrollingState : EnemyState
 
         _enemy.transform.position = Vector3.MoveTowards(_enemy.transform.position, _patrolpositions[_patrolPointIndex], _enemy.speed * Time.deltaTime);
 
-        if (Mathf.Abs(_enemy.transform.position.x - _patrolpositions[_patrolPointIndex].x) < 0.1)
+        if (_enemy.isMovingVertically)
         {
-            if (_patrolPointIndex + 1 > _patrolpositions.Count - 1) _patrolPointIndex = 0;
-            else _patrolPointIndex++;
-            RotateTowardsPatrolPoint();
+            if (Mathf.Abs(_enemy.transform.position.y - _patrolpositions[_patrolPointIndex].y) < 0.1)
+            {
+                if (_patrolPointIndex + 1 > _patrolpositions.Count - 1) _patrolPointIndex = 0;
+                else _patrolPointIndex++;
+                RotateTowardsPatrolPoint();
+            }
+        }
+        else
+        {
+            if (Mathf.Abs(_enemy.transform.position.x - _patrolpositions[_patrolPointIndex].x) < 0.1)
+            {
+                if (_patrolPointIndex + 1 > _patrolpositions.Count - 1) _patrolPointIndex = 0;
+                else _patrolPointIndex++;
+                RotateTowardsPatrolPoint();
+            }
         }
     }
     protected void RotateTowardsPatrolPoint()
     {
         float direction;
 
-        if (_patrolpositions[_patrolPointIndex].x < _enemy.transform.position.x) direction = -1;
-        else direction = 1;
-
+        if (_enemy.isMovingVertically)
+        {
+            if (_patrolpositions[_patrolPointIndex].y < _enemy.transform.position.y) direction = 1;
+            else direction = -1;
+        }
+        else
+        {
+            if (_patrolpositions[_patrolPointIndex].x < _enemy.transform.position.x) direction = -1;
+            else direction = 1;
+        }
         _enemy.transform.localScale = new Vector3(direction, _enemy.transform.localScale.y, _enemy.transform.localScale.z);
     }
 

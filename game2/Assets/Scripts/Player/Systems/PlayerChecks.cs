@@ -11,6 +11,7 @@ public class PlayerChecks : MonoBehaviour
     public Transform slideColWallCheck;
     public Transform wallCheckPos;
     public Transform ceilingCheckPos;
+    public Transform wallCheck2Pos;
     public float ceilingCheckWidth;
     public float ceilingCheckHeight;
     public float slideColWallCheckWidth;
@@ -19,7 +20,7 @@ public class PlayerChecks : MonoBehaviour
     public float WallCheckHeight;
     private Player _player;
 
-    private Collider2D platform;
+    private Collider2D potentialWallCol;
     // Start is called before the first frame update
     void Start()
     {
@@ -31,12 +32,17 @@ public class PlayerChecks : MonoBehaviour
     {
 
         _player.isOnGround = Physics2D.OverlapBox(groundCheckPos.position, new Vector2(groundCheckWidth, groundCheckHeight), 0, ground);
-        _player.isNearWall= Physics2D.OverlapBox(wallCheckPos.position, new Vector2(WallCheckWidth, WallCheckHeight), 0, ground);
+        potentialWallCol = Physics2D.OverlapBox(wallCheckPos.position, new Vector2(WallCheckWidth, WallCheckHeight), 0, ground);
         _player.isNearCeiling = Physics2D.OverlapBox(ceilingCheckPos.position, new Vector2(ceilingCheckWidth, ceilingCheckHeight), 0, ground);
-        if(_player.isNearWall)
+        if (potentialWallCol)
         {
-            _player.isNearWall = !Physics2D.OverlapBox(wallCheckPos.position, new Vector2(WallCheckWidth, WallCheckHeight), 0, ground).CompareTag("Platform");
+            if (Physics2D.OverlapBox(wallCheck2Pos.position, new Vector2(WallCheckWidth, WallCheckHeight), 0, ground))
+            {
+                _player.isNearWall = !potentialWallCol.CompareTag("Platform");
+                _player.isNearWall = !potentialWallCol.CompareTag("Spikes");
+            }
         }
+        else _player.isNearWall = false;
         
     }
 
@@ -59,6 +65,7 @@ public class PlayerChecks : MonoBehaviour
     private void OnDrawGizmos()
     {
         Gizmos.DrawWireCube(wallCheckPos.position, new Vector3(WallCheckWidth, WallCheckHeight));
+        Gizmos.DrawWireCube(wallCheck2Pos.position, new Vector3(WallCheckWidth, WallCheckHeight));
         Gizmos.DrawWireCube(ceilingCheckPos.position, new Vector3(ceilingCheckWidth, ceilingCheckHeight));
         Gizmos.DrawWireCube(groundCheckPos.position, new Vector3(groundCheckWidth, groundCheckHeight));
         Gizmos.DrawWireCube(slideColWallCheck.position, new Vector3(slideColWallCheckWidth, slideColWallkHeight));

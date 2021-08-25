@@ -166,13 +166,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   invicibilityProgress: 0.2
-  speed: 0
+  speed: 3
   dmg: 0
   collisionDmg: 0
   idleCycles: 0
   patrolPoints:
   - {fileID: 7024608493020671250}
   - {fileID: 7024608492602605746}
+  isMovingVertically: 0
 --- !u!61 &7024608491873740584
 BoxCollider2D:
   m_ObjectHideFlags: 0

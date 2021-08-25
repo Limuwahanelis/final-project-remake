@@ -5,7 +5,7 @@ using UnityEngine;
 public class PatrollingEnemy : Enemy
 {
 
-
+    public bool isMovingVertically;
     public int idleCycles;
     public List<Transform> patrolPoints = new List<Transform>();
 

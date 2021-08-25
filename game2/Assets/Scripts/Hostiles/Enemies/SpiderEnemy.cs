@@ -5,7 +5,6 @@ using UnityEngine;
 public class SpiderEnemy : PatrollingEnemy
 {
     private EnemyPatrollingState _patrolState;
-
     // Start is called before the first frame update
     private void Awake()
     {
