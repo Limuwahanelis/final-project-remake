@@ -27,7 +27,7 @@ public class PlayerWallHangState : PlayerState
         _player.playerMovement.MovePlayer(0); // to don't stop player after jump
         _player.GetComponentInChildren<SpriteRenderer>().sprite = _player.playerMovement.wallJumpSprite;
         _player.playerMovement.SetGravityScale(2);
-        _player.playerMovement.WallJump();
+        _player.playerMovement.Jump();//WallJump();
         _player.playerMovement.RotatePlayer((int)-_player.mainBody.transform.localScale.x);
         _player.playerMovement.ChangeRb2DMat(_player.noFrictionMat);
         _player.hasWallJumped = true;

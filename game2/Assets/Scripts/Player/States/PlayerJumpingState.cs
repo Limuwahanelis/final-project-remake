@@ -16,6 +16,11 @@ public class PlayerJumpingState : PlayerState
         if (_isJumping) return;
         _player.playerMovement.Jump();
         _player.StartCoroutine(_player.playerMovement.JumpCor());
+        _player.anim.PlayAnimation("Jump");
+        _player.StartCoroutine(_player.WaitAndExecuteFunction(_player.anim.GetAnimationLength("Jump"), () =>
+        {
+            _player.playerMovement.Jump();
+        }));
         _isJumping = true;
     }
 

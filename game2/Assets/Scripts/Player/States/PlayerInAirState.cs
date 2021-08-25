@@ -36,21 +36,24 @@ public class PlayerInAirState : PlayerState
 
         if (!_player.isAirAttacking)
         {
-            if (!_player.hasWallJumped)
-            {
+            //if (!_player.hasWallJumped)
+            //{
                 if (direction == 0) _isMoving = false;
                 else
                 {
                     _isMoving = true;
                 }
                 _player.playerMovement.MovePlayer(direction);
-            }
+            //}
         }
     }
     public override void Attack()
     {
-        if (_hasAttacked) return;
-        _hasAttacked = true;
-        _player.playerCombat.AirAttack();
+        if (_player.man.unlockedAbilities[(int)AbilityManager.Abilities.AIR_ATTACK])
+        {
+            if (_hasAttacked) return;
+            _hasAttacked = true;
+            _player.playerCombat.AirAttack();
+        }
     }
 }

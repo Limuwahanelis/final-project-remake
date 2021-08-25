@@ -5,7 +5,6 @@ using UnityEngine;
 public class PlayerCombat : MonoBehaviour
 {
     private Player _player;
-    private AnimationManager anim;
     //private Collider2D
 
     public Transform attackPos;
@@ -17,7 +16,6 @@ public class PlayerCombat : MonoBehaviour
     void Start()
     {
         _player = GetComponent<Player>();
-        anim = _player.anim;
     }
 
     // Update is called once per frame
@@ -42,9 +40,9 @@ public class PlayerCombat : MonoBehaviour
         _player.canPerformAirAttack = false;
         _player.isAirAttacking = true;
         _player.anim.PlayAnimation("Air attack");
-        _player.playerMovement.AirAttackAnimationLogic(anim.GetAnimationLength("Air attack"));
+        _player.playerMovement.AirAttackAnimationLogic(_player.anim.GetAnimationLength("Air attack"));
         StartCoroutine(AirAttackCor());
-        StartCoroutine(_player.WaitAndExecuteFunction(anim.GetAnimationLength("Air attack"), () =>
+        StartCoroutine(_player.WaitAndExecuteFunction(_player.anim.GetAnimationLength("Air attack"), () =>
         {
             _player.isAirAttacking = false;
         }));

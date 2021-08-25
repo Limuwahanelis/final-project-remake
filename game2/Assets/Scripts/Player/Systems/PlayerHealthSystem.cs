@@ -39,4 +39,9 @@ public class PlayerHealthSystem : HealthSystem,IPushable
         if (isInvincible) return;
         player.playerMovement.PushPlayer(pushHandle.GetPushVector() * pushForce);
     }
+
+    public void IncreaseHealthBarMaxValue()
+    {
+        hpBar.SetMaxHealth(maxHP.value);
+    }
 }

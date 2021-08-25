@@ -91,14 +91,9 @@ public class PlayerMovement : MonoBehaviour
     }
     public void Jump()
     {
-        _player.isJumping = true;
-        _player.anim.PlayAnimation("Jump");
-        StartCoroutine( _player.WaitAndExecuteFunction(_player.anim.GetAnimationLength("Jump"), () =>
-         {
-             _rb.velocity = new Vector3(0, 0, 0);
-             _rb.AddForce(new Vector2(0, jumpStrength));
-             _player.isJumping = false;
-         }));
+        _rb.velocity = new Vector3(0, 0, 0);
+        _rb.AddForce(new Vector2(0, jumpStrength));
+        _player.isJumping = false;
     }
 
     public bool CheckIfPlayerIsFalling()

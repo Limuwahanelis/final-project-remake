@@ -57,9 +57,7 @@ public class Boss : Enemy,IDamagable
             }
             if(_moveToVulnerablePos)
             {
-                float step = speed * Time.deltaTime;
-                transform.position = Vector3.MoveTowards(transform.position, _vulnerablePos, step);
-                if(Vector3.Distance(transform.position,_vulnerablePos)<0.001f)
+                if(!MoveToPosition(_vulnerablePos))
                 {
                     _moveToVulnerablePos = false;
                     StartCoroutine(VulnerableCor());
@@ -67,9 +65,7 @@ public class Boss : Enemy,IDamagable
             }
             if (_moveToAttackPos)
             {
-                float step = speed * Time.deltaTime;
-                transform.position = Vector3.MoveTowards(transform.position, _attackPos, step);
-                if (Vector3.Distance(transform.position, _attackPos) < 0.001f)
+                if(!MoveToPosition(_attackPos))
                 {
                     _moveToAttackPos = false;
                     crystals.StartCrystalAttacks();
@@ -80,16 +76,24 @@ public class Boss : Enemy,IDamagable
         {
             if (_moveToVulnerablePos)
             {
-                
-                float step = speed * Time.deltaTime;
-                transform.position = Vector3.MoveTowards(transform.position, _vulnerablePos, step);
-                if (Vector3.Distance(transform.position, _vulnerablePos) < 0.001f)
+                if(!MoveToPosition(_vulnerablePos))
                 {
                     Kill();
                     _moveToVulnerablePos = false;
                 }
             }
         }
+    }
+
+    private bool MoveToPosition(Vector3 pos)
+    {
+        float step = speed * Time.deltaTime;
+        transform.position = Vector3.MoveTowards(transform.position, pos, step);
+        if (Vector3.Distance(transform.position, pos) < 0.001f)
+        {
+            return false;
+        }
+        return true;
     }
 
     IEnumerator AttackCor1()

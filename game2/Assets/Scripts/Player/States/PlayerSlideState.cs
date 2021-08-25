@@ -20,9 +20,18 @@ public class PlayerSlideState : PlayerState
 
         _player.StartCoroutine(_player.WaitAndExecuteFunction(_player.playerMovement.slideTime, () =>
         {
-            _player.ChangeState(new PlayerNormalState(_player));
-            _player.playerMovement.StopPlayer();
-            _player.StopAllCoroutines();
+            if (_player.isNearCeiling)
+            {
+                _player.StartCoroutine(_player.LeaveCeilingCor());
+            }
+            else
+            {
+                _player.ChangeState(new PlayerNormalState(_player));
+                _player.playerMovement.StopPlayer();
+                _player.StopAllCoroutines();
+                _player.slideColliders.SetActive(false);
+                _player.normalColliders.SetActive(true);
+            }
         }));
         _player.StartCoroutine(_player.playerChecks.CheckForWallDuringSlideCor());
     }

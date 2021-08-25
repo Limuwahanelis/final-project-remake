@@ -1,34 +1,29 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
 
-public class MaxHPincreasePickUp : MonoBehaviour,IInteractable
+public class AbilityUnlock : MonoBehaviour,IInteractable
 {
-    //private GameManager gameMan;
-    public int maxHPincrease;
-    public GameObject canvas;
-    public IntReference playerMaxHealth;
-    public string pickUpMessage;
+    public AbilityManager man;
+    public AbilityManager.Abilities ability;
     private PlayerInteract _playerInteract;
     public void Interact()
     {
-        playerMaxHealth.value += maxHPincrease;
-        _playerInteract.GetComponentInParent<PlayerHealthSystem>().IncreaseHealthBarMaxValue();
+        man.UnlockAbility(ability);
         Destroy(this.gameObject);
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        canvas.SetActive(true);
+        Debug.Log("fsaf");
         _playerInteract = collision.GetComponentInParent<PlayerInteract>();
         _playerInteract.setObjectToInteract(this);
     }
 
     private void OnTriggerExit2D(Collider2D collision)
     {
-        canvas.SetActive(false);
         _playerInteract.RemoveObjectToInteract();
         _playerInteract = null;
     }
+
 }

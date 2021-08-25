@@ -72,7 +72,6 @@ public class BossCrystal : MonoBehaviour
                     }
                     else
                     {
-                        Debug.Log("in position");
                         moveToPos = false;
                         rotateToTarget = true;
                     }

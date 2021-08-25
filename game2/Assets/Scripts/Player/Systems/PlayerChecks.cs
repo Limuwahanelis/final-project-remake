@@ -10,6 +10,9 @@ public class PlayerChecks : MonoBehaviour
     public Transform groundCheckPos;
     public Transform slideColWallCheck;
     public Transform wallCheckPos;
+    public Transform ceilingCheckPos;
+    public float ceilingCheckWidth;
+    public float ceilingCheckHeight;
     public float slideColWallCheckWidth;
     public float slideColWallkHeight;
     public float WallCheckWidth;
@@ -29,6 +32,7 @@ public class PlayerChecks : MonoBehaviour
 
         _player.isOnGround = Physics2D.OverlapBox(groundCheckPos.position, new Vector2(groundCheckWidth, groundCheckHeight), 0, ground);
         _player.isNearWall= Physics2D.OverlapBox(wallCheckPos.position, new Vector2(WallCheckWidth, WallCheckHeight), 0, ground);
+        _player.isNearCeiling = Physics2D.OverlapBox(ceilingCheckPos.position, new Vector2(ceilingCheckWidth, ceilingCheckHeight), 0, ground);
         if(_player.isNearWall)
         {
             _player.isNearWall = !Physics2D.OverlapBox(wallCheckPos.position, new Vector2(WallCheckWidth, WallCheckHeight), 0, ground).CompareTag("Platform");
@@ -55,6 +59,7 @@ public class PlayerChecks : MonoBehaviour
     private void OnDrawGizmos()
     {
         Gizmos.DrawWireCube(wallCheckPos.position, new Vector3(WallCheckWidth, WallCheckHeight));
+        Gizmos.DrawWireCube(ceilingCheckPos.position, new Vector3(ceilingCheckWidth, ceilingCheckHeight));
         Gizmos.DrawWireCube(groundCheckPos.position, new Vector3(groundCheckWidth, groundCheckHeight));
         Gizmos.DrawWireCube(slideColWallCheck.position, new Vector3(slideColWallCheckWidth, slideColWallkHeight));
     }

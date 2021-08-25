@@ -17,7 +17,6 @@ public class BossCrystalAttackPattern : MonoBehaviour
         foreach(BossCrystal crystal in crystals)
         {
             crystal.SetAttackDuration(patternAttackTimeDuration);
-            Debug.Log(patternAttackTimeDuration);
         }
     }
 

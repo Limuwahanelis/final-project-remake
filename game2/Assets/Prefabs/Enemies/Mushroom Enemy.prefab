@@ -370,7 +370,7 @@ AudioSource:
   Priority: 128
   DopplerLevel: 1
   MinDistance: 1
-  MaxDistance: 62.804962
+  MaxDistance: 2.18
   Pan2D: 0
   rolloffMode: 0
   BypassEffects: 0
@@ -523,7 +523,7 @@ GameObject:
   m_Layer: 0
   m_Name: Left point
   m_TagString: Untagged
-  m_Icon: {fileID: 0}
+  m_Icon: {fileID: 3306451490063965843, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -553,7 +553,7 @@ GameObject:
   m_Layer: 0
   m_Name: Right point
   m_TagString: Untagged
-  m_Icon: {fileID: 0}
+  m_Icon: {fileID: 3306451490063965843, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1

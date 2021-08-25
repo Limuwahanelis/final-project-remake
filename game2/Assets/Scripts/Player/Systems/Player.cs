@@ -7,6 +7,7 @@ using System;
 public class Player : MonoBehaviour
 {
     public PlayerMovement playerMovement;
+    public AbilityManager man;
     public PlayerInput playerInput;
     public PlayerCombat playerCombat;
     public PlayerChecks playerChecks;
@@ -31,6 +32,7 @@ public class Player : MonoBehaviour
     public bool isInAirAfterPush = false;
     public bool isNearWall = false;
     public bool hasWallJumped = false;
+    public bool isNearCeiling = false;
     // Start is called before the first frame update
     void Start()
     {
@@ -57,5 +59,18 @@ public class Player : MonoBehaviour
     {
         currentState = newState;
         currentState.SetUpState();
+    }
+
+    public IEnumerator LeaveCeilingCor()
+    {
+        while(isNearCeiling)
+        {
+            yield return null;
+        }
+        ChangeState(new PlayerNormalState(this));
+        playerMovement.StopPlayer();
+        slideColliders.SetActive(false);
+        normalColliders.SetActive(true);
+        StopAllCoroutines();
     }
 }

@@ -69,7 +69,6 @@ public class BossCrystalManager : MonoBehaviour
 
     private void MoveCrystalsBack()
     {
-        Debug.Log("Caolled");
         foreach (BossCrystal crystal in crystals)
         {
             crystal.MoveBack();
