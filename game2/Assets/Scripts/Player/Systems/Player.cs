@@ -7,11 +7,10 @@ using System;
 public class Player : MonoBehaviour
 {
     public PlayerMovement playerMovement;
-    public AbilityManager man;
+    public AbilityList abilities;
     public PlayerInput playerInput;
     public PlayerCombat playerCombat;
     public PlayerChecks playerChecks;
-    public PlayerGroundCollider groundCol;
 
     public GameObject mainBody;
     public AnimationManager anim;

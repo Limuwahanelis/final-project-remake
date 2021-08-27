@@ -4,12 +4,12 @@ using UnityEngine;
 
 public class AbilityUnlock : MonoBehaviour,IInteractable
 {
-    public AbilityManager man;
-    public AbilityManager.Abilities ability;
+    public AbilityList abilityList;
+    public AbilityList.Abilities ability;
     private PlayerInteract _playerInteract;
     public void Interact()
     {
-        man.UnlockAbility(ability);
+        abilityList.UnlockAbility(ability);
         Destroy(this.gameObject);
     }
 

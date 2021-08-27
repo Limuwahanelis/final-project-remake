@@ -25,9 +25,12 @@ public class PlayerInAirState : PlayerState
             _player.playerMovement.ChangeRb2DMat(null);
             _player.ChangeState(new PlayerNormalState(_player));
         }
-        if(_player.isNearWall && !_player.hasWallJumped && _isMoving)
+        if(_player.isNearWall && !_player.hasWallJumped && _isMoving )
         {
-            _player.ChangeState(new PlayerWallHangState(_player));
+            if (_player.abilities.GetAbility(AbilityList.Abilities.WALLHANG_ANDJUMP))
+            {
+                _player.ChangeState(new PlayerWallHangState(_player));
+            }
         }
     }
 
@@ -49,7 +52,7 @@ public class PlayerInAirState : PlayerState
     }
     public override void Attack()
     {
-        if (_player.man.unlockedAbilities[(int)AbilityManager.Abilities.AIR_ATTACK])
+        if (_player.abilities.GetAbility(AbilityList.Abilities.AIR_ATTACK))
         {
             if (_hasAttacked) return;
             _hasAttacked = true;
