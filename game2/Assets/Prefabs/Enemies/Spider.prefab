@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1742309519}
   - component: {fileID: 1742309520}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Sprite
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -109,7 +109,7 @@ GameObject:
   - component: {fileID: 7024608491873740584}
   - component: {fileID: 994684590}
   - component: {fileID: 6279730215918602760}
-  m_Layer: 15
+  m_Layer: 12
   m_Name: Spider
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -241,7 +241,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7024608492602605746}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: PatrolLeft
   m_TagString: Untagged
   m_Icon: {fileID: 3306451490063965843, guid: 0000000000000000d000000000000000, type: 0}
@@ -271,7 +271,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7024608493020671250}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: PatrolRight
   m_TagString: Untagged
   m_Icon: {fileID: 3306451490063965843, guid: 0000000000000000d000000000000000, type: 0}
@@ -302,6 +302,10 @@ PrefabInstance:
     - target: {fileID: 1502595818297573627, guid: 219f1a43d66fa2c4a805b99c88dbf8d9, type: 3}
       propertyPath: m_PresetInfoIsWorld
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2196368769552126826, guid: 219f1a43d66fa2c4a805b99c88dbf8d9, type: 3}
+      propertyPath: m_Layer
+      value: 12
       objectReference: {fileID: 0}
     - target: {fileID: 3484654163008205522, guid: 219f1a43d66fa2c4a805b99c88dbf8d9, type: 3}
       propertyPath: m_Pivot.x
@@ -395,9 +399,25 @@ PrefabInstance:
       propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5231928035739311579, guid: 219f1a43d66fa2c4a805b99c88dbf8d9, type: 3}
+      propertyPath: m_Layer
+      value: 12
+      objectReference: {fileID: 0}
+    - target: {fileID: 5408686689045392811, guid: 219f1a43d66fa2c4a805b99c88dbf8d9, type: 3}
+      propertyPath: m_Layer
+      value: 12
+      objectReference: {fileID: 0}
     - target: {fileID: 5417218639268553747, guid: 219f1a43d66fa2c4a805b99c88dbf8d9, type: 3}
       propertyPath: m_Name
       value: Canvas
+      objectReference: {fileID: 0}
+    - target: {fileID: 5417218639268553747, guid: 219f1a43d66fa2c4a805b99c88dbf8d9, type: 3}
+      propertyPath: m_Layer
+      value: 12
+      objectReference: {fileID: 0}
+    - target: {fileID: 8893294054840822201, guid: 219f1a43d66fa2c4a805b99c88dbf8d9, type: 3}
+      propertyPath: m_Layer
+      value: 12
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 7008877390100984060, guid: 219f1a43d66fa2c4a805b99c88dbf8d9, type: 3}

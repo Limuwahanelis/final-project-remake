@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 2879702168562561843}
   - component: {fileID: 6252934878426501780}
   - component: {fileID: 7708981498131639408}
-  m_Layer: 5
+  m_Layer: 12
   m_Name: Fill
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -87,7 +87,7 @@ GameObject:
   - component: {fileID: 7932302466203439012}
   - component: {fileID: 3599518998555473110}
   - component: {fileID: 5821858535425698864}
-  m_Layer: 21
+  m_Layer: 10
   m_Name: Orange beam
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -493,6 +493,7 @@ MonoBehaviour:
   speed: 2
   dmg: 0
   collisionDmg: 0
+  isMovingVertically: 0
   idleCycles: 2
   patrolPoints:
   - {fileID: 3599518998484841643}
@@ -746,7 +747,7 @@ GameObject:
   - component: {fileID: 342130541921832912}
   - component: {fileID: 2113709109386664585}
   - component: {fileID: 1369563904286294401}
-  m_Layer: 5
+  m_Layer: 12
   m_Name: Background
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -822,7 +823,7 @@ GameObject:
   - component: {fileID: 7652454211251144871}
   - component: {fileID: 438108373211718861}
   - component: {fileID: 8692740791014843281}
-  m_Layer: 5
+  m_Layer: 12
   m_Name: HPBar with canvas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -921,7 +922,7 @@ GameObject:
   - component: {fileID: 8197551000940433746}
   - component: {fileID: 1948019715093562914}
   - component: {fileID: 3005140037034914343}
-  m_Layer: 5
+  m_Layer: 12
   m_Name: Slider
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1023,7 +1024,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6751284752243064404}
   - component: {fileID: 6751284752243064405}
-  m_Layer: 8
+  m_Layer: 12
   m_Name: Collider
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1069,7 +1070,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6918243501046232932}
-  m_Layer: 5
+  m_Layer: 12
   m_Name: Fill Area
   m_TagString: Untagged
   m_Icon: {fileID: 0}

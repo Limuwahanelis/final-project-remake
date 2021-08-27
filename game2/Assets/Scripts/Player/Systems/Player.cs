@@ -17,7 +17,6 @@ public class Player : MonoBehaviour
 
     public GameObject slideColliders;
     public GameObject normalColliders;
-    public Transform knockbackDir;
     public PlayerState currentState;
 
     public PhysicsMaterial2D noFrictionMat;

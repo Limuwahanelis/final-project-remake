@@ -8,6 +8,10 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 5412205482993720712, guid: 5b582c5f7063a8a43bd891c32441d509, type: 3}
+      propertyPath: m_RootOrder
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5412205482993720712, guid: 5b582c5f7063a8a43bd891c32441d509, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
       objectReference: {fileID: 0}
@@ -18,6 +22,10 @@ PrefabInstance:
     - target: {fileID: 5412205482993720712, guid: 5b582c5f7063a8a43bd891c32441d509, type: 3}
       propertyPath: m_LocalPosition.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5412205482993720712, guid: 5b582c5f7063a8a43bd891c32441d509, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.7071068
       objectReference: {fileID: 0}
     - target: {fileID: 5412205482993720712, guid: 5b582c5f7063a8a43bd891c32441d509, type: 3}
       propertyPath: m_LocalRotation.x
@@ -32,14 +40,6 @@ PrefabInstance:
       value: 0.7071068
       objectReference: {fileID: 0}
     - target: {fileID: 5412205482993720712, guid: 5b582c5f7063a8a43bd891c32441d509, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 0.7071068
-      objectReference: {fileID: 0}
-    - target: {fileID: 5412205482993720712, guid: 5b582c5f7063a8a43bd891c32441d509, type: 3}
-      propertyPath: m_RootOrder
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5412205482993720712, guid: 5b582c5f7063a8a43bd891c32441d509, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
       value: 0
       objectReference: {fileID: 0}
@@ -52,16 +52,24 @@ PrefabInstance:
       value: 90
       objectReference: {fileID: 0}
     - target: {fileID: 5412205482993720713, guid: 5b582c5f7063a8a43bd891c32441d509, type: 3}
-      propertyPath: duration
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 5412205482993720713, guid: 5b582c5f7063a8a43bd891c32441d509, type: 3}
       propertyPath: damage
       value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 5412205482993720713, guid: 5b582c5f7063a8a43bd891c32441d509, type: 3}
+      propertyPath: duration
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 5412205482993720714, guid: 5b582c5f7063a8a43bd891c32441d509, type: 3}
       propertyPath: m_Name
       value: Boss missile
+      objectReference: {fileID: 0}
+    - target: {fileID: 5412205482993720715, guid: 5b582c5f7063a8a43bd891c32441d509, type: 3}
+      propertyPath: m_SortingLayer
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 5412205482993720715, guid: 5b582c5f7063a8a43bd891c32441d509, type: 3}
+      propertyPath: m_SortingLayerID
+      value: -713150705
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5b582c5f7063a8a43bd891c32441d509, type: 3}

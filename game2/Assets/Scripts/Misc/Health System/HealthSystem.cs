@@ -15,7 +15,6 @@ public class HealthSystem : MonoBehaviour,IDamagable
     // Start is called before the first frame update
     void Start()
     {
-        Debug.Log("G");
         hpBar.SetMaxHealth(maxHP.value);
         currentHP = maxHP.value;
         hpBar.SetHealth(currentHP);

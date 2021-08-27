@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 5532536899737700294}
   - component: {fileID: 6137735767230026399}
   - component: {fileID: 6591389725853338007}
-  m_Layer: 15
+  m_Layer: 12
   m_Name: Background
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -86,7 +86,7 @@ GameObject:
   - component: {fileID: 4160046390631242052}
   - component: {fileID: 6012367664408120884}
   - component: {fileID: 1877226371579189916}
-  m_Layer: 15
+  m_Layer: 12
   m_Name: HPBar
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -187,7 +187,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2916767791892184946}
-  m_Layer: 15
+  m_Layer: 12
   m_Name: Fill Area
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -225,7 +225,7 @@ GameObject:
   - component: {fileID: 8038424818118081317}
   - component: {fileID: 2215236865907776130}
   - component: {fileID: 2486889423002313830}
-  m_Layer: 15
+  m_Layer: 12
   m_Name: Fill
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -247,7 +247,7 @@ RectTransform:
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 1, y: 1}
+  m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0.16, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -299,7 +299,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6881827612534971435}
   - component: {fileID: 6881827612534971428}
-  m_Layer: 8
+  m_Layer: 12
   m_Name: GameObject
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -356,7 +356,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6881827612551029130}
   - component: {fileID: 6881827612551029131}
-  m_Layer: 15
+  m_Layer: 12
   m_Name: sprite
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -415,8 +415,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 1044270641
-  m_SortingLayer: 0
+  m_SortingLayerID: -713150705
+  m_SortingLayer: 4
   m_SortingOrder: 0
   m_Sprite: {fileID: -4795363162621231457, guid: c529accddf3fc874aa253449c61284a6, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -440,7 +440,7 @@ GameObject:
   - component: {fileID: 6881827612603113631}
   - component: {fileID: 6881827612603113624}
   - component: {fileID: 6881827612603113629}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Player detector
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -499,7 +499,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6881827613521572806}
-  m_Layer: 15
+  m_Layer: 12
   m_Name: main body
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -537,13 +537,13 @@ GameObject:
   - component: {fileID: 9009864858564129043}
   - component: {fileID: 6881827613908392332}
   - component: {fileID: 6881827613908392331}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: Flying eye
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &6881827613908392335
 Transform:
   m_ObjectHideFlags: 0
@@ -743,8 +743,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _anim: {fileID: 6881827613908392328}
-  _animLength: 0
-  animatorController: {fileID: 9100000, guid: bd302d87578efa84e8e506c59afa0fca, type: 2}
 --- !u!1 &6881827614116081911
 GameObject:
   m_ObjectHideFlags: 0
@@ -757,7 +755,7 @@ GameObject:
   - component: {fileID: 6881827614116081907}
   - component: {fileID: 6881827614116081906}
   - component: {fileID: 6881827614116081905}
-  m_Layer: 15
+  m_Layer: 12
   m_Name: Canvas
   m_TagString: Untagged
   m_Icon: {fileID: 0}

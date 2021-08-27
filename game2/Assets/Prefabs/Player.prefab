@@ -875,11 +875,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerMovement: {fileID: 7758595434759963517}
-  man: {fileID: 0}
+  abilities: {fileID: 11400000, guid: d2e06ae10b536bb49afe12ab876fcfda, type: 2}
   playerInput: {fileID: 7758595434759963515}
   playerCombat: {fileID: 7758595434759963535}
   playerChecks: {fileID: 7758595434759963513}
-  groundCol: {fileID: 0}
   mainBody: {fileID: 7758595433692982550}
   anim: {fileID: 0}
   slideColliders: {fileID: 7758595434182644816}

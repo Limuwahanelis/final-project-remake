@@ -23,4 +23,9 @@ public class Missile : MonoBehaviour
     {
         ySpeed = speed;
     }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        collision.GetComponentInParent<IDamagable>().TakeDamage(damage);
+    }
 }
