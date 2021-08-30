@@ -11,7 +11,6 @@ public class Settings : MonoBehaviour
         public int refreshRateIndex;
         public int resolutionIndex;
     }
-    public static Settings instance=null;
     Resolution[] allResolutions;
     ResIndex currentResIndex;
     List<List<Resolution>> resolutions = new List<List<Resolution>>();
@@ -30,14 +29,6 @@ public class Settings : MonoBehaviour
     }
     void Start()
     {
-        if (instance == null)
-        {
-            instance = this;
-        }
-        else if (instance != this)
-        {
-            Destroy(this);
-        }
         currentResIndex.refreshRateIndex = 0;
         currentResIndex.resolutionIndex = 0;
 
@@ -58,14 +49,6 @@ public class Settings : MonoBehaviour
         }
         refreshRateDropdown.AddOptions(refreshRatesS);
         refreshRateDropdown.RefreshShownValue();
-        Debug.Log("DSADFFff");
-        for(int i=0;i<resolutionOptions.Count; i++)
-        {
-            for(int j=0;j<resolutionOptions[i].Count;j++)
-            {
-                Debug.Log(resolutionOptions[i].Count);
-            }
-        }
         resolutionDropdown.AddOptions(resolutionOptions[0]);
 
     }
@@ -91,7 +74,6 @@ public class Settings : MonoBehaviour
 
             }
             resolutions[refreshRateIndex].Add(allResolutions[i]);
-            //resolutionOptions[refreshRateIndex].Add(allResolutions[i].width + " x " + allResolutions[i].height);
 
         }
         RemoveNonReapetingResolutions();
@@ -167,50 +149,17 @@ public class Settings : MonoBehaviour
         resolutionDropdown.ClearOptions();
         resolutionDropdown.AddOptions(resolutionOptions[refreshRateIndex]);
         resolutionDropdown.RefreshShownValue();
-        Resolution res = findResolutionForRefreshRateIndex(resolutions[currentResIndex.refreshRateIndex][currentResIndex.resolutionIndex].width, resolutions[currentResIndex.refreshRateIndex][currentResIndex.resolutionIndex].height, refreshRateIndex);
-        resolutionDropdown.value = currentResIndex.resolutionIndex;
-        Screen.SetResolution(res.width, res.height, Screen.fullScreen);
-
-    }
-
-    Resolution findResolutionForRefreshRateIndex(int width, int height, int refreshRateIndex)
-    {
-        Resolution toReturn = new Resolution();
-
-        for (int i = 0; i < resolutions[refreshRateIndex].Count; i++)
-        {
-            if (resolutions[refreshRateIndex][i].width == Screen.width)
-            {
-                if (resolutions[refreshRateIndex][i].height == Screen.height)
-                {
-
-                    toReturn = resolutions[refreshRateIndex][i];
-                    currentResIndex.refreshRateIndex = refreshRateIndex;
-                    currentResIndex.resolutionIndex = i;
-                    return toReturn;
-                }
-            }
-        }
-        toReturn = FindNearestResolutionForRefreshRate(width, height, refreshRateIndex); //resolutions[refreshRateIndex][currentResIndex.resolutionIndex];
         currentResIndex.refreshRateIndex = refreshRateIndex;
-        return toReturn;
-    }
-    Resolution FindNearestResolutionForRefreshRate(int width, int height, int refreshRateIndex)
-    {
-        int minResolutionIndex = 0;
-        int difference = Mathf.Abs(resolutions[refreshRateIndex][0].width - width) + Mathf.Abs(resolutions[refreshRateIndex][0].height - height);
-        int minDifference = difference;
-        for (int i = 1; i < resolutions[refreshRateIndex].Count; i++)
-        {
-            difference= Mathf.Abs(resolutions[refreshRateIndex][i].width-width)+ Mathf.Abs(resolutions[refreshRateIndex][i].height - height);
-            if (difference < minDifference)
-            {
-                minDifference = difference;
-                minResolutionIndex = i;
-            }
-        }
-        currentResIndex.resolutionIndex = minResolutionIndex;
-        return resolutions[refreshRateIndex][minResolutionIndex];
+        Resolution res = new Resolution();
+
+        res.width = resolutions[currentResIndex.refreshRateIndex][currentResIndex.resolutionIndex].width;
+        res.height = resolutions[currentResIndex.refreshRateIndex][currentResIndex.resolutionIndex].height;
+        res.refreshRate = currentResIndex.refreshRateIndex;
+
+        resolutionDropdown.value = currentResIndex.resolutionIndex;
+
+        Screen.SetResolution(res.width, res.height, fullScreen, refreshRates[currentResIndex.refreshRateIndex]);
+
     }
     public Resolution GetResolution()
     {
