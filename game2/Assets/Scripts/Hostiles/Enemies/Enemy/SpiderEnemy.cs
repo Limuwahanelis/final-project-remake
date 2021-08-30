@@ -24,7 +24,10 @@ public class SpiderEnemy : PatrollingEnemy
     // Update is called once per frame
     void Update()
     {
-        _patrolState.Update();
+        if (!isGamePaused.value)
+        {
+            _patrolState.Update();
+        }
     }
     private void OnCollisionStay2D(Collision2D collision)
     {

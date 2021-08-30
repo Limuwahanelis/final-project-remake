@@ -21,14 +21,14 @@ public class BossCrystal : MonoBehaviour
 
     public float speed = 5f;
 
-    private Vector3 pos;
+    private Vector3 _pos;
 
-    private float timetoEnd = 0.6f;
-    private bool isGoingBack = false;
-    private bool rotate = true;
-    private bool rotateToPos=false;
-    private bool moveToPos = false;
-    private bool rotateToTarget = false;
+    private float _timetoEnd = 0.6f;
+    private bool _isGoingBack = false;
+    private bool _rotate = true;
+    private bool _rotateToPos=false;
+    private bool _moveToPos = false;
+    private bool _rotateToTarget = false;
 
 
 
@@ -46,24 +46,24 @@ public class BossCrystal : MonoBehaviour
     void Update()
     {
         beam.transform.position = beamPos.position;
-        if (rotate)
+        if (_rotate)
         {
             curAngle += angleToMove * Time.deltaTime;
-            pos = new Vector3(Mathf.Sin(Convert(curAngle)) * radius, Mathf.Cos(Convert(curAngle)) * radius);
-            sprite.transform.localPosition = pos;
+            _pos = new Vector3(Mathf.Sin(Convert(curAngle)) * radius, Mathf.Cos(Convert(curAngle)) * radius);
+            sprite.transform.localPosition = _pos;
             sprite.transform.up = sprite.transform.localPosition;
             if (curAngle >= 360) curAngle = 0;
         }
         else
         {
-            if (!isGoingBack)
+            if (!_isGoingBack)
             {
-                if (rotateToPos)
+                if (_rotateToPos)
                 {
                     sprite.transform.up = positionToMove - sprite.transform.position;
-                    rotateToPos = false;
+                    _rotateToPos = false;
                 }
-                if (moveToPos)
+                if (_moveToPos)
                 {
                     if (Vector3.Distance(sprite.transform.position, positionToMove) > 0.001f)
                     {
@@ -72,11 +72,11 @@ public class BossCrystal : MonoBehaviour
                     }
                     else
                     {
-                        moveToPos = false;
-                        rotateToTarget = true;
+                        _moveToPos = false;
+                        _rotateToTarget = true;
                     }
                 }
-                if (rotateToTarget)
+                if (_rotateToTarget)
                 {
                     sprite.transform.up = positionToShootAt - sprite.transform.position;
                     readyTofire = true;
@@ -84,16 +84,16 @@ public class BossCrystal : MonoBehaviour
             }
             else
             {
-                sprite.transform.up = pos - sprite.transform.position;
+                sprite.transform.up = _pos - sprite.transform.position;
                 float step = speed * Time.deltaTime;
-                if (Vector3.Distance(sprite.transform.localPosition,pos) > 0.0001f)
+                if (Vector3.Distance(sprite.transform.localPosition,_pos) > 0.0001f)
                 {
-                    sprite.transform.localPosition = Vector3.MoveTowards(sprite.transform.localPosition, pos, step);
+                    sprite.transform.localPosition = Vector3.MoveTowards(sprite.transform.localPosition, _pos, step);
                 }
                 else
                 {
-                    isGoingBack = false;
-                    sprite.transform.localPosition = pos;
+                    _isGoingBack = false;
+                    sprite.transform.localPosition = _pos;
                     sprite.transform.up = sprite.transform.localPosition;
                     isBackInPos = true;
                 }
@@ -116,7 +116,7 @@ public class BossCrystal : MonoBehaviour
         beam.transform.up = sprite.transform.up;
         beam.SetActive(true);
         float time = 0;
-        while (beam.transform.localScale.y < 25 && time<timetoEnd)
+        while (beam.transform.localScale.y < 25 && time<_timetoEnd)
         {
             beam.transform.localScale = new Vector3(beam.transform.localScale.x, beam.transform.localScale.y + 0.1f, 1);
             yield return new WaitForSeconds(0.008f);
@@ -127,17 +127,17 @@ public class BossCrystal : MonoBehaviour
     }
     public void SetRotate(bool val)
     {
-        rotate = val;
+        _rotate = val;
     }
     public void SetPostionToMove(Vector3 pos)
     {
-        rotate = false;
+        _rotate = false;
         positionToMove = pos;
-        moveToPos = true;
-        rotateToPos = true;
+        _moveToPos = true;
+        _rotateToPos = true;
         readyTofire = false;
         endAttack = false;
-        rotateToTarget = false;
+        _rotateToTarget = false;
         isBackInPos = false;
         beam.transform.localScale = new Vector3(2, 1, 1);
         //if (cor != null) StopCoroutine(cor);
@@ -152,10 +152,10 @@ public class BossCrystal : MonoBehaviour
     }
     public void MoveBack()
     {
-        isGoingBack = true;
+        _isGoingBack = true;
     }
     public void SetAttackDuration(float attackTime)
     {
-        timetoEnd = attackTime;
+        _timetoEnd = attackTime;
     }
 }

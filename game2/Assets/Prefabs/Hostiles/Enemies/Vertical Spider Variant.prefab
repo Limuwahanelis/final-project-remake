@@ -68,6 +68,10 @@ PrefabInstance:
       value: -90
       objectReference: {fileID: 0}
     - target: {fileID: 7024608491873740585, guid: b6235eeb0acd9cb49960a0f7e2b1da13, type: 3}
+      propertyPath: isGamePaused
+      value: 
+      objectReference: {fileID: 11400000, guid: 5334db362bf6ac146a92759cd4098315, type: 2}
+    - target: {fileID: 7024608491873740585, guid: b6235eeb0acd9cb49960a0f7e2b1da13, type: 3}
       propertyPath: isMovingVertically
       value: 1
       objectReference: {fileID: 0}

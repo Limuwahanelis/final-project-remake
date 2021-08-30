@@ -278,12 +278,12 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3599518998306278518}
+  - component: {fileID: 3599518998306278521}
   - component: {fileID: 3599518998306278519}
   - component: {fileID: 3599518998306278515}
   - component: {fileID: 6751284751234738304}
   - component: {fileID: 1482290875337684920}
   - component: {fileID: 7500994365477036014}
-  - component: {fileID: 3599518998306278521}
   - component: {fileID: 3599518998306278526}
   m_Layer: 0
   m_Name: Mushroom Enemy
@@ -314,6 +314,31 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &3599518998306278521
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3599518998306278520}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3160c8324036f1f4490caa38cc90a181, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  invicibilityProgress: 0.2
+  isGamePaused:
+    useConstant: 0
+    constantValue: 0
+    variable: {fileID: 11400000, guid: 5334db362bf6ac146a92759cd4098315, type: 2}
+  speed: 2
+  dmg: 0
+  collisionDmg: 0
+  isMovingVertically: 0
+  idleCycles: 2
+  patrolPoints:
+  - {fileID: 3599518998484841643}
+  - {fileID: 3599518998736320592}
 --- !u!95 &3599518998306278519
 Animator:
   serializedVersion: 3
@@ -477,27 +502,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _anim: {fileID: 3599518998306278519}
---- !u!114 &3599518998306278521
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3599518998306278520}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3160c8324036f1f4490caa38cc90a181, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  invicibilityProgress: 0.2
-  speed: 2
-  dmg: 0
-  collisionDmg: 0
-  isMovingVertically: 0
-  idleCycles: 2
-  patrolPoints:
-  - {fileID: 3599518998484841643}
-  - {fileID: 3599518998736320592}
+  animList: {fileID: 11400000, guid: 49ecd349425c4194e83679ba548735d5, type: 2}
 --- !u!114 &3599518998306278526
 MonoBehaviour:
   m_ObjectHideFlags: 0

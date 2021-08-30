@@ -45,7 +45,6 @@ public class Settings : MonoBehaviour
 
         resolutionDropdown.ClearOptions();
         refreshRateDropdown.ClearOptions();
-        
 
         FindAllRefreshRates();
 
@@ -59,6 +58,14 @@ public class Settings : MonoBehaviour
         }
         refreshRateDropdown.AddOptions(refreshRatesS);
         refreshRateDropdown.RefreshShownValue();
+        Debug.Log("DSADFFff");
+        for(int i=0;i<resolutionOptions.Count; i++)
+        {
+            for(int j=0;j<resolutionOptions[i].Count;j++)
+            {
+                Debug.Log(resolutionOptions[i].Count);
+            }
+        }
         resolutionDropdown.AddOptions(resolutionOptions[0]);
 
     }
@@ -84,9 +91,48 @@ public class Settings : MonoBehaviour
 
             }
             resolutions[refreshRateIndex].Add(allResolutions[i]);
-            resolutionOptions[refreshRateIndex].Add(allResolutions[i].width + " x " + allResolutions[i].height);
+            //resolutionOptions[refreshRateIndex].Add(allResolutions[i].width + " x " + allResolutions[i].height);
 
         }
+        RemoveNonReapetingResolutions();
+    }
+
+    private void RemoveNonReapetingResolutions()
+    {
+
+        List<Resolution> reapitingResolutions = new List<Resolution> (resolutions[0]);
+        List<Resolution> toRemove=new List<Resolution>();
+        Resolution toCheckRes = new Resolution();
+        for (int i=1;i<resolutions.Count;i++)
+        {
+            toRemove.Clear();
+            toCheckRes.refreshRate = refreshRates[i];
+            for (int j=0;j< reapitingResolutions.Count;j++)
+            {
+                toCheckRes.width = reapitingResolutions[i].width;
+                toCheckRes.height = reapitingResolutions[i].height;
+                if (!resolutions[i].Contains(toCheckRes)) toRemove.Add(reapitingResolutions[j]);
+            }
+            reapitingResolutions.RemoveAll(x=>toRemove.Contains(x));
+        }
+
+        for (int i=0;i<refreshRates.Count;i++)
+        {
+            resolutions[i].Clear();
+            List<Resolution> tmp = new List<Resolution>();
+            for(int j=0;j<reapitingResolutions.Count;j++)
+            {
+                Resolution newRes=new Resolution();
+                newRes.width = reapitingResolutions[j].width;
+                newRes.height = reapitingResolutions[j].height;
+                newRes.refreshRate = refreshRates[i];
+                tmp.Add(newRes);
+                resolutionOptions[i].Add(newRes.width + " x " + newRes.height);
+            }
+           
+            resolutions[i] = tmp;
+        }
+
     }
     private void FindAllRefreshRates()
     {

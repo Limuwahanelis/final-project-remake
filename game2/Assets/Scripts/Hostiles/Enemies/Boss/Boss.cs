@@ -15,13 +15,14 @@ public class Boss : Enemy,IDamagable
     public Vector3 delayedBeamPos;
     public Transform attackTrans;
     public Transform vulnerableTrans;
-    private Vector3 _attackPos;
-    private Vector3 _vulnerablePos;
+
     //public GameObject credits;
     public float attackDelay = 1f;
     public float vulnerableTime = 2f;
+    private Vector3 _attackPos;
+    private Vector3 _vulnerablePos;
     private int _attackPatten = 1;
-    public bool attack = true;
+    private bool _attack = true;
     private bool _moveToVulnerablePos = false;
     private bool _moveToAttackPos= false;
 
@@ -42,7 +43,7 @@ public class Boss : Enemy,IDamagable
     {
         if (_isAlive)
         {
-            if (attack)
+            if (_attack)
             {
                 switch (_attackPatten)
                 {
@@ -51,7 +52,7 @@ public class Boss : Enemy,IDamagable
                     case 3: StartCoroutine(AttackCor3()); break;
                     default: break;
                 }
-                attack = false;
+                _attack = false;
                 _attackPatten++;
                 if (_attackPatten > 3) _attackPatten = 1;
             }
@@ -156,7 +157,7 @@ public class Boss : Enemy,IDamagable
     }
     public void StartAttacking()
     {
-        attack = true;
+        _attack = true;
     }
     public void TakeDamage(int dmg)
     {
@@ -180,6 +181,6 @@ public class Boss : Enemy,IDamagable
     }
     public void SetAttack()
     {
-        attack = true;
+        _attack = true;
     }
 }

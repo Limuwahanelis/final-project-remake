@@ -24,7 +24,10 @@ public class MushroomGuyEnemy : PatrollingEnemy
     }
     private void Update()
     {
-        state.Update();
+        if (!isGamePaused.value)
+        {
+            state.Update();
+        }
     }
     protected override void SetUpComponents()
     {

@@ -12,6 +12,7 @@ public abstract class Enemy : MonoBehaviour
     // Start is called before the first frame update
     [SerializeField]
     private float invicibilityProgress=0.2f;
+    public BoolReference isGamePaused;
     protected AnimationManager _anim;
     protected HealthSystem hpSys;
     protected EnemyAudioManager _audioMan;

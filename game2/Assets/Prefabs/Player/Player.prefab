@@ -831,6 +831,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _anim: {fileID: 2536646489613702519}
+  animList: {fileID: 11400000, guid: 7fca9c3c31916e24982e8c8fe9537d19, type: 2}
 --- !u!114 &2536646489613702515
 MonoBehaviour:
   m_ObjectHideFlags: 0

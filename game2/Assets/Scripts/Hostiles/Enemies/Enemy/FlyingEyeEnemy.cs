@@ -36,14 +36,15 @@ public class FlyingEyeEnemy : Enemy
     // Update is called once per frame
     void Update()
     {
-
-        Move();
-        if(_isPlayerInRange)
+        if (!isGamePaused.value)
         {
-            RotateTowardsPlayer();
-            StartCoroutine(AttackCor());
+            Move();
+            if (_isPlayerInRange)
+            {
+                RotateTowardsPlayer();
+                StartCoroutine(AttackCor());
+            }
         }
-
     }
     IEnumerator AttackCor()
     {

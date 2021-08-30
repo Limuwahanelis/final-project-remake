@@ -721,6 +721,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   invicibilityProgress: 0.2
+  isGamePaused:
+    useConstant: 0
+    constantValue: 0
+    variable: {fileID: 11400000, guid: 5334db362bf6ac146a92759cd4098315, type: 2}
   speed: 0
   dmg: 0
   collisionDmg: 0
@@ -743,6 +747,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _anim: {fileID: 6881827613908392328}
+  animList: {fileID: 11400000, guid: ccda8141282288c4da645e37797c1e8c, type: 2}
 --- !u!1 &6881827614116081911
 GameObject:
   m_ObjectHideFlags: 0

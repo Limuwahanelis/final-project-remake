@@ -21,6 +21,8 @@ public class Player : MonoBehaviour
 
     public PhysicsMaterial2D noFrictionMat;
 
+    public BoolReference isGamePaused;
+
     public bool isJumping = false;
     public bool isOnGround = true;
     public bool isAlive = true;
@@ -41,7 +43,10 @@ public class Player : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        currentState.Update();
+        if (!isGamePaused.value)
+        {
+            currentState.Update();
+        }
     }
 
     public void Slide()

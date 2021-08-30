@@ -9,20 +9,30 @@ using System;
 [RequireComponent(typeof(Animator))]
 public class AnimationManager : MonoBehaviour
 {
+    struct AnimState
+    {
+        string name;
+        float time;
+    }
     private string _currentAnimation;
     public Animator _anim;
     private float _animLength;
     private bool _overPlayAnimationEnded = true;
     private Coroutine _currentTimer;
+    private List<AnimState> _states = new List<AnimState>();
+    public AnimationDurationList animList;
+
 #if UNITY_EDITOR
     private AnimatorController animatorController;
     private void Awake()
     {
         _anim = GetComponent<Animator>();
         animatorController = (AnimatorController)_anim.runtimeAnimatorController;
+        animList.animatorController = animatorController;
+        animList.RefreshList();
     }
-#endif
 
+#endif
     public void PlayAnimation(string name, bool canBePlayedOver = true)
     {
         if (_currentAnimation == name) return;
@@ -58,15 +68,16 @@ public class AnimationManager : MonoBehaviour
     {
         if (name == "Empty") return 0;
         float clipDuration = 0;
-        for (int i = 0; i < animatorController.layers[0].stateMachine.states.Length; i++)
-        {
-            AnimatorState state = animatorController.layers[0].stateMachine.states[i].state;
-            if (state.name == name)
-            {
-                clipDuration = state.motion.averageDuration;
-            }
-        }
-
+        clipDuration = animList.animations.Find(x => x.name == name).duration;
+        //for (int i = 0; i < animatorController.layers[0].stateMachine.states.Length; i++)
+        //{
+        //    AnimatorState state = animatorController.layers[0].stateMachine.states[i].state;
+        //    if (state.name == name)
+        //    {
+        //        clipDuration = state.motion.averageDuration;
+        //    }
+        //}
+        //Debug.Log(clipDuration);
         return clipDuration;
     }
 
