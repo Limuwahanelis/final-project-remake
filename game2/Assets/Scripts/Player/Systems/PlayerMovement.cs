@@ -131,8 +131,9 @@ public class PlayerMovement : MonoBehaviour
     }
     public IEnumerator JumpCor()
     {
-        while (_player.isOnGround) yield return null;
         _rb.sharedMaterial = _player.noFrictionMat;
+        while (_player.isOnGround) yield return null;
+        
         _player.isJumping = false;
         _player.ChangeState(new PlayerInAirState(_player));
     }

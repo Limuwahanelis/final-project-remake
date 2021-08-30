@@ -46,7 +46,7 @@ public class PlayerNormalState : PlayerState
     public override void Update()
     {
         if(!_isMoving && !_player.isAttacking) _player.anim.PlayAnimation("Idle");
-        if (_player.playerMovement.CheckIfPlayerIsFalling()&& !_player.isOnGround) _player.ChangeState(new PlayerInAirState(_player));
+        if (!_player.isOnGround) _player.ChangeState(new PlayerInAirState(_player));
     }
     public override void Slide()
     {
