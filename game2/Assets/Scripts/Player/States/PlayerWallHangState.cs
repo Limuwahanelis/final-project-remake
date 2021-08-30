@@ -31,7 +31,9 @@ public class PlayerWallHangState : PlayerState
         _player.playerMovement.RotatePlayer((int)-_player.mainBody.transform.localScale.x);
         _player.playerMovement.ChangeRb2DMat(_player.noFrictionMat);
         _player.hasWallJumped = true;
+        _player.anim.PlayAnimation("Jump");
         _player.anim.SetAnimator(true);
+
         _player.ChangeState(new PlayerInAirState(_player));
     }
 

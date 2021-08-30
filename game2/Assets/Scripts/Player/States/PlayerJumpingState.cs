@@ -14,7 +14,7 @@ public class PlayerJumpingState : PlayerState
     public override void Jump()
     {
         if (_isJumping) return;
-        _player.playerMovement.Jump();
+        //_player.playerMovement.Jump();
         _player.StartCoroutine(_player.playerMovement.JumpCor());
         _player.anim.PlayAnimation("Jump");
         _player.StartCoroutine(_player.WaitAndExecuteFunction(_player.anim.GetAnimationLength("Jump"), () =>

@@ -12,6 +12,8 @@ public class PlayerCombat : MonoBehaviour
     public float attackRange;
     public IntReference attackDamage;
     public Sprite playerHitSprite;
+    private Coroutine airAttackCor;
+    private Coroutine playerMovAirAttackCor;
     // Start is called before the first frame update
     void Start()
     {
@@ -40,14 +42,15 @@ public class PlayerCombat : MonoBehaviour
         _player.canPerformAirAttack = false;
         _player.isAirAttacking = true;
         _player.anim.PlayAnimation("Air attack");
-        _player.playerMovement.AirAttackAnimationLogic(_player.anim.GetAnimationLength("Air attack"));
-        StartCoroutine(AirAttackCor());
-        StartCoroutine(_player.WaitAndExecuteFunction(_player.anim.GetAnimationLength("Air attack"), () =>
-        {
-            _player.isAirAttacking = false;
-        }));
+        airAttackCor= StartCoroutine(_player.playerMovement.AirAttackCor(_player.anim.GetAnimationLength("Air attack")));
+        playerMovAirAttackCor= StartCoroutine(AirAttackCor());
     }
-
+    public void StopAirAttack()
+    {
+        StopCoroutine(airAttackCor);
+        StopCoroutine(playerMovAirAttackCor);
+        _player.isAirAttacking = false;
+    }
     IEnumerator AttackCor()
     {
 
@@ -76,7 +79,7 @@ public class PlayerCombat : MonoBehaviour
     }
     IEnumerator AirAttackCor()
     {
-
+        float airAttackTime = 0f;
         List<Collider2D> hitEnemies = new List<Collider2D>(Physics2D.OverlapCircleAll(attackPos.position, attackRange, enemyLayer));
         int index = 0;
         for (; index < hitEnemies.Count; index++)
@@ -97,7 +100,12 @@ public class PlayerCombat : MonoBehaviour
                     if (tmp != null) tmp.TakeDamage(attackDamage.value);
                 }
             }
+            airAttackTime += Time.deltaTime;
             yield return null;
+            if(airAttackTime>= _player.anim.GetAnimationLength("Air attack"))
+            {
+                _player.isAirAttacking = false;
+            }
         }
     }
 

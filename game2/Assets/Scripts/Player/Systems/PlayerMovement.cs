@@ -101,12 +101,7 @@ public class PlayerMovement : MonoBehaviour
         if (_rb.velocity.y < 0) return true;
         else return false;
     }
-    public void AirAttackAnimationLogic(float airAttackDuration)
-    {
-        _rb.gravityScale = 0;
-        _rb.velocity = new Vector2(airAttackSpeed * _player.mainBody.transform.localScale.x, 0);
-        StartCoroutine(AirAttackCor(airAttackDuration));
-    }
+
     public void PushPlayer(Vector3 PushForce)
     {
         StopPlayer();
@@ -126,9 +121,10 @@ public class PlayerMovement : MonoBehaviour
     {
         return _rb.velocity;
     }
-    IEnumerator AirAttackCor(float airAttackDuration)
+    public IEnumerator AirAttackCor(float airAttackDuration)
     {
-
+        _rb.gravityScale = 0;
+        _rb.velocity = new Vector2(airAttackSpeed * _player.mainBody.transform.localScale.x, 0);
         yield return new WaitForSeconds(airAttackDuration);
         _rb.velocity = new Vector2(0, 0);
         _rb.gravityScale = 2;

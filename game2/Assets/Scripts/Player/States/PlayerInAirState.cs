@@ -8,7 +8,8 @@ public class PlayerInAirState : PlayerState
     private bool _isFalling = false;
     private bool _hasAttacked = false;
     public PlayerInAirState(Player player) : base(player)
-    { }
+    { 
+    }
     public override void Update()
     {
         if (!_player.isAirAttacking)
@@ -25,10 +26,11 @@ public class PlayerInAirState : PlayerState
             _player.playerMovement.ChangeRb2DMat(null);
             _player.ChangeState(new PlayerNormalState(_player));
         }
-        if(_player.isNearWall && !_player.hasWallJumped && _isMoving )
+        if(_player.isNearWall && !_player.hasWallJumped && _isMoving)
         {
             if (_player.abilities.GetAbility(AbilityList.Abilities.WALLHANG_ANDJUMP))
             {
+                if(_player.isAirAttacking) _player.playerCombat.StopAirAttack();
                 _player.ChangeState(new PlayerWallHangState(_player));
             }
         }
