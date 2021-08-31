@@ -18,9 +18,10 @@ public class PlayerInput : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Escape)) SetPause(_player.isGamePaused.value);
+        
         if (!_player.isGamePaused.value)
         {
+            if (Input.GetKeyDown(KeyCode.Escape)) SetPause(_player.isGamePaused.value);
             float direction = Input.GetAxisRaw("Horizontal");
             Move(direction);
             if (Input.GetButtonDown("Attack")) Attack();

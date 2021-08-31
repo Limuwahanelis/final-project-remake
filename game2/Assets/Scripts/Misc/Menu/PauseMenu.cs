@@ -3,21 +3,23 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
-public class MainMenu : MonoBehaviour
+public class PauseMenu : MonoBehaviour
 {
 
 
 
-    static public MainMenu menu;
-    public GameObject controlPanel;
+    public BoolReference isGamePaused;
     public GameObject optionsPanel;
     public GameObject buttons;
-    
 
-    public void Awake()
+    private void Update()
     {
-        menu = this;
+        if(Input.GetKeyDown(KeyCode.Escape))
+        {
+            Unpause();
+        }
     }
+
     public void Play()
     {
         SceneManager.LoadScene(1);
@@ -25,11 +27,6 @@ public class MainMenu : MonoBehaviour
     public void Exit()
     {
         Application.Quit();
-    }
-    public void Back(GameObject panel)
-    {
-        panel.SetActive(false);
-        buttons.SetActive(true);
     }
 
     public void ShowPanel(GameObject panel)
@@ -40,14 +37,13 @@ public class MainMenu : MonoBehaviour
     {
         panel.SetActive(false);
     }
-    public void Controls()
+
+    private void Unpause()
     {
-        controlPanel.SetActive(true);
-        buttons.SetActive(false);
-    }
-    public void Options()
-    {
-        optionsPanel.SetActive(true);
-        buttons.SetActive(false);
+        optionsPanel.SetActive(false);
+        buttons.SetActive(true);
+        Time.timeScale = 1f;
+        isGamePaused.value = false;
+        gameObject.SetActive(false);
     }
 }
