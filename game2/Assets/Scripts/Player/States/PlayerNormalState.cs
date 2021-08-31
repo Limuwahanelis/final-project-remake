@@ -27,6 +27,7 @@ public class PlayerNormalState : PlayerState
             {
                 _isMoving = true;
                 _player.anim.PlayAnimation("Walk");
+                _player.audioManager.PlayWalkSound();
             }
             _player.playerMovement.MovePlayer(direction);
         }
@@ -35,6 +36,7 @@ public class PlayerNormalState : PlayerState
     public override void Attack()
     {
         if (_player.isAttacking) return;
+        _player.audioManager.PlayNormalAttackSound();
         _player.isAttacking = true;
         _player.playerCombat.Attack(this);
     }

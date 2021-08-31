@@ -58,6 +58,7 @@ public class PlayerInAirState : PlayerState
         {
             if (_hasAttacked) return;
             _hasAttacked = true;
+            _player.audioManager.PlayAirAttackSound();
             _player.playerCombat.AirAttack();
         }
     }

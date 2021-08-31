@@ -11,6 +11,7 @@ public class Player : MonoBehaviour
     public PlayerInput playerInput;
     public PlayerCombat playerCombat;
     public PlayerChecks playerChecks;
+    public PlayerAudioManager audioManager;
 
     public GameObject mainBody;
     public AnimationManager anim;
