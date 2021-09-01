@@ -486,7 +486,7 @@ MonoBehaviour:
   hpBar: {fileID: 3005140037034914343}
   maxHP:
     useConstant: 1
-    constantValue: 6
+    constantValue: 10
     variable: {fileID: 0}
   currentHP: 0
 --- !u!114 &7500994365477036014
@@ -873,7 +873,7 @@ Canvas:
   m_OverridePixelPerfect: 0
   m_SortingBucketNormalizedSize: 0
   m_AdditionalShaderChannelsFlag: 0
-  m_SortingLayerID: -1994713361
+  m_SortingLayerID: -713150705
   m_SortingOrder: 0
   m_TargetDisplay: 0
 --- !u!114 &438108373211718861

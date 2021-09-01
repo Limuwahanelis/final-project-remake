@@ -25,7 +25,7 @@ public class HealthSystem : MonoBehaviour,IDamagable
         currentHP -= dmg;
         hpBar.SetHealth(currentHP);
         OnHitEvent?.Invoke();
-        if (currentHP < 0) Kill();
+        if (currentHP <= 0) Kill();
     }
 
     public virtual void Kill()

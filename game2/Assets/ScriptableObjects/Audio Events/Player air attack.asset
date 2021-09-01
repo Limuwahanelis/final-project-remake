@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1f46e0f6101347141bd53c8d993e614a, type: 3}
   m_Name: Player air attack
   m_EditorClassIdentifier: 
-  volume: 0
-  pitch: 0
-  audioClip: {fileID: 0}
+  volume: 0.487
+  pitch: 0.779
+  audioClip: {fileID: 8300000, guid: 3f08dc201368cc94ca869b0fb7adc4c6, type: 3}

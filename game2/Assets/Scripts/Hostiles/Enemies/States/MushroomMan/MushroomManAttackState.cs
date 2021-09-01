@@ -23,7 +23,7 @@ public class MushroomManAttackState : EnemyState
     }
     private void Attack()
     {
-        if (_isAttacking || _isIdle) return;
+        if (_isAttacking||_isIdle) return;
         _isAttacking = true;
         _anim.PlayAnimation("Attack");
         _audio.PlayAttackSound();
@@ -32,7 +32,14 @@ public class MushroomManAttackState : EnemyState
             _anim.PlayAnimation("Idle");
             _isIdle = true;
             _isAttacking = false;
-            _enemy.StartCoroutine(_enemy.WaitAndExecuteFunction(_anim.GetAnimationLength("Idle"), () => { _isIdle = false; }));
+            _enemy.StartCoroutine(_enemy.WaitAndExecuteFunction(_anim.GetAnimationLength("Idle"), () => 
+            {
+                _isIdle = false; 
+                if(!_enemy.IsPlayerInRange)
+                {
+                    _enemy.ReturnToPatrol();
+                }
+            }));
         }));
     }
     public override void SetUpState()
@@ -40,5 +47,10 @@ public class MushroomManAttackState : EnemyState
         _isAttacking = false;
         _isIdle = false;
         canChangeState = false;
+    }
+
+    private void ChangeState(EnemyState newState)
+    {
+        _enemy.ChangeState(newState);
     }
 }

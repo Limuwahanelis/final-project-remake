@@ -6,8 +6,12 @@ public class MushroomGuyEnemy : PatrollingEnemy
 {
     private PlayerDetection _playerDetection;
     private bool _isPlayerInRange;
+    public bool IsPlayerInRange
+    {
+        get { return _isPlayerInRange; } 
+    }
     private bool _isChecking = false;
-    private EnemyPatrollingState _patrolState;
+    private MushroomGuyPatrollingState _patrolState;
     private void Awake()
     {
         SetUpComponents();
@@ -19,7 +23,7 @@ public class MushroomGuyEnemy : PatrollingEnemy
             Debug.LogError("fsaf");
             return;
         }
-        _patrolState= new EnemyPatrollingState(this);
+        _patrolState= new MushroomGuyPatrollingState(this);
         state = _patrolState;
     }
     private void Update()
@@ -38,7 +42,6 @@ public class MushroomGuyEnemy : PatrollingEnemy
     }
     public override void SetPlayerInRange()
     {
-        if (!_isPlayerInRange) state = new MushroomManAttackState(this);
         _isPlayerInRange = true;
 
     }
@@ -46,27 +49,37 @@ public class MushroomGuyEnemy : PatrollingEnemy
     public override void SetPlayerNotInRange()
     {
         _isPlayerInRange = false;
-        StartCoroutine(CheckForPlayerReEnterCor());
+        //StartCoroutine(CheckForPlayerReEnterCor());
+    }
+    public void ReturnToPatrol()
+    {
+        state = _patrolState;
+        _anim.PlayAnimation("Move");
+    }
+    public void ChangeState(EnemyState newState)
+    {
+        state = newState;
+        state.SetUpState();
     }
     public EnemyAudioManager GetAudioManager()
     {
         return _audioMan;
     }
-    IEnumerator CheckForPlayerReEnterCor()
-    {
-        if (_isChecking) yield break;
-        _isChecking = true;
-        while (!state.CheckIfStateCanBeChanged())
-        {
-            if (_isPlayerInRange)
-            {
-                _isChecking = false;
-                yield break;
-            }
-            yield return null;
-        }
-        state = _patrolState;
-        _patrolState.SetUpState();
-        _isChecking = false;
-    }
+    //IEnumerator CheckForPlayerReEnterCor()
+    //{
+    //    if (_isChecking) yield break;
+    //    _isChecking = true;
+    //    while (!state.CheckIfStateCanBeChanged())
+    //    {
+    //        if (_isPlayerInRange)
+    //        {
+    //            _isChecking = false;
+    //            yield break;
+    //        }
+    //        yield return null;
+    //    }
+    //    state = _patrolState;
+    //    _patrolState.SetUpState();
+    //    _isChecking = false;
+    //}
 }

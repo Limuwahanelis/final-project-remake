@@ -6,8 +6,8 @@ public class EnemyPatrollingState : EnemyState
 {
     private List<Vector3> _patrolpositions = new List<Vector3>();
     private int _patrolPointIndex = 0;
-    private AnimationManager _anim;
-    private PatrollingEnemy _enemy;
+    protected AnimationManager _anim;
+    protected PatrollingEnemy _enemy;
     public EnemyPatrollingState(PatrollingEnemy patrollingEnemy)
     {
         _anim = patrollingEnemy.GetAnimationManager();

@@ -12,6 +12,10 @@ public class PauseMenu : MonoBehaviour
     public GameObject optionsPanel;
     public GameObject buttons;
 
+    private void Start()
+    {
+        isGamePaused.value = false;
+    }
     private void Update()
     {
         if(Input.GetKeyDown(KeyCode.Escape))
@@ -38,7 +42,7 @@ public class PauseMenu : MonoBehaviour
         panel.SetActive(false);
     }
 
-    private void Unpause()
+    public void Unpause()
     {
         optionsPanel.SetActive(false);
         buttons.SetActive(true);
