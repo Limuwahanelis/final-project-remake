@@ -26,7 +26,7 @@ public class PlayerInAirState : PlayerState
             _player.playerMovement.ChangeRb2DMat(null);
             _player.ChangeState(new PlayerNormalState(_player));
         }
-        if(_player.isNearWall && !_player.hasWallJumped && _isMoving)
+        if(_player.isNearWall && !_player.hasWallJumped && _isMoving && _player.playerMovement.newPlayerDirection==_player.playerMovement.oldPlayerDirection)
         {
             if (_player.abilities.GetAbility(AbilityList.Abilities.WALLHANG_ANDJUMP))
             {
@@ -41,15 +41,12 @@ public class PlayerInAirState : PlayerState
 
         if (!_player.isAirAttacking)
         {
-            //if (!_player.hasWallJumped)
-            //{
-                if (direction == 0) _isMoving = false;
-                else
-                {
-                    _isMoving = true;
-                }
-                _player.playerMovement.MovePlayer(direction);
-            //}
+            if (direction == 0) _isMoving = false;
+            else
+            {
+                _isMoving = true;
+            }
+            _player.playerMovement.MovePlayer(direction);
         }
     }
     public override void Attack()

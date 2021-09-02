@@ -4,13 +4,14 @@ using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
-   public enum playerSide
+   public enum playerDirection
     {
         LEFT=-1,
         RIGHT=1
     }
 
-
+    public playerDirection newPlayerDirection;
+    public playerDirection oldPlayerDirection;
     public Ringhandle wallJumpHandle;
     [SerializeField]
     private Player _player;
@@ -30,6 +31,7 @@ public class PlayerMovement : MonoBehaviour
 
     void Start()
     {
+        newPlayerDirection = playerDirection.RIGHT;
         _rb = GetComponent<Rigidbody2D>();
     }
 
@@ -43,6 +45,8 @@ public class PlayerMovement : MonoBehaviour
     {
         if (direction != 0)
         {
+            oldPlayerDirection = newPlayerDirection;
+            newPlayerDirection = (playerDirection)direction;
                 _rb.velocity = new Vector3(direction * speed, _rb.velocity.y, 0);
                 if (direction > 0)
                 {
@@ -54,6 +58,7 @@ public class PlayerMovement : MonoBehaviour
                     _flipSide = -1;
                     _player.mainBody.transform.localScale = new Vector3(_flipSide, _player.mainBody.transform.localScale.y, _player.mainBody.transform.localScale.z);
                 }
+            
         }
         else
         {
