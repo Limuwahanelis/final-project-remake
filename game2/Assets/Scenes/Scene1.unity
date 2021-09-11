@@ -383,6 +383,20 @@ PlayableDirector:
     value: {fileID: 1384893566}
   - key: {fileID: -1484977079883989905, guid: 35bb0557e93623f47958f2be2e640c8e, type: 2}
     value: {fileID: 1102867833}
+  - key: {fileID: -2799141750034240534, guid: 35bb0557e93623f47958f2be2e640c8e, type: 2}
+    value: {fileID: 597989007}
+  - key: {fileID: 5759148361317278924, guid: 35bb0557e93623f47958f2be2e640c8e, type: 2}
+    value: {fileID: 1171715847}
+  - key: {fileID: 4895832945454957260, guid: 35bb0557e93623f47958f2be2e640c8e, type: 2}
+    value: {fileID: 1836570662}
+  - key: {fileID: 2573113062064108916, guid: 35bb0557e93623f47958f2be2e640c8e, type: 2}
+    value: {fileID: 874270904}
+  - key: {fileID: 9216301427621563643, guid: 35bb0557e93623f47958f2be2e640c8e, type: 2}
+    value: {fileID: 356884413}
+  - key: {fileID: -6380920575363891257, guid: 35bb0557e93623f47958f2be2e640c8e, type: 2}
+    value: {fileID: 1102867829}
+  - key: {fileID: -849227375159179665, guid: 35bb0557e93623f47958f2be2e640c8e, type: 2}
+    value: {fileID: 356884417}
   m_ExposedReferences:
     m_References: []
 --- !u!4 &89233199
@@ -879,12 +893,12 @@ GameObject:
   - component: {fileID: 356884417}
   - component: {fileID: 356884418}
   m_Layer: 5
-  m_Name: Panel
+  m_Name: Ability unlock panel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &356884414
 RectTransform:
   m_ObjectHideFlags: 0
@@ -978,6 +992,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   pausePanel: {fileID: 874270904}
   isGamePaused: {fileID: 11400000, guid: 5334db362bf6ac146a92759cd4098315, type: 2}
+  abilityIcon: {fileID: 1836570664}
+  abilityDescription: {fileID: 597989009}
 --- !u!1001 &370967451
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -47536,12 +47552,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   abilityList: {fileID: 11400000, guid: d2e06ae10b536bb49afe12ab876fcfda, type: 2}
   ability: 1
-  speed: 0
-  timeline: {fileID: 0}
+  timeline: {fileID: 89233198}
   isGamePaused:
-    useConstant: 1
+    useConstant: 0
     constantValue: 0
-    variable: {fileID: 0}
+    variable: {fileID: 11400000, guid: 5334db362bf6ac146a92759cd4098315, type: 2}
+  panel: {fileID: 356884418}
+  abilityDescription: You can now perform air attack by pressing attack while in
+    air
+  cutscene: {fileID: 11400000, guid: 35bb0557e93623f47958f2be2e640c8e, type: 2}
 --- !u!4 &1102867832
 Transform:
   m_ObjectHideFlags: 0
@@ -48380,12 +48399,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   abilityList: {fileID: 11400000, guid: d2e06ae10b536bb49afe12ab876fcfda, type: 2}
   ability: 0
-  speed: 8
   timeline: {fileID: 89233198}
   isGamePaused:
     useConstant: 0
     constantValue: 0
     variable: {fileID: 11400000, guid: 5334db362bf6ac146a92759cd4098315, type: 2}
+  panel: {fileID: 356884418}
+  abilityDescription: You can now hang on walls and jump from them.
+  cutscene: {fileID: 11400000, guid: 2cee1527f4a12f24d96f1d35f7a77fb1, type: 2}
 --- !u!4 &1384893568
 Transform:
   m_ObjectHideFlags: 0
@@ -50096,7 +50117,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: edc31919a4a0caa4eafbbd6eb17dfc39, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -50117,7 +50138,7 @@ SpriteRenderer:
   m_SortingLayerID: 1559973199
   m_SortingLayer: 3
   m_SortingOrder: 0
-  m_Sprite: {fileID: -2413806693520163455, guid: ebe73ca9363db456bacf42c025bb4847, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 95052c6b62fb3de4695beaa99f842ac2, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -63966,7 +63987,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2054892001}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 34.93, y: -58.78, z: 0}
+  m_LocalPosition: {x: 32.2, y: -51.2, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 2129190508}
