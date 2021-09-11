@@ -10,7 +10,6 @@ public class MushroomGuyEnemy : PatrollingEnemy
     {
         get { return _isPlayerInRange; } 
     }
-    private bool _isChecking = false;
     private MushroomGuyPatrollingState _patrolState;
     private void Awake()
     {
@@ -49,7 +48,6 @@ public class MushroomGuyEnemy : PatrollingEnemy
     public override void SetPlayerNotInRange()
     {
         _isPlayerInRange = false;
-        //StartCoroutine(CheckForPlayerReEnterCor());
     }
     public void ReturnToPatrol()
     {
@@ -65,21 +63,4 @@ public class MushroomGuyEnemy : PatrollingEnemy
     {
         return _audioMan;
     }
-    //IEnumerator CheckForPlayerReEnterCor()
-    //{
-    //    if (_isChecking) yield break;
-    //    _isChecking = true;
-    //    while (!state.CheckIfStateCanBeChanged())
-    //    {
-    //        if (_isPlayerInRange)
-    //        {
-    //            _isChecking = false;
-    //            yield break;
-    //        }
-    //        yield return null;
-    //    }
-    //    state = _patrolState;
-    //    _patrolState.SetUpState();
-    //    _isChecking = false;
-    //}
 }

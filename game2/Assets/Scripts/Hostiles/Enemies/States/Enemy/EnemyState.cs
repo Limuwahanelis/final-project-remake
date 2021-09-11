@@ -9,6 +9,7 @@ public abstract class EnemyState
     public abstract void Update();
     public virtual void SetUpState( ) { }
     public virtual void ChangeState() { }
+    public virtual void Hit() { }
 
     public bool CheckIfStateCanBeChanged()
     {

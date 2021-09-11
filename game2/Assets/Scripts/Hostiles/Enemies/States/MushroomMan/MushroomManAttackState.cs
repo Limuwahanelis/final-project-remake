@@ -48,9 +48,4 @@ public class MushroomManAttackState : EnemyState
         _isIdle = false;
         canChangeState = false;
     }
-
-    private void ChangeState(EnemyState newState)
-    {
-        _enemy.ChangeState(newState);
-    }
 }
