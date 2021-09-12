@@ -13,6 +13,7 @@ public class MushroomGuyEnemy : PatrollingEnemy
     private MushroomGuyPatrollingState _patrolState;
     private void Awake()
     {
+
         SetUpComponents();
     }
     private void Start()
@@ -22,8 +23,9 @@ public class MushroomGuyEnemy : PatrollingEnemy
             Debug.LogError("fsaf");
             return;
         }
-        _patrolState= new MushroomGuyPatrollingState(this);
+        _patrolState = new MushroomGuyPatrollingState(this);
         state = _patrolState;
+        hpSys.OnHitEvent = Hit;
     }
     private void Update()
     {
@@ -38,6 +40,7 @@ public class MushroomGuyEnemy : PatrollingEnemy
         _playerDetection = GetComponentInChildren<PlayerDetection>();
         _playerDetection.OnPlayerDetected = SetPlayerInRange;
         _playerDetection.OnPlayerLeft = SetPlayerNotInRange;
+        
     }
     public override void SetPlayerInRange()
     {
@@ -62,5 +65,10 @@ public class MushroomGuyEnemy : PatrollingEnemy
     public EnemyAudioManager GetAudioManager()
     {
         return _audioMan;
+    }
+
+    private void Hit()
+    {
+        state.Hit();
     }
 }
