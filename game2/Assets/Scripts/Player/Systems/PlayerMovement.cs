@@ -116,6 +116,24 @@ public class PlayerMovement : MonoBehaviour
         StartCoroutine(PushCor());
         
     }
+    public void PushPlayer(playerDirection pushDirection,Vector3 PushForce)
+    {
+        StopPlayer();
+        if(pushDirection==playerDirection.RIGHT)
+        {
+            PushForce = new Vector3(Mathf.Abs(PushForce.x), PushForce.y, PushForce.z);
+        }
+        else
+        {
+            PushForce = new Vector3(-Mathf.Abs(PushForce.x), PushForce.y, PushForce.z);
+        }
+        _player.ChangeState(new PlayerPushedState(_player));
+        Debug.Log(PushForce);
+        _rb.AddForce(PushForce, ForceMode2D.Impulse);
+
+        StartCoroutine(PushCor());
+
+    }
     public void SetGravityScale(float value) // normal scale is 2
     {
         _rb.gravityScale = value;

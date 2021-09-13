@@ -31,9 +31,16 @@ public class SpiderEnemy : PatrollingEnemy
     }
     private void OnCollisionStay2D(Collision2D collision)
     {
-            IDamagable player = collision.transform.GetComponent<IDamagable>();
-            //player.Knockback();
-            player.TakeDamage(dmg);
+        IDamagable player = collision.transform.GetComponent<IDamagable>();
+        IPushable playerP= collision.transform.GetComponent<IPushable>();
+        float dir = collision.transform.position.x - transform.position.x;
+        PlayerMovement.playerDirection pushDir;
+        if (dir > 0) pushDir = PlayerMovement.playerDirection.RIGHT;
+        else pushDir = PlayerMovement.playerDirection.LEFT;
+        playerP.Push(pushDir);
+        //player.Knockback();
+        player.TakeDamage(dmg);
+
     }
 
 }

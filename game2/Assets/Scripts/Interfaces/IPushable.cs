@@ -4,5 +4,6 @@ using UnityEngine;
 
 public interface IPushable
 {
-     void Push();
+    void Push();
+    void Push(PlayerMovement.playerDirection direction);
 }
