@@ -5,7 +5,8 @@ using UnityEngine;
 public class BossAudioManager : MonoBehaviour
 {
     [SerializeField]
-    AudioEvent combatAudioEvent;
+    public AudioEvent combatAudioEvent;
+    public AudioEvent beamAudio;
     // Start is called before the first frame update
     void Start()
     {
@@ -19,5 +20,9 @@ public class BossAudioManager : MonoBehaviour
     public void PlayAttackSound(AudioSource audioSource)
     {
         combatAudioEvent.Play(audioSource);
+    }
+    public void PlayBeamAudio(AudioSource audioSource)
+    {
+        beamAudio.Play(audioSource);
     }
 }

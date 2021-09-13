@@ -128,7 +128,6 @@ public class PlayerMovement : MonoBehaviour
             PushForce = new Vector3(-Mathf.Abs(PushForce.x), PushForce.y, PushForce.z);
         }
         _player.ChangeState(new PlayerPushedState(_player));
-        Debug.Log(PushForce);
         _rb.AddForce(PushForce, ForceMode2D.Impulse);
 
         StartCoroutine(PushCor());

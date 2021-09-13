@@ -8,6 +8,7 @@ public class Boss : Enemy,IDamagable
     public static Action OnGameCompleteEvent;
 
     public GameObject[] beams;
+    new public BossAudioManager audio;
     public Player player;
     public Transform missileSpawn;
     public GameObject missilePrefab;
@@ -103,6 +104,7 @@ public class Boss : Enemy,IDamagable
         for(int i=0;i<10;i++)
         {
             beams[i].transform.position = new Vector3(player.transform.position.x, beams[i].transform.position.y);
+            audio.PlayBeamAudio(beams[i].GetComponent<AudioSource>());
             beams[i].GetComponent<DelayedBeam>().SetCor();
             if(i>3)
             {

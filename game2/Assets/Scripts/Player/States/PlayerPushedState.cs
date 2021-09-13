@@ -28,6 +28,7 @@ public class PlayerPushedState : PlayerState
 
     public override void SetUpState()
     {
+        _player.anim.PlayAnimation("Idle");
         _player.anim.SetAnimator(false);
         _player.playerMovement.StopPlayer();
         _player.GetComponentInChildren<SpriteRenderer>().sprite = _player.playerCombat.playerHitSprite;

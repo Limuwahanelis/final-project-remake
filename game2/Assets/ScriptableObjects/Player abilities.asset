@@ -14,6 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   abilities:
   - name: 0
-    unlocked: 1
+    unlocked: 0
   - name: 1
-    unlocked: 1
+    unlocked: 0

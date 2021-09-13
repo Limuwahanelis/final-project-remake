@@ -38,7 +38,6 @@ public class SpiderEnemy : PatrollingEnemy
         if (dir > 0) pushDir = PlayerMovement.playerDirection.RIGHT;
         else pushDir = PlayerMovement.playerDirection.LEFT;
         playerP.Push(pushDir);
-        //player.Knockback();
         player.TakeDamage(dmg);
 
     }
