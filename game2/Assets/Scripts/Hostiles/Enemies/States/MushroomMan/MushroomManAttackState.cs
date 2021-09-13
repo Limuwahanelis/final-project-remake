@@ -59,6 +59,10 @@ public class MushroomManAttackState : EnemyState
         _anim.PlayAnimation("Hit");
         _enemy.StartCoroutine(_enemy.WaitAndExecuteFunction(_anim.GetAnimationLength("Hit"), () =>
          {
+             if(!_enemy.IsPlayerInRange)
+             {
+                 _enemy.Rotate();
+             }
              _isHit = false;
              _isIdle = true;
              _anim.PlayAnimation("Idle");

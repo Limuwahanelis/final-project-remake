@@ -55,6 +55,7 @@ public class MushroomGuyEnemy : PatrollingEnemy
     public void ReturnToPatrol()
     {
         state = _patrolState;
+        state.SetUpState();
         _anim.PlayAnimation("Move");
     }
     public void ChangeState(EnemyState newState)
@@ -67,8 +68,14 @@ public class MushroomGuyEnemy : PatrollingEnemy
         return _audioMan;
     }
 
+    public void Rotate()
+    {
+        transform.localScale = new Vector3(-transform.localScale.x, transform.localScale.y, transform.localScale.z);
+    }
+
     private void Hit()
     {
         state.Hit();
     }
+
 }
