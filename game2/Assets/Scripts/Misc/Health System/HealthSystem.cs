@@ -9,23 +9,23 @@ public class HealthSystem : MonoBehaviour,IDamagable
     public bool isInvincible;
     public HealthBar hpBar;
     public IntReference maxHP;
-    public int currentHP;
+    public IntReference currentHP;
     public Action OnHitEvent;
     public Action OnDeathEvent;
     // Start is called before the first frame update
     void Start()
     {
         hpBar.SetMaxHealth(maxHP.value);
-        currentHP = maxHP.value;
-        hpBar.SetHealth(currentHP);
+        currentHP.value = maxHP.value;
+        hpBar.SetHealth(currentHP.value);
     }
     public virtual void TakeDamage(int dmg)
     {
         Debug.Log("DMG");
-        currentHP -= dmg;
-        hpBar.SetHealth(currentHP);
+        currentHP.value -= dmg;
+        hpBar.SetHealth(currentHP.value);
         OnHitEvent?.Invoke();
-        if (currentHP <= 0) Kill();
+        if (currentHP.value <= 0) Kill();
     }
 
     public virtual void Kill()

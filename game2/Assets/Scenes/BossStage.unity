@@ -606,6 +606,14 @@ PrefabInstance:
       propertyPath: hpBar
       value: 
       objectReference: {fileID: 2050957760}
+    - target: {fileID: 5767090226136095776, guid: a6aeac9b7ab8e6544ac4cae3fa5408e2, type: 3}
+      propertyPath: currentHP.variable
+      value: 
+      objectReference: {fileID: 11400000, guid: f6479b69a49967346af2d1474f7a1cb1, type: 2}
+    - target: {fileID: 5767090226136095776, guid: a6aeac9b7ab8e6544ac4cae3fa5408e2, type: 3}
+      propertyPath: currentHP.useConstant
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5767090226136095783, guid: a6aeac9b7ab8e6544ac4cae3fa5408e2, type: 3}
       propertyPath: m_RootOrder
       value: 1
@@ -22619,7 +22627,10 @@ MonoBehaviour:
     useConstant: 1
     constantValue: 50
     variable: {fileID: 0}
-  currentHP: 0
+  currentHP:
+    useConstant: 1
+    constantValue: 0
+    variable: {fileID: 0}
 --- !u!1 &2016374955
 GameObject:
   m_ObjectHideFlags: 0

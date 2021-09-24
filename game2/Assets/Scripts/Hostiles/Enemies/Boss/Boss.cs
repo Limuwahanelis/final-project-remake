@@ -169,7 +169,7 @@ public class Boss : Enemy,IDamagable
     public void TakeDamage(int dmg)
     {
         hpSys.TakeDamage(dmg);
-        if(hpSys.currentHP<=0)
+        if(hpSys.currentHP.value <= 0)
         {
             _isAlive = false;
             _moveToVulnerablePos = true;

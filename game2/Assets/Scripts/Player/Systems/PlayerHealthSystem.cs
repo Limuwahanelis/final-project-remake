@@ -9,15 +9,18 @@ public class PlayerHealthSystem : HealthSystem,IPushable
     public Player player;
     public Ringhandle pushHandle;
     public float pushForce=2f;
-
+    private void Start()
+    {
+        hpBar.SetHealth(currentHP.value);
+    }
     public override void TakeDamage(int dmg)
     {
         if (isInvincible) return;
-        currentHP -= dmg;
-        hpBar.SetHealth(currentHP);
+        currentHP.value -= dmg;
+        hpBar.SetHealth(currentHP.value);
         OnHitEvent?.Invoke();
         StartCoroutine(InvincibilityCor());
-        if (currentHP < 0) Kill();
+        if (currentHP.value < 0) Kill();
 
     }
 
