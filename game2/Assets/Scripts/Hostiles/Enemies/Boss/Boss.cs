@@ -5,7 +5,7 @@ using System;
 
 public class Boss : Enemy,IDamagable
 {
-    public static Action OnGameCompleteEvent;
+    public GameObject credits;
 
     public GameObject[] beams;
     new public BossAudioManager audio;
@@ -37,7 +37,12 @@ public class Boss : Enemy,IDamagable
     {
         _attackPos = attackTrans.position;
         _vulnerablePos = vulnerableTrans.position;
+        _anim = GetComponent<AnimationManager>();
         hpSys = GetComponent<HealthSystem>();
+        hpSys.OnDeathEvent = ()=> { 
+            _isAlive = false;
+            _moveToVulnerablePos = true;
+        };
     }
 
     void Update()
@@ -173,13 +178,14 @@ public class Boss : Enemy,IDamagable
 
     public void Kill()
     {
+        crystals.DestroyCrystals();
         _anim.PlayAnimation("Dead");
         StopAllCoroutines();
-        crystals.DestroyCrystals();
+        
     }
     public void ShowCredits()
     {
-        OnGameCompleteEvent?.Invoke();
+        credits.SetActive(true);
     }
     public void SetAttack()
     {

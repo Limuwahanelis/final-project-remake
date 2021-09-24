@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1f46e0f6101347141bd53c8d993e614a, type: 3}
   m_Name: Boss beam attack
   m_EditorClassIdentifier: 
-  volume: 0.405
-  pitch: 0.37
-  audioClip: {fileID: 8300000, guid: 49b6ff6864374a84882eb6eb4638a707, type: 3}
+  volume: 0.08
+  pitch: 1
+  audioClip: {fileID: 8300000, guid: cc6699269b4c1d44ea1e860518b9bb73, type: 3}

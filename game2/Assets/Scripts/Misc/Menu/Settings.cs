@@ -76,6 +76,7 @@ public class Settings : MonoBehaviour
             resolutions[refreshRateIndex].Add(allResolutions[i]);
 
         }
+
         RemoveNonReapetingResolutions();
     }
 
