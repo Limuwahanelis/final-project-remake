@@ -52,5 +52,9 @@ public class PlayerHealthSystem : HealthSystem,IPushable
         hpBar.SetMaxHealth(maxHP.value);
     }
 
-
+    public void LoadData(PlayerData playerData)
+    {
+        maxHP.value = playerData.maxHP;
+        currentHP.value = playerData.currentHP;
+    }
 }

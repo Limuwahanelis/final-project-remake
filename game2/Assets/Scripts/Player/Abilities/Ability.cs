@@ -17,4 +17,9 @@ public class Ability
     {
         unlocked = true;
     }
+
+    public void LockAbility()
+    {
+        unlocked = false;
+    }
 }

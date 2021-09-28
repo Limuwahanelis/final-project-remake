@@ -24,7 +24,11 @@ public class HealingPlace : MonoBehaviour
     }
     private void OnTriggerStay2D(Collider2D collision)
     {
-        if (playerCurrentHealth.value < playerMaxHP.value) StartCoroutine(HealPlayerCor());
+        if (this.enabled)
+        {
+            if (playerCurrentHealth.value < playerMaxHP.value) StartCoroutine(HealPlayerCor());
+        }
+
     }
 
     IEnumerator HealPlayerCor()

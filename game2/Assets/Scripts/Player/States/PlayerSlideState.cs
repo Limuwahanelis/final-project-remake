@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class PlayerSlideState : PlayerState
 {
-    private bool _isSliding = false;
     public PlayerSlideState(Player player) : base(player)
     {
     }

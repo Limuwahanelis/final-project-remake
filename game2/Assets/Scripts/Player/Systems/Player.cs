@@ -77,4 +77,15 @@ public class Player : MonoBehaviour
         normalColliders.SetActive(true);
         StopAllCoroutines();
     }
+
+    public void LoadData(PlayerData playerData)
+    {
+        transform.position = playerData.position;
+        playerCombat.attackDamage.value = playerData.damage;
+        for(int i=0;i<abilities.abilities.Count;i++)
+        {
+            if(playerData.abilities[i]) abilities.UnlockAbility((AbilityList.Abilities)i);
+            else abilities.LockAbility((AbilityList.Abilities)i);
+        }
+    }
 }

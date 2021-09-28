@@ -29,5 +29,8 @@ public class AbilityList : ScriptableObject
     {
         abilities.Find(x => x.name == ability).UnlockAbility();
     }
-
+    public void LockAbility(Abilities ability)
+    {
+        abilities.Find(x => x.name == ability).LockAbility();
+    }
 }

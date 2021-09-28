@@ -9,7 +9,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a0e9c9741d8127c408ab471deffd4599, type: 3}
-  m_Name: Player current hp
+  m_Script: {fileID: 11500000, guid: 288cfe99784b441478d8ed1552aa4c48, type: 3}
+  m_Name: LoadSave
   m_EditorClassIdentifier: 
-  value: 40
+  value: 0

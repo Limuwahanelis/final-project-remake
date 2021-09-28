@@ -5,7 +5,6 @@ using UnityEngine;
 public class PlayerInAirState : PlayerState
 {
     private bool _isMoving = false;
-    private bool _isFalling = false;
     private bool _hasAttacked = false;
     public PlayerInAirState(Player player) : base(player)
     { 
@@ -16,10 +15,8 @@ public class PlayerInAirState : PlayerState
         {
             if (_player.playerMovement.CheckIfPlayerIsFalling())
             {
-                _isFalling = true;
                 _player.anim.PlayAnimation("Fall");
             }
-            else _isFalling = false;
         }
         if (_player.isOnGround && Mathf.Abs(_player.playerMovement.GetPlayerVelocity().y)<0.0004 )
         {

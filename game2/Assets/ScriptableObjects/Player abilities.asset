@@ -16,4 +16,4 @@ MonoBehaviour:
   - name: 0
     unlocked: 1
   - name: 1
-    unlocked: 1
+    unlocked: 0

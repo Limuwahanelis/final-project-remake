@@ -50,4 +50,9 @@ public class PauseMenu : MonoBehaviour
         isGamePaused.value = false;
         gameObject.SetActive(false);
     }
+
+    public void Load()
+    {
+
+    }
 }
