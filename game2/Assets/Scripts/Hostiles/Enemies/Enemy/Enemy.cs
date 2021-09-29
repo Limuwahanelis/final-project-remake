@@ -18,7 +18,6 @@ public abstract class Enemy : MonoBehaviour
     protected EnemyAudioManager _audioMan;
     public float speed;
     public int dmg;
-    public int collisionDmg;
 
     protected bool _isAlive = true;
     protected bool _isIdle = false;

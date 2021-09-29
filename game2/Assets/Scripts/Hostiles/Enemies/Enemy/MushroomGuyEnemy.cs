@@ -4,13 +4,13 @@ using UnityEngine;
 using System;
 public class MushroomGuyEnemy : PatrollingEnemy
 {
+    public bool IsPlayerInRange{ get { return _isPlayerInRange; } }
+    [SerializeField]
+    private Beam beam;
     private PlayerDetection _playerDetection;
     private bool _isPlayerInRange;
-    public bool IsPlayerInRange
-    {
-        get { return _isPlayerInRange; } 
-    }
     private MushroomGuyPatrollingState _patrolState;
+    
     private void Awake()
     {
 
@@ -20,7 +20,7 @@ public class MushroomGuyEnemy : PatrollingEnemy
     {
         if (patrolPoints.Count < 2)
         {
-            Debug.LogError("fsaf");
+            Debug.LogError("Not enough patrol points");
             return;
         }
         _patrolState = new MushroomGuyPatrollingState(this);
@@ -76,6 +76,11 @@ public class MushroomGuyEnemy : PatrollingEnemy
     private void Hit()
     {
         state.Hit();
+    }
+
+    private void OnValidate()
+    {
+        if (beam != null) beam.damage = dmg;
     }
 
 }

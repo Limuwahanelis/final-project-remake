@@ -84,9 +84,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 9020969845829845085}
+  - component: {fileID: 5821858535425698864}
   - component: {fileID: 7932302466203439012}
   - component: {fileID: 3599518998555473110}
-  - component: {fileID: 5821858535425698864}
   m_Layer: 10
   m_Name: Orange beam
   m_TagString: Untagged
@@ -108,6 +108,19 @@ Transform:
   m_Father: {fileID: 3599518998306278518}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: -90}
+--- !u!114 &5821858535425698864
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3018032792678879644}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2806b4a91d5e39641aae29984d54db31, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  damage: 5
 --- !u!212 &7932302466203439012
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -185,19 +198,6 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.2, y: 39.61}
   m_EdgeRadius: 0
---- !u!114 &5821858535425698864
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3018032792678879644}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2806b4a91d5e39641aae29984d54db31, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  damage: 5
 --- !u!1 &3599518998124830094
 GameObject:
   m_ObjectHideFlags: 0
@@ -332,13 +332,13 @@ MonoBehaviour:
     constantValue: 0
     variable: {fileID: 11400000, guid: 5334db362bf6ac146a92759cd4098315, type: 2}
   speed: 2
-  dmg: 0
-  collisionDmg: 0
+  dmg: 5
   isMovingVertically: 0
   idleCycles: 2
   patrolPoints:
   - {fileID: 3599518998484841643}
   - {fileID: 3599518998736320592}
+  beam: {fileID: 5821858535425698864}
 --- !u!95 &3599518998306278519
 Animator:
   serializedVersion: 3
@@ -488,7 +488,10 @@ MonoBehaviour:
     useConstant: 1
     constantValue: 10
     variable: {fileID: 0}
-  currentHP: 0
+  currentHP:
+    useConstant: 1
+    constantValue: 0
+    variable: {fileID: 0}
 --- !u!114 &7500994365477036014
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1029,6 +1032,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6751284752243064404}
   - component: {fileID: 6751284752243064405}
+  - component: {fileID: 4370210645035514556}
   m_Layer: 12
   m_Name: Collider
   m_TagString: Untagged
@@ -1066,6 +1070,21 @@ CapsuleCollider2D:
   m_Offset: {x: 0, y: -0.3641355}
   m_Size: {x: 1.0953168, y: 1.8313894}
   m_Direction: 0
+--- !u!114 &4370210645035514556
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6751284752243064407}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8707928765d5c484cb9eb08807f7e460, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _pushCollidingObject: 1
+  _damageCollidingObject: 1
+  damage: 3
 --- !u!1 &7612596315386842511
 GameObject:
   m_ObjectHideFlags: 0

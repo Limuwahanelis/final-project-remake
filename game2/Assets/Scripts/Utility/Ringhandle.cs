@@ -10,7 +10,7 @@ public class Ringhandle : MonoBehaviour
     private void Update()
     {
         normalized = Vector3.Normalize(handle.transform.position - transform.position);
-        Vector3 handlePos = transform.position + normalized*2;
+        Vector3 handlePos = transform.position + normalized*2; // multiplied by 2 for better visibility
         handle.transform.position = handlePos;
     }
 
