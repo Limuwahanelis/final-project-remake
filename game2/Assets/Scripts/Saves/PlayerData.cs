@@ -19,7 +19,7 @@ public class PlayerData
         position = player.transform.position;
         for(int i=0;i<abilities.Length;i++)
         {
-            abilities[i] = list.GetAbility((AbilityList.Abilities)i);
+            abilities[i] = list.CheckIfAbilityIsUnlocked((AbilityList.Abilities)i);
         }
     }
 }

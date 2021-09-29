@@ -7,21 +7,11 @@ public static class SaveSystem
 {
     public static int numberOfSaveSlots = 6;
     public static string saveFolderPath = Application.dataPath + @"\saves";
-    //public static PlayerData SavePlayerData(Player player,PlayerHealthSystem playerHealthSystem)
-    //{
-    //    PlayerData playerData = new PlayerData(player, playerHealthSystem, player.abilities);
-    //    string json = JsonUtility.ToJson(playerData);
-    //    //if(!Directory.Exists(playerDataPath))
-    //    //{
-    //    //    Directory.CreateDirectory(playerDataPath);
-    //    //}
-    //    //File.WriteAllText(playerDataPath + @"\player.json", json);
-    //}
+    public static SaveData currentSave;
 
-    public static PlayerData LoadPlayerData(int saveIndex)
+    public static PlayerData LoadPlayerData()
     {
-        SaveData saveData = GetSave(saveIndex);
-        return saveData.playerData;
+        return currentSave.playerData;
     }
 
     public static void SaveGame(Player player, PlayerHealthSystem playerHealthSystem,int saveIndex)
@@ -42,7 +32,7 @@ public static class SaveSystem
         File.WriteAllText(filePath, json);
     }
 
-    public static SaveData GetSave(int saveIndex)
+    public static SaveData GetSaveFile(int saveIndex)
     {
         string filePath = saveFolderPath + @"\saveData" + saveIndex + ".json";
         string json;
@@ -54,6 +44,11 @@ public static class SaveSystem
 
         }
         return saveData;
+    }
+
+    public static void SetSave(int saveIndex)
+    {
+        currentSave = GetSaveFile(saveIndex);
     }
     public static bool CheckIfSaveFileExists(int saveIndex)
     {

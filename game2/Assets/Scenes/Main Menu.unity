@@ -612,7 +612,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1737139738}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: aa2f61b035f1a6745988eefde0f18c09, type: 3}
+  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   m_Navigation:
@@ -624,7 +624,7 @@ MonoBehaviour:
     m_SelectOnRight: {fileID: 0}
   m_Transition: 1
   m_Colors:
-    m_NormalColor: {r: 0.59607846, g: 0.16862746, b: 0.043137256, a: 1}
+    m_NormalColor: {r: 0.62352943, g: 0.18431373, b: 0.0627451, a: 1}
     m_HighlightedColor: {r: 0.91372555, g: 0.24313727, b: 0.054901965, a: 1}
     m_PressedColor: {r: 0.62352943, g: 0.18431373, b: 0.0627451, a: 1}
     m_SelectedColor: {r: 0.91372555, g: 0.24313727, b: 0.054901965, a: 1}
@@ -649,10 +649,10 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 6396541768223424499}
         m_TargetAssemblyTypeName: PauseMenu, Assembly-CSharp
-        m_MethodName: HidePanel
+        m_MethodName: ShowPanel
         m_Mode: 2
         m_Arguments:
-          m_ObjectArgument: {fileID: 206671767}
+          m_ObjectArgument: {fileID: 6396541768667971591}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
@@ -661,10 +661,10 @@ MonoBehaviour:
         m_CallState: 2
       - m_Target: {fileID: 6396541768223424499}
         m_TargetAssemblyTypeName: PauseMenu, Assembly-CSharp
-        m_MethodName: ShowPanel
+        m_MethodName: HidePanel
         m_Mode: 2
         m_Arguments:
-          m_ObjectArgument: {fileID: 6396541768667971591}
+          m_ObjectArgument: {fileID: 206671767}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
@@ -3263,6 +3263,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6396541768667971588}
+  - component: {fileID: 6396541768667971592}
   m_Layer: 5
   m_Name: Menu buttons
   m_TagString: Untagged
@@ -3270,6 +3271,18 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!114 &6396541768667971592
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6396541768667971591}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0461b1948a8fc5344a11d758aa19071b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!222 &6396541768681110056
 CanvasRenderer:
   m_ObjectHideFlags: 0

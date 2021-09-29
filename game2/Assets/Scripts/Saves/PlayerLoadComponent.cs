@@ -16,14 +16,14 @@ public class PlayerLoadComponent : MonoBehaviour
     {
         if(loadSave.value)
         {
-            PlayerData playerData = SaveSystem.LoadPlayerData(saveToLoadIndex.value);
+            PlayerData playerData = SaveSystem.LoadPlayerData();
             if (playerData == null) Debug.LogError("No save Data");
             else
             {
                 _player.LoadData(playerData);
                 _playerHealthSystem.LoadData(playerData);
             }
-            loadSave.value = false;
+            //loadSave.value = false;
         }
     }
 }

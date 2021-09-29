@@ -47275,6 +47275,7 @@ GameObject:
   - component: {fileID: 1102867831}
   - component: {fileID: 1102867830}
   - component: {fileID: 1102867833}
+  - component: {fileID: 1102867834}
   m_Layer: 10
   m_Name: Air attack unlock
   m_TagString: Untagged
@@ -47355,6 +47356,23 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &1102867834
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1102867829}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 49a76fe1eddc28b44a5a04c5e902c642, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isGameLoaded:
+    useConstant: 0
+    constantValue: 0
+    variable: {fileID: 11400000, guid: 89971c3f37b75834592e8121878af218, type: 2}
+  _abilityUnlock: {fileID: 1102867831}
 --- !u!1 &1117316495
 GameObject:
   m_ObjectHideFlags: 0
@@ -48019,6 +48037,7 @@ GameObject:
   - component: {fileID: 1384893567}
   - component: {fileID: 1384893570}
   - component: {fileID: 1384893569}
+  - component: {fileID: 1384893571}
   m_Layer: 10
   m_Name: Wall hang and jump unlock
   m_TagString: Untagged
@@ -48098,6 +48117,23 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &1384893571
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1384893566}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 49a76fe1eddc28b44a5a04c5e902c642, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isGameLoaded:
+    useConstant: 0
+    constantValue: 0
+    variable: {fileID: 11400000, guid: 89971c3f37b75834592e8121878af218, type: 2}
+  _abilityUnlock: {fileID: 1384893567}
 --- !u!224 &1395294189 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 4121207095561905578, guid: 7008295564ec8274bbb48a998a4b39f7, type: 3}
@@ -64699,7 +64735,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 5767090226080053568, guid: a6aeac9b7ab8e6544ac4cae3fa5408e2, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -1.4266818
+      value: -1.426682
       objectReference: {fileID: 0}
     - target: {fileID: 5767090226136095776, guid: a6aeac9b7ab8e6544ac4cae3fa5408e2, type: 3}
       propertyPath: hpBar
@@ -64723,11 +64759,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5767090226136095783, guid: a6aeac9b7ab8e6544ac4cae3fa5408e2, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -3.59
+      value: -4.8
       objectReference: {fileID: 0}
     - target: {fileID: 5767090226136095783, guid: a6aeac9b7ab8e6544ac4cae3fa5408e2, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -22.3
+      value: -21.6
       objectReference: {fileID: 0}
     - target: {fileID: 5767090226136095783, guid: a6aeac9b7ab8e6544ac4cae3fa5408e2, type: 3}
       propertyPath: m_LocalPosition.z
@@ -64767,7 +64803,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5767090226663683083, guid: a6aeac9b7ab8e6544ac4cae3fa5408e2, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -1.1540682
+      value: -1.1540685
       objectReference: {fileID: 0}
     - target: {fileID: 5767090226663683083, guid: a6aeac9b7ab8e6544ac4cae3fa5408e2, type: 3}
       propertyPath: m_LocalPosition.y

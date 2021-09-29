@@ -19,7 +19,7 @@ public class SaveMenu : MonoBehaviour
     {
         if (SaveSystem.CheckIfSaveFileExists(save.saveIndex))
         {
-
+            SaveSystem.SetSave(save.saveIndex);
             loadSave.value = true;
             saveIndexToLoad.value = save.saveIndex;
             SceneManager.LoadScene(1);
@@ -30,7 +30,7 @@ public class SaveMenu : MonoBehaviour
     {
         for(int i=0;i<saves.Count;i++)
         {
-            SaveData save = SaveSystem.GetSave(i);
+            SaveData save = SaveSystem.GetSaveFile(i);
             if(save!=null)
             {
                 SaveButton button = saves.Find((x) => x.saveIndex == i);

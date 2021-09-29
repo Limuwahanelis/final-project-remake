@@ -19,7 +19,7 @@ public class AbilityList : ScriptableObject
     //    return toReturn;
     //}
 
-    public bool GetAbility(Abilities ability)
+    public bool CheckIfAbilityIsUnlocked(Abilities ability)
     {
         if(abilities.Find(x=>x.name==ability).isUnlocked) return true;
         return false;

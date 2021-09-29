@@ -14,6 +14,7 @@ public class PlayerNormalState : PlayerState
     {
         _player.isAttacking = false;
         _isMoving = false;
+        _player.playerMovement.StopPlayerOnXAxis();
         _player.ChangeState(new PlayerJumpingState(_player));
         _player.currentState.Jump();
     }
