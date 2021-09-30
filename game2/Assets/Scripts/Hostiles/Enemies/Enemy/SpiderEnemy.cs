@@ -2,9 +2,14 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+[RequireComponent(typeof(SpiderEnemyCollisionInteractionComponent))]
 public class SpiderEnemy : PatrollingEnemy
 {
+    [SerializeField]
+    private SpiderEnemyCollisionInteractionComponent _collisionComponent;
+
     private EnemyPatrollingState _patrolState;
+
     // Start is called before the first frame update
     private void Awake()
     {
@@ -14,7 +19,7 @@ public class SpiderEnemy : PatrollingEnemy
     {
         if (patrolPoints.Count < 2)
         {
-            Debug.LogError("fsaf");
+            Debug.LogError("Not enough patrol points");
             return;
         }
         _patrolState = new EnemyPatrollingState(this);
@@ -29,17 +34,11 @@ public class SpiderEnemy : PatrollingEnemy
             _patrolState.Update();
         }
     }
-    private void OnCollisionStay2D(Collision2D collision)
+    private void OnValidate()
     {
-        IDamagable player = collision.transform.GetComponent<IDamagable>();
-        IPushable playerP= collision.transform.GetComponent<IPushable>();
-        float dir = collision.transform.position.x - transform.position.x;
-        PlayerMovement.playerDirection pushDir;
-        if (dir > 0) pushDir = PlayerMovement.playerDirection.RIGHT;
-        else pushDir = PlayerMovement.playerDirection.LEFT;
-        playerP.Push(pushDir);
-        player.TakeDamage(dmg);
-
+        if(_collisionComponent!=null)
+        {
+            _collisionComponent.SetCollisionDamage(dmg);
+        }
     }
-
 }

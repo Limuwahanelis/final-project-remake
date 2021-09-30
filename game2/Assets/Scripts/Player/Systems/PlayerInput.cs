@@ -8,6 +8,7 @@ public class PlayerInput : MonoBehaviour
     private Player _player;
     private PlayerInteract _playerInteract;
     public GameObject pauseMenu;
+    public GameObject darkPanel;
     // Start is called before the first frame update
     void Start()
     {
@@ -33,6 +34,10 @@ public class PlayerInput : MonoBehaviour
             }
             if (Input.GetButtonDown("Interact")) Interact();
 
+        }
+        else
+        {
+            if (Input.GetKeyDown(KeyCode.Escape)) SetPause(_player.isGamePaused.value);
         }
     }
 
@@ -61,12 +66,15 @@ public class PlayerInput : MonoBehaviour
         {
             Time.timeScale = 1f;
             _player.isGamePaused.value = false;
-            pauseMenu.SetActive(false);
+            darkPanel.SetActive(false);
+            pauseMenu.GetComponent<PauseMenu>().Unpause();
         }
         else
         {
-            Time.timeScale = 0f;
+            
             _player.isGamePaused.value = true;
+            Time.timeScale = 0f;
+            darkPanel.SetActive(true);
             pauseMenu.SetActive(true);
         }
 

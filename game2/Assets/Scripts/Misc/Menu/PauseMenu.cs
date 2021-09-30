@@ -5,27 +5,25 @@ using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 public class PauseMenu : MonoBehaviour
 {
-
-
-
     public BoolReference isGamePaused;
     public GameObject optionsPanel;
     public GameObject buttons;
 
     private void Start()
     {
-        isGamePaused.value = false;
+        //isGamePaused.value = false;
     }
     private void Update()
     {
-        if(Input.GetKeyDown(KeyCode.Escape))
-        {
-            Unpause();
-        }
+        //if(Input.GetKeyDown(KeyCode.Escape))
+        //{
+        //    Unpause();
+        //}
     }
 
     public void Play()
     {
+        SaveSystem.CreateTmpSave();
         SceneManager.LoadScene(1);
     }
     public void Exit()
@@ -47,10 +45,9 @@ public class PauseMenu : MonoBehaviour
         optionsPanel.SetActive(false);
         buttons.SetActive(true);
         Time.timeScale = 1f;
-        isGamePaused.value = false;
+        //isGamePaused.value = false;
         gameObject.SetActive(false);
     }
-
     public void Load()
     {
 

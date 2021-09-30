@@ -3,16 +3,14 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class MaxHPincreasePickUp : MonoBehaviour,IInteractable
+public class MaxHPincreasePickUp : PickUp
 {
     //private GameManager gameMan;
     public int maxHPincrease;
-    public GameObject canvas;
     public IntReference playerMaxHealth;
-    public string pickUpMessage;
-    private PlayerInteract _playerInteract;
-    public void Interact()
+    public override void Interact()
     {
+        base.Interact();
         playerMaxHealth.value += maxHPincrease;
         _playerInteract.GetComponentInParent<PlayerHealthSystem>().IncreaseHealthBarMaxValue();
         Destroy(this.gameObject);

@@ -9,7 +9,6 @@ public class PlayerLoadComponent : MonoBehaviour
     [SerializeField]
     private PlayerHealthSystem _playerHealthSystem;
     public BoolReference loadSave;
-    public IntReference saveToLoadIndex;
     // Start is called before the first frame update
 
     void Start()

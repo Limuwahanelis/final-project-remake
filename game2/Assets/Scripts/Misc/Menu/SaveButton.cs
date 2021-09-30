@@ -12,9 +12,4 @@ public class SaveButton : MonoBehaviour
     {
         saveDescription.text = date;
     }
-
-    //public void OnPointerClick(PointerEventData eventData)
-    //{
-    //    Debug.Log("fff");
-    //}
 }

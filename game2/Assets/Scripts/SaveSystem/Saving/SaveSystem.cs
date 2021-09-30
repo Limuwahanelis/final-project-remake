@@ -7,22 +7,28 @@ public static class SaveSystem
 {
     public static int numberOfSaveSlots = 6;
     public static string saveFolderPath = Application.dataPath + @"\saves";
-    public static SaveData currentSave;
+    public static string configsFolderPath = Application.dataPath + @"\configs";
+    public static string configsFilePath= configsFolderPath + @"\configs.json";
+    public static SaveData tmpSave;
 
     public static PlayerData LoadPlayerData()
     {
-        return currentSave.playerData;
+        return tmpSave.playerData;
+    }
+
+    public static void CreateTmpSave()
+    {
+        tmpSave = new SaveData();
     }
 
     public static void SaveGame(Player player, PlayerHealthSystem playerHealthSystem,int saveIndex)
     {
         PlayerData playerData = new PlayerData(player, playerHealthSystem, player.abilities);
         string today = DateTime.Today.ToString("dd/MM/yyyy");
-        SaveData saveData = new SaveData(today, saveIndex, playerData);
 
+        SaveData saveData = new SaveData(today, saveIndex, playerData,tmpSave.scene1Data);
+        tmpSave = saveData;
         string json = JsonUtility.ToJson(saveData);
-        Debug.Log(json);
-        Debug.Log(playerHealthSystem.currentHP.value);
         if (!Directory.Exists(saveFolderPath))
         {
             Directory.CreateDirectory(saveFolderPath);
@@ -48,7 +54,7 @@ public static class SaveSystem
 
     public static void SetSave(int saveIndex)
     {
-        currentSave = GetSaveFile(saveIndex);
+        tmpSave = GetSaveFile(saveIndex);
     }
     public static bool CheckIfSaveFileExists(int saveIndex)
     {
@@ -59,4 +65,31 @@ public static class SaveSystem
         }
         return false;
     }
+
+    public static void SaveConfigs(float globalVolume, Resolution resolution,bool fullScreen)
+    {
+        PlayerConfigsData configs = new PlayerConfigsData(globalVolume, resolution, fullScreen);
+        string json = JsonUtility.ToJson(configs);
+
+        if (!Directory.Exists(configsFolderPath))
+        {
+            Directory.CreateDirectory(configsFolderPath);
+        }
+        File.WriteAllText(configsFilePath, json);
+    }
+
+    public static PlayerConfigsData GetConfigs()
+    {
+        PlayerConfigsData configs = null;
+        string json;
+        if (File.Exists(configsFilePath))
+        {
+            json = File.ReadAllText(configsFilePath);
+            configs = JsonUtility.FromJson<PlayerConfigsData>(json);
+        }
+
+        return configs;
+    }
+
+
 }

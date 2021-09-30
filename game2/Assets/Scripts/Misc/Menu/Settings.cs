@@ -11,16 +11,18 @@ public class Settings : MonoBehaviour
         public int refreshRateIndex;
         public int resolutionIndex;
     }
+    public TMP_Dropdown resolutionDropdown;
+    public TMP_Dropdown refreshRateDropdown;
+    public Toggle fullScreenToggle;
+    public Resolution currentResolution;
+    public bool fullScreen;
     Resolution[] allResolutions;
     ResIndex currentResIndex;
     List<List<Resolution>> resolutions = new List<List<Resolution>>();
     List<int> refreshRates = new List<int>();
     List<string> refreshRatesS = new List<string>();
     List<List<string>> resolutionOptions = new List<List<string>>();
-    public TMP_Dropdown resolutionDropdown;
-    public TMP_Dropdown refreshRateDropdown;
-    public Toggle fullScreenToggle;
-    bool fullScreen;
+
     // Start is called before the first frame update
 
     private void Awake()
@@ -136,6 +138,7 @@ public class Settings : MonoBehaviour
     public void SetResolution(int resolutionIndex)
     {
         currentResIndex.resolutionIndex = resolutionIndex;
+        currentResolution = resolutions[currentResIndex.refreshRateIndex][currentResIndex.resolutionIndex];
         Screen.SetResolution(resolutions[currentResIndex.refreshRateIndex][currentResIndex.resolutionIndex].width, resolutions[currentResIndex.refreshRateIndex][currentResIndex.resolutionIndex].height, Screen.fullScreen);
     }
 

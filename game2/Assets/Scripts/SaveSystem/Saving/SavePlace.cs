@@ -13,7 +13,7 @@ public class SavePlace : MonoBehaviour,IInteractable
         Time.timeScale = 0f;
         isGamePaused.value = true;
         _saveMenu.gameObject.SetActive(true);
-        _saveMenu.GetSaveFiles();
+        _saveMenu.DescribeSaveButtons();
         Debug.Log("saved");
     }
     private void OnTriggerEnter2D(Collider2D collision)

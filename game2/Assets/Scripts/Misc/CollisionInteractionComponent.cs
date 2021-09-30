@@ -5,11 +5,11 @@ using UnityEngine;
 public class CollisionInteractionComponent : MonoBehaviour
 {
     [SerializeField]
-    private bool _pushCollidingObject;
+    protected bool _pushCollidingObject;
     [SerializeField]
-    private bool _damageCollidingObject;
+    protected bool _damageCollidingObject;
     [SerializeField]
-    private int damage;
+    protected int damage;
     private void Start()
     {
         

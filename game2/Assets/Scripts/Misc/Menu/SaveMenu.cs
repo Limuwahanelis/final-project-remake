@@ -6,27 +6,28 @@ using UnityEngine.SceneManagement;
 public class SaveMenu : MonoBehaviour
 {
     public List<SaveButton> saves;
-    public IntReference saveIndexToLoad;
     public BoolReference loadSave;
     public BoolReference isGamePaused;
     [SerializeField]
-    private Player _player;
-    [SerializeField]
-    private PlayerHealthSystem _playerHealthSystem;
-    [SerializeField]
     private GameObject _darkPanel;
+    [SerializeField]
+    private SaveManager _saveManager;
+
+    private void Start()
+    {
+        DescribeSaveButtons();
+    }
     public void LoadSave(SaveButton save)
     {
         if (SaveSystem.CheckIfSaveFileExists(save.saveIndex))
         {
             SaveSystem.SetSave(save.saveIndex);
             loadSave.value = true;
-            saveIndexToLoad.value = save.saveIndex;
             SceneManager.LoadScene(1);
         }
     }
 
-    public void GetSaveFiles()
+    public void DescribeSaveButtons()
     {
         for(int i=0;i<saves.Count;i++)
         {
@@ -42,7 +43,7 @@ public class SaveMenu : MonoBehaviour
 
     public void SaveGame(SaveButton pressedSaveButton)
     {
-        SaveSystem.SaveGame(_player, _playerHealthSystem,pressedSaveButton.saveIndex);
+        _saveManager.Save(pressedSaveButton.saveIndex);
         isGamePaused.value = false;
         Time.timeScale = 1f;
         gameObject.SetActive(false);

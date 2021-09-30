@@ -109,6 +109,7 @@ GameObject:
   - component: {fileID: 7024608491873740584}
   - component: {fileID: 994684590}
   - component: {fileID: 6279730215918602760}
+  - component: {fileID: 852297257453831953}
   m_Layer: 12
   m_Name: Spider
   m_TagString: Untagged
@@ -171,13 +172,13 @@ MonoBehaviour:
     constantValue: 0
     variable: {fileID: 11400000, guid: 5334db362bf6ac146a92759cd4098315, type: 2}
   speed: 3
-  dmg: 0
-  collisionDmg: 0
+  dmg: 2
   isMovingVertically: 0
   idleCycles: 0
   patrolPoints:
   - {fileID: 7024608493020671250}
   - {fileID: 7024608492602605746}
+  _collisionComponent: {fileID: 852297257453831953}
 --- !u!61 &7024608491873740584
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -222,7 +223,10 @@ MonoBehaviour:
     useConstant: 1
     constantValue: 20
     variable: {fileID: 0}
-  currentHP: 0
+  currentHP:
+    useConstant: 1
+    constantValue: 0
+    variable: {fileID: 0}
 --- !u!114 &6279730215918602760
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -237,6 +241,21 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _anim: {fileID: 7024608491873740564}
   animList: {fileID: 11400000, guid: 067fbb3402436044a8d035afd91da407, type: 2}
+--- !u!114 &852297257453831953
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7024608491873740565}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ac98cca1e7890eb46b71d232accc187b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _pushCollidingObject: 1
+  _damageCollidingObject: 1
+  damage: 2
 --- !u!1 &7024608492602605747
 GameObject:
   m_ObjectHideFlags: 0

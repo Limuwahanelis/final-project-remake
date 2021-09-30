@@ -22,4 +22,16 @@ public class PlayerData
             abilities[i] = list.CheckIfAbilityIsUnlocked((AbilityList.Abilities)i);
         }
     }
+
+    public PlayerData(PlayerData playerData)
+    {
+        currentHP = playerData.currentHP;
+        maxHP = playerData.maxHP;
+        damage = playerData.damage;
+        position = playerData.position;
+        for (int i = 0; i < playerData.abilities.Length; i++)
+        {
+            abilities[i] = playerData.abilities[i];
+        }
+    }
 }
