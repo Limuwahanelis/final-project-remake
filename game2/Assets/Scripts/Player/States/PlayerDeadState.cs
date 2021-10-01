@@ -2,17 +2,19 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerDeadState : MonoBehaviour
+public class PlayerDeadState : PlayerState
 {
-    // Start is called before the first frame update
-    void Start()
+    public PlayerDeadState(Player player) : base(player)
     {
-        
+        _player.anim.SetAnimator(true);
+        player.playerMovement.StopPlayer();
+        player.playerMovement.ChangeRb2DMat(null);
+        player.normalColliders.SetActive(false);
+        player.anim.PlayAnimation("Dead");
+        player.isAlive = false;
     }
-
-    // Update is called once per frame
-    void Update()
+    public override void Update()
     {
-        
+
     }
 }

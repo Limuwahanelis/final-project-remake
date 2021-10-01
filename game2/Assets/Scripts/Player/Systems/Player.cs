@@ -12,6 +12,7 @@ public class Player : MonoBehaviour
     public PlayerCombat playerCombat;
     public PlayerChecks playerChecks;
     public PlayerAudioManager audioManager;
+    public PlayerHealthSystem healthSystem;
 
     public GameObject mainBody;
     public AnimationManager anim;
@@ -19,6 +20,9 @@ public class Player : MonoBehaviour
     public GameObject slideColliders;
     public GameObject normalColliders;
     public PlayerState currentState;
+
+    public GameObject darkPanel;
+    public GameObject gameOverScreen;
 
     public PhysicsMaterial2D noFrictionMat;
 
@@ -37,6 +41,7 @@ public class Player : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        healthSystem.OnDeathEvent = SetPlayerDead;
         currentState = new PlayerNormalState(this);
         anim = GetComponent<AnimationManager>();
     }
@@ -87,5 +92,15 @@ public class Player : MonoBehaviour
             if(playerData.abilities[i]) abilities.UnlockAbility((AbilityList.Abilities)i);
             else abilities.LockAbility((AbilityList.Abilities)i);
         }
+    }
+    public void SetPlayerDead()
+    {
+        ChangeState(new PlayerDeadState(this));
+        ShowGameOverScreen();
+    }
+    public void ShowGameOverScreen()
+    {
+        darkPanel.SetActive(true);
+        gameOverScreen.SetActive(true);
     }
 }

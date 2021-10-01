@@ -11,7 +11,6 @@ public class PauseMenu : MonoBehaviour
 
     private void Start()
     {
-        //isGamePaused.value = false;
     }
     private void Update()
     {
@@ -48,8 +47,9 @@ public class PauseMenu : MonoBehaviour
         //isGamePaused.value = false;
         gameObject.SetActive(false);
     }
-    public void Load()
-    {
 
+    public void ReturnToMainMenu()
+    {
+        SceneManager.LoadScene(0);
     }
 }

@@ -15,12 +15,15 @@ public class PlayerHealthSystem : HealthSystem,IPushable
     }
     public override void TakeDamage(int dmg)
     {
-        if (isInvincible) return;
-        currentHP.value -= dmg;
-        hpBar.SetHealth(currentHP.value);
-        OnHitEvent?.Invoke();
-        StartCoroutine(InvincibilityCor());
-        if (currentHP.value < 0) Kill();
+        if (player.isAlive)
+        {
+            if (isInvincible) return;
+            currentHP.value -= dmg;
+            hpBar.SetHealth(currentHP.value);
+            if (currentHP.value < 0) Kill();
+            else OnHitEvent?.Invoke();
+            StartCoroutine(InvincibilityCor());
+        }
 
     }
 
@@ -39,13 +42,19 @@ public class PlayerHealthSystem : HealthSystem,IPushable
 
     public void Push()
     {
-        if (isInvincible) return;
-        player.playerMovement.PushPlayer(pushHandle.GetPushVector() * pushForce);
+        if (player.isAlive)
+        {
+            if (isInvincible) return;
+            player.playerMovement.PushPlayer(pushHandle.GetPushVector() * pushForce);
+        }
     }
     public void Push(PlayerMovement.playerDirection direction)
     {
-        if (isInvincible) return;
-        player.playerMovement.PushPlayer(direction,pushHandle.GetPushVector() * pushForce);
+        if (player.isAlive)
+        {
+            if (isInvincible) return;
+            player.playerMovement.PushPlayer(direction, pushHandle.GetPushVector() * pushForce);
+        }
     }
     public void IncreaseHealthBarMaxValue()
     {
