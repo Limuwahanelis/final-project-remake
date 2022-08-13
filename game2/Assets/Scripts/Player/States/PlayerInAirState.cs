@@ -16,6 +16,7 @@ public class PlayerInAirState : PlayerState
             if (_player.playerMovement.CheckIfPlayerIsFalling())
             {
                 _player.anim.PlayAnimation("Fall");
+                _player.playerMovement.ChangeRb2DMat(_player.noFrictionMat);
             }
         }
         if (_player.isOnGround && Mathf.Abs(_player.playerMovement.GetPlayerVelocity().y)<0.0004 )

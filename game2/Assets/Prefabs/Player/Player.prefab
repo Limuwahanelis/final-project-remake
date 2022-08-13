@@ -759,10 +759,13 @@ MonoBehaviour:
   playerCombat: {fileID: 5767090226136095789}
   playerChecks: {fileID: 5767090226136095788}
   audioManager: {fileID: 5767090226076576679}
+  healthSystem: {fileID: 5767090226136095776}
   mainBody: {fileID: 5767090225051829742}
-  anim: {fileID: 0}
+  anim: {fileID: 5767090226136095791}
   slideColliders: {fileID: 5767090225420140679}
   normalColliders: {fileID: 5767090224678561135}
+  darkPanel: {fileID: 0}
+  gameOverScreen: {fileID: 0}
   noFrictionMat: {fileID: 6200000, guid: c99a593e689874b4289fad24afe10a6f, type: 2}
   isGamePaused:
     useConstant: 0
@@ -808,7 +811,10 @@ MonoBehaviour:
     useConstant: 0
     constantValue: 88
     variable: {fileID: 11400000, guid: b2881f7dd25a9fe4bb67dcd6ad8f6165, type: 2}
-  currentHP: 0
+  currentHP:
+    useConstant: 1
+    constantValue: 0
+    variable: {fileID: 0}
   _invincibilityAfterHitDuration: 1.5
   player: {fileID: 5767090226136095782}
   pushHandle: {fileID: 5767090226429716897}
@@ -825,8 +831,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bb6b4df27467a534889bc5932b2aa979, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _player: {fileID: 0}
+  _player: {fileID: 5767090226136095782}
   pauseMenu: {fileID: 0}
+  darkPanel: {fileID: 0}
 --- !u!114 &5767090226136095778
 MonoBehaviour:
   m_ObjectHideFlags: 0

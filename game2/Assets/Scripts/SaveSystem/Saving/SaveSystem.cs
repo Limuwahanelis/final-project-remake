@@ -25,7 +25,6 @@ public static class SaveSystem
     {
         PlayerData playerData = new PlayerData(player, playerHealthSystem, player.abilities);
         string today = DateTime.Today.ToString("dd/MM/yyyy");
-
         SaveData saveData = new SaveData(today, saveIndex, playerData,tmpSave.scene1Data);
         tmpSave = saveData;
         string json = JsonUtility.ToJson(saveData);

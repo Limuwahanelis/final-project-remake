@@ -58,7 +58,6 @@ public class FlyingEyeEnemy : Enemy
         _anim.PlayAnimation("Idle");
         yield return new WaitForSeconds(3f);
         _cooldown = false;
-
     }
     public void SpawnMissile()
     {
