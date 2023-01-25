@@ -12,6 +12,8 @@ public class PlayerCombat : MonoBehaviour
     public float attackRange;
     public IntReference attackDamage;
     public Sprite playerHitSprite;
+    [SerializeField] private GameObject bombPrefab;
+    [SerializeField] private Transform bombDropPos;
     private Coroutine airAttackCor;
     private Coroutine playerMovAirAttackCor;
     // Start is called before the first frame update
@@ -50,6 +52,10 @@ public class PlayerCombat : MonoBehaviour
         StopCoroutine(airAttackCor);
         StopCoroutine(playerMovAirAttackCor);
         _player.isAirAttacking = false;
+    }
+    public void SpawnBomb()
+    {
+        Instantiate(bombPrefab, bombDropPos.transform.position, bombPrefab.transform.rotation);
     }
     IEnumerator AttackCor()
     {

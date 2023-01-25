@@ -8,7 +8,8 @@ public class AbilityList : ScriptableObject
     public enum Abilities
     {
         WALLHANG_ANDJUMP,
-        AIR_ATTACK
+        AIR_ATTACK,
+        BOMB_DROP
     }
     public List<Ability> abilities = new List<Ability>();
     //public int findAbilityIndex(Abilities ability)

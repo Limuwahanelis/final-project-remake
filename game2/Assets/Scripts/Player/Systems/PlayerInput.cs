@@ -26,7 +26,11 @@ public class PlayerInput : MonoBehaviour
                 if (Input.GetKeyDown(KeyCode.Escape)) SetPause(_player.isGamePaused.value);
                 float direction = Input.GetAxisRaw("Horizontal");
                 Move(direction);
-                if (Input.GetButtonDown("Attack")) Attack();
+                if (Input.GetButtonDown("Attack"))
+                {
+                    if(Input.GetKey(KeyCode.DownArrow)) DropBomb();
+                    else Attack();
+                }
                 if (Input.GetButtonDown("Jump"))
                 {
 
@@ -81,7 +85,10 @@ public class PlayerInput : MonoBehaviour
         }
 
     }
-
+    public void DropBomb()
+    {
+        _player.currentState.DropBomb();
+    }
     
     private void Interact()
     {

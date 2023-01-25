@@ -10,6 +10,7 @@ public abstract class PlayerState
     {
         _player = player;
     }
+    public virtual void DropBomb() { }
     public virtual void Attack() { }
     public virtual void AttackIsOver() { }
     public virtual void Jump() { }

@@ -55,4 +55,8 @@ public class PlayerNormalState : PlayerState
     {
         _player.ChangeState(new PlayerSlideState(_player));
     }
+    public override void DropBomb()
+    {
+        _player.ChangeState(new PlayerDropBombState(_player));
+    }
 }
