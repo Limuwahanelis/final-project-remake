@@ -9,6 +9,7 @@ TagManager:
   - Platform
   - Ground
   - Boss
+  - Settings
   layers:
   - Default
   - TransparentFX
@@ -23,7 +24,7 @@ TagManager:
   - Player Detection
   - Player
   - Enemy
-  - 
+  - PlayerBomb
   - 
   - 
   - 
@@ -63,6 +64,9 @@ TagManager:
     locked: 0
   - name: Transparent Wall
     uniqueID: 1002568677
+    locked: 0
+  - name: Bomb
+    uniqueID: 1942894261
     locked: 0
   - name: Player
     uniqueID: 2290380823
