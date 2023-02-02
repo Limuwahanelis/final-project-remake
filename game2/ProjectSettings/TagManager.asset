@@ -47,9 +47,6 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
-  - name: obj
-    uniqueID: 2923315479
-    locked: 0
   - name: BG
     uniqueID: 652242523
     locked: 0
@@ -61,6 +58,9 @@ TagManager:
     locked: 0
   - name: Gropund
     uniqueID: 1525370575
+    locked: 0
+  - name: obj
+    uniqueID: 2923315479
     locked: 0
   - name: Transparent Wall
     uniqueID: 1002568677
