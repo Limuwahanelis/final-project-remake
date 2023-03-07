@@ -30,6 +30,7 @@ public class LogicPuzzle1 : Puzzle
         solved = true;
        // gamMan.MarkPuzzleAsSolved(1);
         hpPickUp.SetActive(true);
+        OnSolved?.Invoke(this);
     }
     public override void MarkAsSolved()
     {

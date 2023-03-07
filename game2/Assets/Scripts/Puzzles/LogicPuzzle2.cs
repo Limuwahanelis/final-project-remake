@@ -14,7 +14,6 @@ public class LogicPuzzle2 : Puzzle
     [SerializeField]
     private bool solved = false;
     public Text riddleText;
-    
     void Start()
     {
     }

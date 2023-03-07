@@ -6,12 +6,17 @@ using UnityEngine;
 public class SceneData
 {
     public List<bool> wasPickUpPicked=new List<bool>();
+    public List<bool> wasPuzzleSolved=new List<bool>();
 
-    public SceneData(List<bool> values)
+    public SceneData(List<bool> pickUpValues, List<bool>puzzlesValues)
     {
-        for(int i=0;i<values.Count;i++)
+        for(int i=0;i< pickUpValues.Count;i++)
         {
-            wasPickUpPicked.Add(values[i]);
+            wasPickUpPicked.Add(pickUpValues[i]);
+        }
+        foreach(bool puzzleSol in puzzlesValues)
+        {
+            wasPuzzleSolved.Add(puzzleSol);
         }
     }
     public SceneData(SceneData sceneData)
@@ -20,11 +25,16 @@ public class SceneData
         {
             wasPickUpPicked.Add(sceneData.wasPickUpPicked[i]);
         }
+        foreach (bool puzzleSol in sceneData.wasPuzzleSolved)
+        {
+            wasPuzzleSolved.Add(puzzleSol);
+        }
     }
 
     public SceneData()
     {
         wasPickUpPicked = new List<bool>();
+        wasPuzzleSolved = new List<bool>();
     }
 
     public void ChangePickUpSate(int index, bool value)

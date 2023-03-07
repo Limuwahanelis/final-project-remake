@@ -25,7 +25,7 @@ TagManager:
   - Player
   - Enemy
   - PlayerBomb
-  - 
+  - Dark
   - 
   - 
   - 
@@ -49,6 +49,9 @@ TagManager:
     locked: 0
   - name: BG
     uniqueID: 652242523
+    locked: 0
+  - name: Dark bg
+    uniqueID: 511173279
     locked: 0
   - name: PickUp
     uniqueID: 1559973199

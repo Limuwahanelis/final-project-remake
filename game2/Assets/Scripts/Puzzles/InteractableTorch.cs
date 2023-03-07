@@ -1,28 +1,27 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Experimental.Rendering.Universal;
 
 public class InteractableTorch : MonoBehaviour,IInteractable
 {
-    private Light mainLight;
+    private Light2D mainLight;
     public GameObject fire;
-    //private GameManager gameMan;
     public GameObject canvas;
     public bool fireActive = false;
     public InteractableTorch torch1;
     public InteractableTorch torch2;
     public int torchIndex;
     public LogicPuzzle1 LogicPuzzle1;
+    private PlayerInteract _playerInteract;
     // Start is called before the first frame update
     void Awake()
     {
-        mainLight = transform.GetComponentInChildren<Light>();
+        mainLight = transform.GetComponentInChildren<Light2D>();
     }
     void Start()
     {
-        //gameMan = GameObject.FindGameObjectWithTag("GameManager").GetComponent<GameManager>();
         LogicPuzzle1 = transform.GetComponentInParent<LogicPuzzle1>();
-        //light.enabled = false;
     }
 
     // Update is called once per frame
@@ -52,12 +51,16 @@ public class InteractableTorch : MonoBehaviour,IInteractable
     {
         Debug.Log(collision.tag);
             canvas.SetActive(true);
-            //gameMan.GetPlayer().GetComponent<PlayerInteract>().setObjectToInteract(this);
+        _playerInteract = collision.GetComponentInParent<PlayerInteract>();
+        _playerInteract.setObjectToInteract(this);
+        //gameMan.GetPlayer().GetComponent<PlayerInteract>().setObjectToInteract(this);
     }
     private void OnTriggerExit2D(Collider2D collision)
     {
             canvas.SetActive(false);
-           // gameMan.GetPlayer().GetComponent<PlayerInteract>().RemoveObjectToInteract();
+        _playerInteract = collision.GetComponentInParent<PlayerInteract>();
+        _playerInteract.setObjectToInteract(this);
+        // gameMan.GetPlayer().GetComponent<PlayerInteract>().RemoveObjectToInteract();
     }
     public bool GetState()
     {
