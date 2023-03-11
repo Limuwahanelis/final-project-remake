@@ -12,7 +12,7 @@ public class InteractableTorch2 : MonoBehaviour,IInteractable
     public LogicPuzzle2 puzzle;
     private bool fireActive = false;
     public int value;
-
+    private PlayerInteract _playerInteract;
     // Start is called before the first frame update
     void Awake()
     {
@@ -41,12 +41,14 @@ public class InteractableTorch2 : MonoBehaviour,IInteractable
     private void OnTriggerEnter2D(Collider2D collision)
     {
             canvas.SetActive(true);
-            //gameMan.GetPlayer().GetComponent<PlayerInteract>().setObjectToInteract(this);
+        _playerInteract = collision.GetComponentInParent<PlayerInteract>();
+        _playerInteract.setObjectToInteract(this);
     }
     private void OnTriggerExit2D(Collider2D collision)
     {
             canvas.SetActive(false);
-            //gameMan.GetPlayer().GetComponent<PlayerInteract>().RemoveObjectToInteract();
+        _playerInteract = collision.GetComponentInParent<PlayerInteract>();
+        _playerInteract.setObjectToInteract(null);
     }
     public void LightUp()
     {

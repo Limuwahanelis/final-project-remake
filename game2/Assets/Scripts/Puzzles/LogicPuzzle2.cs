@@ -2,18 +2,19 @@
 using System.Collections.Generic;
 using UnityEngine.UI;
 using UnityEngine;
+using TMPro;
 
 public class LogicPuzzle2 : Puzzle
 {
     // Start is called before the first frame update
     public InteractableTorch2[] torches;
-    public Text text;
+    public TMP_Text text;
     public int numberToGet = 29;
     int number = 0;
     public GameObject crystal;
-    [SerializeField]
-    private bool solved = false;
-    public Text riddleText;
+    [SerializeField] private bool solved = false;
+    public TMP_Text riddleText;
+    [SerializeField] float crystalSpeed;
     void Start()
     {
     }
@@ -28,19 +29,23 @@ public class LogicPuzzle2 : Puzzle
         if (add) number += value;
         else number -= value;
         text.text = number.ToString();
-        if(number==numberToGet)
+        if(solved) StartCoroutine(MoveCrystalCor());
+        if (number==numberToGet)
         {
             solved = true;
             //gamMan.MarkPuzzleAsSolved(2);
-            StartCoroutine(MoveCrystalCor());
+          
         }
     }
     IEnumerator MoveCrystalCor()
     {
-        while(crystal.transform.position.y>=-21.67)
+        float tmp = Time.deltaTime * crystalSpeed;
+        float total = 0;
+        while (total <= 6.7)
         {
-            crystal.transform.position = new Vector3(crystal.transform.position.x, crystal.transform.position.y - 0.3f, 0);
-            yield return new WaitForSeconds(0.05f);
+            crystal.transform.position = new Vector3(crystal.transform.position.x, crystal.transform.position.y - tmp, 0);
+            total += tmp;
+            yield return null;
         }
     }
 
