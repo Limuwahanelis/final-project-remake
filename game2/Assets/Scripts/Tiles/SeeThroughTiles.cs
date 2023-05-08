@@ -15,12 +15,11 @@ public class SeeThroughTiles : MonoBehaviour
     private Color basicColor = new Color(1f, 1f, 1f, 1f);
     private float playerGroundColCenterX;
     private float extent;
-    private bool isPlayerIn = false;
 
     // Start is called before the first frame update
     void Start()
     {
-        if(fullyTransparentMap) playerDetection.OnPlayerLeft += () => { isPlayerIn = false; };
+         playerDetection.OnPlayerLeft += RemoveTransparency;
         fullytransparentCellPositions = new List<Vector3Int>();
         cellPositions = new List<Vector3Int>();
         map=transform.GetComponent<Tilemap>();
@@ -34,7 +33,6 @@ public class SeeThroughTiles : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if(!enabled) return;
-        isPlayerIn = true;
         playerGroundColCenterX = collision.bounds.center.x;
         extent = collision.bounds.extents.x;
         Vector3Int tempTile = map.WorldToCell(new Vector3(playerGroundColCenterX - extent - 0.5f, collision.bounds.center.y));
@@ -66,7 +64,6 @@ public class SeeThroughTiles : MonoBehaviour
     }
     private void OnTriggerExit2D(Collider2D collision)
     {
-        if(!isPlayerIn) RemoveTransparency();
 
     }
     void GetTilesRight(Vector3Int firstTileToShow,bool fullyTransparent=false)

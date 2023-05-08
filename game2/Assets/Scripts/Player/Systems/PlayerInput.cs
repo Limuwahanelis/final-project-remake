@@ -23,7 +23,7 @@ public class PlayerInput : MonoBehaviour
         {
             if (!_player.isGamePaused.value)
             {
-                if (Input.GetKeyDown(KeyCode.Escape)) SetPause(_player.isGamePaused.value);
+                //if (Input.GetKeyDown(KeyCode.Escape)) SetPause(_player.isGamePaused.value);
                 float direction = Input.GetAxisRaw("Horizontal");
                 Move(direction);
                 if (Input.GetButtonDown("Attack"))
@@ -39,10 +39,6 @@ public class PlayerInput : MonoBehaviour
                 }
                 if (Input.GetButtonDown("Interact")) Interact();
 
-            }
-            else
-            {
-                if (Input.GetKeyDown(KeyCode.Escape)) SetPause(_player.isGamePaused.value);
             }
         }
     }
@@ -66,25 +62,7 @@ public class PlayerInput : MonoBehaviour
     {
         _player.currentState.Slide();
     }
-    private void SetPause(bool isPaused)
-    {
-        if (isPaused)
-        {
-            Time.timeScale = 1f;
-            _player.isGamePaused.value = false;
-            darkPanel.SetActive(false);
-            pauseMenu.GetComponent<PauseMenu>().Unpause();
-        }
-        else
-        {
-            
-            _player.isGamePaused.value = true;
-            Time.timeScale = 0f;
-            darkPanel.SetActive(true);
-            pauseMenu.SetActive(true);
-        }
 
-    }
     public void DropBomb()
     {
         _player.currentState.DropBomb();

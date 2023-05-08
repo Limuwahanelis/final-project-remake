@@ -124,21 +124,42 @@ public class DestructableGround : MonoBehaviour
     //    while (map.GetTile(curTile))
     //    {
     //        map.SetTile(curTile, null);
-    //        Vector3Int tileLeft = map.WorldToCell(new Vector3(curTile.x-0.5f, curTile.y , 0));
-    //        Vector3Int tileRight = map.WorldToCell(new Vector3(curTile.x+1.01f, curTile.y , 0));
+    //        Vector3Int tileLeft = map.WorldToCell(new Vector3(curTile.x - 0.5f, curTile.y, 0));
+    //        Vector3Int tileRight = map.WorldToCell(new Vector3(curTile.x + 1.01f, curTile.y, 0));
     //        if (map.GetTile(tileRight))
     //        {
-    //            StartCoroutine( DestroyTileAtCellPos(tileRight));
+    //            StartCoroutine(DestroyTileAtCellPos(tileRight));
     //        }
     //        if (map.GetTile(tileLeft))
     //        {
-    //           StartCoroutine( DestroyTileAtCellPos(tileLeft));
+    //            StartCoroutine(DestroyTileAtCellPos(tileLeft));
     //        }
     //        DestroyTileAtCellPos(curTile);
-    //        curTile = map.WorldToCell(new Vector3(curTile.x , curTile.y - 0.5f, 0));
+    //        curTile = map.WorldToCell(new Vector3(curTile.x, curTile.y - 0.5f, 0));
+    //        yield return new WaitForSeconds(destructionDelay);
     //    }
     //}
-
+    //IEnumerator DestroyTilesUp()
+    //{
+    //    Vector3Int curTile = firstTileToDestroy; //map.WorldToCell(new Vector3(firstTileToDestroy.x + 1.01f, firstTileToDestroy.y, 0));
+    //    while (map.GetTile(curTile))
+    //    {
+    //        map.SetTile(curTile, null);
+    //        Vector3Int tileLeft = map.WorldToCell(new Vector3(curTile.x - 0.5f, curTile.y, 0));
+    //        Vector3Int tileRight = map.WorldToCell(new Vector3(curTile.x + 1.01f, curTile.y, 0));
+    //        if (map.GetTile(tileRight))
+    //        {
+    //            StartCoroutine(DestroyTileAtCellPos(tileRight));
+    //        }
+    //        if (map.GetTile(tileLeft))
+    //        {
+    //            StartCoroutine(DestroyTileAtCellPos(tileLeft));
+    //        }
+    //        DestroyTileAtCellPos(curTile);
+    //        curTile = map.WorldToCell(new Vector3(curTile.x, curTile.y + 1.01f, 0));
+    //        yield return new WaitForSeconds(destructionDelay);
+    //    }
+    //}
 
     //void DestroyTileAtCellPos(Vector3Int cellPos)
     //{

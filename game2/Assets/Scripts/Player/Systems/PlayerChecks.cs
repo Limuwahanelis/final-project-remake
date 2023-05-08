@@ -4,20 +4,20 @@ using UnityEngine;
 
 public class PlayerChecks : MonoBehaviour
 {
-    public LayerMask ground;
-    public float groundCheckWidth;
-    public float groundCheckHeight;
-    public Transform groundCheckPos;
-    public Transform slideColWallCheck;
-    public Transform wallCheckPos;
-    public Transform ceilingCheckPos;
-    public Transform wallCheck2Pos;
-    public float ceilingCheckWidth;
-    public float ceilingCheckHeight;
-    public float slideColWallCheckWidth;
-    public float slideColWallkHeight;
-    public float WallCheckWidth;
-    public float WallCheckHeight;
+    [SerializeField] LayerMask ground;
+    [SerializeField] float groundCheckWidth;
+    [SerializeField] float groundCheckHeight;
+    [SerializeField] Transform groundCheckPos;
+    [SerializeField] Transform slideColWallCheck;
+    [SerializeField] Transform wallCheckPos;
+    [SerializeField] Transform ceilingCheckPos;
+    [SerializeField] Transform wallCheck2Pos;
+    [SerializeField] float ceilingCheckWidth;
+    [SerializeField] float ceilingCheckHeight;
+    [SerializeField] float slideColWallCheckWidth;
+    [SerializeField] float slideColWallkHeight;
+    [SerializeField] float WallCheckWidth;
+    [SerializeField] float WallCheckHeight;
     private Player _player;
 
     private Collider2D potentialWallCol;

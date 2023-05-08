@@ -3,33 +3,36 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using static UnityEngine.Rendering.DebugUI;
+
 public class PauseMenu : MonoBehaviour
 {
-    public BoolReference isGamePaused;
-    public GameObject optionsPanel;
-    public GameObject buttons;
-
-    private void Start()
+    [SerializeField] BoolReference isGamePaused;
+    [SerializeField] GameObject darkPanel;
+    [SerializeField] GameObject pausePanel;
+    void Update()
     {
-    }
-    private void Update()
-    {
-        //if(Input.GetKeyDown(KeyCode.Escape))
-        //{
-        //    Unpause();
-        //}
-    }
-
-    public void Play()
-    {
-        SaveSystem.CreateTmpSave();
-        SceneManager.LoadScene(1);
+        if (Input.GetKeyDown(KeyCode.Escape))
+        { 
+            SetPause(!isGamePaused.value);
+        }
     }
     public void Exit()
     {
         Application.Quit();
     }
-
+    public void SetPause(bool value)
+    {
+        isGamePaused.value = value;
+        Time.timeScale = isGamePaused.value ? 0f:1f;
+        pausePanel.SetActive(isGamePaused.value);
+        darkPanel.SetActive(isGamePaused.value);
+       
+    }
+    public void ReturnToMainMenu()
+    {
+        SceneManager.LoadScene(0);
+    }
     public void ShowPanel(GameObject panel)
     {
         panel.SetActive(true);
@@ -37,19 +40,5 @@ public class PauseMenu : MonoBehaviour
     public void HidePanel(GameObject panel)
     {
         panel.SetActive(false);
-    }
-
-    public void Unpause()
-    {
-        optionsPanel.SetActive(false);
-        buttons.SetActive(true);
-        Time.timeScale = 1f;
-        //isGamePaused.value = false;
-        gameObject.SetActive(false);
-    }
-
-    public void ReturnToMainMenu()
-    {
-        SceneManager.LoadScene(0);
     }
 }

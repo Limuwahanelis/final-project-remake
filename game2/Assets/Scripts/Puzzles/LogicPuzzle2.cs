@@ -10,11 +10,11 @@ public class LogicPuzzle2 : Puzzle
     public InteractableTorch2[] torches;
     public TMP_Text text;
     public int numberToGet = 29;
-    int number = 0;
     public GameObject crystal;
-    [SerializeField] private bool solved = false;
     public TMP_Text riddleText;
     [SerializeField] float crystalSpeed;
+    [SerializeField] bool solved = false;
+    private int number = 0;
     void Start()
     {
     }
@@ -29,13 +29,8 @@ public class LogicPuzzle2 : Puzzle
         if (add) number += value;
         else number -= value;
         text.text = number.ToString();
-        if(solved) StartCoroutine(MoveCrystalCor());
-        if (number==numberToGet)
-        {
-            solved = true;
-            //gamMan.MarkPuzzleAsSolved(2);
-          
-        }
+        if (number == numberToGet) solved = true;
+        if (solved) StartCoroutine(MoveCrystalCor());
     }
     IEnumerator MoveCrystalCor()
     {
