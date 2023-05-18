@@ -7,8 +7,8 @@ public class SceneData
 {
     public List<bool> wasPickUpPicked=new List<bool>();
     public List<bool> wasPuzzleSolved=new List<bool>();
-
-    public SceneData(List<bool> pickUpValues, List<bool>puzzlesValues)
+    public bool wasShortcutUnlocked;
+    public SceneData(List<bool> pickUpValues, List<bool>puzzlesValues,bool isShortcutUnlocked)
     {
         for(int i=0;i< pickUpValues.Count;i++)
         {
@@ -18,6 +18,7 @@ public class SceneData
         {
             wasPuzzleSolved.Add(puzzleSol);
         }
+        wasShortcutUnlocked = isShortcutUnlocked;
     }
     public SceneData(SceneData sceneData)
     {
@@ -29,6 +30,7 @@ public class SceneData
         {
             wasPuzzleSolved.Add(puzzleSol);
         }
+        wasShortcutUnlocked = sceneData.wasShortcutUnlocked;
     }
 
     public SceneData()
