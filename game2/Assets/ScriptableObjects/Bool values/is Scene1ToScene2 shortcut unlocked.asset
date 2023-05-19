@@ -12,4 +12,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 288cfe99784b441478d8ed1552aa4c48, type: 3}
   m_Name: is Scene1ToScene2 shortcut unlocked
   m_EditorClassIdentifier: 
-  value: 0
+  value: 1

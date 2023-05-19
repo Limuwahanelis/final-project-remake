@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
+using static UnityEngine.Rendering.DebugUI;
 
 public class SceneStateManager : MonoBehaviour
 {
@@ -13,6 +14,7 @@ public class SceneStateManager : MonoBehaviour
     [SerializeField] BoolReference shortcutState;
     private void Start()
     {
+        if (shortcutState.value) UnlockShortcut?.Invoke();
         if (SaveSystem.tmpSave.sceneDatas == null)
         {
             List<bool> PickUpvalues = new List<bool>();
@@ -34,7 +36,8 @@ public class SceneStateManager : MonoBehaviour
         {
             pickUpsManager.DestroyPickedPickUps(SaveSystem.tmpSave.sceneDatas[sceneNum].wasPickUpPicked);
             puzzleManager.MarkPuzzlesAsSolved(SaveSystem.tmpSave.sceneDatas[sceneNum].wasPuzzleSolved);
-            if (shortcutState.value) UnlockShortcut?.Invoke();
+            shortcutState.value = SaveSystem.tmpSave.sceneDatas[sceneNum].wasShortcutUnlocked;
+            
         }
     }
 
@@ -45,8 +48,9 @@ public class SceneStateManager : MonoBehaviour
     public void ChangePuzzleState(int index,bool value)
     {
         SaveSystem.tmpSave.sceneDatas[sceneNum].wasPuzzleSolved[index] = value;
+       
     }
-    public void ChangeShortcutState()
+    public void ChangeShortcutStateToUnlocked()
     {
         shortcutState.value = true;
     }

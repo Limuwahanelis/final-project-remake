@@ -25,6 +25,7 @@ public class PlayerCamera : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        transform.position = player.transform.position+offset;
     }
     private void Update()
     {
