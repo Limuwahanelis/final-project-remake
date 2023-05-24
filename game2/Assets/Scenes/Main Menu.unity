@@ -1563,6 +1563,7 @@ GameObject:
   - component: {fileID: 6396541768223424496}
   - component: {fileID: 6396541768223424499}
   - component: {fileID: 6396541768223424500}
+  - component: {fileID: 6396541768223424501}
   m_Layer: 0
   m_Name: MainMenu
   m_TagString: Settings
@@ -1601,6 +1602,22 @@ MonoBehaviour:
   shortcutDataList:
   - {fileID: 11400000, guid: 35831671b98f1084695b38e2bbbc3b5d, type: 2}
   createSaveOnStart: 0
+--- !u!114 &6396541768223424501
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6396541768223424498}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 13956f273ed82f84081de2c109fefe65, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  resolutionDropdown: {fileID: 6396541768599199114}
+  refreshRateDropdown: {fileID: 6396541769607066836}
+  fullScreenToggle: {fileID: 6396541768814498526}
+  fullScreen: 0
 --- !u!222 &6396541768233979954
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -2956,7 +2973,7 @@ MonoBehaviour:
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 6396541768336785398}
+      - m_Target: {fileID: 6396541768223424501}
         m_TargetAssemblyTypeName: Settings, Assembly-CSharp
         m_MethodName: SetResolution
         m_Mode: 0
@@ -3905,7 +3922,7 @@ MonoBehaviour:
   onValueChanged:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 6396541768336785398}
+      - m_Target: {fileID: 6396541768223424501}
         m_TargetAssemblyTypeName: Settings, Assembly-CSharp
         m_MethodName: SetFullScreen
         m_Mode: 0
@@ -5244,7 +5261,7 @@ MonoBehaviour:
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 6396541768336785398}
+      - m_Target: {fileID: 6396541768223424501}
         m_TargetAssemblyTypeName: Settings, Assembly-CSharp
         m_MethodName: SelectRefreshRate
         m_Mode: 0

@@ -53,6 +53,10 @@ public class Settings : MonoBehaviour
         refreshRateDropdown.RefreshShownValue();
         resolutionDropdown.AddOptions(resolutionOptions[0]);
 
+        SetResolution(resolutionDropdown.options.Count - 1);
+        SelectRefreshRate(refreshRateDropdown.options.Count - 1);
+        SetFullScreen(true);
+
     }
     private void AddResolutionsToLists()
     {
@@ -144,6 +148,7 @@ public class Settings : MonoBehaviour
 
     public void SetFullScreen(bool isFullscreen)
     {
+        fullScreenToggle.isOn = isFullscreen;
         fullScreen = isFullscreen;
         Screen.fullScreen = isFullscreen;
     }
@@ -161,6 +166,7 @@ public class Settings : MonoBehaviour
         res.refreshRate = currentResIndex.refreshRateIndex;
 
         resolutionDropdown.value = currentResIndex.resolutionIndex;
+        refreshRateDropdown.value=currentResIndex.refreshRateIndex;
 
         Screen.SetResolution(res.width, res.height, fullScreen, refreshRates[currentResIndex.refreshRateIndex]);
 
