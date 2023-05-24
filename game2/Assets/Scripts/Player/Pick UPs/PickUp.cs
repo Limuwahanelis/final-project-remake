@@ -8,7 +8,7 @@ public abstract class PickUp : MonoBehaviour, IInteractable
     public string pickUpMessage;
     protected PlayerInteract _playerInteract;
     public GameObject canvas;
-    public bool pickedUp;
+    public BoolReference pickedUp;
 
     public virtual void Interact()
     {

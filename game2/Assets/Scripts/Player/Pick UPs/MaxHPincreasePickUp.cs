@@ -8,10 +8,12 @@ public class MaxHPincreasePickUp : PickUp
     //private GameManager gameMan;
     public int maxHPincrease;
     public IntReference playerMaxHealth;
+    [SerializeField] IntReference playerHealth;
     public override void Interact()
     {
         base.Interact();
         playerMaxHealth.value += maxHPincrease;
+        playerHealth.value+=maxHPincrease;
         _playerInteract.GetComponentInParent<PlayerHealthSystem>().IncreaseHealthBarMaxValue();
         Destroy(this.gameObject);
     }

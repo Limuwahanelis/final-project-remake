@@ -129,13 +129,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cafe8b4b9ec6d054dbd9367a2957f77d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHPincrease: 20
+  pickUpMessage: 
   canvas: {fileID: 6891622253012166293}
-  playerMaxHealth:
+  pickedUp:
     useConstant: 1
     constantValue: 0
     variable: {fileID: 0}
-  pickUpMessage: 
+  maxHPincrease: 20
+  playerMaxHealth:
+    useConstant: 0
+    constantValue: 0
+    variable: {fileID: 11400000, guid: b2881f7dd25a9fe4bb67dcd6ad8f6165, type: 2}
+  playerHealth:
+    useConstant: 0
+    constantValue: 0
+    variable: {fileID: 11400000, guid: f6479b69a49967346af2d1474f7a1cb1, type: 2}
 --- !u!61 &6891622251365253530
 BoxCollider2D:
   m_ObjectHideFlags: 0

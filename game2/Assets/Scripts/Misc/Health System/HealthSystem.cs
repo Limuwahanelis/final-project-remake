@@ -13,7 +13,7 @@ public class HealthSystem : MonoBehaviour,IDamagable
     public Action OnHitEvent;
     public Action OnDeathEvent;
     // Start is called before the first frame update
-    void Start()
+    protected void Start()
     {
         hpBar.SetMaxHealth(maxHP.value);
         currentHP.value = maxHP.value;

@@ -4,37 +4,29 @@ using UnityEngine;
 
 public class LogicPuzzle1 : Puzzle
 {
-    private bool solved;
     public InteractableTorch[] torches = new InteractableTorch[5];
-    //private bool[] torchState = new bool[5];
     public GameObject hpPickUp;
-   // private GameManager gamMan;
-    // Start is called before the first frame update
-    void Start()
+    private void Start()
     {
-       // gamMan = GameObject.FindGameObjectWithTag("GameManager").GetComponent<GameManager>();
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
+#if UNITY_EDITOR
+        if (solved)
+        {
+            MarkAsSolved();
+            hpPickUp.SetActive(true);
+        }
+#endif
     }
     public void CheckIfTorchesAreLit(int torchIndex)
     {
-        //torchState[torchIndex] = true;
         for(int i=0;i<5;i++)
         {
             if (!torches[i].fireActive) return;
         }
-        solved = true;
-       // gamMan.MarkPuzzleAsSolved(1);
         hpPickUp.SetActive(true);
         OnSolved?.Invoke(this);
     }
     public override void MarkAsSolved()
     {
-        solved = true;
         for (int i=0;i<5;i++)
         {
             torches[i].LightUp();

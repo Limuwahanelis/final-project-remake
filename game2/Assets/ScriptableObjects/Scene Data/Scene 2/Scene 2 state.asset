@@ -1,0 +1,19 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 25e4ff1e6c418414993d6eeac8140e8c, type: 3}
+  m_Name: Scene 2 state
+  m_EditorClassIdentifier: 
+  puzzleStates:
+  - {fileID: 11400000, guid: 3b1d3627a844b054bb096495e89faa06, type: 2}
+  pickupStates:
+  - {fileID: 11400000, guid: e89f7e7749f3a35449ec5ccebec0ddb0, type: 2}
+  shortcutState: {fileID: 11400000, guid: 35831671b98f1084695b38e2bbbc3b5d, type: 2}

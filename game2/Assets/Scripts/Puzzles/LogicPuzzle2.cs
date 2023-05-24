@@ -13,10 +13,18 @@ public class LogicPuzzle2 : Puzzle
     public GameObject crystal;
     public TMP_Text riddleText;
     [SerializeField] float crystalSpeed;
-    [SerializeField] bool solved = false;
     private int number = 0;
+    private bool completed;
     void Start()
     {
+#if UNITY_EDITOR
+        if (solved)
+        {
+            MarkAsSolved();
+            StartCoroutine(MoveCrystalCor());
+        }
+
+#endif
     }
 
     // Update is called once per frame
@@ -29,8 +37,8 @@ public class LogicPuzzle2 : Puzzle
         if (add) number += value;
         else number -= value;
         text.text = number.ToString();
-        if (number == numberToGet) solved = true;
-        if (solved) StartCoroutine(MoveCrystalCor());
+        if (number == numberToGet) completed = true;
+        if (completed) StartCoroutine(MoveCrystalCor());
     }
     IEnumerator MoveCrystalCor()
     {
@@ -46,11 +54,11 @@ public class LogicPuzzle2 : Puzzle
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if(!solved) riddleText.enabled = true;
+        if(!completed) riddleText.enabled = true;
     }
     private void OnTriggerExit2D(Collider2D collision)
     {
-        if(!solved) riddleText.enabled = false;
+        if(!completed) riddleText.enabled = false;
     }
 
     public override void MarkAsSolved()
@@ -60,7 +68,7 @@ public class LogicPuzzle2 : Puzzle
         torches[3].LightUp();
         torches[4].LightUp();
         text.text = numberToGet.ToString();
-        solved = true;
+        completed = true;
         StartCoroutine(MoveCrystalCor());
     }
 }

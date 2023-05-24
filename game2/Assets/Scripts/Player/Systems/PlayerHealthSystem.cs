@@ -9,10 +9,12 @@ public class PlayerHealthSystem : HealthSystem,IPushable
     public Player player;
     public Ringhandle pushHandle;
     public float pushForce=2f;
-    private void Start()
+    private new void Start()
     {
+        hpBar.SetMaxHealth(maxHP.value);
         hpBar.SetHealth(currentHP.value);
     }
+
     public override void TakeDamage(int dmg)
     {
         if (player.isAlive)
@@ -59,6 +61,7 @@ public class PlayerHealthSystem : HealthSystem,IPushable
     public void IncreaseHealthBarMaxValue()
     {
         hpBar.SetMaxHealth(maxHP.value);
+        hpBar.SetHealth(currentHP.value);
     }
 
     public void LoadData(PlayerData playerData)

@@ -16,9 +16,11 @@ public class AnimationDurationList : ScriptableObject
     public void RefreshList()
     {
         animations.Clear();
+        
         for (int i = 0; i < animatorController.layers[0].stateMachine.states.Length; i++)
         {
             AnimatorState state = animatorController.layers[0].stateMachine.states[i].state;
+            Debug.Log(state.name);
             if (state.motion == null)
             {
                 animations.Add(new Ann(state.name, 0)); 

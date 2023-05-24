@@ -17,13 +17,13 @@ public class PuzzleManager : MonoBehaviour
     }
     private void SavePuzzlepState(Puzzle puzzle)
     {
-        sceneSaveManager.ChangePickUpState(_puzzleList.IndexOf(puzzle), true);
+        sceneSaveManager.ChangePuzzleState(_puzzleList.IndexOf(puzzle), true);
     }
     public void MarkPuzzlesAsSolved(List<bool> isSolved)
     {
         for(int i=0;i<isSolved.Count;i++)
         {
-            _puzzleList[i].MarkAsSolved();
+            if(isSolved[i]) _puzzleList[i].MarkAsSolved();
         }
     }
     // Update is called once per frame

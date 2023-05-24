@@ -16,16 +16,16 @@ public static class SaveSystem
         return tmpSave.playerData;
     }
 
-    public static void CreateTmpSave()
+    public static void CreateTmpSave(List<SceneState> sceneStates,List<ShortcutState> shortcutStates)
     {
-        tmpSave = new SaveData();
+        tmpSave = new SaveData(sceneStates,shortcutStates);
     }
 
     public static void SaveGame(Player player, PlayerHealthSystem playerHealthSystem,int saveIndex)
     {
         PlayerData playerData = new PlayerData(player, playerHealthSystem, player.abilities);
         string today = DateTime.Today.ToString("dd/MM/yyyy");
-        SaveData saveData = new SaveData(today, saveIndex, playerData,tmpSave.sceneDatas);
+        SaveData saveData = new SaveData(today, saveIndex, playerData,tmpSave.sceneDatas,tmpSave.shortcutDatas);
         tmpSave = saveData;
         string json = JsonUtility.ToJson(saveData);
         if (!Directory.Exists(saveFolderPath))

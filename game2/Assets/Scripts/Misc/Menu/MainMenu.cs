@@ -1,3 +1,4 @@
+using Gamekit2D;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -5,10 +6,10 @@ using UnityEngine.SceneManagement;
 
 public class MainMenu : MonoBehaviour
 {
+    [SceneName] public string firstScene;
     public void Play()
     {
-        SaveSystem.CreateTmpSave();
-        SceneManager.LoadScene(1);
+        SceneManager.LoadScene(firstScene);
     }
     public void Exit()
     {

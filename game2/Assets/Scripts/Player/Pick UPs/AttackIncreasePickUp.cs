@@ -22,7 +22,7 @@ public class AttackIncreasePickUp : PickUp
         // gameMan.GetPlayer().GetComponent<PlayerCombat>().IncraseAttackDamage(attackIncrease);
         //gameMan.SetMessage(pickUpMessage);
         playerDamage.value += attackIncrease;
-        pickedUp = true;
+        pickedUp.value = true;
         //gameObject.SetActive(false);
         Destroy(this.gameObject);
     }

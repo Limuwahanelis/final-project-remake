@@ -11,9 +11,6 @@ public class SaveManager : MonoBehaviour
     // Start is called before the first frame update
     private void Awake()
     {
-#if UNITY_EDITOR
-        if(SaveSystem.tmpSave==null) SaveSystem.CreateTmpSave();
-#endif
     }
     void Start()
     {

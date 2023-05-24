@@ -1562,6 +1562,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6396541768223424496}
   - component: {fileID: 6396541768223424499}
+  - component: {fileID: 6396541768223424500}
   m_Layer: 0
   m_Name: MainMenu
   m_TagString: Settings
@@ -1581,6 +1582,25 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d611ed127161bf149bf098cdef07e99d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  firstScene: Scene1
+--- !u!114 &6396541768223424500
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6396541768223424498}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c2047b304fd7848408c78c0ad5672899, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sceneDataList:
+  - {fileID: 11400000, guid: 7cf575fd6c90de14f9bce2e0bd35fd60, type: 2}
+  - {fileID: 11400000, guid: 7a5f104603cbc744eb1f43289f7fee13, type: 2}
+  shortcutDataList:
+  - {fileID: 11400000, guid: 35831671b98f1084695b38e2bbbc3b5d, type: 2}
+  createSaveOnStart: 0
 --- !u!222 &6396541768233979954
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -3320,6 +3340,18 @@ MonoBehaviour:
       - m_Target: {fileID: 6396541768223424499}
         m_TargetAssemblyTypeName: MainMenu, Assembly-CSharp
         m_MethodName: Play
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 6396541768223424500}
+        m_TargetAssemblyTypeName: SaveCreator, Assembly-CSharp
+        m_MethodName: CreateTmpSave
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
