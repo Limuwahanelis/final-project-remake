@@ -28,7 +28,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 5767090225051829743}
-  m_RootOrder: 7
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &5767090224647340509
 GameObject:
@@ -88,9 +88,8 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 5767090225964765142}
-  - {fileID: 5767090225289914427}
   m_Father: {fileID: 5767090225051829743}
-  m_RootOrder: 4
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &5767090224874612181
 GameObject:
@@ -124,7 +123,7 @@ Transform:
   - {fileID: 5767090226002665601}
   - {fileID: 5767090224647340498}
   m_Father: {fileID: 5767090225051829743}
-  m_RootOrder: 6
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &5767090224951962574
 GameObject:
@@ -239,6 +238,7 @@ Transform:
   - {fileID: 5767090226663683083}
   - {fileID: 5767090224951962575}
   - {fileID: 5767090225971614432}
+  - {fileID: 5767090225289914427}
   - {fileID: 5767090224678561132}
   - {fileID: 5767090225420140676}
   - {fileID: 5767090224874612202}
@@ -331,11 +331,11 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5767090225289914426}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: -0.16099977, z: 0}
+  m_LocalPosition: {x: 0, y: -0.1609993, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 5767090224678561132}
-  m_RootOrder: 1
+  m_Father: {fileID: 5767090225051829743}
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!70 &5767090225289914424
 CapsuleCollider2D:
@@ -384,7 +384,7 @@ Transform:
   - {fileID: 5767090226273579266}
   - {fileID: 5767090226632297063}
   m_Father: {fileID: 5767090225051829743}
-  m_RootOrder: 5
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &5767090225606212754
 GameObject:
@@ -1137,7 +1137,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &5767090226632297063
 Transform:
   m_ObjectHideFlags: 0
