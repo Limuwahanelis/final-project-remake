@@ -14,6 +14,7 @@ public class InteractableTorch : MonoBehaviour,IInteractable
     public int torchIndex;
     public LogicPuzzle1 LogicPuzzle1;
     private PlayerInteract _playerInteract;
+    private bool _canInteract = true;
     // Start is called before the first frame update
     void Awake()
     {
@@ -32,13 +33,14 @@ public class InteractableTorch : MonoBehaviour,IInteractable
 
     public void Interact()
     {
-        if (mainLight.enabled) return;
+        if (!_canInteract) return;
         mainLight.enabled = true;
         fireActive = !fireActive;
         fire.SetActive(fireActive);
         torch1.OtherTorchInteract();
         torch2.OtherTorchInteract();
         LogicPuzzle1.CheckIfTorchesAreLit(torchIndex);
+        SetInteraction(!fireActive);
     }
     public void OtherTorchInteract()
     {
@@ -49,18 +51,28 @@ public class InteractableTorch : MonoBehaviour,IInteractable
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
+        if (!_canInteract) return;
         Debug.Log(collision.tag);
             canvas.SetActive(true);
         _playerInteract = collision.GetComponentInParent<PlayerInteract>();
         _playerInteract.setObjectToInteract(this);
-        //gameMan.GetPlayer().GetComponent<PlayerInteract>().setObjectToInteract(this);
     }
     private void OnTriggerExit2D(Collider2D collision)
     {
-            canvas.SetActive(false);
+        if (!_canInteract) return;
+        canvas.SetActive(false);
         _playerInteract = collision.GetComponentInParent<PlayerInteract>();
-        _playerInteract.setObjectToInteract(this);
-        // gameMan.GetPlayer().GetComponent<PlayerInteract>().RemoveObjectToInteract();
+        _playerInteract.RemoveObjectToInteract();
+    }
+    public void SetInteraction(bool value)
+    {
+        _canInteract = false;
+        if(!_canInteract)
+        {
+            canvas.SetActive(false);
+            if(_playerInteract) _playerInteract.RemoveObjectToInteract();
+
+        }
     }
     public bool GetState()
     {

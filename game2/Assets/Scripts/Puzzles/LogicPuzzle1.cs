@@ -30,6 +30,7 @@ public class LogicPuzzle1 : Puzzle
         for (int i=0;i<5;i++)
         {
             torches[i].LightUp();
+            torches[i].SetInteraction(false);
             torches[i].enabled = false;
             torches[i].transform.GetComponent<Collider2D>().enabled = false;
         }
