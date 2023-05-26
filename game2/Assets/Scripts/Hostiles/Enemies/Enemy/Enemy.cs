@@ -13,7 +13,7 @@ public abstract class Enemy : MonoBehaviour
     [SerializeField]
     private float invicibilityProgress=0.2f;
     public BoolReference isGamePaused;
-    protected AnimationManager _anim;
+    public AnimationManager _anim;
     protected HealthSystem hpSys;
     protected EnemyAudioManager _audioMan;
     public float speed;

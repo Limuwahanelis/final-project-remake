@@ -139,7 +139,7 @@ public class BossCrystal : MonoBehaviour
         endAttack = false;
         _rotateToTarget = false;
         isBackInPos = false;
-        beam.transform.localScale = new Vector3(2, 1, 1);
+        beam.transform.localScale = new Vector3(2, 0, 1);
         //if (cor != null) StopCoroutine(cor);
     }
     public void SetTarget(Vector3 target)
