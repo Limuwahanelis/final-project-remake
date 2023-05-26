@@ -1,9 +1,11 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class BossCrystalManager : MonoBehaviour
 {
+    public Action OnAttackEnded;
     public BossCrystalAttackPattern[] patterns;
     public BossCrystal[] crystals;
     public Boss boss;
@@ -40,7 +42,7 @@ public class BossCrystalManager : MonoBehaviour
                     crystal.SetRotate(true);
                 }
                 crystalsAreMovingBack = false;
-                boss.StartAttacking();
+                OnAttackEnded?.Invoke();
             }
         }
         if(moveThemBack)
