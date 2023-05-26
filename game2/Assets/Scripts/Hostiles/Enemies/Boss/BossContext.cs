@@ -4,26 +4,21 @@ using UnityEngine;
 
 public class BossContext
 {
-    public GameObject missilePrefab;
-    public Vector3 missileSpawnPos;
     public BossAudioManager bossAudio;
+    public BossCrystalManager crystals;
+    public GameObject[] beams;
+    public GameObject missilePrefab;
+    public Transform playerTrans;
+    public Vector3 missileSpawnPos;
+    public Vector3 attackPos;
+    public Vector3 vulnerablePos;
+    public Vector3 delayedBeamPos;
     public float speed;
     public float vulnerableTime;
+    public float attackDelay;
     public int attackPatten;
-    public BossCrystalManager crystals;
     public BossContext()
     {
 
-    }
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
     }
 }

@@ -5,10 +5,12 @@ using UnityEngine;
 public abstract class BossState
 {
     protected Boss _boss;
+    protected BossContext _context;
 
-    public BossState (Boss boss)
+    public BossState (Boss boss,BossContext bossContext)
     {
         _boss = boss;
+        _context = bossContext;
     }
     public virtual void Attack() { }
     public virtual void AttackIsOver() { }

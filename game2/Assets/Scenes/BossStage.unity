@@ -598,6 +598,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 5767090225964765143, guid: a6aeac9b7ab8e6544ac4cae3fa5408e2, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5767090226080053568, guid: a6aeac9b7ab8e6544ac4cae3fa5408e2, type: 3}
       propertyPath: m_LocalPosition.y
       value: 1.4016347
@@ -605,7 +609,7 @@ PrefabInstance:
     - target: {fileID: 5767090226136095776, guid: a6aeac9b7ab8e6544ac4cae3fa5408e2, type: 3}
       propertyPath: hpBar
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 2049014151}
     - target: {fileID: 5767090226136095776, guid: a6aeac9b7ab8e6544ac4cae3fa5408e2, type: 3}
       propertyPath: currentHP.variable
       value: 
@@ -614,6 +618,22 @@ PrefabInstance:
       propertyPath: currentHP.useConstant
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5767090226136095779, guid: a6aeac9b7ab8e6544ac4cae3fa5408e2, type: 3}
+      propertyPath: darkPanel
+      value: 
+      objectReference: {fileID: 1799549815}
+    - target: {fileID: 5767090226136095779, guid: a6aeac9b7ab8e6544ac4cae3fa5408e2, type: 3}
+      propertyPath: pauseMenu
+      value: 
+      objectReference: {fileID: 502478492}
+    - target: {fileID: 5767090226136095782, guid: a6aeac9b7ab8e6544ac4cae3fa5408e2, type: 3}
+      propertyPath: darkPanel
+      value: 
+      objectReference: {fileID: 1799549815}
+    - target: {fileID: 5767090226136095782, guid: a6aeac9b7ab8e6544ac4cae3fa5408e2, type: 3}
+      propertyPath: gameOverScreen
+      value: 
+      objectReference: {fileID: 1152853076}
     - target: {fileID: 5767090226136095783, guid: a6aeac9b7ab8e6544ac4cae3fa5408e2, type: 3}
       propertyPath: m_RootOrder
       value: 2
@@ -15154,6 +15174,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7a5400cb04c050b459a5ce749799f0f2, type: 3}
+--- !u!1 &502478492 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7503652839548516833, guid: 7cff4dbd432583245a88bf26ee0a3231, type: 3}
+  m_PrefabInstance: {fileID: 1825747177}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &502907636
 GameObject:
   m_ObjectHideFlags: 0
@@ -21261,6 +21286,11 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 2878900357912708340, guid: 1d29ef22c933ea147accbf26325cac65, type: 3}
   m_PrefabInstance: {fileID: 226672029}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1152853076 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7503652838210072112, guid: 7cff4dbd432583245a88bf26ee0a3231, type: 3}
+  m_PrefabInstance: {fileID: 1825747177}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1178223321
 GameObject:
   m_ObjectHideFlags: 0
@@ -21893,6 +21923,11 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!1 &1799549815 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7503652839512631817, guid: 7cff4dbd432583245a88bf26ee0a3231, type: 3}
+  m_PrefabInstance: {fileID: 1825747177}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1825747177
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -22279,10 +22314,13 @@ MonoBehaviour:
     useConstant: 0
     constantValue: 0
     variable: {fileID: 11400000, guid: 5334db362bf6ac146a92759cd4098315, type: 2}
+  _anim: {fileID: 0}
   speed: 3.5
   dmg: 0
   credits: {fileID: 1268265665}
-  beams:
+  audio: {fileID: 1996189638}
+  player: {fileID: 706287672}
+  _beams:
   - {fileID: 999713495}
   - {fileID: 1147604190}
   - {fileID: 843278574}
@@ -22293,19 +22331,13 @@ MonoBehaviour:
   - {fileID: 2083416354}
   - {fileID: 1228692604}
   - {fileID: 34679336}
-  audio: {fileID: 1996189638}
-  player: {fileID: 706287672}
-  missileSpawn: {fileID: 2067564746}
-  missilePrefab: {fileID: 3341422721347600602, guid: 983553383cb83f94c920dcded3d5aa43, type: 3}
-  crystals: {fileID: 1996189634}
-  delayedBeamPos: {x: 0, y: 0, z: 0}
-  attackTrans: {fileID: 2016374956}
-  vulnerableTrans: {fileID: 1673489490}
-  attackDelay: 1
-  vulnerableTime: 2
-  attackPos: {x: 0, y: 0, z: 0}
-  vulnerablePos: {x: 0, y: 0, z: 0}
-  attackPatten: 1
+  _missileSpawn: {fileID: 2067564746}
+  _missilePrefab: {fileID: 3341422721347600602, guid: 983553383cb83f94c920dcded3d5aa43, type: 3}
+  _crystals: {fileID: 1996189634}
+  _attackTrans: {fileID: 2016374956}
+  _vulnerableTrans: {fileID: 1673489490}
+  _delayedBeamPos: {x: 0, y: 0, z: 0}
+  _vulnerableTime: 2
 --- !u!114 &1996189634
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -22540,6 +22572,17 @@ Transform:
   m_Father: {fileID: 1996189632}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2049014151 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7503652838782564320, guid: 7cff4dbd432583245a88bf26ee0a3231, type: 3}
+  m_PrefabInstance: {fileID: 1825747177}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 19fbf7b73cb5a824b9f502a88aee431d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &2063587536 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 2878900357912708347, guid: 1d29ef22c933ea147accbf26325cac65, type: 3}

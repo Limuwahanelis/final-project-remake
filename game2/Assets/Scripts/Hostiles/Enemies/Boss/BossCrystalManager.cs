@@ -57,7 +57,6 @@ public class BossCrystalManager : MonoBehaviour
     }
     IEnumerator CrystalAttacksCor()
     {
-        Debug.Log("starting cor patt");
         startAttacks = false;
         foreach (BossCrystalAttackPattern pattern in patterns)
         {
@@ -65,7 +64,6 @@ public class BossCrystalManager : MonoBehaviour
             while (!pattern.PatternHasEnded) yield return null;
             yield return new WaitForSeconds(patternDelay);
         }
-        Debug.Log("End patterning");
         moveThemBack = true;
     }
 

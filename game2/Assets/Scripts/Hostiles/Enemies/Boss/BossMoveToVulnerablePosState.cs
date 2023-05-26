@@ -13,7 +13,7 @@ public class BossMoveToVulnerablePosState : BossState
     /// <param name="nextState">state which should be entered after "vulnerable pos -> wait -> attack pos" cycle if goToAttackPosNext param is se to true.
     /// Otherwise goes to this state</param>
     /// <param name="goToAttackPosNext"> </param>
-    public BossMoveToVulnerablePosState(Boss boss,BossState nextState, bool goToAttackPosNext=true) : base(boss)
+    public BossMoveToVulnerablePosState(Boss boss,BossState nextState,BossContext context ,bool goToAttackPosNext=true) : base(boss, context)
     {
         _nextState = nextState;
         _goToAttackPosNext = goToAttackPosNext;
@@ -21,7 +21,7 @@ public class BossMoveToVulnerablePosState : BossState
 
     public override void Update()
     {
-        MoveToPosition(_boss.vulnerablePos);
+        MoveToPosition(_context.vulnerablePos);
     }
     public override void SetUpState()
     {
@@ -32,7 +32,7 @@ public class BossMoveToVulnerablePosState : BossState
         float step = _boss.speed * Time.deltaTime;
         _boss.transform.position = Vector3.MoveTowards(_boss.transform.position, pos, step);
         if (Vector3.Distance(_boss.transform.position, pos) > 0.001f) return;
-        if(_goToAttackPosNext) _boss.ChangeState(new BossWaitingState(_boss,_nextState,_boss.vulnerableTime));
+        if(_goToAttackPosNext) _boss.ChangeState(new BossWaitingState(_boss,_nextState,_context,_context.vulnerableTime));
         else _boss.ChangeState(_nextState);
 
     }
