@@ -12,5 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 71bf5775e289d1c4b8c06223f29dccd4, type: 3}
   m_Name: Boss
   m_EditorClassIdentifier: 
-  animations: []
-  animatorController: {fileID: 0}
+  animations:
+  - name: Idle
+    duration: 1.1333333
+  - name: missile attack1
+    duration: 1.0333333
+  - name: Dead
+    duration: 0.51666665
+  animatorController: {fileID: 9100000, guid: 173f96340811938498e465bf7a2ed7fd, type: 2}

@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEditor;
 #if UNITY_EDITOR
 using UnityEditor.Animations;
 #endif
@@ -15,19 +16,28 @@ public class AnimationDurationList : ScriptableObject
     public AnimatorController animatorController;
     public void RefreshList()
     {
+        SerializedObject serializedObject = new SerializedObject(this);
+        SerializedProperty serializedProperty = serializedObject.FindProperty("animations");
         animations.Clear();
-        
+        serializedObject.Update();
         for (int i = 0; i < animatorController.layers[0].stateMachine.states.Length; i++)
         {
             AnimatorState state = animatorController.layers[0].stateMachine.states[i].state;
             Debug.Log(state.name);
             if (state.motion == null)
             {
-                animations.Add(new Ann(state.name, 0)); 
+                serializedProperty.InsertArrayElementAtIndex(i);
+                Ann tmp2 = new Ann(state.name, 0);
+                serializedProperty.GetArrayElementAtIndex(i).managedReferenceValue = tmp2;
+                serializedProperty.GetArrayElementAtIndex(i).FindPropertyRelative("name").stringValue = tmp2.name;
+                serializedProperty.GetArrayElementAtIndex(i).FindPropertyRelative("duration").floatValue = tmp2.duration;
                 continue;
             }
-            animations.Add(new Ann(state.name, state.motion.averageDuration));
+            serializedProperty.InsertArrayElementAtIndex(i);
+            serializedProperty.GetArrayElementAtIndex(i).FindPropertyRelative("name").stringValue = state.name;
+            serializedProperty.GetArrayElementAtIndex(i).FindPropertyRelative("duration").floatValue = state.motion.averageDuration;
         }
+        serializedObject.ApplyModifiedProperties();
     }
 #endif
 }
