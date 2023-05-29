@@ -45,6 +45,7 @@ public class InteractableTorch : MonoBehaviour,IInteractable
     public void OtherTorchInteract()
     {
         fireActive = !fireActive;
+        _canInteract = !_canInteract;
         fire.SetActive(fireActive);
         mainLight.enabled = !mainLight.enabled;
         
