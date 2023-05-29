@@ -8,11 +8,13 @@ public class PauseMenu : MonoBehaviour
     [SerializeField] BoolReference isGamePaused;
     [SerializeField] GameObject darkPanel;
     [SerializeField] GameObject pausePanel;
+    [SerializeField] GameObject savePanel;
     void Update()
     {
         if (Input.GetKeyDown(KeyCode.Escape))
         { 
             SetPause(!isGamePaused.value);
+            SetPausePanel(isGamePaused.value);
         }
     }
     public void Exit()
@@ -23,9 +25,20 @@ public class PauseMenu : MonoBehaviour
     {
         isGamePaused.value = value;
         Time.timeScale = isGamePaused.value ? 0f:1f;
-        pausePanel.SetActive(isGamePaused.value);
         darkPanel.SetActive(isGamePaused.value);
-       
+        if(!isGamePaused.value)
+        {
+            SetSavePanel(false);
+            SetPausePanel(false);
+        }
+    }
+    public void SetPausePanel(bool value)
+    {
+        pausePanel.SetActive(value);
+    }
+    public void SetSavePanel(bool value)
+    {
+        savePanel.SetActive(value);
     }
     public void ReturnToMainMenu()
     {

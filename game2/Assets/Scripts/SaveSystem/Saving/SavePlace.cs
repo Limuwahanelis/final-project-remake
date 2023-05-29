@@ -4,17 +4,15 @@ using UnityEngine;
 
 public class SavePlace : MonoBehaviour,IInteractable
 {
-    [SerializeField]
-    private SaveMenu _saveMenu;
+    [SerializeField] private SaveMenu _saveMenu;
+    [SerializeField] private PauseMenu _pauseMenu;
     public BoolReference isGamePaused;
     public void Interact()
     {
-        //SaveSystem.SavePlayerData(_player, _playerHealthSystem);
         Time.timeScale = 0f;
-        isGamePaused.value = true;
-        _saveMenu.gameObject.SetActive(true);
+        _pauseMenu.SetPause(true);
+        _pauseMenu.SetSavePanel(true);
         _saveMenu.DescribeSaveButtons();
-        Debug.Log("saved");
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
