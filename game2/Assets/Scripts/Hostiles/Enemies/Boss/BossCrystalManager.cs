@@ -1,9 +1,11 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class BossCrystalManager : MonoBehaviour
 {
+    public Action OnAttackEnded;
     public BossCrystalAttackPattern[] patterns;
     public BossCrystal[] crystals;
     public Boss boss;
@@ -40,7 +42,7 @@ public class BossCrystalManager : MonoBehaviour
                     crystal.SetRotate(true);
                 }
                 crystalsAreMovingBack = false;
-                boss.StartAttacking();
+                OnAttackEnded?.Invoke();
             }
         }
         if(moveThemBack)
@@ -55,7 +57,6 @@ public class BossCrystalManager : MonoBehaviour
     }
     IEnumerator CrystalAttacksCor()
     {
-        Debug.Log("starting cor patt");
         startAttacks = false;
         foreach (BossCrystalAttackPattern pattern in patterns)
         {
@@ -63,7 +64,6 @@ public class BossCrystalManager : MonoBehaviour
             while (!pattern.PatternHasEnded) yield return null;
             yield return new WaitForSeconds(patternDelay);
         }
-        Debug.Log("End patterning");
         moveThemBack = true;
     }
 

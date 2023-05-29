@@ -26,7 +26,7 @@ public class EnemyAudioManager : MonoBehaviour
     {
         walkingAudioEvent.Play(audioSource);
     }
-    public void PlayAttackSound()
+    public virtual void PlayAttackSound()
     {
         combatAudioEvent.Play(audioSource);
     }
