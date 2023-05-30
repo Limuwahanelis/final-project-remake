@@ -455,6 +455,11 @@ PrefabInstance:
     m_RemovedComponents:
     - {fileID: 7449939610684634529, guid: 1d29ef22c933ea147accbf26325cac65, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 1d29ef22c933ea147accbf26325cac65, type: 3}
+--- !u!4 &204283318 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 5767090226136095783, guid: a6aeac9b7ab8e6544ac4cae3fa5408e2, type: 3}
+  m_PrefabInstance: {fileID: 243493871}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &220942188
 GameObject:
   m_ObjectHideFlags: 0
@@ -16062,17 +16067,6 @@ PrefabInstance:
     m_RemovedComponents:
     - {fileID: 7449939610684634529, guid: 1d29ef22c933ea147accbf26325cac65, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 1d29ef22c933ea147accbf26325cac65, type: 3}
---- !u!114 &706287672 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 5767090226136095782, guid: a6aeac9b7ab8e6544ac4cae3fa5408e2, type: 3}
-  m_PrefabInstance: {fileID: 243493871}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 02a51b4eddc92ca4eb41595e974d0578, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &746465410
 GameObject:
   m_ObjectHideFlags: 0
@@ -22317,9 +22311,9 @@ MonoBehaviour:
   _anim: {fileID: 0}
   speed: 3.5
   dmg: 0
-  credits: {fileID: 1268265665}
-  audio: {fileID: 1996189638}
-  player: {fileID: 706287672}
+  _credits: {fileID: 1268265665}
+  _bossAudio: {fileID: 1996189638}
+  _playerTrans: {fileID: 204283318}
   _beams:
   - {fileID: 999713495}
   - {fileID: 1147604190}
