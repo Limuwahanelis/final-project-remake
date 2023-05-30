@@ -9,7 +9,7 @@ public class PlayerDeadState : PlayerState
         _player.anim.SetAnimator(true);
         player.playerMovement.StopPlayer();
         player.playerMovement.ChangeRb2DMat(null);
-        //player.normalColliders.SetActive(false);
+        //_player.normalColliders.SetActive(false);
         player.anim.PlayAnimation("Dead");
         player.isAlive = false;
     }

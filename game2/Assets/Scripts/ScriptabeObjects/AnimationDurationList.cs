@@ -27,7 +27,6 @@ public class AnimationDurationList : ScriptableObject
             {
                 serializedProperty.InsertArrayElementAtIndex(i);
                 Ann tmp2 = new Ann(state.name, 0);
-                serializedProperty.GetArrayElementAtIndex(i).managedReferenceValue = tmp2;
                 serializedProperty.GetArrayElementAtIndex(i).FindPropertyRelative("name").stringValue = tmp2.name;
                 serializedProperty.GetArrayElementAtIndex(i).FindPropertyRelative("duration").floatValue = tmp2.duration;
                 continue;

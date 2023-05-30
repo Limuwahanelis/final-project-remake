@@ -24,7 +24,7 @@ public class PlayerWallHangState : PlayerState
 
     public override void Jump()
     {
-        _player.playerMovement.MovePlayer(0); // to don't stop player after jump
+        _player.playerMovement.MovePlayer(0); // to don't stop _player after jump
         _player.GetComponentInChildren<SpriteRenderer>().sprite = _player.playerMovement.wallJumpSprite;
         _player.playerMovement.SetGravityScale(2);
         _player.playerMovement.Jump();//WallJump();

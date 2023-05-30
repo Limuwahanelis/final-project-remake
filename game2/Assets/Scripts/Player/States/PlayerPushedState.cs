@@ -9,7 +9,7 @@ public class PlayerPushedState : PlayerState
         _player = player;
 
         
-        //player.anim.PlayAnimation("Empty");
+        //_player.anim.PlayAnimation("Empty");
 
         
     }
