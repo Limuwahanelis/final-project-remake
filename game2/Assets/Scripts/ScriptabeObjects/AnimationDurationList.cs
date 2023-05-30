@@ -23,7 +23,6 @@ public class AnimationDurationList : ScriptableObject
         for (int i = 0; i < animatorController.layers[0].stateMachine.states.Length; i++)
         {
             AnimatorState state = animatorController.layers[0].stateMachine.states[i].state;
-            Debug.Log(state.name);
             if (state.motion == null)
             {
                 serializedProperty.InsertArrayElementAtIndex(i);

@@ -98,7 +98,7 @@ public class PlayerMovement : MonoBehaviour
     {
         _rb.velocity = new Vector3(0, 0, 0);
         _rb.AddForce(new Vector2(0, jumpStrength));
-        _player.isJumping = false;
+       // _player.isJumping = false;
     }
 
     public bool CheckIfPlayerIsFalling()
@@ -113,7 +113,7 @@ public class PlayerMovement : MonoBehaviour
         _player.ChangeState(new PlayerPushedState(_player));
         _rb.AddForce(PushForce, ForceMode2D.Impulse);
         
-        StartCoroutine(PushCor());
+        //StartCoroutine(PushCor());
         
     }
     public void PushPlayer(playerDirection pushDirection,Vector3 PushForce)
@@ -130,7 +130,7 @@ public class PlayerMovement : MonoBehaviour
         _player.ChangeState(new PlayerPushedState(_player));
         _rb.AddForce(PushForce, ForceMode2D.Impulse);
 
-        StartCoroutine(PushCor());
+       // StartCoroutine(PushCor());
 
     }
     public void SetGravityScale(float value) // normal scale is 2
@@ -159,11 +159,5 @@ public class PlayerMovement : MonoBehaviour
         _player.isJumping = false;
         _player.ChangeState(new PlayerInAirState(_player));
     }
-    public IEnumerator PushCor()
-    {
-        while (_player.isOnGround) yield return null;
-        _player.isInAirAfterPush = true;
-        _rb.sharedMaterial = _player.noFrictionMat;
-        //_player.ChangeState(new PlayerPushedState(_player));
-    }
+
 }

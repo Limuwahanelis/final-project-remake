@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class PlayerJumpingState : PlayerState
 {
-    private bool _isJumping;
+    private Coroutine _jumpCor;
     public PlayerJumpingState(Player player):base(player)
     { }
     public override void Update()
@@ -13,15 +13,21 @@ public class PlayerJumpingState : PlayerState
     }
     public override void Jump()
     {
-        if (_isJumping) return;
-        //_player.playerMovement.Jump();
-        _player.StartCoroutine(_player.playerMovement.JumpCor());
+    }
+    public override void SetUpState()
+    {
+        _player.playerMovement.ChangeRb2DMat(_player.noFrictionMat);
         _player.anim.PlayAnimation("Jump");
-        _player.StartCoroutine(_player.WaitAndExecuteFunction(_player.anim.GetAnimationLength("Jump"), () =>
+        _player.isJumping = true;
+        _jumpCor = _player.StartCoroutine(_player.WaitAndExecuteFunction(_player.anim.GetAnimationLength("Jump"), () =>
         {
             _player.playerMovement.Jump();
+            _player.ChangeState(new PlayerInAirState(_player));
         }));
-        _isJumping = true;
+    }
+    public override void InterruptState()
+    {
+        _player.StopCoroutine(_jumpCor);
     }
 
 

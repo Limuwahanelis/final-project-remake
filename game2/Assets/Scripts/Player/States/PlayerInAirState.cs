@@ -16,10 +16,11 @@ public class PlayerInAirState : PlayerState
             if (_player.playerMovement.CheckIfPlayerIsFalling())
             {
                 _player.anim.PlayAnimation("Fall");
+                _player.isJumping = false;
                 _player.playerMovement.ChangeRb2DMat(_player.noFrictionMat);
             }
         }
-        if (_player.isOnGround && Mathf.Abs(_player.playerMovement.GetPlayerVelocity().y)<0.0004 )
+        if (_player.isOnGround && Mathf.Abs(_player.playerMovement.GetPlayerVelocity().y)<0.0004 && !_player.isJumping )
         {
             _player.playerMovement.ChangeRb2DMat(null);
             _player.ChangeState(new PlayerNormalState(_player));

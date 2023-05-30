@@ -16,7 +16,7 @@ public class PlayerNormalState : PlayerState
         _isMoving = false;
         _player.playerMovement.StopPlayerOnXAxis();
         _player.ChangeState(new PlayerJumpingState(_player));
-        _player.currentState.Jump();
+        //_player.currentState.Jump();
     }
 
     public override void Move(float direction)

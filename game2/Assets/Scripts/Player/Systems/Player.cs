@@ -66,6 +66,8 @@ public class Player : MonoBehaviour
     }
     public void ChangeState(PlayerState newState)
     {
+        Debug.Log(newState.GetType());
+        currentState.InterruptState();
         currentState = newState;
         currentState.SetUpState();
     }

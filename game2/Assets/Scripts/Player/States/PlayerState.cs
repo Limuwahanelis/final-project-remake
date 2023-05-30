@@ -18,6 +18,7 @@ public abstract class PlayerState
 
     public virtual void SetUpState() { }
 
-    public virtual void Slide() {; }
+    public virtual void Slide() { }
+    public virtual void InterruptState() { }
     public abstract void Update();
 }

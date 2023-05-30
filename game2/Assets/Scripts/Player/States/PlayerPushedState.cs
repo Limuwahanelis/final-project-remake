@@ -28,9 +28,18 @@ public class PlayerPushedState : PlayerState
 
     public override void SetUpState()
     {
+        
         _player.anim.PlayAnimation("Idle");
         _player.anim.SetAnimator(false);
         _player.playerMovement.StopPlayer();
         _player.GetComponentInChildren<SpriteRenderer>().sprite = _player.playerCombat.playerHitSprite;
+        _player.playerMovement.StartCoroutine(PushCor());
+    }
+    public IEnumerator PushCor()
+    {
+        while (_player.isOnGround) yield return null;
+        _player.isInAirAfterPush = true;
+        _player.playerMovement.ChangeRb2DMat(_player.noFrictionMat);
+        //_player.ChangeState(new PlayerPushedState(_player));
     }
 }
