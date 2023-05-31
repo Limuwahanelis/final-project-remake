@@ -57,6 +57,8 @@ public class PlayerChecks : MonoBehaviour
         {
             yield return null;
         }
+        _player.slideColliders.SetActive(false);
+        _player.normalColliders.SetActive(true);
         _player.StopAllCoroutines();
         _player.ChangeState(new PlayerNormalState(_player));
         
