@@ -25,6 +25,12 @@ public class Boss : Enemy
     // Start is called before the first frame update
     void Start()
     {
+        _isAlive = false;
+        Invoke("SetUp", 1f);
+
+    }
+    private void SetUp()
+    {
         _bossContext = new BossContext()
         {
             attackPatten = 1,
@@ -44,9 +50,10 @@ public class Boss : Enemy
 
         _anim = GetComponent<AnimationManager>();
         hpSys = GetComponent<HealthSystem>();
-        hpSys.OnDeathEvent = ()=> { 
-            ChangeState(new BossMoveToVulnerablePosState(this,new BossDeadState(this, _bossContext), _bossContext, false));
+        hpSys.OnDeathEvent = () => {
+            ChangeState(new BossMoveToVulnerablePosState(this, new BossDeadState(this, _bossContext), _bossContext, false));
         };
+        _isAlive = true;
         ChangeState(new PlayerPosBeamAttackBosState(this, _bossContext));
     }
 
