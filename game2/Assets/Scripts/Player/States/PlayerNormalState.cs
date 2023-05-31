@@ -57,6 +57,7 @@ public class PlayerNormalState : PlayerState
     }
     public override void DropBomb()
     {
-        _player.ChangeState(new PlayerDropBombState(_player));
+        if(_player.abilities.CheckIfAbilityIsUnlocked(AbilityList.Abilities.BOMB_DROP)) _player.ChangeState(new PlayerDropBombState(_player));
+
     }
 }
