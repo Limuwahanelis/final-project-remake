@@ -10,20 +10,29 @@ public class SceneTransition : MonoBehaviour
 {
 
     [SceneName] public string sceneToLoad;
-    [SerializeField] SceneTransitionManager.TransitionTags transitionTag;
-    [SerializeField] Transform playerSpawnPos;
-    [SerializeField] GameObject player;
+    [SerializeField] RectTransform _transitionCircleTransform;
+    [SerializeField] SceneTransitionManager.TransitionTags _transitionTag;
+    [SerializeField] Transform _playerSpawnPos;
+    [SerializeField] GameObject _player;
+    [SerializeField] Animator _anim;
     private void Start()
     {
-        if(SceneTransitionManager.tagToTeleportPlayer == transitionTag)
+        if(SceneTransitionManager.tagToTeleportPlayer == _transitionTag)
         {
-            player.transform.position = playerSpawnPos.position;
+            _anim.SetTrigger("FadeIn");
+            _player.transform.position = _playerSpawnPos.position;
         }
     }
 
     public void Load()
     {
-        SceneTransitionManager.tagToTeleportPlayer = transitionTag;
+        StartCoroutine(TransitionCor());
+    }
+    IEnumerator TransitionCor()
+    {
+        _anim.SetTrigger("FadeOut");
+        yield return new WaitForSeconds(0.7f);
+        SceneTransitionManager.tagToTeleportPlayer = _transitionTag;
         SceneManager.LoadScene(sceneToLoad);
     }
 }
