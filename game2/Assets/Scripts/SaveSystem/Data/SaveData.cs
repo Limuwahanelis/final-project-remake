@@ -46,8 +46,6 @@ public class SaveData
         foreach (ShortcutState shortcutState in shortcutStates)
         {
             shortcutDatas.Add(new ShortcutData(shortcutState));
-            Debug.Log("state id "+shortcutState.Id);
-            Debug.Log("data id"+shortcutDatas[0]);
         }
     }
     public void CreateSceneDatas()
