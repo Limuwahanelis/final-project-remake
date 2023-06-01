@@ -2234,7 +2234,7 @@ MonoBehaviour:
   pickUpsManager: {fileID: 172370659}
   puzzleManager: {fileID: 555840255}
   sceneNum: 0
-  shortcutState: {fileID: 11400000, guid: 35831671b98f1084695b38e2bbbc3b5d, type: 2}
+  shortcutState: {fileID: 11400000, guid: 86587d01958018946a8127ed1db3ed48, type: 2}
 --- !u!4 &555840253
 Transform:
   m_ObjectHideFlags: 0

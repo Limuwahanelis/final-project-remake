@@ -14,5 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Scene1: Scene1
   Scene2: Scene2
-  id: 10437e46dd97999438a5133247b8c125
+  id: 4455c2138745ad340bd276741d92d1cd
   IsUnlocked: 0
+  isInitalised: 1
