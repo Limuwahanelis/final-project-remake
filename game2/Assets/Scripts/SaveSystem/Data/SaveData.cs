@@ -37,7 +37,7 @@ public class SaveData
         {
             List<bool> pickUpsStates = new List<bool>();
             List<bool> puzzlesStates = new List<bool>();
-            bool shortcutState = sceneState.shortcutState.IsUnlocked;
+            //bool shortcutState = sceneState.shortcutState.IsUnlocked;
             sceneState.pickupStates.ForEach((state) => pickUpsStates.Add(state.value));
             sceneState.puzzleStates.ForEach((state) => puzzlesStates.Add(state.value));
             SceneData sceneData = new SceneData(pickUpsStates,puzzlesStates);

@@ -36,16 +36,13 @@ public class PlayerNormalState : PlayerState
 
     public override void Attack()
     {
-        if (_player.isAttacking) return;
-        _player.audioManager.PlayNormalAttackSound();
-        _player.isAttacking = true;
-        _player.playerCombat.Attack(this);
+        _player.ChangeState(new PlayerAttackState(_player));
+        //if (_player.isAttacking) return;
+        //_player.audioManager.PlayNormalAttackSound();
+        //_player.isAttacking = true;
+        //_player.playerCombat.Attack(this);
     }
 
-    public override void AttackIsOver()
-    {
-        _player.isAttacking = false;
-    }
     public override void Update()
     {
         if(!_isMoving && !_player.isAttacking) _player.anim.PlayAnimation("Idle");
