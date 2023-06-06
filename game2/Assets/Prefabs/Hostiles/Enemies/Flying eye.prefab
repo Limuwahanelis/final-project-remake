@@ -376,7 +376,7 @@ Transform:
   m_Children:
   - {fileID: 6881827612534971435}
   m_Father: {fileID: 6881827613521572806}
-  m_RootOrder: 1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &6881827612551029131
 SpriteRenderer:
@@ -459,7 +459,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 6881827613908392335}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!58 &6881827612603113624
 CircleCollider2D:
@@ -489,6 +489,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8bfde02d1bc295245a5dcb2805fff979, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  OnPlayerDetectedUnity:
+    m_PersistentCalls:
+      m_Calls: []
   playerPos: {x: 0, y: 0, z: 0}
 --- !u!1 &6881827613521572805
 GameObject:
@@ -517,10 +520,9 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
-  - {fileID: 6881827614116081904}
   - {fileID: 6881827612551029130}
   m_Father: {fileID: 6881827613908392335}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &6881827613908392333
 GameObject:
@@ -555,6 +557,7 @@ Transform:
   m_LocalPosition: {x: 11.85, y: 6.0559015, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
+  - {fileID: 6881827614116081904}
   - {fileID: 6881827612603113631}
   - {fileID: 6881827613521572806}
   m_Father: {fileID: 0}
@@ -707,7 +710,10 @@ MonoBehaviour:
     useConstant: 1
     constantValue: 15
     variable: {fileID: 0}
-  currentHP: 0
+  currentHP:
+    useConstant: 1
+    constantValue: 0
+    variable: {fileID: 0}
 --- !u!114 &6881827613908392332
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -725,9 +731,9 @@ MonoBehaviour:
     useConstant: 0
     constantValue: 0
     variable: {fileID: 11400000, guid: 5334db362bf6ac146a92759cd4098315, type: 2}
+  _anim: {fileID: 0}
   speed: 0
   dmg: 0
-  collisionDmg: 0
   radius: 7
   angularVelocity: 26.8
   sprite: {fileID: 6881827612551029130}
@@ -760,6 +766,7 @@ GameObject:
   - component: {fileID: 6881827614116081907}
   - component: {fileID: 6881827614116081906}
   - component: {fileID: 6881827614116081905}
+  - component: {fileID: 8671381066503215687}
   m_Layer: 12
   m_Name: Canvas
   m_TagString: Untagged
@@ -779,7 +786,7 @@ RectTransform:
   m_LocalScale: {x: 0.01, y: 0.01, z: 1}
   m_Children:
   - {fileID: 4160046390631242052}
-  m_Father: {fileID: 6881827613521572806}
+  m_Father: {fileID: 6881827613908392335}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
@@ -848,3 +855,17 @@ MonoBehaviour:
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 4294967295
+--- !u!114 &8671381066503215687
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6881827614116081911}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d662b6e53029cbe47a3a41b48364d85e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _targetToFollow: {fileID: 6881827613521572806}
+  _offset: {x: 0.18, y: 0.46, z: 0}
