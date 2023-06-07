@@ -27,22 +27,7 @@ public class PlayerInput : MonoBehaviour
         {
             if (!_player.isGamePaused.value)
             {
-                //if (Input.GetKeyDown(KeyCode.Escape)) SetPause(_player.isGamePaused.value);
                 _player.currentState.Move(direction);
-                //float direction = Input.GetAxisRaw("Horizontal");
-                //Move(direction);
-                //if (Input.GetButtonDown("Attack"))
-                //{
-                //    if(Input.GetKey(KeyCode.DownArrow)) DropBomb();
-                //    else Attack();
-                //}
-                //if (Input.GetButtonDown("Jump"))
-                //{
-
-                //    if (direction * _player.mainBody.transform.localScale.x > 0 && Input.GetKey(KeyCode.DownArrow)) Slide();
-                //    else Jump();
-                //}
-                //if (Input.GetButtonDown("Interact")) Interact();
 
             }
         }

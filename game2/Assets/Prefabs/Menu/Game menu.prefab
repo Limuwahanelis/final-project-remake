@@ -7929,13 +7929,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 96e66d0ee2d719541847528ae20e307a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isGamePaused:
-    useConstant: 0
+  _isGamePaused:
+    useConstant: 1
     constantValue: 0
-    variable: {fileID: 11400000, guid: 5334db362bf6ac146a92759cd4098315, type: 2}
-  darkPanel: {fileID: 7503652839512631817}
-  pausePanel: {fileID: 7503652838804826963}
-  savePanel: {fileID: 0}
+    variable: {fileID: 0}
+  _darkPanel: {fileID: 0}
+  _pausePanel: {fileID: 0}
+  _savePanel: {fileID: 0}
+  _menuAction: {fileID: 6764929866042119160, guid: 839f772f7f637cb48848d3298639247c, type: 3}
 --- !u!1 &7503652839815878579
 GameObject:
   m_ObjectHideFlags: 0

@@ -1,20 +1,26 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
 
 public class PauseMenu : MonoBehaviour
 {
-    [SerializeField] BoolReference isGamePaused;
-    [SerializeField] GameObject darkPanel;
-    [SerializeField] GameObject pausePanel;
-    [SerializeField] GameObject savePanel;
+    [SerializeField] BoolReference _isGamePaused;
+    [SerializeField] GameObject _darkPanel;
+    [SerializeField] GameObject _pausePanel;
+    [SerializeField] GameObject _savePanel;
+    [SerializeField] InputActionReference _menuAction;
+    private void Awake()
+    {
+        _menuAction.action.started += Pause;
+    }
     void Update()
     {
         //if (Input.GetKeyDown(KeyCode.Escape))
         //{ 
-        //    SetPause(!isGamePaused.value);
-        //    SetPausePanel(isGamePaused.value);
+        //    SetPause(!_isGamePaused.value);
+        //    SetPausePanel(_isGamePaused.value);
         //}
     }
     public void Exit()
@@ -23,10 +29,10 @@ public class PauseMenu : MonoBehaviour
     }
     public void SetPause(bool value)
     {
-        isGamePaused.value = value;
-        Time.timeScale = isGamePaused.value ? 0f:1f;
-        darkPanel.SetActive(isGamePaused.value);
-        if(!isGamePaused.value)
+        _isGamePaused.value = value;
+        Time.timeScale = _isGamePaused.value ? 0f:1f;
+        _darkPanel.SetActive(_isGamePaused.value);
+        if(!_isGamePaused.value)
         {
             SetSavePanel(false);
             SetPausePanel(false);
@@ -34,11 +40,11 @@ public class PauseMenu : MonoBehaviour
     }
     public void SetPausePanel(bool value)
     {
-        pausePanel.SetActive(value);
+        _pausePanel.SetActive(value);
     }
     public void SetSavePanel(bool value)
     {
-        savePanel.SetActive(value);
+        _savePanel.SetActive(value);
     }
     public void ReturnToMainMenu()
     {
@@ -51,5 +57,16 @@ public class PauseMenu : MonoBehaviour
     public void HidePanel(GameObject panel)
     {
         panel.SetActive(false);
+    }
+    private void Pause(InputAction.CallbackContext context)
+    {
+
+        SetPause(!_isGamePaused.value);
+        SetPausePanel(_isGamePaused.value);
+    }
+
+    private void OnDestroy()
+    {
+        _menuAction.action.started -= Pause;
     }
 }
