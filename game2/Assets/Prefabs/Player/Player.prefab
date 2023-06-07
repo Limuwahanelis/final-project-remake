@@ -747,6 +747,8 @@ GameObject:
   - component: {fileID: 5767090226136095788}
   - component: {fileID: 5767090226136095785}
   - component: {fileID: 5767090226136095784}
+  - component: {fileID: 6150796137802353126}
+  - component: {fileID: 2481613587008703031}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -862,6 +864,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _player: {fileID: 5767090226136095782}
+  controls: {fileID: 0}
   pauseMenu: {fileID: 0}
   darkPanel: {fileID: 0}
 --- !u!114 &5767090226136095778
@@ -1006,6 +1009,54 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &6150796137802353126
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5767090226136095787}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 340f9b76787ae6b44b8d222255b4b75c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _player: {fileID: 5767090226136095782}
+  _playerHealthSystem: {fileID: 5767090226136095776}
+  loadSave:
+    useConstant: 0
+    constantValue: 0
+    variable: {fileID: 11400000, guid: 89971c3f37b75834592e8121878af218, type: 2}
+--- !u!114 &2481613587008703031
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5767090226136095787}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 62899f850307741f2a39c98a8b639597, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Actions: {fileID: -944628639613478452, guid: 839f772f7f637cb48848d3298639247c, type: 3}
+  m_NotificationBehavior: 0
+  m_UIInputModule: {fileID: 0}
+  m_DeviceLostEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_DeviceRegainedEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_ControlsChangedEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_ActionEvents: []
+  m_NeverAutoSwitchControlSchemes: 0
+  m_DefaultControlScheme: New control scheme
+  m_DefaultActionMap: Keyboard
+  m_SplitScreenIndex: -1
+  m_Camera: {fileID: 0}
 --- !u!1 &5767090226273579277
 GameObject:
   m_ObjectHideFlags: 0
