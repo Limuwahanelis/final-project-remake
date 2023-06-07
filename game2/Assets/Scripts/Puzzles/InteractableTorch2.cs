@@ -13,6 +13,7 @@ public class InteractableTorch2 : MonoBehaviour,IInteractable
     private bool fireActive = false;
     public int value;
     private PlayerInteract _playerInteract;
+    private bool _canInteract = true;
     // Start is called before the first frame update
     void Awake()
     {
@@ -33,22 +34,36 @@ public class InteractableTorch2 : MonoBehaviour,IInteractable
 
     public void Interact()
     {
+        if (!_canInteract) return;
         mainLight.enabled = !mainLight.enabled;
         fireActive = !fireActive;
         fire.SetActive(fireActive);
         puzzle.UpdateNumber(fireActive, value);
+        SetInteraction(!fireActive);
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
-            canvas.SetActive(true);
+        if (!_canInteract) return;
+        canvas.SetActive(true);
         _playerInteract = collision.GetComponentInParent<PlayerInteract>();
         _playerInteract.setObjectToInteract(this);
     }
     private void OnTriggerExit2D(Collider2D collision)
     {
-            canvas.SetActive(false);
+        if (!_canInteract) return;
+        canvas.SetActive(false);
         _playerInteract = collision.GetComponentInParent<PlayerInteract>();
         _playerInteract.setObjectToInteract(null);
+    }
+    public void SetInteraction(bool value)
+    {
+        _canInteract = false;
+        if (!_canInteract)
+        {
+            canvas.SetActive(false);
+            if (_playerInteract) _playerInteract.RemoveObjectToInteract();
+
+        }
     }
     public void LightUp()
     {

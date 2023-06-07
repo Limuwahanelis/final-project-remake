@@ -38,7 +38,11 @@ public class LogicPuzzle2 : Puzzle
         else number -= value;
         text.text = number.ToString();
         if (number == numberToGet) completed = true;
-        if (completed) StartCoroutine(MoveCrystalCor());
+        if (completed)
+        {
+            MarkAsSolved();
+            StartCoroutine(MoveCrystalCor());
+        }
     }
     IEnumerator MoveCrystalCor()
     {
@@ -64,9 +68,14 @@ public class LogicPuzzle2 : Puzzle
     public override void MarkAsSolved()
     {
         torches[0].LightUp();
+        torches[0].SetInteraction(false);
         torches[2].LightUp();
         torches[3].LightUp();
         torches[4].LightUp();
+        for(int i=0;i<torches.Length;i++)
+        {
+            torches[i].SetInteraction(false);
+        }
         text.text = numberToGet.ToString();
         completed = true;
         StartCoroutine(MoveCrystalCor());
