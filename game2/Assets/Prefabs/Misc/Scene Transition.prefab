@@ -73,8 +73,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sceneToLoad: Scene1
-  transitionTag: 0
-  playerSpawnPos: {fileID: 6025627444938423148}
+  _transitionCircleTransform: {fileID: 0}
+  _transitionTag: 0
+  _playerSpawnPos: {fileID: 0}
+  _player: {fileID: 0}
+  _anim: {fileID: 0}
+  _playerControls: {fileID: -944628639613478452, guid: 839f772f7f637cb48848d3298639247c, type: 3}
+  _menuControls: {fileID: -944628639613478452, guid: 9f181e88fbd8fe244aa2ecdc4f90da1a, type: 3}
 --- !u!114 &279577253101643270
 MonoBehaviour:
   m_ObjectHideFlags: 0
