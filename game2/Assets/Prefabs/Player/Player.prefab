@@ -864,7 +864,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _player: {fileID: 5767090226136095782}
-  controls: {fileID: 0}
+  controls: {fileID: -944628639613478452, guid: 839f772f7f637cb48848d3298639247c, type: 3}
   pauseMenu: {fileID: 0}
   darkPanel: {fileID: 0}
 --- !u!114 &5767090226136095778

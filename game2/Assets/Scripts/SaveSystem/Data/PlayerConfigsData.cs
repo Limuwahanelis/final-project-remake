@@ -6,9 +6,9 @@ using UnityEngine;
 public class PlayerConfigsData
 {
     public float globalVolume;
-    public Resolution resolution;
+    public Settings.MyResolution resolution;
     public bool fullScreen;
-    public PlayerConfigsData(float globalVolume,Resolution resolution,bool fullScreen)
+    public PlayerConfigsData(float globalVolume, Settings.MyResolution resolution,bool fullScreen)
     {
         this.globalVolume = globalVolume;
         this.resolution = resolution;

@@ -65,8 +65,9 @@ public static class SaveSystem
         return false;
     }
 
-    public static void SaveConfigs(float globalVolume, Resolution resolution,bool fullScreen)
+    public static void SaveConfigs(float globalVolume, Settings.MyResolution resolution,bool fullScreen)
     {
+        Debug.Log($"Save configs full: {fullScreen}");
         PlayerConfigsData configs = new PlayerConfigsData(globalVolume, resolution, fullScreen);
         string json = JsonUtility.ToJson(configs);
 
@@ -81,6 +82,7 @@ public static class SaveSystem
     {
         PlayerConfigsData configs = null;
         string json;
+        Debug.Log("get configs from: "+configsFilePath);
         if (File.Exists(configsFilePath))
         {
             json = File.ReadAllText(configsFilePath);

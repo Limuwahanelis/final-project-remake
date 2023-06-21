@@ -1,33 +1,26 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.IO;
 using UnityEngine;
 
 public class test : MonoBehaviour
 {
-    public class yesyDat
+    [System.Serializable]
+    public struct MyResolution
     {
-        public List<bool> wasPickUpPicked;
-
-        public yesyDat(yesyDat yesyDat)
+        public int width;
+        public int height;
+        public int refreshRate;
+    }
+    public void Start()
+    {
+        MyResolution resolution = new MyResolution
         {
-            for(int i=0;i< yesyDat.wasPickUpPicked.Count;i++)
-            {
-                wasPickUpPicked.Add(yesyDat.wasPickUpPicked[i]);
-            }
-        }
-    }
-    // Start is called before the first frame update
-    void Start()
-    {
-        List<bool> values = new List<bool>();
-        values.Add(true);
-        values.Add(false);
-        //dd = transform.position;
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
+            width = 5,
+            height = 6,
+            refreshRate = 20
+        };
+        string json = JsonUtility.ToJson(resolution);
+            File.WriteAllText(Application.dataPath+@"/aa.json", json);
     }
 }
