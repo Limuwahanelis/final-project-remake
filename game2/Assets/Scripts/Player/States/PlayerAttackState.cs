@@ -28,6 +28,15 @@ public class PlayerAttackState : PlayerState
     public override void AttackIsOver()
     {
         _player.isAttacking = false;
+        Debug.Log("End attack to normal");
         _player.ChangeState(new PlayerNormalState(_player));
+    }
+    public override void OnHit()
+    {
+        base.OnHit();
+        Debug.Log("hit in hit");
+        _player.isAttacking = false;
+        _player.playerCombat.StopAttack();
+
     }
 }

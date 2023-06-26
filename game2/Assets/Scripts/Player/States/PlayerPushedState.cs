@@ -22,6 +22,7 @@ public class PlayerPushedState : PlayerState
             _player.playerMovement.StopPlayer();
             _player.isInAirAfterPush = false;
             _player.anim.SetAnimator(true);
+            Debug.Log("retrun from push");
             _player.ChangeState(new PlayerNormalState(_player));
         }
     }
@@ -41,5 +42,10 @@ public class PlayerPushedState : PlayerState
         _player.isInAirAfterPush = true;
         _player.playerMovement.ChangeRb2DMat(_player.noFrictionMat);
         //_player.ChangeState(new PlayerPushedState(_player));
+    }
+    public override void InterruptState()
+    {
+        base.InterruptState();
+        _player.anim.SetAnimator(true);
     }
 }

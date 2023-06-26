@@ -17,7 +17,7 @@ public class SceneTransition : MonoBehaviour
     [SerializeField] GameObject _player;
     [SerializeField] Animator _anim;
     [SerializeField] InputActionAsset _playerControls;
-    [SerializeField] InputActionAsset _menuControls;
+    //[SerializeField] InputActionAsset _menuControls;
     private void Start()
     {
         if(SceneTransitionManager.tagToTeleportPlayer == _transitionTag)
@@ -25,14 +25,14 @@ public class SceneTransition : MonoBehaviour
             _anim.SetTrigger("FadeIn");
             _player.transform.position = _playerSpawnPos.position;
             _playerControls.Enable();
-            _menuControls.Enable();
+           // _menuControls.Enable();
         }
     }
 
     public void Load()
     {
         _playerControls.Disable();
-        _menuControls.Disable();
+        //_menuControls.Disable();
         StartCoroutine(TransitionCor());
     }
     IEnumerator TransitionCor()

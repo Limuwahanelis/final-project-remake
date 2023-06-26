@@ -29,7 +29,11 @@ public class HealthSystem : MonoBehaviour,IDamagable
 
     public virtual void Kill()
     {
-        if (OnDeathEvent == null) Destroy(gameObject);
+        if (OnDeathEvent == null)
+        {
+            Destroy(gameObject);
+            Destroy(hpBar.gameObject);
+        }
         else OnDeathEvent.Invoke();
     }
 }

@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class PlayerHealthSystem : HealthSystem,IPushable
 {
-    [SerializeField]
-    private float _invincibilityAfterHitDuration;
+    [SerializeField] float _invincibilityAfterHitDuration;
+    private bool _canBePushed=true;
     public Player player;
     public Ringhandle pushHandle;
     public float pushForce=2f;
@@ -24,6 +24,7 @@ public class PlayerHealthSystem : HealthSystem,IPushable
             hpBar.SetHealth(currentHP.value);
             if (currentHP.value < 0) Kill();
             else OnHitEvent?.Invoke();
+            player.currentState.OnHit();
             StartCoroutine(InvincibilityCor());
         }
 
@@ -34,7 +35,12 @@ public class PlayerHealthSystem : HealthSystem,IPushable
         if (OnDeathEvent == null) Destroy(gameObject);
         else OnDeathEvent.Invoke();
     }
-
+    IEnumerator PushCor()
+    {
+        _canBePushed = false;
+        yield return new WaitForSeconds(_invincibilityAfterHitDuration);
+        _canBePushed = true;
+    }
     IEnumerator InvincibilityCor()
     {
         isInvincible = true;
@@ -46,16 +52,18 @@ public class PlayerHealthSystem : HealthSystem,IPushable
     {
         if (player.isAlive)
         {
-            if (isInvincible) return;
+            if (!_canBePushed) return;
             player.playerMovement.PushPlayer(pushHandle.GetPushVector() * pushForce);
+            StartCoroutine(PushCor());
         }
     }
     public void Push(PlayerMovement.playerDirection direction)
     {
         if (player.isAlive)
         {
-            if (isInvincible) return;
+            if (!_canBePushed) return;
             player.playerMovement.PushPlayer(direction, pushHandle.GetPushVector() * pushForce);
+            StartCoroutine(PushCor());
         }
     }
     public void IncreaseHealthBarMaxValue()

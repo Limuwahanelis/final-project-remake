@@ -40,7 +40,6 @@ public class MushroomGuyEnemy : PatrollingEnemy
         _playerDetection = GetComponentInChildren<PlayerDetection>();
         _playerDetection.OnPlayerDetected = SetPlayerInRange;
         _playerDetection.OnPlayerLeft = SetPlayerNotInRange;
-        
     }
     public override void SetPlayerInRange()
     {
@@ -77,7 +76,10 @@ public class MushroomGuyEnemy : PatrollingEnemy
     {
         state.Hit();
     }
+    private void Death()
+    {
 
+    }
     private void OnValidate()
     {
         if (beam != null) beam.damage = dmg;

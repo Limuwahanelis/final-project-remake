@@ -38,6 +38,10 @@ public class PlayerCombat : MonoBehaviour
             state.AttackIsOver();
         }));
     }
+    public void StopAttack()
+    {
+        StopAllCoroutines();
+    }
 
     public void AirAttack()
     {
@@ -52,6 +56,7 @@ public class PlayerCombat : MonoBehaviour
         StopCoroutine(airAttackCor);
         StopCoroutine(playerMovAirAttackCor);
         _player.isAirAttacking = false;
+        _player.playerMovement.SetGravityScale(2);
     }
     public void SpawnBomb()
     {

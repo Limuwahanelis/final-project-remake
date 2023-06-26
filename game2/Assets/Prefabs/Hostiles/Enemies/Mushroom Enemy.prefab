@@ -211,6 +211,7 @@ GameObject:
   - component: {fileID: 5679044095351899650}
   - component: {fileID: 6015302108724012619}
   - component: {fileID: 8186947152846398440}
+  - component: {fileID: 3609872275031414949}
   m_Layer: 12
   m_Name: HPBar with canvas
   m_TagString: Untagged
@@ -313,6 +314,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _targetToFollow: {fileID: 6464457975819722518}
   _offset: {x: 0.07, y: 0.65, z: 0}
+--- !u!114 &3609872275031414949
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1257771617879387350}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 19fbf7b73cb5a824b9f502a88aee431d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  slider: {fileID: 1054211102099939246}
 --- !u!1 &1632501617088761234
 GameObject:
   m_ObjectHideFlags: 0
@@ -591,7 +605,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isInvincible: 0
-  hpBar: {fileID: 5197214191504776771}
+  hpBar: {fileID: 3609872275031414949}
   maxHP:
     useConstant: 1
     constantValue: 10
@@ -638,7 +652,6 @@ GameObject:
   m_Component:
   - component: {fileID: 3927575898450671907}
   - component: {fileID: 1054211102099939246}
-  - component: {fileID: 5197214191504776771}
   m_Layer: 12
   m_Name: Slider
   m_TagString: Untagged
@@ -718,19 +731,6 @@ MonoBehaviour:
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls: []
---- !u!114 &5197214191504776771
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3357989914414843119}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 19fbf7b73cb5a824b9f502a88aee431d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  slider: {fileID: 1054211102099939246}
 --- !u!1 &3599518998306278520
 GameObject:
   m_ObjectHideFlags: 0

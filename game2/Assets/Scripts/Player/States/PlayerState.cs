@@ -16,6 +16,7 @@ public abstract class PlayerState
     public virtual void Jump() { }
     public virtual void Move(float direction) { }
 
+    public virtual void OnHit() { }
     public virtual void SetUpState() { }
 
     public virtual void Slide() { }

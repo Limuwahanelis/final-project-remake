@@ -133,10 +133,15 @@ public class PlayerMovement : MonoBehaviour
        // StartCoroutine(PushCor());
 
     }
+    public void SetRbYAxis(bool canMove)
+    {
+        if (canMove) _rb.constraints = RigidbodyConstraints2D.FreezeRotation;
+        else _rb.constraints = RigidbodyConstraints2D.FreezeRotation | RigidbodyConstraints2D.FreezePosition;
+    }
     public void SetGravityScale(float value) // normal scale is 2
     {
         _rb.gravityScale = value;
-    }    
+    }
 
 
     public Vector2 GetPlayerVelocity()

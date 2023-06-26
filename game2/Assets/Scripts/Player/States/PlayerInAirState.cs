@@ -30,7 +30,7 @@ public class PlayerInAirState : PlayerState
         {
             if (_player.abilities.CheckIfAbilityIsUnlocked(AbilityList.Abilities.WALLHANG_ANDJUMP))
             {
-                if(_player.isAirAttacking) _player.playerCombat.StopAirAttack();
+                if (_player.isAirAttacking) _player.playerCombat.StopAirAttack();
                 _player.ChangeState(new PlayerWallHangState(_player));
                 return;
             }
