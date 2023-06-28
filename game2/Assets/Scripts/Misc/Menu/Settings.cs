@@ -55,6 +55,7 @@ public class Settings : MonoBehaviour
     public bool fullScreen;
     Resolution[] allResolutions;
     List<Resolution> availableResolutions = new List<Resolution>();
+    [SerializeField] FloatValue globalVolume=default;
 
     // Start is called before the first frame update
 
@@ -64,7 +65,7 @@ public class Settings : MonoBehaviour
     void OnEnable()
     {
         PlayerConfigsData configs = SaveSystem.GetConfigs();
-
+        globalVolume.value = configs.globalVolume;
         _currentResIndex = 0;
         allResolutions = Screen.resolutions;
         resolutionDropdown.ClearOptions();

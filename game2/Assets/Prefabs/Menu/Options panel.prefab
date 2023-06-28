@@ -95,7 +95,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   resolutionDropdown: {fileID: 2213962751942520236}
   fullScreenToggle: {fileID: 2213962753824124992}
+  selectedResolution:
+    width: 0
+    height: 0
   fullScreen: 0
+  globalVolume: {fileID: 11400000, guid: 20e146fbcfeba2c4c9b58f056b38f0cf, type: 2}
 --- !u!114 &6327301746921694592
 MonoBehaviour:
   m_ObjectHideFlags: 0

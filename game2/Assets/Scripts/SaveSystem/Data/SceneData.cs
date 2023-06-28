@@ -7,6 +7,7 @@ public class SceneData
 {
     public List<bool> wasPickUpPicked=new List<bool>();
     public List<bool> wasPuzzleSolved=new List<bool>();
+    public List<bool> wasAbilityUnlocked =new List<bool>();
     public SceneData(List<bool> pickUpValues, List<bool>puzzlesValues)
     {
         for(int i=0;i< pickUpValues.Count;i++)

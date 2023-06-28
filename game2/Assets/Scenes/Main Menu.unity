@@ -607,6 +607,10 @@ PrefabInstance:
       propertyPath: globalAudioVolume.useConstant
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7896804970187959592, guid: ad0d4a95c29b7b748816625b5413b458, type: 3}
+      propertyPath: globalVolume
+      value: 
+      objectReference: {fileID: 11400000, guid: 20e146fbcfeba2c4c9b58f056b38f0cf, type: 2}
     m_RemovedComponents:
     - {fileID: 6327301746921694592, guid: ad0d4a95c29b7b748816625b5413b458, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: ad0d4a95c29b7b748816625b5413b458, type: 3}

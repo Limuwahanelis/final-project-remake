@@ -14,9 +14,6 @@ public class AbilityUnlock : MonoBehaviour,IInteractable
     public string abilityDescription;
     public TimelineAsset cutscene;
     [SerializeField] GameObject _canvas;
-    private void Start()
-    {
-    }
     public void Interact()
     {
         abilityList.UnlockAbility(ability);

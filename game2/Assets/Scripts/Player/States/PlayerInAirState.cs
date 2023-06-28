@@ -20,7 +20,7 @@ public class PlayerInAirState : PlayerState
                 _player.playerMovement.ChangeRb2DMat(_player.noFrictionMat);
             }
         }
-        if (_player.isOnGround && Mathf.Abs(_player.playerMovement.GetPlayerVelocity().y)<0.0004 && !_player.isJumping )
+        if (_player.isOnGround && Mathf.Abs(_player.playerMovement.GetPlayerVelocity().y)<0.0004 && !_player.isJumping && !_player.isAirAttacking )
         {
             _player.playerMovement.ChangeRb2DMat(null);
             _player.ChangeState(new PlayerNormalState(_player));

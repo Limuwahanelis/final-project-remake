@@ -10,9 +10,9 @@ public class AbilityUnlockLoadComponent : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        if (isGameLoaded.value)
-        {
+        //if (isGameLoaded.value)
+       // {
             if (_abilityUnlock.abilityList.CheckIfAbilityIsUnlocked(_abilityUnlock.ability)) Destroy(gameObject);
-        }
+       // }
     }
 }
