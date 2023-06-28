@@ -39,7 +39,7 @@ public class InteractableTorch2 : MonoBehaviour,IInteractable
         fireActive = !fireActive;
         fire.SetActive(fireActive);
         puzzle.UpdateNumber(fireActive, value);
-        SetInteraction(!fireActive);
+        //SetInteraction(!fireActive);
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
@@ -57,7 +57,7 @@ public class InteractableTorch2 : MonoBehaviour,IInteractable
     }
     public void SetInteraction(bool value)
     {
-        _canInteract = false;
+        _canInteract = value;
         if (!_canInteract)
         {
             canvas.SetActive(false);
