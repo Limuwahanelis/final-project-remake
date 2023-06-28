@@ -22698,7 +22698,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6c02345f6b4e23846bb862f3ee53d9d5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _anim: {fileID: 0}
+  _anim: {fileID: 1996189635}
   animList: {fileID: 11400000, guid: 3503b463ad206744bb9c3c6011bd320f, type: 2}
 --- !u!114 &1996189641
 MonoBehaviour:
@@ -22716,7 +22716,7 @@ MonoBehaviour:
   hpBar: {fileID: 7238247630409768990}
   maxHP:
     useConstant: 1
-    constantValue: 50
+    constantValue: 100
     variable: {fileID: 0}
   currentHP:
     useConstant: 1
