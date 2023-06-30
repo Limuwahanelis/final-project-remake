@@ -7,13 +7,13 @@ public class PlayerLoadComponent : MonoBehaviour
 
     [SerializeField] Player _player;
     [SerializeField] PlayerHealthSystem _playerHealthSystem;
-    //public BoolReference loadSave;
+    public BoolReference loadSave;
     // Start is called before the first frame update
 
     void Start()
     {
-        //if(loadSave.value)
-        //{
+        if (loadSave.value)
+        {
             PlayerData playerData = SaveSystem.LoadPlayerData();
             if (playerData == null) Debug.LogError("No save Data");
             else
@@ -21,7 +21,7 @@ public class PlayerLoadComponent : MonoBehaviour
                 _player.LoadData(playerData);
                 _playerHealthSystem.LoadData(playerData);
             }
-            //loadSave.value = false;
-        //}
+            loadSave.value = false;
+        }
     }
 }

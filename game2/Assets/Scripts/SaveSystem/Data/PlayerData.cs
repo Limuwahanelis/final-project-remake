@@ -11,6 +11,10 @@ public class PlayerData
     public Vector3 position;
     public bool[] abilities =new bool[Enum.GetNames(typeof(AbilityList.Abilities)).Length];
 
+    public PlayerData()
+    {
+
+    }
     public PlayerData(Player player,PlayerHealthSystem healthSystem,AbilityList list)
     {
         currentHP = healthSystem.currentHP.value;
@@ -22,6 +26,18 @@ public class PlayerData
             abilities[i] = list.CheckIfAbilityIsUnlocked((AbilityList.Abilities)i);
         }
     }
+    //public PlayerData(int currentHP, int maxHP,int dmg,Vector3 position, AbilityList list)
+    //{
+    //    currentHP = healthSystem.currentHP.value;
+    //    maxHP = healthSystem.maxHP.value;
+    //    damage = player.playerCombat.attackDamage.value;
+    //    position = player.transform.position;
+    //    for (int i = 0; i < abilities.Length; i++)
+    //    {
+    //        abilities[i] = list.CheckIfAbilityIsUnlocked((AbilityList.Abilities)i);
+    //    }
+    //}
+
 
     public PlayerData(PlayerData playerData)
     {

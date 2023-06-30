@@ -1043,6 +1043,10 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
       value: SaveButton, Assembly-CSharp
       objectReference: {fileID: 0}
+    - target: {fileID: 4596339844808739494, guid: 8661335f826c01a45a79a821b5f56d94, type: 3}
+      propertyPath: loadSave.variable
+      value: 
+      objectReference: {fileID: 11400000, guid: 7661ca44aa59f764ba109a1de891fb0c, type: 2}
     - target: {fileID: 6849403902055428046, guid: 8661335f826c01a45a79a821b5f56d94, type: 3}
       propertyPath: m_AnchorMax.x
       value: 0

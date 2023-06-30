@@ -6,7 +6,7 @@ using UnityEngine.SceneManagement;
 public class SaveMenu : MonoBehaviour
 {
     public List<SaveButton> saves;
-    //public BoolReference loadSave;
+    public BoolReference loadSave;
     public BoolReference isGamePaused;
     [SerializeField]
     private GameObject _darkPanel;
@@ -22,7 +22,7 @@ public class SaveMenu : MonoBehaviour
         if (SaveSystem.CheckIfSaveFileExists(save.saveIndex))
         {
             SaveSystem.SetSave(save.saveIndex);
-            //loadSave.value = true;
+            loadSave.value = true;
             SceneManager.LoadScene(1);
         }
     }
