@@ -58,6 +58,6 @@ public class SaveData
     }
     public void UnlockAbility(AbilityList.Abilities ability)
     {
-
+        playerData.UnlockAbility(ability);
     }
 }
