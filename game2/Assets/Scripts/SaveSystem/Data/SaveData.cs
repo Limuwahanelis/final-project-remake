@@ -56,4 +56,8 @@ public class SaveData
     {
         sceneDatas.Add(sceneData);
     }
+    public void UnlockAbility(AbilityList.Abilities ability)
+    {
+
+    }
 }

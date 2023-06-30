@@ -6,6 +6,7 @@ using UnityEngine.SceneManagement;
 
 public class PauseMenu : MonoBehaviour
 {
+
     [SerializeField] BoolReference _isGamePaused;
     [SerializeField] GameObject _darkPanel;
     [SerializeField] GameObject _pausePanel;

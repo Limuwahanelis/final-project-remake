@@ -25,7 +25,8 @@ public class SceneTransition : MonoBehaviour
             _anim.SetTrigger("FadeIn");
             _player.transform.position = _playerSpawnPos.position;
             _playerControls.Enable();
-           // _menuControls.Enable();
+            SceneTransitionManager.tagToTeleportPlayer = SceneTransitionManager.TransitionTags.NONE;
+            // _menuControls.Enable();
         }
     }
 
@@ -41,5 +42,6 @@ public class SceneTransition : MonoBehaviour
         yield return new WaitForSeconds(0.7f);
         SceneTransitionManager.tagToTeleportPlayer = _transitionTag;
         SceneManager.LoadScene(sceneToLoad);
+        
     }
 }

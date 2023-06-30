@@ -17,6 +17,7 @@ public class AbilityUnlock : MonoBehaviour,IInteractable
     public void Interact()
     {
         abilityList.UnlockAbility(ability);
+        SaveSystem.UnlockAblity(ability);
         panel.ChangeAbiltyToShow(GetComponentInChildren<SpriteRenderer>().sprite, abilityDescription);
         isGamePaused.value = true;
         _canvas.SetActive(false);

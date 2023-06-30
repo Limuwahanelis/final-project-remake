@@ -11,6 +11,10 @@ public static class SaveSystem
     public static string configsFilePath= configsFolderPath + @"\configs.json";
     public static SaveData tmpSave;
 
+    public static void UnlockAblity(AbilityList.Abilities ability)
+    {
+        tmpSave.UnlockAbility(ability);
+    }
     public static PlayerData LoadPlayerData()
     {
         return tmpSave.playerData;

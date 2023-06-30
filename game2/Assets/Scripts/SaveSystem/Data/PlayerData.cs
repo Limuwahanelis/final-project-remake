@@ -34,4 +34,8 @@ public class PlayerData
             abilities[i] = playerData.abilities[i];
         }
     }
+    public void UnlockAbility(AbilityList.Abilities ability)
+    {
+        abilities[((int)ability)] = true;
+    }
 }

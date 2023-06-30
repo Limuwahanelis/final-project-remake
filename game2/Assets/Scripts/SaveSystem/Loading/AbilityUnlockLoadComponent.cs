@@ -4,15 +4,12 @@ using UnityEngine;
 
 public class AbilityUnlockLoadComponent : MonoBehaviour
 {
-    public BoolReference isGameLoaded;
-    [SerializeField]
-    private AbilityUnlock _abilityUnlock;
+    //public BoolReference isGameLoaded;
+
+    [SerializeField] AbilityUnlock _abilityUnlock;
     // Start is called before the first frame update
     void Start()
     {
-        //if (isGameLoaded.value)
-       // {
             if (_abilityUnlock.abilityList.CheckIfAbilityIsUnlocked(_abilityUnlock.ability)) Destroy(gameObject);
-       // }
     }
 }
