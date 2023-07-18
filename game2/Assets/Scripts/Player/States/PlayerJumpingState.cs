@@ -16,18 +16,18 @@ public class PlayerJumpingState : PlayerState
     }
     public override void SetUpState()
     {
-        _player.playerMovement.ChangeRb2DMat(_player.noFrictionMat);
-        _player.anim.PlayAnimation("Jump");
-        _player.isJumping = true;
-        _jumpCor = _player.StartCoroutine(_player.WaitAndExecuteFunction(_player.anim.GetAnimationLength("Jump"), () =>
+        _playerContext.playerMovement.ChangeRb2DMat(_playerContext.noFrictionMat);
+        _playerContext.anim.PlayAnimation("Jump");
+        //_playerContext.isJumping = true;
+        _jumpCor = _playerContext.corutineHolder.StartCoroutine(_playerContext.WaitAndExecuteFunction(_playerContext.anim.GetAnimationLength("Jump"), () =>
         {
-            _player.playerMovement.Jump();
-            _player.ChangeState(new PlayerInAirState(_player));
+            _playerContext.playerMovement.Jump();
+            _playerContext.ChangeState(new PlayerInAirState(_playerContext));
         }));
     }
     public override void InterruptState()
     {
-        _player.StopCoroutine(_jumpCor);
+        _playerContext.corutineHolder.StopCoroutine(_jumpCor);
     }
 
 

@@ -7,8 +7,11 @@ public class PlayerContext
 {
     public PlayerMovement playerMovement;
     public Action<PlayerState> ChangeState;
+    public Func<float,Action, IEnumerator> WaitAndExecuteFunction; 
     public AnimationManager anim;
     public PlayerAudioManager audioManager;
     public PlayerChecks playerChecks;
     public AbilityList abilityList;
+    public PhysicsMaterial2D noFrictionMat;
+    public CorutineHolder corutineHolder;
 }
