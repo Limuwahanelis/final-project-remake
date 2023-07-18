@@ -4,11 +4,11 @@ using UnityEngine;
 
 public abstract class PlayerState
 {
-    protected Player _player;
+    protected PlayerContext _playerContext;
 
-    public PlayerState(Player player)
+    public PlayerState(PlayerContext playerContext)
     {
-        _player = player;
+        _playerContext = playerContext;
     }
     public virtual void DropBomb() { }
     public virtual void Attack() { }

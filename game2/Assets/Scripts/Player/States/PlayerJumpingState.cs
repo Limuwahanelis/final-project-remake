@@ -5,7 +5,7 @@ using UnityEngine;
 public class PlayerJumpingState : PlayerState
 {
     private Coroutine _jumpCor;
-    public PlayerJumpingState(Player player):base(player)
+    public PlayerJumpingState(PlayerContext playerContext):base(playerContext)
     { }
     public override void Update()
     {

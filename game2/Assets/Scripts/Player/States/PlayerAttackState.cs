@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class PlayerAttackState : PlayerState
 {
-    public PlayerAttackState(Player player) : base(player)
+    public PlayerAttackState(PlayerContext playerContext) : base(playerContext)
     {
     }
 

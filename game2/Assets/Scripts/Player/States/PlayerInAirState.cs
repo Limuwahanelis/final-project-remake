@@ -6,7 +6,7 @@ public class PlayerInAirState : PlayerState
 {
     private bool _isMoving = false;
     private bool _hasAttacked = false;
-    public PlayerInAirState(Player player) : base(player)
+    public PlayerInAirState(PlayerContext playerContext) : base(playerContext)
     { 
     }
     public override void Update()

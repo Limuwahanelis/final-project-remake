@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class PlayerDropBombState : PlayerState
 {
-    public PlayerDropBombState(Player player) : base(player)
+    public PlayerDropBombState(PlayerContext playerContext) : base(playerContext)
     {
         if (_player.isAttacking) return;
         _player.isAttacking = true;
@@ -12,7 +12,7 @@ public class PlayerDropBombState : PlayerState
         _player.StartCoroutine(_player.WaitAndExecuteFunction(_player.anim.GetAnimationLength("Drop Bomb"), () =>
         {
             _player.playerCombat.SpawnBomb();
-            _player.ChangeState(new PlayerNormalState(player));
+            _player.ChangeState(new PlayerNormalState(playerContext));
             _player.isAttacking = false;
         }));
     }

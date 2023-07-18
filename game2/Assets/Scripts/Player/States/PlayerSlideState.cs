@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class PlayerSlideState : PlayerState
 {
-    public PlayerSlideState(Player player) : base(player)
+    public PlayerSlideState(PlayerContext playerContext) : base(playerContext)
     {
     }
     public override void Update()

@@ -20,7 +20,15 @@ public class PlayerChecks : MonoBehaviour
     [SerializeField] float WallCheckHeight;
     private Player _player;
 
-    private Collider2D potentialWallCol;
+    private Collider2D _potentialWallCol;
+
+    private bool _isOnGround;
+    private bool _isNearCeiling;
+    private bool _isNearWall;
+    public bool IsOnGround => _isOnGround;
+    public bool IsNearCeiling => _isNearCeiling;
+    public bool IsNearWall => _isNearWall;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -31,18 +39,18 @@ public class PlayerChecks : MonoBehaviour
     void Update()
     {
 
-        _player.isOnGround = Physics2D.OverlapBox(groundCheckPos.position, new Vector2(groundCheckWidth, groundCheckHeight), 0, ground);
-        potentialWallCol = Physics2D.OverlapBox(wallCheckPos.position, new Vector2(WallCheckWidth, WallCheckHeight), 0, ground);
-        _player.isNearCeiling = Physics2D.OverlapBox(ceilingCheckPos.position, new Vector2(ceilingCheckWidth, ceilingCheckHeight), 0, ground);
-        if (potentialWallCol)
+        _isOnGround = Physics2D.OverlapBox(groundCheckPos.position, new Vector2(groundCheckWidth, groundCheckHeight), 0, ground);
+        _potentialWallCol = Physics2D.OverlapBox(wallCheckPos.position, new Vector2(WallCheckWidth, WallCheckHeight), 0, ground);
+        _isNearCeiling = Physics2D.OverlapBox(ceilingCheckPos.position, new Vector2(ceilingCheckWidth, ceilingCheckHeight), 0, ground);
+        if (_potentialWallCol)
         {
             if (Physics2D.OverlapBox(wallCheck2Pos.position, new Vector2(WallCheckWidth, WallCheckHeight), 0, ground))
             {
-                _player.isNearWall = !potentialWallCol.CompareTag("Platform");
-                _player.isNearWall = !potentialWallCol.CompareTag("Spikes");
+                _isNearWall = !_potentialWallCol.CompareTag("Platform");
+                _isNearWall = !_potentialWallCol.CompareTag("Spikes");
             }
         }
-        else _player.isNearWall = false;
+        else _isNearWall = false;
         
     }
 
