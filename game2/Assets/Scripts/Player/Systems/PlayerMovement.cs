@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using static UnityEditor.Experimental.GraphView.GraphView;
 
 public class PlayerMovement : MonoBehaviour
 {
@@ -40,6 +41,20 @@ public class PlayerMovement : MonoBehaviour
     {
     }
 
+    //TO DO do smth about this
+    //
+    public void ChangeSpriteToWallHang()
+    {
+        GetComponentInChildren<SpriteRenderer>().sprite=wallHangSprite;
+    }
+    public void ChangeSpriteToWallJump()
+    {
+        GetComponentInChildren<SpriteRenderer>().sprite = wallJumpSprite;
+    }
+
+
+    //
+
 
     public void MovePlayer(float direction)
     {
@@ -72,6 +87,10 @@ public class PlayerMovement : MonoBehaviour
     public void MovePlayerForward()
     {
             _rb.velocity = new Vector3(_rb.velocity.x, _rb.velocity.y, 0);
+    }
+    public void RotatePlayerOppositeDirection()
+    {
+        RotatePlayer((int)-_player.mainBody.transform.localScale.x);
     }
     public void RotatePlayer(int sideToFlipTo)
     {

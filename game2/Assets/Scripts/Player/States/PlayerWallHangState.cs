@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class PlayerWallHangState : PlayerState
 {
-    public PlayerWallHangState(Player player):base(player)
+    public PlayerWallHangState(PlayerContext playerContext):base(playerContext)
     {
 
     }
@@ -16,35 +16,35 @@ public class PlayerWallHangState : PlayerState
 
     public override void SetUpState()
     {
-        _player.anim.SetAnimator(false);
-        _player.playerMovement.StopPlayer();
-        _player.isJumping = false;
+        _playerContext.anim.SetAnimator(false);
+        _playerContext.playerMovement.StopPlayer();
+        //_playerContext.isJumping = false;
         //_player.playerMovement.ChangeRb2DMat(null);
         //_player.playerMovement.SetGravityScale(0);
-        _player.playerMovement.SetRbYAxis(false);
-        _player.playerMovement.StopPlayer();
-        _player.GetComponentInChildren<SpriteRenderer>().sprite = _player.playerMovement.wallHangSprite;
+        _playerContext.playerMovement.SetRbYAxis(false);
+        _playerContext.playerMovement.StopPlayer();
+        _playerContext.playerMovement.ChangeSpriteToWallHang();
     }
 
     public override void Jump()
     {
-        _player.playerMovement.MovePlayer(0); // to don't stop _player after jump
-        _player.GetComponentInChildren<SpriteRenderer>().sprite = _player.playerMovement.wallJumpSprite;
+        _playerContext.playerMovement.MovePlayer(0); // to don't stop _playerContext after jump
+        _playerContext.playerMovement.ChangeSpriteToWallJump();//GetComponentInChildren<SpriteRenderer>().sprite = _playerContext.playerMovement.wallJumpSprite;
         //_player.playerMovement.SetGravityScale(2);
-        _player.playerMovement.SetRbYAxis(true);
-        _player.isJumping = true;
-        _player.playerMovement.Jump();//WallJump();
-        _player.playerMovement.RotatePlayer((int)-_player.mainBody.transform.localScale.x);
-        _player.playerMovement.ChangeRb2DMat(_player.noFrictionMat);
-        _player.hasWallJumped = true;
-        _player.anim.PlayAnimation("Jump");
-        _player.anim.SetAnimator(true);
+        _playerContext.playerMovement.SetRbYAxis(true);
+        //_playerContext.isJumping = true;
+        _playerContext.playerMovement.Jump();//WallJump();
+        _playerContext.playerMovement.RotatePlayerOppositeDirection();
+        _playerContext.playerMovement.ChangeRb2DMat(_playerContext.noFrictionMat);
+       // _playerContext.hasWallJumped = true;
+        _playerContext.anim.PlayAnimation("Jump");
+        _playerContext.anim.SetAnimator(true);
 
-        _player.ChangeState(new PlayerInAirState(_player));
+        _playerContext.ChangeState(new PlayerInAirState(_playerContext));
     }
     public override void InterruptState()
     {
-        _player.playerMovement.SetRbYAxis(true);
+        _playerContext.playerMovement.SetRbYAxis(true);
     }
 
 
