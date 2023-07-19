@@ -15,5 +15,6 @@ public class PlayerContext
     public AbilityList abilityList;
     public PhysicsMaterial2D noFrictionMat;
     public CorutineHolder corutineHolder;
+    public PlayerCombat playerCombat;
 
 }

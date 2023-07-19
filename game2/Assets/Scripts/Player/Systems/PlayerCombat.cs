@@ -62,6 +62,10 @@ public class PlayerCombat : MonoBehaviour
     {
         Instantiate(bombPrefab, bombDropPos.transform.position, bombPrefab.transform.rotation);
     }
+    public void ChangeSpriteToPushed()
+    {
+        GetComponentInChildren<SpriteRenderer>().sprite = playerHitSprite;
+    }
     IEnumerator AttackCor()
     {
 
