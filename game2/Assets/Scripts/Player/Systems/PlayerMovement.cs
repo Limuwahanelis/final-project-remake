@@ -18,7 +18,7 @@ public class PlayerMovement : MonoBehaviour
     private Rigidbody2D _rb;
     public float speed;
     public float jumpStrength;
-    public float wallJumpStrength = Mathf.Abs( 0.5f * (7 / ((-1.154064f / 2) * 0.02f))); // _player mass * (wanted speed/((walljumphandle vector.x/2)*fixed time))
+    public float wallJumpStrength = Mathf.Abs( 0.5f * (7 / ((-1.154064f / 2) * 0.02f))); // _player mass * (wanted speed/((walljumphandle vector.x/2)*fixed _time))
     public float airAttackSpeed;
     public float slideTime = 2f;
     public GameObject toRotate;
@@ -68,6 +68,10 @@ public class PlayerMovement : MonoBehaviour
             }
         }
         _previousDirection = direction;
+    }
+    public void MovePlayerForward()
+    {
+            _rb.velocity = new Vector3(_rb.velocity.x, _rb.velocity.y, 0);
     }
     public void RotatePlayer(int sideToFlipTo)
     {

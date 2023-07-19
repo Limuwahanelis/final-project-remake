@@ -54,7 +54,19 @@ public class Player : MonoBehaviour
             currentState.Update();
         }
     }
-
+    public void SetSlideMode(bool slideMode)
+    {
+        if(slideMode)
+        {
+            slideColliders.SetActive(true);
+            normalColliders.SetActive(false);
+        }
+        else
+        {
+            slideColliders.SetActive(false);
+            normalColliders.SetActive(true);
+        }
+    }
     public void Slide()
     {
         ChangeState(new PlayerSlideState(this));
