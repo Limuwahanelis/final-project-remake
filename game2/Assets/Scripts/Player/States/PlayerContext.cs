@@ -16,5 +16,7 @@ public class PlayerContext
     public PhysicsMaterial2D noFrictionMat;
     public CorutineHolder corutineHolder;
     public PlayerCombat playerCombat;
+    public int numberOfPerformedWallJumps;
+    public int maximumNumberOfwallJumps;
 
 }

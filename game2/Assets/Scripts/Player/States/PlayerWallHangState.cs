@@ -39,7 +39,7 @@ public class PlayerWallHangState : PlayerState
        // _playerContext.hasWallJumped = true;
         _playerContext.anim.PlayAnimation("Jump");
         _playerContext.anim.SetAnimator(true);
-
+        _playerContext.numberOfPerformedWallJumps++;
         _playerContext.ChangeState(new PlayerInAirState(_playerContext));
     }
     public override void InterruptState()

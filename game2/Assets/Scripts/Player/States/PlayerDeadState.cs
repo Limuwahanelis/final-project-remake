@@ -4,14 +4,14 @@ using UnityEngine;
 
 public class PlayerDeadState : PlayerState
 {
-    public PlayerDeadState(Player player) : base(player)
+    public PlayerDeadState(PlayerContext playerContext) : base(playerContext)
     {
-        _player.anim.SetAnimator(true);
-        player.playerMovement.StopPlayer();
-        player.playerMovement.ChangeRb2DMat(null);
+        playerContext.anim.SetAnimator(true);
+        playerContext.playerMovement.StopPlayer();
+        playerContext.playerMovement.ChangeRb2DMat(null);
         //_player.normalColliders.SetActive(false);
-        player.anim.PlayAnimation("Dead");
-        player.isAlive = false;
+        playerContext.anim.PlayAnimation("Dead");
+        //playerContext.isAlive = false;
     }
     public override void Update()
     {
