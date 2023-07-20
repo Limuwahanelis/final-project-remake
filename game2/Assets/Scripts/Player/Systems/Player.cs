@@ -42,7 +42,12 @@ public class Player : MonoBehaviour
     void Start()
     {
         healthSystem.OnDeathEvent = SetPlayerDead;
-        currentState = new PlayerNormalState(this);
+        PlayerContext playerContext = new PlayerContext()
+        {
+            playerMovement = playerMovement,
+
+        };
+        currentState = new PlayerNormalState(playerContext);
         anim = GetComponent<AnimationManager>();
     }
 
@@ -67,10 +72,10 @@ public class Player : MonoBehaviour
             normalColliders.SetActive(true);
         }
     }
-    public void Slide()
-    {
-        ChangeState(new PlayerSlideState(this));
-    }
+    //public void Slide()
+    //{
+    //    ChangeState(new PlayerSlideState(this));
+    //}
     public IEnumerator WaitAndExecuteFunction(float timeToWait, Action function)
     {
         yield return new WaitForSeconds(timeToWait);
@@ -84,18 +89,18 @@ public class Player : MonoBehaviour
         currentState.SetUpState();
     }
 
-    public IEnumerator LeaveCeilingCor()
-    {
-        while(isNearCeiling)
-        {
-            yield return null;
-        }
-        ChangeState(new PlayerNormalState(this));
-        playerMovement.StopPlayer();
-        slideColliders.SetActive(false);
-        normalColliders.SetActive(true);
-        StopAllCoroutines();
-    }
+    //public IEnumerator LeaveCeilingCor()
+    //{
+    //    while(isNearCeiling)
+    //    {
+    //        yield return null;
+    //    }
+    //    ChangeState(new PlayerNormalState(this));
+    //    playerMovement.StopPlayer();
+    //    slideColliders.SetActive(false);
+    //    normalColliders.SetActive(true);
+    //    StopAllCoroutines();
+    //}
 
     public void LoadData(PlayerData playerData)
     {
@@ -109,7 +114,7 @@ public class Player : MonoBehaviour
     }
     public void SetPlayerDead()
     {
-        ChangeState(new PlayerDeadState(this));
+        currentState.Kill();
         ShowGameOverScreen();
     }
     public void ShowGameOverScreen()

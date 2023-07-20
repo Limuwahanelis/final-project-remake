@@ -21,5 +21,13 @@ public abstract class PlayerState
 
     public virtual void Slide() { }
     public virtual void InterruptState() { }
+    public virtual void Kill()
+    {
+        _playerContext.ChangeState(new PlayerDeadState(_playerContext));
+    }
+    public virtual void Push()
+    {
+        _playerContext.ChangeState(new PlayerPushedState(_playerContext));
+    }
     public abstract void Update();
 }

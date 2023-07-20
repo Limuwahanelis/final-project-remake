@@ -5,7 +5,6 @@ using UnityEngine;
 public class PlayerInAirState : PlayerState
 {
     private bool _isMoving = false;
-    private bool _hasAttacked = false;
     private PlayerMovement.playerDirection _currentDirection;
     private PlayerMovement.playerDirection _previousDirection;
 

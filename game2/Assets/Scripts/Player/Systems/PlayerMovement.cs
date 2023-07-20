@@ -112,7 +112,7 @@ public class PlayerMovement : MonoBehaviour
 
     public void WallJump()
     {
-        _player.isJumping = true;
+       // _player.isJumping = true;
         Debug.Log(wallJumpHandle.GetPushVector() * wallJumpStrength);
         _rb.AddForce(wallJumpHandle.GetPushVector()*wallJumpStrength ,ForceMode2D.Impulse);
         //_rb.AddForce(new Vector2(0.5f,0.5f) * wallJumpStrength, ForceMode2D.Impulse);
@@ -133,7 +133,7 @@ public class PlayerMovement : MonoBehaviour
     public void PushPlayer(Vector3 PushForce)
     {
         StopPlayer();
-        _player.ChangeState(new PlayerPushedState(_player));
+        _player.currentState.Push();
         _rb.AddForce(PushForce, ForceMode2D.Impulse);
         
         //StartCoroutine(PushCor());
@@ -150,7 +150,7 @@ public class PlayerMovement : MonoBehaviour
         {
             PushForce = new Vector3(-Mathf.Abs(PushForce.x), PushForce.y, PushForce.z);
         }
-        _player.ChangeState(new PlayerPushedState(_player));
+        _player.currentState.Push();
         _rb.AddForce(PushForce, ForceMode2D.Impulse);
 
        // StartCoroutine(PushCor());
@@ -189,13 +189,13 @@ public class PlayerMovement : MonoBehaviour
     //    _rb.velocity = new Vector2(0, 0);
     //    _rb.gravityScale = 2;
     //}
-    public IEnumerator JumpCor()
-    {
-        _rb.sharedMaterial = _player.noFrictionMat;
-        while (_player.isOnGround) yield return null;
+    //public IEnumerator JumpCor()
+    //{
+    //    _rb.sharedMaterial = _player.noFrictionMat;
+    //    while (_player.isOnGround) yield return null;
         
-        _player.isJumping = false;
-        _player.ChangeState(new PlayerInAirState(_player));
-    }
+    //    //_player.isJumping = false;
+    //    _player.ChangeState(new PlayerInAirState(_player));
+    //}
 
 }
