@@ -43,14 +43,14 @@ public class PlayerCombat : MonoBehaviour
         StopAllCoroutines();
     }
 
-    public void AirAttack()
-    {
-        _player.canPerformAirAttack = false;
-        _player.isAirAttacking = true;
-        _player.anim.PlayAnimation("Air attack");
-        airAttackCor= StartCoroutine(_player.playerMovement.AirAttackCor(_player.anim.GetAnimationLength("Air attack")));
-        playerMovAirAttackCor= StartCoroutine(AirAttackCor());
-    }
+    //public void AirAttack()
+    //{
+    //    _player.canPerformAirAttack = false;
+    //    _player.isAirAttacking = true;
+    //    _player.anim.PlayAnimation("Air attack");
+    //    _airAttackCor= StartCoroutine(_player.playerMovement.AirAttackCor(_player.anim.GetAnimationLength("Air attack")));
+    //    playerMovAirAttackCor= StartCoroutine(AirAttackCor());
+    //}
     public void StopAirAttack()
     {
         StopCoroutine(airAttackCor);
@@ -92,7 +92,7 @@ public class PlayerCombat : MonoBehaviour
             yield return null;
         }
     }
-    IEnumerator AirAttackCor()
+    public IEnumerator AirAttackCor()
     {
         float airAttackTime = 0f;
         List<Collider2D> hitEnemies = new List<Collider2D>(Physics2D.OverlapCircleAll(attackPos.position, attackRange, enemyLayer));
@@ -103,7 +103,7 @@ public class PlayerCombat : MonoBehaviour
             if (tmp != null) tmp.TakeDamage(attackDamage.value);
         }
         yield return null;
-        while (_player.isAirAttacking)
+        while (airAttackTime <= _player.anim.GetAnimationLength("Air attack"))
         {
             Collider2D[] colliders = Physics2D.OverlapCircleAll(attackPos.position, attackRange, enemyLayer);
             for (int i = 0; i < colliders.Length; i++)
@@ -117,10 +117,6 @@ public class PlayerCombat : MonoBehaviour
             }
             airAttackTime += Time.deltaTime;
             yield return null;
-            if(airAttackTime>= _player.anim.GetAnimationLength("Air attack"))
-            {
-                _player.isAirAttacking = false;
-            }
         }
     }
 

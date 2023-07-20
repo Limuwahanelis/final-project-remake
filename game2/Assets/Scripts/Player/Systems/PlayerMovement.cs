@@ -1,13 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using static UnityEditor.Experimental.GraphView.GraphView;
 
 public class PlayerMovement : MonoBehaviour
 {
    public enum playerDirection
     {
         LEFT=-1,
+        SAME=0,
         RIGHT=1
     }
 
@@ -86,7 +86,7 @@ public class PlayerMovement : MonoBehaviour
     }
     public void MovePlayerForward()
     {
-            _rb.velocity = new Vector3(_rb.velocity.x, _rb.velocity.y, 0);
+            _rb.velocity = new Vector3((int)oldPlayerDirection*speed, _rb.velocity.y, 0);
     }
     public void RotatePlayerOppositeDirection()
     {
@@ -171,14 +171,24 @@ public class PlayerMovement : MonoBehaviour
     {
         return _rb.velocity;
     }
-    public IEnumerator AirAttackCor(float airAttackDuration)
+    public void StartAirAttack()
     {
-        _rb.gravityScale = 0;
-        _rb.velocity = new Vector2(airAttackSpeed * _player.mainBody.transform.localScale.x, 0);
-        yield return new WaitForSeconds(airAttackDuration);
+            _rb.gravityScale = 0;
+           _rb.velocity = new Vector2(airAttackSpeed * _player.mainBody.transform.localScale.x, 0);
+    }
+    public void StopAirAttack()
+    {
         _rb.velocity = new Vector2(0, 0);
         _rb.gravityScale = 2;
     }
+    //public IEnumerator AirAttackCor(float airAttackDuration)
+    //{
+    //    _rb.gravityScale = 0;
+    //    _rb.velocity = new Vector2(airAttackSpeed * _player.mainBody.transform.localScale.x, 0);
+    //    yield return new WaitForSeconds(airAttackDuration);
+    //    _rb.velocity = new Vector2(0, 0);
+    //    _rb.gravityScale = 2;
+    //}
     public IEnumerator JumpCor()
     {
         _rb.sharedMaterial = _player.noFrictionMat;
