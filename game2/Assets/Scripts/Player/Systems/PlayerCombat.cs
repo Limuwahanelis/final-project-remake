@@ -27,30 +27,10 @@ public class PlayerCombat : MonoBehaviour
     {
 
     }
-    public void Attack(PlayerState state)
-    {
-
-        _player.playerMovement.StopPlayer();
-        _player.anim.PlayAnimation("Attack1");
-        StartCoroutine(AttackCor());
-        StartCoroutine(_player.WaitAndExecuteFunction(_player.anim.GetAnimationLength("Attack1"), () =>
-        {
-            state.AttackIsOver();
-        }));
-    }
     public void StopAttack()
     {
         StopAllCoroutines();
     }
-
-    //public void AirAttack()
-    //{
-    //    _player.canPerformAirAttack = false;
-    //    _player.isAirAttacking = true;
-    //    _player.anim.PlayAnimation("Air attack");
-    //    _airAttackCor= StartCoroutine(_player.playerMovement.AirAttackCor(_player.anim.GetAnimationLength("Air attack")));
-    //    playerMovAirAttackCor= StartCoroutine(AirAttackCor());
-    //}
     public void StopAirAttack()
     {
         StopCoroutine(airAttackCor);
@@ -66,7 +46,7 @@ public class PlayerCombat : MonoBehaviour
     {
         GetComponentInChildren<SpriteRenderer>().sprite = playerHitSprite;
     }
-    IEnumerator AttackCor()
+    public IEnumerator AttackCor()
     {
 
         List<Collider2D> hitEnemies = new List<Collider2D>(Physics2D.OverlapCircleAll(attackPos.position, attackRange, enemyLayer));
@@ -74,7 +54,7 @@ public class PlayerCombat : MonoBehaviour
         for (; index < hitEnemies.Count; index++)
         {
             IDamagable tmp = hitEnemies[index].GetComponentInParent<IDamagable>();
-            if (tmp != null) tmp.TakeDamage(attackDamage.value);
+            if (tmp != null) tmp.TakeDamage(attackDamage.value,PlayerHealthSystem.DamageType.ENEMY);
         }
         yield return null;
         while (_player.isAttacking)
@@ -86,7 +66,7 @@ public class PlayerCombat : MonoBehaviour
                 {
                     hitEnemies.Add(colliders[i]);
                     IDamagable tmp = colliders[i].GetComponentInParent<IDamagable>();
-                    if (tmp != null) tmp.TakeDamage(attackDamage.value);
+                    if (tmp != null) tmp.TakeDamage(attackDamage.value, PlayerHealthSystem.DamageType.ENEMY);
                 }
             }
             yield return null;
@@ -100,7 +80,7 @@ public class PlayerCombat : MonoBehaviour
         for (; index < hitEnemies.Count; index++)
         {
             IDamagable tmp = hitEnemies[index].GetComponentInParent<IDamagable>();
-            if (tmp != null) tmp.TakeDamage(attackDamage.value);
+            if (tmp != null) tmp.TakeDamage(attackDamage.value, PlayerHealthSystem.DamageType.ENEMY);
         }
         yield return null;
         while (airAttackTime <= _player.anim.GetAnimationLength("Air attack"))
@@ -112,7 +92,7 @@ public class PlayerCombat : MonoBehaviour
                 {
                     hitEnemies.Add(colliders[i]);
                     IDamagable tmp = colliders[i].GetComponentInParent<IDamagable>();
-                    if (tmp != null) tmp.TakeDamage(attackDamage.value);
+                    if (tmp != null) tmp.TakeDamage(attackDamage.value, PlayerHealthSystem.DamageType.ENEMY);
                 }
             }
             airAttackTime += Time.deltaTime;

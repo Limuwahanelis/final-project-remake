@@ -19,5 +19,6 @@ public class PlayerContext
     public int numberOfPerformedWallJumps;
     public int maximumNumberOfwallJumps;
     public bool canPerformAirAttack;
+    public PlayerHealthSystem playerHealthSystem;
 
 }

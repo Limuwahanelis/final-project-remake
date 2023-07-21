@@ -54,4 +54,9 @@ public class PlayerNormalState : PlayerState
         if(_playerContext.abilityList.CheckIfAbilityIsUnlocked(AbilityList.Abilities.BOMB_DROP)) _playerContext.ChangeState(new PlayerDropBombState(_playerContext));
 
     }
+    public override void SetUpState()
+    {
+        _playerContext.canPerformAirAttack = true;
+        _playerContext.numberOfPerformedWallJumps = 0;
+    }
 }

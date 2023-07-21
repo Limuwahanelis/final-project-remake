@@ -9,7 +9,7 @@ public class PlayerJumpingState : PlayerState
     { }
     public override void Update()
     {
-        
+        if(!_playerContext.playerChecks.IsOnGround) _playerContext.ChangeState(new PlayerInAirState(_playerContext));
     }
     public override void Jump()
     {
@@ -22,7 +22,7 @@ public class PlayerJumpingState : PlayerState
         _jumpCor = _playerContext.corutineHolder.StartCoroutine(_playerContext.WaitAndExecuteFunction(_playerContext.anim.GetAnimationLength("Jump"), () =>
         {
             _playerContext.playerMovement.Jump();
-            _playerContext.ChangeState(new PlayerInAirState(_playerContext));
+            //_playerContext.ChangeState(new PlayerInAirState(_playerContext));
         }));
     }
     public override void InterruptState()

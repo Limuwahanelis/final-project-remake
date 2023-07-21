@@ -1,5 +1,48 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &925862270208633182
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1752244497202234692}
+  - component: {fileID: 6437609286694411236}
+  m_Layer: 0
+  m_Name: Corutine holder
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1752244497202234692
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 925862270208633182}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 5767090226136095783}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &6437609286694411236
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 925862270208633182}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3ffa43e5b7aecfd459daef048c4e2551, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1055722208750009971
 GameObject:
   m_ObjectHideFlags: 0
@@ -721,7 +764,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5767090226080053571}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -1.4266815, y: 1.4016342, z: 0}
+  m_LocalPosition: {x: -1.4266818, y: 1.4016342, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 5767090225051829743}
@@ -770,6 +813,7 @@ Transform:
   - {fileID: 5767090226076576678}
   - {fileID: 5767090226429716902}
   - {fileID: 5767090225051829743}
+  - {fileID: 1752244497202234692}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -785,6 +829,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 02a51b4eddc92ca4eb41595e974d0578, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  corutineHolder: {fileID: 0}
   playerMovement: {fileID: 5767090226136095778}
   abilities: {fileID: 11400000, guid: d2e06ae10b536bb49afe12ab876fcfda, type: 2}
   playerInput: {fileID: 5767090226136095779}
@@ -1243,7 +1288,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5767090226663683082}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -1.154068, y: 1.6334419, z: 0}
+  m_LocalPosition: {x: -1.1540682, y: 1.63344, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 5767090225051829743}

@@ -1063,6 +1063,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8707928765d5c484cb9eb08807f7e460, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  pushType: 2
   _pushCollidingObject: 1
   _damageCollidingObject: 1
   damage: 3

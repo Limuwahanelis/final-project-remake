@@ -6,6 +6,7 @@ using System;
 [RequireComponent(typeof(PlayerInput))]
 public class Player : MonoBehaviour
 {
+    [SerializeField] CorutineHolder corutineHolder;
     public PlayerMovement playerMovement;
     public AbilityList abilities;
     public PlayerInput playerInput;
@@ -45,6 +46,20 @@ public class Player : MonoBehaviour
         PlayerContext playerContext = new PlayerContext()
         {
             playerMovement = playerMovement,
+            SetSlideMode = SetSlideMode,
+            ChangeState = ChangeState,
+            WaitAndExecuteFunction = WaitAndExecuteFunction,
+            anim = anim,
+            audioManager = audioManager,
+            playerChecks = playerChecks,
+            abilityList = abilities,
+            noFrictionMat = noFrictionMat,
+            corutineHolder = corutineHolder,
+            playerCombat = playerCombat,
+            maximumNumberOfwallJumps = 1,
+            numberOfPerformedWallJumps = 0,
+            canPerformAirAttack = true,
+            playerHealthSystem = healthSystem,
 
         };
         currentState = new PlayerNormalState(playerContext);

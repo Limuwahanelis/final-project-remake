@@ -19,7 +19,7 @@ public class HealthSystem : MonoBehaviour,IDamagable
         currentHP.value = maxHP.value;
         hpBar.SetHealth(currentHP.value);
     }
-    public virtual void TakeDamage(int dmg)
+    public virtual void TakeDamage(int dmg, PlayerHealthSystem.DamageType damageType)
     {
         currentHP.value -= dmg;
         hpBar.SetHealth(currentHP.value);

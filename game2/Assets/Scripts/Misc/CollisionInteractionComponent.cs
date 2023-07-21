@@ -5,6 +5,8 @@ using UnityEngine;
 public class CollisionInteractionComponent : MonoBehaviour
 {
     [SerializeField]
+    protected PlayerHealthSystem.DamageType pushType;
+    [SerializeField]
     protected bool _pushCollidingObject;
     [SerializeField]
     protected bool _damageCollidingObject;
@@ -19,12 +21,12 @@ public class CollisionInteractionComponent : MonoBehaviour
         if(_pushCollidingObject)
         {
             IPushable toPush = collision.transform.GetComponentInParent<IPushable>();
-            if (toPush != null) toPush.Push();
+            if (toPush != null) toPush.Push(pushType);
         }
         if(_damageCollidingObject)
         {
             IDamagable toDamage = collision.transform.GetComponentInParent<IDamagable>();
-            if (toDamage != null) toDamage.TakeDamage(damage);
+            if (toDamage != null) toDamage.TakeDamage(damage,PlayerHealthSystem.DamageType.ENEMY);
         }
     }
 }
