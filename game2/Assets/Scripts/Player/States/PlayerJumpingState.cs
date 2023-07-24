@@ -18,11 +18,9 @@ public class PlayerJumpingState : PlayerState
     {
         _playerContext.playerMovement.ChangeRb2DMat(_playerContext.noFrictionMat);
         _playerContext.anim.PlayAnimation("Jump");
-        //_playerContext.isJumping = true;
         _jumpCor = _playerContext.corutineHolder.StartCoroutine(_playerContext.WaitAndExecuteFunction(_playerContext.anim.GetAnimationLength("Jump"), () =>
         {
             _playerContext.playerMovement.Jump();
-            //_playerContext.ChangeState(new PlayerInAirState(_playerContext));
         }));
     }
     public override void InterruptState()

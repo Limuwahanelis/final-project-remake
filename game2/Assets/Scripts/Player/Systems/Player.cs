@@ -29,16 +29,16 @@ public class Player : MonoBehaviour
 
     public BoolReference isGamePaused;
 
-    public bool isJumping = false;
-    public bool isOnGround = true;
+    //public bool isJumping = false;
+    //public bool isOnGround = true;
     public bool isAlive = true;
-    public bool isAttacking = false;
-    public bool isAirAttacking = false;
-    public bool canPerformAirAttack = true;
-    public bool isInAirAfterPush = false;
-    public bool isNearWall = false;
-    public bool hasWallJumped = false;
-    public bool isNearCeiling = false;
+    //public bool isAttacking = false;
+    //public bool isAirAttacking = false;
+    //public bool canPerformAirAttack = true;
+    //public bool isInAirAfterPush = false;
+    //public bool isNearWall = false;
+    //public bool hasWallJumped = false;
+    //public bool isNearCeiling = false;
     // Start is called before the first frame update
     void Start()
     {

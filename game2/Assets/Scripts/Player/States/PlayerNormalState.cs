@@ -8,15 +8,12 @@ public class PlayerNormalState : PlayerState
     private bool _isMoving = false;
     public PlayerNormalState(PlayerContext playerContext) : base(playerContext)
     {
-        //_player.hasWallJumped = false;
     }
     public override void Jump()
     {
-        //_player.isAttacking = false;
         _isMoving = false;
         _playerContext.playerMovement.StopPlayerOnXAxis();
         _playerContext.ChangeState(new PlayerJumpingState(_playerContext));
-        //_player.currentState.Jump();
     }
 
     public override void Move(float direction)
@@ -34,10 +31,6 @@ public class PlayerNormalState : PlayerState
     public override void Attack()
     {
         _playerContext.ChangeState(new PlayerAttackState(_playerContext));
-        //if (_player.isAttacking) return;
-        //_player.audioManager.PlayNormalAttackSound();
-        //_player.isAttacking = true;
-        //_player.playerCombat.Attack(this);
     }
 
     public override void Update()

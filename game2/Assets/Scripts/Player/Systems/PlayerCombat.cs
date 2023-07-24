@@ -35,7 +35,6 @@ public class PlayerCombat : MonoBehaviour
     {
         StopCoroutine(airAttackCor);
         StopCoroutine(playerMovAirAttackCor);
-        _player.isAirAttacking = false;
         _player.playerMovement.SetGravityScale(2);
     }
     public void SpawnBomb()
@@ -57,7 +56,7 @@ public class PlayerCombat : MonoBehaviour
             if (tmp != null) tmp.TakeDamage(attackDamage.value,PlayerHealthSystem.DamageType.ENEMY);
         }
         yield return null;
-        while (_player.isAttacking)
+        while (true)
         {
             Collider2D[] colliders = Physics2D.OverlapCircleAll(attackPos.position, attackRange, enemyLayer);
             for (int i = 0; i < colliders.Length; i++)

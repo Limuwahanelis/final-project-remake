@@ -64,8 +64,10 @@ public class PlayerHealthSystem : HealthSystem,IPushable
     IEnumerator InvincibilityCor()
     {
         _invincibiltyType=DamageType.ALL;
+        _pushInvincibiltyType = DamageType.ALL;
         yield return new WaitForSeconds(_invincibilityAfterHitDuration);
         _invincibiltyType = DamageType.NONE;
+        _pushInvincibiltyType = DamageType.NONE;
     }
 
     public void Push(PlayerHealthSystem.DamageType damageType)
@@ -77,7 +79,7 @@ public class PlayerHealthSystem : HealthSystem,IPushable
             StartCoroutine(PushCor());
         }
     }
-    public void Push(PlayerMovement.playerDirection direction, PlayerHealthSystem.DamageType damageType)
+    public void Push(PlayerMovement.playerDirection direction, DamageType damageType)
     {
         if (player.isAlive)
         {

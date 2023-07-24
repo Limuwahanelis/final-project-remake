@@ -30,27 +30,9 @@ public class PlayerSlideState : PlayerState
     }
     public override void SetUpState()
     {
-        //_playerContext.slideColliders.SetActive(true);
-        //_playerContext.normalColliders.SetActive(false);
         _playerContext.SetSlideMode(true);
         _playerContext.anim.PlayAnimation("Slide");
 
-        //_playerContext.corutineHolder.StartCoroutine(_playerContext.WaitAndExecuteFunction(_playerContext.playerMovement.slideTime, () =>
-        //{
-        //    if (_playerContext.playerChecks.IsNearCeiling)
-        //    {
-        //        _playerContext.corutineHolder.StartCoroutine(_playerContext.LeaveCeilingCor());
-        //    }
-        //    else
-        //    {
-        //        _playerContext.ChangeState(new PlayerNormalState(_playerContext));
-        //        _playerContext.playerMovement.StopPlayer();
-        //        _playerContext.SetSlideMode(false);
-        //        _playerContext.StopAllCoroutines();
-
-        //    }
-        //}));
-        //_playerContext.StartCoroutine(_playerContext.playerChecks.CheckForWallDuringSlideCor());
     }
 
 }

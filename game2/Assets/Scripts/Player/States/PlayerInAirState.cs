@@ -13,26 +13,21 @@ public class PlayerInAirState : PlayerState
     }
     public override void Update()
     {
-        //if (!_playerContext.isAirAttacking)
-        //{
             if (_playerContext.playerMovement.CheckIfPlayerIsFalling())
             {
                 _playerContext.anim.PlayAnimation("Fall");
-                // _playerContext.isJumping = false;
                 _playerContext.playerMovement.ChangeRb2DMat(_playerContext.noFrictionMat);
             }
-        //}
         if (_playerContext.playerChecks.IsOnGround && Mathf.Abs(_playerContext.playerMovement.GetPlayerVelocity().y)<0.0004 )//&& !_playerContext.isJumping && !_playerContext.isAirAttacking )
         {
             _playerContext.playerMovement.ChangeRb2DMat(null);
             _playerContext.ChangeState(new PlayerNormalState(_playerContext));
             return;
         }
-        if(_playerContext.playerChecks.IsNearWall && _playerContext.numberOfPerformedWallJumps<=_playerContext.maximumNumberOfwallJumps && _isMoving && _currentDirection == _previousDirection)
+        if(_playerContext.playerChecks.IsNearWall && _playerContext.numberOfPerformedWallJumps<_playerContext.maximumNumberOfwallJumps && _isMoving && _currentDirection == _previousDirection)
         {
             if (_playerContext.abilityList.CheckIfAbilityIsUnlocked(AbilityList.Abilities.WALLHANG_ANDJUMP))
             {
-                //if (_playerContext.isAirAttacking) _playerContext.playerCombat.StopAirAttack();
                 _playerContext.ChangeState(new PlayerWallHangState(_playerContext));
                 return;
             }
@@ -41,9 +36,6 @@ public class PlayerInAirState : PlayerState
 
     public override void Move(float direction)
     {
-
-        //if (!_playerContext.isAirAttacking)
-        //{
             if (direction == 0) _isMoving = false;
             else
             {
@@ -52,7 +44,6 @@ public class PlayerInAirState : PlayerState
                 _currentDirection = (PlayerMovement.playerDirection)direction;
             }
             _playerContext.playerMovement.MovePlayer(direction);
-        //}
     }
     public override void Attack()
     {
