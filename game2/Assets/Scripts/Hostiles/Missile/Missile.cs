@@ -26,6 +26,6 @@ public class Missile : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        collision.GetComponentInParent<IDamagable>().TakeDamage(damage);
+        collision.GetComponentInParent<IDamagable>().TakeDamage(damage,PlayerHealthSystem.DamageType.MISSILE);
     }
 }

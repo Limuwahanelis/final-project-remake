@@ -9,7 +9,7 @@ public class Spike : MonoBehaviour
     {
         IDamagable player = collision.transform.GetComponent<PlayerHealthSystem>();
         IPushable toPush = collision.transform.GetComponent<PlayerHealthSystem>();
-        toPush.Push();
-        player.TakeDamage(dmg);
+        toPush.Push(PlayerHealthSystem.DamageType.TRAPS);
+        player.TakeDamage(dmg,PlayerHealthSystem.DamageType.TRAPS);
     }
 }

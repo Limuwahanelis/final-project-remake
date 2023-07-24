@@ -7,6 +7,7 @@ public class PlayerMovement : MonoBehaviour
    public enum playerDirection
     {
         LEFT=-1,
+        SAME=0,
         RIGHT=1
     }
 
@@ -18,7 +19,7 @@ public class PlayerMovement : MonoBehaviour
     private Rigidbody2D _rb;
     public float speed;
     public float jumpStrength;
-    public float wallJumpStrength = Mathf.Abs( 0.5f * (7 / ((-1.154064f / 2) * 0.02f))); // _player mass * (wanted speed/((walljumphandle vector.x/2)*fixed time))
+    public float wallJumpStrength = Mathf.Abs( 0.5f * (7 / ((-1.154064f / 2) * 0.02f))); // _player mass * (wanted speed/((walljumphandle vector.x/2)*fixed _time))
     public float airAttackSpeed;
     public float slideTime = 2f;
     public GameObject toRotate;
@@ -39,6 +40,20 @@ public class PlayerMovement : MonoBehaviour
     void Update()
     {
     }
+
+    //TO DO do smth about this
+    //
+    public void ChangeSpriteToWallHang()
+    {
+        GetComponentInChildren<SpriteRenderer>().sprite=wallHangSprite;
+    }
+    public void ChangeSpriteToWallJump()
+    {
+        GetComponentInChildren<SpriteRenderer>().sprite = wallJumpSprite;
+    }
+
+
+    //
 
 
     public void MovePlayer(float direction)
@@ -69,6 +84,14 @@ public class PlayerMovement : MonoBehaviour
         }
         _previousDirection = direction;
     }
+    public void MovePlayerForward()
+    {
+            _rb.velocity = new Vector3((int)oldPlayerDirection*speed, _rb.velocity.y, 0);
+    }
+    public void RotatePlayerOppositeDirection()
+    {
+        RotatePlayer((int)-_player.mainBody.transform.localScale.x);
+    }
     public void RotatePlayer(int sideToFlipTo)
     {
         _flipSide = sideToFlipTo;
@@ -89,7 +112,7 @@ public class PlayerMovement : MonoBehaviour
 
     public void WallJump()
     {
-        _player.isJumping = true;
+       // _player.isJumping = true;
         Debug.Log(wallJumpHandle.GetPushVector() * wallJumpStrength);
         _rb.AddForce(wallJumpHandle.GetPushVector()*wallJumpStrength ,ForceMode2D.Impulse);
         //_rb.AddForce(new Vector2(0.5f,0.5f) * wallJumpStrength, ForceMode2D.Impulse);
@@ -110,7 +133,7 @@ public class PlayerMovement : MonoBehaviour
     public void PushPlayer(Vector3 PushForce)
     {
         StopPlayer();
-        _player.ChangeState(new PlayerPushedState(_player));
+        _player.currentState.Push();
         _rb.AddForce(PushForce, ForceMode2D.Impulse);
         
         //StartCoroutine(PushCor());
@@ -127,7 +150,7 @@ public class PlayerMovement : MonoBehaviour
         {
             PushForce = new Vector3(-Mathf.Abs(PushForce.x), PushForce.y, PushForce.z);
         }
-        _player.ChangeState(new PlayerPushedState(_player));
+        _player.currentState.Push();
         _rb.AddForce(PushForce, ForceMode2D.Impulse);
 
        // StartCoroutine(PushCor());
@@ -148,21 +171,31 @@ public class PlayerMovement : MonoBehaviour
     {
         return _rb.velocity;
     }
-    public IEnumerator AirAttackCor(float airAttackDuration)
+    public void StartAirAttack()
     {
-        _rb.gravityScale = 0;
-        _rb.velocity = new Vector2(airAttackSpeed * _player.mainBody.transform.localScale.x, 0);
-        yield return new WaitForSeconds(airAttackDuration);
+            _rb.gravityScale = 0;
+           _rb.velocity = new Vector2(airAttackSpeed * _player.mainBody.transform.localScale.x, 0);
+    }
+    public void StopAirAttack()
+    {
         _rb.velocity = new Vector2(0, 0);
         _rb.gravityScale = 2;
     }
-    public IEnumerator JumpCor()
-    {
-        _rb.sharedMaterial = _player.noFrictionMat;
-        while (_player.isOnGround) yield return null;
+    //public IEnumerator AirAttackCor(float airAttackDuration)
+    //{
+    //    _rb.gravityScale = 0;
+    //    _rb.velocity = new Vector2(airAttackSpeed * _player.mainBody.transform.localScale.x, 0);
+    //    yield return new WaitForSeconds(airAttackDuration);
+    //    _rb.velocity = new Vector2(0, 0);
+    //    _rb.gravityScale = 2;
+    //}
+    //public IEnumerator JumpCor()
+    //{
+    //    _rb.sharedMaterial = _player.noFrictionMat;
+    //    while (_player.isOnGround) yield return null;
         
-        _player.isJumping = false;
-        _player.ChangeState(new PlayerInAirState(_player));
-    }
+    //    //_player.isJumping = false;
+    //    _player.ChangeState(new PlayerInAirState(_player));
+    //}
 
 }

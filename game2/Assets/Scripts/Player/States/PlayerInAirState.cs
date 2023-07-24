@@ -5,33 +5,30 @@ using UnityEngine;
 public class PlayerInAirState : PlayerState
 {
     private bool _isMoving = false;
-    private bool _hasAttacked = false;
-    public PlayerInAirState(Player player) : base(player)
+    private PlayerMovement.playerDirection _currentDirection;
+    private PlayerMovement.playerDirection _previousDirection;
+
+    public PlayerInAirState(PlayerContext playerContext) : base(playerContext)
     { 
     }
     public override void Update()
     {
-        if (!_player.isAirAttacking)
-        {
-            if (_player.playerMovement.CheckIfPlayerIsFalling())
+            if (_playerContext.playerMovement.CheckIfPlayerIsFalling())
             {
-                _player.anim.PlayAnimation("Fall");
-                _player.isJumping = false;
-                _player.playerMovement.ChangeRb2DMat(_player.noFrictionMat);
+                _playerContext.anim.PlayAnimation("Fall");
+                _playerContext.playerMovement.ChangeRb2DMat(_playerContext.noFrictionMat);
             }
-        }
-        if (_player.isOnGround && Mathf.Abs(_player.playerMovement.GetPlayerVelocity().y)<0.0004 && !_player.isJumping && !_player.isAirAttacking )
+        if (_playerContext.playerChecks.IsOnGround && Mathf.Abs(_playerContext.playerMovement.GetPlayerVelocity().y)<0.0004 )//&& !_playerContext.isJumping && !_playerContext.isAirAttacking )
         {
-            _player.playerMovement.ChangeRb2DMat(null);
-            _player.ChangeState(new PlayerNormalState(_player));
+            _playerContext.playerMovement.ChangeRb2DMat(null);
+            _playerContext.ChangeState(new PlayerNormalState(_playerContext));
             return;
         }
-        if(_player.isNearWall && !_player.hasWallJumped && _isMoving && _player.playerMovement.newPlayerDirection==_player.playerMovement.oldPlayerDirection)
+        if(_playerContext.playerChecks.IsNearWall && _playerContext.numberOfPerformedWallJumps<_playerContext.maximumNumberOfwallJumps && _isMoving && _currentDirection == _previousDirection)
         {
-            if (_player.abilities.CheckIfAbilityIsUnlocked(AbilityList.Abilities.WALLHANG_ANDJUMP))
+            if (_playerContext.abilityList.CheckIfAbilityIsUnlocked(AbilityList.Abilities.WALLHANG_ANDJUMP))
             {
-                if (_player.isAirAttacking) _player.playerCombat.StopAirAttack();
-                _player.ChangeState(new PlayerWallHangState(_player));
+                _playerContext.ChangeState(new PlayerWallHangState(_playerContext));
                 return;
             }
         }
@@ -39,25 +36,22 @@ public class PlayerInAirState : PlayerState
 
     public override void Move(float direction)
     {
-
-        if (!_player.isAirAttacking)
-        {
             if (direction == 0) _isMoving = false;
             else
             {
                 _isMoving = true;
+                _previousDirection = _currentDirection;
+                _currentDirection = (PlayerMovement.playerDirection)direction;
             }
-            _player.playerMovement.MovePlayer(direction);
-        }
+            _playerContext.playerMovement.MovePlayer(direction);
     }
     public override void Attack()
     {
-        if (_player.abilities.CheckIfAbilityIsUnlocked(AbilityList.Abilities.AIR_ATTACK))
+        if (_playerContext.abilityList.CheckIfAbilityIsUnlocked(AbilityList.Abilities.AIR_ATTACK))
         {
-            if (_hasAttacked) return;
-            _hasAttacked = true;
-            _player.audioManager.PlayAirAttackSound();
-            _player.playerCombat.AirAttack();
+            if (!_playerContext.canPerformAirAttack) return;
+            _playerContext.ChangeState(new PlayerAirAttackState(_playerContext));
+
         }
     }
 }

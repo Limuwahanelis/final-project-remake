@@ -6,55 +6,50 @@ public class PlayerNormalState : PlayerState
 {
 
     private bool _isMoving = false;
-    public PlayerNormalState(Player player) : base(player)
+    public PlayerNormalState(PlayerContext playerContext) : base(playerContext)
     {
-        _player.hasWallJumped = false;
     }
     public override void Jump()
     {
-        _player.isAttacking = false;
         _isMoving = false;
-        _player.playerMovement.StopPlayerOnXAxis();
-        _player.ChangeState(new PlayerJumpingState(_player));
-        //_player.currentState.Jump();
+        _playerContext.playerMovement.StopPlayerOnXAxis();
+        _playerContext.ChangeState(new PlayerJumpingState(_playerContext));
     }
 
     public override void Move(float direction)
     {
-        if (!_player.isAttacking)
-        {
             if (direction == 0) _isMoving = false;
             else
             {
                 _isMoving = true;
-                _player.anim.PlayAnimation("Walk");
-                _player.audioManager.PlayWalkSound();
+                _playerContext.anim.PlayAnimation("Walk");
+                _playerContext.audioManager.PlayWalkSound();
             }
-            _player.playerMovement.MovePlayer(direction);
-        }
+            _playerContext.playerMovement.MovePlayer(direction);
     }
 
     public override void Attack()
     {
-        _player.ChangeState(new PlayerAttackState(_player));
-        //if (_player.isAttacking) return;
-        //_player.audioManager.PlayNormalAttackSound();
-        //_player.isAttacking = true;
-        //_player.playerCombat.Attack(this);
+        _playerContext.ChangeState(new PlayerAttackState(_playerContext));
     }
 
     public override void Update()
     {
-        if(!_isMoving && !_player.isAttacking) _player.anim.PlayAnimation("Idle");
-        if (!_player.isOnGround) _player.ChangeState(new PlayerInAirState(_player));
+        if(!_isMoving) _playerContext.anim.PlayAnimation("Idle");
+        if (!_playerContext.playerChecks.IsOnGround) _playerContext.ChangeState(new PlayerInAirState(_playerContext));
     }
     public override void Slide()
     {
-        _player.ChangeState(new PlayerSlideState(_player));
+        _playerContext.ChangeState(new PlayerSlideState(_playerContext));
     }
     public override void DropBomb()
     {
-        if(_player.abilities.CheckIfAbilityIsUnlocked(AbilityList.Abilities.BOMB_DROP)) _player.ChangeState(new PlayerDropBombState(_player));
+        if(_playerContext.abilityList.CheckIfAbilityIsUnlocked(AbilityList.Abilities.BOMB_DROP)) _playerContext.ChangeState(new PlayerDropBombState(_playerContext));
 
+    }
+    public override void SetUpState()
+    {
+        _playerContext.canPerformAirAttack = true;
+        _playerContext.numberOfPerformedWallJumps = 0;
     }
 }

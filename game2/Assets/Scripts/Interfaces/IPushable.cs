@@ -4,6 +4,6 @@ using UnityEngine;
 
 public interface IPushable
 {
-    void Push();
-    void Push(PlayerMovement.playerDirection direction);
+    void Push(PlayerHealthSystem.DamageType damageType);
+    void Push(PlayerMovement.playerDirection direction, PlayerHealthSystem.DamageType damageType);
 }
