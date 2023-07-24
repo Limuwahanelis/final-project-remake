@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 432286171755910242}
   - component: {fileID: 432286171755910241}
   m_Layer: 0
-  m_Name: torchNOInter
+  m_Name: non-interactable_torch
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -71,7 +71,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 1559973199
-  m_SortingLayer: 2
+  m_SortingLayer: 3
   m_SortingOrder: 1
   m_Sprite: {fileID: 21300022, guid: 7810966f0f690954c87305933cabf2b0, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -93,7 +93,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5258783835903299188}
-  - component: {fileID: 8815136326587442907}
   - component: {fileID: 3358344685008008295}
   m_Layer: 0
   m_Name: Point Light
@@ -116,68 +115,6 @@ Transform:
   m_Father: {fileID: 432286171755910242}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!108 &8815136326587442907
-Light:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 921779287168566870}
-  m_Enabled: 0
-  serializedVersion: 10
-  m_Type: 2
-  m_Shape: 0
-  m_Color: {r: 0.8113208, g: 0.45172665, b: 0.13394445, a: 1}
-  m_Intensity: 1
-  m_Range: 6.3
-  m_SpotAngle: 30
-  m_InnerSpotAngle: 21.80208
-  m_CookieSize: 10
-  m_Shadows:
-    m_Type: 0
-    m_Resolution: -1
-    m_CustomResolution: -1
-    m_Strength: 1
-    m_Bias: 0.05
-    m_NormalBias: 0.4
-    m_NearPlane: 0.2
-    m_CullingMatrixOverride:
-      e00: 1
-      e01: 0
-      e02: 0
-      e03: 0
-      e10: 0
-      e11: 1
-      e12: 0
-      e13: 0
-      e20: 0
-      e21: 0
-      e22: 1
-      e23: 0
-      e30: 0
-      e31: 0
-      e32: 0
-      e33: 1
-    m_UseCullingMatrixOverride: 0
-  m_Cookie: {fileID: 0}
-  m_DrawHalo: 0
-  m_Flare: {fileID: 0}
-  m_RenderMode: 0
-  m_CullingMask:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_RenderingLayerMask: 1
-  m_Lightmapping: 2
-  m_LightShadowCasterMode: 0
-  m_AreaSize: {x: 1, y: 1}
-  m_BounceIntensity: 1
-  m_ColorTemperature: 6570
-  m_UseColorTemperature: 0
-  m_BoundingSphereOverride: {x: 0, y: 0, z: 0, w: 0}
-  m_UseBoundingSphereOverride: 0
-  m_UseViewFrustumForShadowCasterCull: 1
-  m_ShadowRadius: 0
-  m_ShadowAngle: 0
 --- !u!114 &3358344685008008295
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -196,7 +133,7 @@ MonoBehaviour:
   m_Color: {r: 0.8117648, g: 0.45098042, b: 0.13333334, a: 1}
   m_Intensity: 1
   m_LightVolumeOpacity: 0
-  m_ApplyToSortingLayers: 0000000017413eae5b6ee0264f4dfb5c0f2f7ed5cf4eeb5ae5fbc13bb536ce7317708488
+  m_ApplyToSortingLayers: 9fe2771e0f2f7ed50d9c2a15
   m_LightCookieSprite: {fileID: 0}
   m_UseNormalMap: 0
   m_LightOrder: 0
@@ -276,7 +213,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 199487823789151948, guid: 4cfc0b96b77f5374a9242d6779dd65bf, type: 3}
       propertyPath: m_SortingLayer
-      value: 5
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 199487823789151948, guid: 4cfc0b96b77f5374a9242d6779dd65bf, type: 3}
       propertyPath: m_SortingOrder
@@ -292,7 +229,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 199750668542800642, guid: 4cfc0b96b77f5374a9242d6779dd65bf, type: 3}
       propertyPath: m_SortingLayer
-      value: 5
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 199750668542800642, guid: 4cfc0b96b77f5374a9242d6779dd65bf, type: 3}
       propertyPath: m_SortingOrder
@@ -304,7 +241,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 199880226040350684, guid: 4cfc0b96b77f5374a9242d6779dd65bf, type: 3}
       propertyPath: m_SortingLayer
-      value: 5
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 199880226040350684, guid: 4cfc0b96b77f5374a9242d6779dd65bf, type: 3}
       propertyPath: m_SortingOrder
