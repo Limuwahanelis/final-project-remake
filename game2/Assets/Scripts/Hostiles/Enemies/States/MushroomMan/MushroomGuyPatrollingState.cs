@@ -17,7 +17,7 @@ public class MushroomGuyPatrollingState : EnemyPatrollingState
         base.Update();
         if(_mushroom.IsPlayerInRange && !_isHit)
         {
-            _mushroom.ChangeState(new MushroomGuyAttackState(_mushroom));
+            _mushroom.ChangeState(new MushroomManAttackState(_mushroom));
         }
     }
 

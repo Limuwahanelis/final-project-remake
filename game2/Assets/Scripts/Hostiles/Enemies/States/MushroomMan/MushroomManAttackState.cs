@@ -1,7 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-public class MushroomGuyAttackState : EnemyState
+public class MushroomManAttackState : EnemyState
 {
     private bool _isAttacking;
     private bool _isIdle;
@@ -9,7 +9,7 @@ public class MushroomGuyAttackState : EnemyState
     private AnimationManager _anim;
     private MushroomGuyEnemy _enemy;
     private EnemyAudioManager _audio;
-    public MushroomGuyAttackState(MushroomGuyEnemy enemy)
+    public MushroomManAttackState(MushroomGuyEnemy enemy)
     {
         _audio = enemy.GetAudioManager();
         _enemy = enemy;
