@@ -2,12 +2,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class MushroomManIdleState : EnemyState
+public class MushroomGuyIdleState : EnemyState
 {
     private AnimationManager _anim;
     private MushroomGuyEnemy _enemy;
     private EnemyAudioManager _audio;
-    public MushroomManIdleState(MushroomGuyEnemy enemy)
+    public MushroomGuyIdleState(MushroomGuyEnemy enemy)
     {
         _enemy = enemy;
         _anim = _enemy.GetAnimationManager();
