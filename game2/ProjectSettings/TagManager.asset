@@ -77,6 +77,3 @@ TagManager:
   - name: UI
     uniqueID: 3112800587
     locked: 0
-  - name: Dark ground
-    uniqueID: 4215156431
-    locked: 0

@@ -453,11 +453,11 @@ MonoBehaviour:
     constantValue: 0
     variable: {fileID: 11400000, guid: 5334db362bf6ac146a92759cd4098315, type: 2}
   _anim: {fileID: 0}
-  speed: 2
+  _speed: 0
   dmg: 5
   isMovingVertically: 0
   idleCycles: 2
-  patrolPoints:
+  _patrolPoints:
   - {fileID: 4551758766884357699}
   - {fileID: 4728194294873667142}
   beam: {fileID: 4240890899960123933}

@@ -1,75 +1,46 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-public class MushroomGuyAttackState : EnemyState
+public class MushroomGuyAttackState : PatrollingEnemyState
 {
-    private bool _isAttacking;
-    private bool _isIdle;
-    private bool _isHit;
     private AnimationManager _anim;
-    private MushroomGuyEnemy _enemy;
     private EnemyAudioManager _audio;
-    public MushroomGuyAttackState(MushroomGuyEnemy enemy)
+    private float _timer;
+    public MushroomGuyAttackState(MushroomGuyContext context)
     {
-        _audio = enemy.GetAudioManager();
-        _enemy = enemy;
-        _anim = _enemy.GetAnimationManager();
+       _context = context;
+        _audio = context.audio;
+        _anim = context.anim;
+        context.OnSetPlayerInRange += DisengagePlayer;
+
 
     }
     public override void Update()
     {
-        if(!_isHit) Attack();
-        //if (!_isAttacking && _isIdle) canChangeState = true;
-        //else canChangeState = false;
-    }
-    private void Attack()
-    {
-        if (_isAttacking||_isIdle) return;
-        _isAttacking = true;
-        _anim.PlayAnimation("Attack");
-        _audio.PlayAttackSound();
-        _enemy.StartCoroutine(_enemy.WaitAndExecuteFunction(_anim.GetAnimationLength("Attack"), () =>
+        if (_timer >= _context.anim.GetAnimationLength("Attack"))
         {
-            _anim.PlayAnimation("Idle");
-            _isIdle = true;
-            _isAttacking = false;
-            _enemy.StartCoroutine(_enemy.WaitAndExecuteFunction(_anim.GetAnimationLength("Idle"), () => 
-            {
-                _isIdle = false; 
-                if(!_enemy.IsPlayerInRange)
-                {
-                    _enemy.ReturnToPatrol();
-                }
-            }));
-        }));
+            _context.ChangeState(new MushroomGuyIdleState(_context as MushroomGuyContext, this, 1));
+
+        }
+        _timer+=Time.deltaTime;
     }
     public override void SetUpState()
     {
-        _isAttacking = false;
-        _isIdle = false;
-        canChangeState = false;
+        _anim.PlayAnimation("Attack");
+        _audio.PlayAttackSound(true);
+        _timer = 0;
     }
     public override void Hit()
     {
-        Debug.Log("Hit");
-        _isHit = true;
-        _isIdle = false;
-        _isAttacking = false;
-        _enemy.StopAllCoroutines();
-        _anim.PlayAnimation("Hit");
-        _enemy.StartCoroutine(_enemy.WaitAndExecuteFunction(_anim.GetAnimationLength("Hit"), () =>
-         {
-             if(!_enemy.IsPlayerInRange)
-             {
-                 _enemy.Rotate();
-             }
-             _isHit = false;
-             _isIdle = true;
-             _anim.PlayAnimation("Idle");
-             _enemy.StartCoroutine(_enemy.WaitAndExecuteFunction(_anim.GetAnimationLength("Idle"), () =>
-             {
-                 _isIdle = false;
-             }));
-         }));
+        _context.ChangeState(new MushroomGuyHitState(_context as MushroomGuyContext));
+    }
+
+    private void DisengagePlayer(bool isPlayerInRange)
+    {
+        (_context as MushroomGuyContext).isPlayerInRange = isPlayerInRange;
+    }
+    public override void InterruptState()
+    {
+        (_context as MushroomGuyContext).OnSetPlayerInRange -= DisengagePlayer;
     }
 }

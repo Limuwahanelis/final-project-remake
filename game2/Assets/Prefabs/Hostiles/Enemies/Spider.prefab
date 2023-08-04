@@ -186,11 +186,11 @@ MonoBehaviour:
     constantValue: 0
     variable: {fileID: 11400000, guid: 5334db362bf6ac146a92759cd4098315, type: 2}
   _anim: {fileID: 0}
-  speed: 3
+  _speed: 0
   dmg: 2
   isMovingVertically: 0
   idleCycles: 0
-  patrolPoints:
+  _patrolPoints:
   - {fileID: 287646188396705610}
   - {fileID: 8824159096989370065}
   _collisionComponent: {fileID: 4399746088847129030}

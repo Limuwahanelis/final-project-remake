@@ -8,6 +8,7 @@ public class BossMoveToAttackPosState : BossState
     public BossMoveToAttackPosState(Boss boss,BossContext context ,BossState nextState) : base(boss,context)
     {
         _nextState = nextState;
+        _context = context;
     }
 
     public override void Update()
@@ -20,7 +21,7 @@ public class BossMoveToAttackPosState : BossState
     }
     void MoveToPosition(Vector3 pos)
     {
-        float step = _boss.speed * Time.deltaTime;
+        float step = _context.speed * Time.deltaTime;
         _boss.transform.position = Vector3.MoveTowards(_boss.transform.position, pos, step);
         if (Vector3.Distance(_boss.transform.position, pos) > 0.001f) return;
         _boss.ChangeState(new BossNonTargetedBeamAttackState(_boss,_context));

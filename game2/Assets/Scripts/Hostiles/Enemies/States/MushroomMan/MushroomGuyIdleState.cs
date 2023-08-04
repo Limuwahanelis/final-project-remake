@@ -2,19 +2,34 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class MushroomGuyIdleState : EnemyState
+public class MushroomGuyIdleState : PatrollingEnemyIdleState
 {
-    private AnimationManager _anim;
-    private MushroomGuyEnemy _enemy;
-    private EnemyAudioManager _audio;
-    public MushroomGuyIdleState(MushroomGuyEnemy enemy)
+    public MushroomGuyIdleState(MushroomGuyContext context,EnemyState previousState,int numberOfIdleCycles):base(context,previousState,numberOfIdleCycles)
     {
-        _enemy = enemy;
-        _anim = _enemy.GetAnimationManager();
-        _audio = _enemy.GetAudioManager();
+        context.OnSetPlayerInRange += SetPlayerInRange;
     }
 
     public override void Update()
     {
+        if (_numberOfIdleCycles == -1) return;
+        if (_timer >= _numberOfIdleCycles * _context.anim.GetAnimationLength("Idle"))
+        {
+            if ((_context as MushroomGuyContext).isPlayerInRange) _context.ChangeState(new MushroomGuyAttackState(_context as MushroomGuyContext));
+            else _context.ChangeState(new MushroomGuyPatrollingState((_context as MushroomGuyContext)));
+        }
+        _timer += Time.deltaTime;
+    }
+    public override void SetUpState()
+    {
+        base.SetUpState();
+    }
+    public override void Hit()
+    {
+        base.Hit();
+        _context.ChangeState(new MushroomGuyHitState(_context as MushroomGuyContext));
+    }
+    private void SetPlayerInRange(bool value)
+    {
+        (_context as MushroomGuyContext).isPlayerInRange = value;
     }
 }

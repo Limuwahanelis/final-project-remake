@@ -39,7 +39,7 @@ public class Boss : Enemy
             crystals = _crystals,
             missilePrefab = _missilePrefab,
             missileSpawnPos = _missileSpawn.position,
-            speed = speed,
+            speed = _speed,
             attackDelay = _attackDelay,
             attackPos = _attackTrans.position,
             vulnerablePos = _vulnerableTrans.position,

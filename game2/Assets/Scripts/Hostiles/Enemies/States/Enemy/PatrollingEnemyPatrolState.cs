@@ -2,20 +2,17 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EnemyPatrollingState : EnemyState
+public class PatrollingEnemyPatrolState : EnemyState
 {
-    private List<Vector3> _patrolpositions = new List<Vector3>();
-    private int _patrolPointIndex = 0;
-    protected AnimationManager _anim;
-    protected PatrollingEnemy _enemy;
-    public EnemyPatrollingState(PatrollingEnemy patrollingEnemy)
+    protected List<Vector3> _patrolpositions = new List<Vector3>();
+    protected Transform _enemy;
+    protected int _patrolPointIndex = 0;
+    protected PatrollingEnemyContext _context;
+    public PatrollingEnemyPatrolState(PatrollingEnemyContext patrollingEnemyContext)
     {
-        _anim = patrollingEnemy.GetAnimationManager();
-        _enemy = patrollingEnemy;
-        for (int i = 0; i < patrollingEnemy.patrolPoints.Count; i++)
-        {
-            _patrolpositions.Add(patrollingEnemy.patrolPoints[i].position);
-        }
+        _context = patrollingEnemyContext;
+        _enemy = patrollingEnemyContext.enemy;
+        _patrolpositions = patrollingEnemyContext.patrolPoositons;
         SetUpState();
     }
 
@@ -27,9 +24,9 @@ public class EnemyPatrollingState : EnemyState
     public void MoveToPatrolPoint()
     {
 
-        _enemy.transform.position = Vector3.MoveTowards(_enemy.transform.position, _patrolpositions[_patrolPointIndex], _enemy.speed * Time.deltaTime);
+        _enemy.transform.position = Vector3.MoveTowards(_enemy.transform.position, _patrolpositions[_patrolPointIndex], _context.speed * Time.deltaTime);
 
-        if (_enemy.isMovingVertically)
+        if (_context.isMovingVertically)
         {
             if (Mathf.Abs(_enemy.transform.position.y - _patrolpositions[_patrolPointIndex].y) < 0.1)
             {
@@ -52,7 +49,7 @@ public class EnemyPatrollingState : EnemyState
     {
         float direction;
 
-        if (_enemy.isMovingVertically)
+        if (_context.isMovingVertically)
         {
             if (_patrolpositions[_patrolPointIndex].y < _enemy.transform.position.y) direction = 1;
             else direction = -1;
@@ -68,14 +65,12 @@ public class EnemyPatrollingState : EnemyState
 
     protected void StayIdleAtPatrolPoint()
     {
-        _enemy.StartCoroutine(_enemy.StayIdleCor(_enemy.idleCycles));
-        _enemy.StartCoroutine(_enemy.WaitAndExecuteFunction(_anim.GetAnimationLength("Idle") * _enemy.idleCycles, RotateTowardsPatrolPoint));
+        _context.ChangeState(new PatrollingEnemyIdleState(_context, this, _context.NumberOfIdleCycles));
     }
     public override void SetUpState()
     {
-        canChangeState = true;
         RotateTowardsPatrolPoint();
-        _enemy.GetAnimationManager().PlayAnimation("Move");
+        _context.anim.PlayAnimation("Move");
     }
 
 }

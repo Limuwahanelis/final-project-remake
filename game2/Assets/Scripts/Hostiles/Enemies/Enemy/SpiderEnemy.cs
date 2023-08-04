@@ -8,7 +8,7 @@ public class SpiderEnemy : PatrollingEnemy
     [SerializeField]
     private SpiderEnemyCollisionInteractionComponent _collisionComponent;
 
-    private EnemyPatrollingState _patrolState;
+    private PatrollingEnemyPatrolState _patrolState;
 
     // Start is called before the first frame update
     private void Awake()
@@ -17,12 +17,25 @@ public class SpiderEnemy : PatrollingEnemy
     }
     void Start()
     {
-        if (patrolPoints.Count < 2)
+        for (int i = 0; i < _patrolPoints.Count; i++)
+        {
+            _patrolPositions.Add(_patrolPoints[i].position);
+        }
+        if (_patrolPoints.Count < 2)
         {
             Debug.LogError("Not enough patrol points");
             return;
         }
-        _patrolState = new EnemyPatrollingState(this);
+        SpiderContext context = new SpiderContext(-1)
+        {
+            patrolPoositons = _patrolPositions,
+            patrolPointIndex = 0,
+            anim = _anim,
+            enemy = transform,
+            speed = _speed,
+            isMovingVertically = isMovingVertically
+        };
+        _patrolState = new PatrollingEnemyPatrolState(context);
         state = _patrolState;
     }
 

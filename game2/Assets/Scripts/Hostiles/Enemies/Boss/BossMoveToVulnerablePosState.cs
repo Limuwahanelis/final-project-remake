@@ -17,6 +17,7 @@ public class BossMoveToVulnerablePosState : BossState
     {
         _nextState = nextState;
         _goToAttackPosNext = goToAttackPosNext;
+        _context = context;
     }
 
     public override void Update()
@@ -29,7 +30,7 @@ public class BossMoveToVulnerablePosState : BossState
     }
     void MoveToPosition(Vector3 pos)
     {
-        float step = _boss.speed * Time.deltaTime;
+        float step = _context.speed * Time.deltaTime;
         _boss.transform.position = Vector3.MoveTowards(_boss.transform.position, pos, step);
         if (Vector3.Distance(_boss.transform.position, pos) > 0.001f) return;
         if(_goToAttackPosNext) _boss.ChangeState(new BossWaitingState(_boss,_nextState,_context,_context.vulnerableTime));

@@ -20,8 +20,8 @@ public class Beam : MonoBehaviour
     }
     private void OnTriggerStay2D(Collider2D collision)
     {
-        collision.GetComponentInParent<IPushable>().Push(PlayerHealthSystem.DamageType.MISSILE);
         collision.GetComponentInParent<IDamagable>().TakeDamage(damage,PlayerHealthSystem.DamageType.MISSILE);
+        collision.GetComponentInParent<IPushable>().Push(PlayerHealthSystem.DamageType.MISSILE);
         
     }
 }

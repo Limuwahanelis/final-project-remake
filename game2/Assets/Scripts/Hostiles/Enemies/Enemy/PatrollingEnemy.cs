@@ -7,8 +7,8 @@ public class PatrollingEnemy : Enemy
 
     public bool isMovingVertically;
     public int idleCycles;
-    public List<Transform> patrolPoints = new List<Transform>();
-
+    [SerializeField] protected List<Transform> _patrolPoints = new List<Transform>();
+    protected List<Vector3> _patrolPositions = new List<Vector3>();
 
     public override void SetPlayerInRange()
     {

@@ -15,7 +15,7 @@ public abstract class Enemy : MonoBehaviour
     public AnimationManager _anim;
     protected HealthSystem hpSys;
     protected EnemyAudioManager _audioMan;
-    public float speed;
+    [SerializeField] protected float _speed;
     public int dmg;
 
     protected bool _isAlive = true;

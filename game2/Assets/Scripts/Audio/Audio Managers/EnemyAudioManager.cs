@@ -30,4 +30,8 @@ public class EnemyAudioManager : MonoBehaviour
     {
         combatAudioEvent.Play(audioSource);
     }
+    public virtual void PlayAttackSound(bool overPlay=false)
+    {
+        combatAudioEvent.Play(audioSource,overPlay);
+    }
 }
