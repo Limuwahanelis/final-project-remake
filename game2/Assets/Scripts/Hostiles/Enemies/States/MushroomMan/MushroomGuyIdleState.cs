@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class MushroomGuyIdleState : PatrollingEnemyIdleState
 {
-    public MushroomGuyIdleState(MushroomGuyContext context,EnemyState previousState,int numberOfIdleCycles):base(context,previousState,numberOfIdleCycles)
+    public MushroomGuyIdleState(MushroomGuyContext context,EnemyState previousState,int numberOfIdleCycles,EnemyState nextState=null):base(context,previousState,numberOfIdleCycles,nextState)
     {
         context.OnSetPlayerInRange += SetPlayerInRange;
     }
@@ -15,7 +15,13 @@ public class MushroomGuyIdleState : PatrollingEnemyIdleState
         if (_timer >= _numberOfIdleCycles * _context.anim.GetAnimationLength("Idle"))
         {
             if ((_context as MushroomGuyContext).isPlayerInRange) _context.ChangeState(new MushroomGuyAttackState(_context as MushroomGuyContext));
-            else _context.ChangeState(new MushroomGuyPatrollingState((_context as MushroomGuyContext)));
+            else
+            {
+                if (_nextState == null) _context.ChangeState(new MushroomGuyPatrollingState((_context as MushroomGuyContext)));
+                else _context.ChangeState(_nextState);
+
+            }
+            
         }
         _timer += Time.deltaTime;
     }
