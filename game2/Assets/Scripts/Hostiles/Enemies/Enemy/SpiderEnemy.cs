@@ -26,17 +26,19 @@ public class SpiderEnemy : PatrollingEnemy
             Debug.LogError("Not enough patrol points");
             return;
         }
-        SpiderContext context = new SpiderContext(-1)
+        SpiderContext context = new SpiderContext(idleCycles)
         {
             patrolPoositons = _patrolPositions,
             patrolPointIndex = 0,
             anim = _anim,
             enemy = transform,
             speed = _speed,
-            isMovingVertically = isMovingVertically
+            isMovingVertically = isMovingVertically,
+            ChangeState = ChangeState,
         };
         _patrolState = new PatrollingEnemyPatrolState(context);
         state = _patrolState;
+        state.SetUpState();
     }
 
     // Update is called once per frame
@@ -44,7 +46,7 @@ public class SpiderEnemy : PatrollingEnemy
     {
         if (!isGamePaused.value)
         {
-            _patrolState.Update();
+            state.Update();
         }
     }
     private void OnValidate()

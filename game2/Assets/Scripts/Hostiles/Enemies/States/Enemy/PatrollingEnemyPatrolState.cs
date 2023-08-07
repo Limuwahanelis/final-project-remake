@@ -43,7 +43,7 @@ public class PatrollingEnemyPatrolState : EnemyState
                 if (_context.patrolPointIndex + 1 > _patrolpositions.Count - 1) _context.patrolPointIndex = 0;
                 else _context.patrolPointIndex++;
                 _context.ChangeState(new PatrollingEnemyIdleState(_context, this, _context.NumberOfIdleCycles));
-               // RotateTowardsPatrolPoint();
+                //RotateTowardsPatrolPoint();
             }
         }
     }

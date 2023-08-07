@@ -73,13 +73,6 @@ public class MushroomGuyEnemy : PatrollingEnemy
         state.SetUpState();
         _anim.PlayAnimation("Move");
     }
-    public void ChangeState(EnemyState newState)
-    {
-        Debug.Log(newState);
-        state.InterruptState();
-        state = newState;
-        state.SetUpState();
-    }
     public EnemyAudioManager GetAudioManager()
     {
         return _audioMan;

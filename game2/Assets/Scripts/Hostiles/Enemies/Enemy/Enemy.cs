@@ -34,6 +34,13 @@ public abstract class Enemy : MonoBehaviour
     {
         return _anim;
     }
+    public void ChangeState(EnemyState newState)
+    {
+        Debug.Log(newState);
+        state.InterruptState();
+        state = newState;
+        state.SetUpState();
+    }
     public virtual void SetPlayerInRange() { }
     public virtual void SetPlayerNotInRange() { }
     public void IncreaseInvicibilityProgress()
