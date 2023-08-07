@@ -11,16 +11,14 @@ public abstract class Enemy : MonoBehaviour
     //private HealthSystem hpSys;
     // Start is called before the first frame update
     [SerializeField] float invicibilityProgress=0.2f;
-    public BoolReference isGamePaused;
-    public AnimationManager _anim;
-    protected HealthSystem hpSys;
-    protected EnemyAudioManager _audioMan;
     [SerializeField] protected float _speed;
-    public int dmg;
+    [SerializeField] protected int _dmg;
+    [SerializeField] protected AnimationManager _anim;
+    [SerializeField] protected BoolReference _isGamePaused;
+    protected EnemyAudioManager _audioMan;
+    protected HealthSystem hpSys;
 
     protected bool _isAlive = true;
-    protected bool _isIdle = false;
-    protected bool _isHit = false;
 
     protected EnemyState state;
 

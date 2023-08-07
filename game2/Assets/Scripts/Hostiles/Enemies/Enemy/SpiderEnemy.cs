@@ -44,7 +44,7 @@ public class SpiderEnemy : PatrollingEnemy
     // Update is called once per frame
     void Update()
     {
-        if (!isGamePaused.value)
+        if (!_isGamePaused.value)
         {
             state.Update();
         }
@@ -53,7 +53,7 @@ public class SpiderEnemy : PatrollingEnemy
     {
         if(_collisionComponent!=null)
         {
-            _collisionComponent.SetCollisionDamage(dmg);
+            _collisionComponent.SetCollisionDamage(_dmg);
         }
     }
 }

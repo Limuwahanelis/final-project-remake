@@ -26,7 +26,7 @@ public class PlayerData
             abilities[i] = list.CheckIfAbilityIsUnlocked((AbilityList.Abilities)i);
         }
     }
-    //public PlayerData(int currentHP, int maxHP,int dmg,Vector3 position, AbilityList list)
+    //public PlayerData(int currentHP, int maxHP,int _dmg,Vector3 position, AbilityList list)
     //{
     //    currentHP = healthSystem.currentHP.value;
     //    maxHP = healthSystem.maxHP.value;

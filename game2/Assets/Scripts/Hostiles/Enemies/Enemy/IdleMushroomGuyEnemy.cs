@@ -32,7 +32,7 @@ public class IdleMushroomGuyEnemy : Enemy
     }
     private void Update()
     {
-        if (!isGamePaused.value)
+        if (!_isGamePaused.value)
         {
             state.Update();
         }
@@ -79,7 +79,7 @@ public class IdleMushroomGuyEnemy : Enemy
     }
     private void OnValidate()
     {
-        if (beam != null) beam.damage = dmg;
+        if (beam != null) beam.damage = _dmg;
     }
     private void OnDisable()
     {
