@@ -40,42 +40,6 @@ public abstract class Enemy : MonoBehaviour
     {
 
     }
-    protected virtual void StopCurrentActions()
-    {
-        StopAllCoroutines();
-    }
-
-    //protected virtual void Kill()
-    //{
-    //    StopCurrentActions();
-    //    //mainCollider.SetActive(false);
-    //    _isAlive = false;
-    //    currentState = EnemyEnums.State.DEAD;
-    //    hpSys.isInvincible = true;
-    //    _anim.PlayAnimation("Death");
-    //    StartCoroutine(WaitAndExecuteFunction(_anim.GetAnimationLength("Death"), () => Destroy(gameObject)));
-    //}
-
-    //protected virtual void Hit()
-    //{
-    //    StopCurrentActions();
-    //    states.Push(currentState);
-    //    _isHit = true;
-    //    _anim.PlayAnimation("Hit");
-    //    StartCoroutine(WaitAndExecuteFunction(_anim.GetAnimationLength("Hit"), () =>
-    //    {
-    //        states.Push(EnemyEnums.State.IDLE_AFTER_HIT);
-    //        _isHit = false;
-    //        ResumeActions();
-    //    }));
-    //}
-    public IEnumerator StayIdleCor(int numberOfIdleCycles = 1)
-    {
-        _isIdle = true;
-        if (numberOfIdleCycles > 0) _anim.PlayAnimation("Idle");
-        yield return new WaitForSeconds(numberOfIdleCycles * _anim.GetAnimationLength("Idle"));
-        _isIdle = false;
-    }
     public IEnumerator WaitAndExecuteFunction(float timeToWait, Action functionToPerform)
     {
         yield return new WaitForSeconds(timeToWait);

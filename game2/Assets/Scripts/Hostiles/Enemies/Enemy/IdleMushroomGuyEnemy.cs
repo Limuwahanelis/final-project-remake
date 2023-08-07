@@ -1,14 +1,17 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Runtime.CompilerServices;
 using UnityEngine;
-using System;
-public class MushroomGuyEnemy : PatrollingEnemy
+
+public class IdleMushroomGuyEnemy : Enemy
 {
+    [SerializeField] PlayerDetection _playerDetectionFront;
+    [SerializeField] PlayerDetection _playerDetectionBack;
     [SerializeField] private Beam beam;
     private PlayerDetection _playerDetection;
-    private MushroomGuyPatrollingState _patrolState;
     private Action<bool> OnPlayerInRange;
-    MushroomGuyContext context;
+    IdleMushroomGuyContext context;
     private void Awake()
     {
 
@@ -16,31 +19,15 @@ public class MushroomGuyEnemy : PatrollingEnemy
     }
     private void Start()
     {
-        for (int i = 0; i < _patrolPoints.Count; i++)
+        context = new IdleMushroomGuyContext()
         {
-            _patrolPositions.Add(_patrolPoints[i].position);
-        }
-        if (_patrolPoints.Count < 2)
-        {
-            Debug.LogError("Not enough patrol points");
-            return;
-        }
-        context = new MushroomGuyContext(idleCycles)
-        {
-            patrolPoositons = _patrolPositions,
-            patrolPointIndex = 0,
-            anim = _anim,
-            enemy = transform,
-            speed = _speed,
-            isMovingVertically = isMovingVertically,
-            OnSetPlayerInRange = OnPlayerInRange,
             ChangeState = ChangeState,
             Rotate = Rotate,
-            audio = _audioMan
+            audio = _audioMan,
+            anim=_anim,
         };
         OnPlayerInRange += context.SetPlayerInRange;
-        _patrolState = new MushroomGuyPatrollingState(context);
-        state = _patrolState;
+        state = new IdleMushroomGuyIdleState(context);
         hpSys.OnHitEvent = Hit;
     }
     private void Update()
@@ -57,6 +44,11 @@ public class MushroomGuyEnemy : PatrollingEnemy
         _playerDetection.OnPlayerDetected = SetPlayerInRange;
         _playerDetection.OnPlayerLeft = SetPlayerNotInRange;
     }
+    public void RotateTowardsPlayer()
+    {
+        context.SetPlayerBehind();
+    }
+
     public override void SetPlayerInRange()
     {
         OnPlayerInRange?.Invoke(true);
@@ -66,12 +58,6 @@ public class MushroomGuyEnemy : PatrollingEnemy
     public override void SetPlayerNotInRange()
     {
         OnPlayerInRange?.Invoke(false);
-    }
-    public void ReturnToPatrol()
-    {
-        state = _patrolState;
-        state.SetUpState();
-        _anim.PlayAnimation("Move");
     }
     public void ChangeState(EnemyState newState)
     {
@@ -106,5 +92,4 @@ public class MushroomGuyEnemy : PatrollingEnemy
     {
         OnPlayerInRange -= context.SetPlayerInRange;
     }
-
 }
