@@ -5,9 +5,12 @@ using UnityEngine;
 public class PlayerPushedState : PlayerState
 {
     private bool _isInAirAfterPush = false;
-    public PlayerPushedState(PlayerContext playerContext):base(playerContext)
+    private IPlayerPusher _playerPusher;
+    private Collider2D[] _playerCols;
+    public PlayerPushedState(PlayerContext playerContext, IPlayerPusher playerPusher, Collider2D[] playerCols) :base(playerContext)
     {
-
+        _playerPusher=playerPusher;
+        _playerCols=playerCols;
     }
     public override void Update()
     {
@@ -23,6 +26,7 @@ public class PlayerPushedState : PlayerState
             _playerContext.playerMovement.StopPlayer();
             _isInAirAfterPush = false;
             _playerContext.anim.SetAnimator(true);
+            if(_playerPusher!=null) _playerPusher.ResumeCollisonsWithPlayer(_playerCols);
             Debug.Log("retrun from push");
             _playerContext.ChangeState(new PlayerNormalState(_playerContext));
         }
@@ -33,7 +37,6 @@ public class PlayerPushedState : PlayerState
         
         _playerContext.anim.PlayAnimation("Idle");
         _playerContext.anim.SetAnimator(false);
-        _playerContext.playerMovement.StopPlayer();
         _playerContext.playerCombat.ChangeSpriteToPushed();
     }
     public override void InterruptState()

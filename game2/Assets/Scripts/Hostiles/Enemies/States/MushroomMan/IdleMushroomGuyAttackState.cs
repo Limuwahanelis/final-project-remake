@@ -6,11 +6,13 @@ public class IdleMushroomGuyAttackState : EnemyState
 {
     private float _timer;
     private float _attackAnimDuration;
+    private EnemyAudioManager _audio;
     private IdleMushroomGuyContext _context;
     public IdleMushroomGuyAttackState(IdleMushroomGuyContext context)
     {
         _context = context;
         _attackAnimDuration = context.anim.GetAnimationLength("Attack");
+        _audio = context.audio;
         _context.OnSetPlayerInRange += SetPlayerInRange;
         _context.OnSetPlayerBehind += SetPlayerBehind;
     }
@@ -25,6 +27,8 @@ public class IdleMushroomGuyAttackState : EnemyState
     public override void SetUpState()
     {
         _context.anim.PlayAnimation("Attack");
+        _audio.PlayAttackSound(true);
+        _timer = 0;
     }
     
     private void SetPlayerInRange(bool value)

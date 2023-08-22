@@ -14,8 +14,8 @@ public class PlayerMovement : MonoBehaviour
     public playerDirection newPlayerDirection;
     public playerDirection oldPlayerDirection;
     public Ringhandle wallJumpHandle;
-    [SerializeField]
-    private Player _player;
+    [SerializeField] Player _player;
+    [SerializeField] Collider2D[] _playerCols;
     private Rigidbody2D _rb;
     public float speed;
     public float jumpStrength;
@@ -130,16 +130,16 @@ public class PlayerMovement : MonoBehaviour
         else return false;
     }
 
-    public void PushPlayer(Vector3 PushForce)
+    public void PushPlayer(Vector3 PushForce, IPlayerPusher playerPusher)
     {
         StopPlayer();
-        _player.currentState.Push();
+        _player.currentState.Push(playerPusher, _playerCols);
         _rb.AddForce(PushForce, ForceMode2D.Impulse);
         
         //StartCoroutine(PushCor());
         
     }
-    public void PushPlayer(playerDirection pushDirection,Vector3 PushForce)
+    public void PushPlayer(playerDirection pushDirection,Vector3 PushForce, IPlayerPusher playerPusher)
     {
         StopPlayer();
         if(pushDirection==playerDirection.RIGHT)
@@ -150,7 +150,7 @@ public class PlayerMovement : MonoBehaviour
         {
             PushForce = new Vector3(-Mathf.Abs(PushForce.x), PushForce.y, PushForce.z);
         }
-        _player.currentState.Push();
+        _player.currentState.Push(playerPusher, _playerCols);
         _rb.AddForce(PushForce, ForceMode2D.Impulse);
 
        // StartCoroutine(PushCor());

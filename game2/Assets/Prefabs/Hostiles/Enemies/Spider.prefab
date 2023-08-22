@@ -121,11 +121,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3331532718695595092}
-  - component: {fileID: 4953718020305922122}
-  - component: {fileID: 6078151456680897480}
   - component: {fileID: 6871392077498543721}
-  - component: {fileID: 2886089533280677697}
-  - component: {fileID: 1332086662332213570}
   - component: {fileID: 4399746088847129030}
   m_Layer: 12
   m_Name: main body
@@ -149,51 +145,6 @@ Transform:
   m_Father: {fileID: 7024608491873740566}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!95 &4953718020305922122
-Animator:
-  serializedVersion: 3
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4622789278639537029}
-  m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 80d6040a08b16a44e96031c26fa1565d, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorControllerStateOnDisable: 0
---- !u!114 &6078151456680897480
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4622789278639537029}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d1d5e7d68254f3a4297021ee9acb641e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  invicibilityProgress: 0.2
-  isGamePaused:
-    useConstant: 0
-    constantValue: 0
-    variable: {fileID: 11400000, guid: 5334db362bf6ac146a92759cd4098315, type: 2}
-  _anim: {fileID: 0}
-  _speed: 0
-  dmg: 2
-  isMovingVertically: 0
-  idleCycles: 0
-  _patrolPoints:
-  - {fileID: 287646188396705610}
-  - {fileID: 8824159096989370065}
-  _collisionComponent: {fileID: 4399746088847129030}
 --- !u!61 &6871392077498543721
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -220,42 +171,6 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1.5699561, y: 1}
   m_EdgeRadius: 0
---- !u!114 &2886089533280677697
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4622789278639537029}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 55289b7a1a56b4f43969e1407df7bd4f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  isInvincible: 0
-  hpBar: {fileID: 7669736061173231292}
-  maxHP:
-    useConstant: 1
-    constantValue: 20
-    variable: {fileID: 0}
-  currentHP:
-    useConstant: 1
-    constantValue: 0
-    variable: {fileID: 0}
---- !u!114 &1332086662332213570
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4622789278639537029}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6c02345f6b4e23846bb862f3ee53d9d5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _anim: {fileID: 4953718020305922122}
-  animList: {fileID: 11400000, guid: 067fbb3402436044a8d035afd91da407, type: 2}
 --- !u!114 &4399746088847129030
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -281,6 +196,10 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7024608491873740566}
+  - component: {fileID: 4778028625613971193}
+  - component: {fileID: 1901253752878527670}
+  - component: {fileID: 4428499955298212350}
+  - component: {fileID: 968201906611453406}
   m_Layer: 12
   m_Name: Spider
   m_TagString: Untagged
@@ -306,6 +225,88 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &4778028625613971193
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7024608491873740565}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 55289b7a1a56b4f43969e1407df7bd4f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isInvincible: 0
+  hpBar: {fileID: 7669736061173231292}
+  maxHP:
+    useConstant: 1
+    constantValue: 20
+    variable: {fileID: 0}
+  currentHP:
+    useConstant: 1
+    constantValue: 0
+    variable: {fileID: 0}
+--- !u!95 &1901253752878527670
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7024608491873740565}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 80d6040a08b16a44e96031c26fa1565d, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &4428499955298212350
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7024608491873740565}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6c02345f6b4e23846bb862f3ee53d9d5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _anim: {fileID: 1901253752878527670}
+  animList: {fileID: 11400000, guid: 067fbb3402436044a8d035afd91da407, type: 2}
+--- !u!114 &968201906611453406
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7024608491873740565}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d1d5e7d68254f3a4297021ee9acb641e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  invicibilityProgress: 0.2
+  _speed: 3
+  _dmg: 2
+  _anim: {fileID: 4428499955298212350}
+  _isGamePaused:
+    useConstant: 0
+    constantValue: 0
+    variable: {fileID: 11400000, guid: 5334db362bf6ac146a92759cd4098315, type: 2}
+  isMovingVertically: 0
+  idleCycles: 0
+  _patrolPoints:
+  - {fileID: 287646188396705610}
+  - {fileID: 8824159096989370065}
+  _collisionComponent: {fileID: 4399746088847129030}
+  _mainbody: {fileID: 3331532718695595092}
 --- !u!1 &8847920865631090183
 GameObject:
   m_ObjectHideFlags: 0

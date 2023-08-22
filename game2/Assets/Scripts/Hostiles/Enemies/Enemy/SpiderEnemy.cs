@@ -2,11 +2,10 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-[RequireComponent(typeof(SpiderEnemyCollisionInteractionComponent))]
 public class SpiderEnemy : PatrollingEnemy
 {
-    [SerializeField]
-    private SpiderEnemyCollisionInteractionComponent _collisionComponent;
+    [SerializeField] SpiderEnemyCollisionInteractionComponent _collisionComponent;
+    [SerializeField] Transform _mainbody;
 
     private PatrollingEnemyPatrolState _patrolState;
 
@@ -31,7 +30,7 @@ public class SpiderEnemy : PatrollingEnemy
             patrolPoositons = _patrolPositions,
             patrolPointIndex = 0,
             anim = _anim,
-            enemy = transform,
+            enemy = _mainbody,
             speed = _speed,
             isMovingVertically = isMovingVertically,
             ChangeState = ChangeState,

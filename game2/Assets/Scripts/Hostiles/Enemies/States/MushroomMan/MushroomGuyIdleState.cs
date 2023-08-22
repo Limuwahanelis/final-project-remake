@@ -38,4 +38,9 @@ public class MushroomGuyIdleState : PatrollingEnemyIdleState
     {
         (_context as MushroomGuyContext).isPlayerInRange = value;
     }
+    public override void InterruptState()
+    {
+        base.InterruptState();
+        (_context as MushroomGuyContext).OnSetPlayerInRange -= SetPlayerInRange;
+    }
 }

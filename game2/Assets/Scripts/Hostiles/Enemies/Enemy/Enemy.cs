@@ -34,7 +34,7 @@ public abstract class Enemy : MonoBehaviour
     }
     public void ChangeState(EnemyState newState)
     {
-        Debug.Log(newState);
+        //Debug.Log(newState);
         state.InterruptState();
         state = newState;
         state.SetUpState();

@@ -12,7 +12,7 @@ public class MushroomGuyAttackState : PatrollingEnemyState
         _audio = context.audio;
         _anim = context.anim;
         context.OnSetPlayerInRange += DisengagePlayer;
-
+        Debug.Log("new attacks state");
 
     }
     public override void Update()
