@@ -34,30 +34,36 @@ public class PlayerInput : MonoBehaviour
     }
     private void Move(float direction)
     {
-        _player.currentState.Move(direction);
+        if (_player.isGamePaused.value) return;
+            _player.currentState.Move(direction);
     }
     void OnJump(InputValue value)
     {
+        if (_player.isGamePaused.value) return;
         if (direction * _player.mainBody.transform.localScale.x > 0 && isDownArrowPressed) _player.currentState.Slide();
         else _player.currentState.Jump();
     }
     void OnVertical(InputValue value)
     {
-        direction=value.Get<float>();
+        if (_player.isGamePaused.value) return;
+        direction =value.Get<float>();
     }
 
     private void OnAttack(InputValue value)
     {
-        if(isDownArrowPressed) _player.currentState.DropBomb();
+        if (_player.isGamePaused.value) return;
+        if (isDownArrowPressed) _player.currentState.DropBomb();
         else _player.currentState.Attack();
     }
 
     private void OnDownArrowModifier(InputValue value)
     {
+        if (_player.isGamePaused.value) return;
         isDownArrowPressed = value.Get<float>()==1?true:false;
     }
     private void OnInteract(InputValue value)
     {
+        if (_player.isGamePaused.value) return;
         _playerInteract.InteractWithObject();
     }
 }
