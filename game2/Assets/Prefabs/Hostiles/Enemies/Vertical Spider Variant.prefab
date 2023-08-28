@@ -7,6 +7,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 968201906611453406, guid: b6235eeb0acd9cb49960a0f7e2b1da13, type: 3}
+      propertyPath: isMovingVertically
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1574732453736498062, guid: b6235eeb0acd9cb49960a0f7e2b1da13, type: 3}
       propertyPath: m_SortingLayerID
       value: -713150705
