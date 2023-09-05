@@ -28,6 +28,8 @@ public class SceneStateManager : MonoBehaviour
         SaveSystem.tmpSave.sceneDatas[sceneNum].wasPuzzleSolved[index] = value;
        
     }
+
+    // used by unity event by destructable shortcuts in scene 2
     public void ChangeShortcutStateToUnlocked()
     {
         SaveSystem.tmpSave.shortcutDatas.Find(x => x.Id == shortcutState.Id).IsUnlocked = true;
