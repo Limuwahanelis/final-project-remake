@@ -42,18 +42,18 @@ PrefabInstance:
     - target: {fileID: 2136756880231257150, guid: b6235eeb0acd9cb49960a0f7e2b1da13, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: eba75e9fe4337b54e80d4697c2e99090, type: 2}
+      objectReference: {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
     - target: {fileID: 4014318342012952889, guid: b6235eeb0acd9cb49960a0f7e2b1da13, type: 3}
       propertyPath: m_Material
       value: 
-      objectReference: {fileID: 2100000, guid: eba75e9fe4337b54e80d4697c2e99090, type: 2}
+      objectReference: {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
     - target: {fileID: 5642974642371759304, guid: b6235eeb0acd9cb49960a0f7e2b1da13, type: 3}
       propertyPath: m_Material
       value: 
       objectReference: {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
     - target: {fileID: 7024608491873740565, guid: b6235eeb0acd9cb49960a0f7e2b1da13, type: 3}
       propertyPath: m_Name
-      value: Spider (2)
+      value: Spider Lit Variant
       objectReference: {fileID: 0}
     - target: {fileID: 7024608491873740566, guid: b6235eeb0acd9cb49960a0f7e2b1da13, type: 3}
       propertyPath: m_RootOrder
