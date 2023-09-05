@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class PatrollingEnemy : Enemy
 {
-
+    
     public bool isMovingVertically;
     public int idleCycles;
     [SerializeField] protected List<Transform> _patrolPoints = new List<Transform>();

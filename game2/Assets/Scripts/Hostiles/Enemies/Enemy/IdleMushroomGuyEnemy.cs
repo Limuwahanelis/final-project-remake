@@ -80,6 +80,7 @@ public class IdleMushroomGuyEnemy : Enemy
     private void OnValidate()
     {
         if (beam != null) beam.damage = _dmg;
+        _speed = 0;
     }
     private void OnDisable()
     {

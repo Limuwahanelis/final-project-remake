@@ -7,6 +7,7 @@ using System;
 [RequireComponent(typeof(AnimationManager))]
 public abstract class Enemy : MonoBehaviour
 {
+
     //[SerializeField]
     //private HealthSystem hpSys;
     // Start is called before the first frame update
