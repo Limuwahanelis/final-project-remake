@@ -18,11 +18,6 @@ public class PauseMenu : MonoBehaviour
     }
     void Update()
     {
-        //if (Input.GetKeyDown(KeyCode.Escape))
-        //{ 
-        //    SetPause(!_isGamePaused.value);
-        //    SetPausePanel(_isGamePaused.value);
-        //}
     }
     public void Exit()
     {
