@@ -184,9 +184,9 @@ public class PlayerMovement : MonoBehaviour
     //public IEnumerator AirAttackCor(float airAttackDuration)
     //{
     //    _rb.gravityScale = 0;
-    //    _rb.velocity = new Vector2(airAttackSpeed * _player.mainBody.transform.localScale.x, 0);
+    //    _rb._velocity = new Vector2(airAttackSpeed * _player.mainBody.transform.localScale.x, 0);
     //    yield return new WaitForSeconds(airAttackDuration);
-    //    _rb.velocity = new Vector2(0, 0);
+    //    _rb._velocity = new Vector2(0, 0);
     //    _rb.gravityScale = 2;
     //}
     //public IEnumerator JumpCor()

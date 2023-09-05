@@ -19,9 +19,9 @@ public class PlayerCamera : MonoBehaviour
 
     private bool _followOnXAxis=true;
     private bool _followOnYAxis = true;
-    private Vector3 targetPos;
+    private Vector3 _targetPos;
     
-    private Vector3 velocity = Vector3.zero;
+    private Vector3 _velocity = Vector3.zero;
     // Start is called before the first frame update
     void Start()
     {
@@ -34,7 +34,7 @@ public class PlayerCamera : MonoBehaviour
             if (player.transform.position.x < leftScreenBorder.position.x)
             {
                 _followOnXAxis = false;
-                targetPos = new Vector3(leftScreenBorder.position.x, player.transform.position.y);
+                _targetPos = new Vector3(leftScreenBorder.position.x, player.transform.position.y);
             }
             else
             {
@@ -44,7 +44,7 @@ public class PlayerCamera : MonoBehaviour
             if (player.transform.position.y < lowerScreenBorder.position.y)
             {
                 _followOnYAxis = false;
-                targetPos = new Vector3(targetPos.x, lowerScreenBorder.position.y, targetPos.z);
+                _targetPos = new Vector3(_targetPos.x, lowerScreenBorder.position.y, _targetPos.z);
 
             }
             else
@@ -60,19 +60,19 @@ public class PlayerCamera : MonoBehaviour
         {
             if (_followOnXAxis)
             {
-                targetPos = new Vector3(player.transform.position.x, targetPos.y);
+                _targetPos = new Vector3(player.transform.position.x, _targetPos.y);
             }
             if (_followOnYAxis)
             {
-                targetPos = new Vector3(targetPos.x, player.transform.position.y);
+                _targetPos = new Vector3(_targetPos.x, player.transform.position.y);
             }
         }
         else
         {
-            targetPos = player.transform.position;
+            _targetPos = player.transform.position;
         }
-            targetPos += offset;
-            transform.position = Vector3.SmoothDamp(transform.position, targetPos, ref velocity, smoothTime);
+            _targetPos += offset;
+            transform.position = Vector3.SmoothDamp(transform.position, _targetPos, ref _velocity, smoothTime);
     }
 
     private void CheckIfPlayerIsOnRightScreenBorder()
@@ -80,7 +80,7 @@ public class PlayerCamera : MonoBehaviour
         if (player.transform.position.x > rightScreenBorder.position.x)
         {
             _followOnXAxis = false;
-            targetPos = new Vector3(rightScreenBorder.position.x, player.transform.position.y);
+            _targetPos = new Vector3(rightScreenBorder.position.x, player.transform.position.y);
         }
         else
         {
@@ -92,7 +92,7 @@ public class PlayerCamera : MonoBehaviour
         if (player.transform.position.y > upperScreenBorder.position.y)
         {
             _followOnYAxis = false;
-            targetPos = new Vector3(targetPos.x, upperScreenBorder.position.y,targetPos.z);
+            _targetPos = new Vector3(_targetPos.x, upperScreenBorder.position.y,_targetPos.z);
         }
         else
         {

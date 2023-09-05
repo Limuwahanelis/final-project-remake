@@ -9,8 +9,6 @@ public class PlayerInput : MonoBehaviour
     [SerializeField] Player _player;
     [SerializeField] InputActionAsset controls;
     private PlayerInteract _playerInteract;
-    public GameObject pauseMenu;
-    public GameObject darkPanel;
     private bool isDownArrowPressed;
     private float direction;
     // Start is called before the first frame update
@@ -34,7 +32,6 @@ public class PlayerInput : MonoBehaviour
     }
     private void Move(float direction)
     {
-        if (_player.isGamePaused.value) return;
             _player.currentState.Move(direction);
     }
     void OnJump(InputValue value)
@@ -45,7 +42,6 @@ public class PlayerInput : MonoBehaviour
     }
     void OnVertical(InputValue value)
     {
-        if (_player.isGamePaused.value) return;
         direction =value.Get<float>();
     }
 
