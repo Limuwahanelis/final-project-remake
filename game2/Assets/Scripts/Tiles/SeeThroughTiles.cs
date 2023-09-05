@@ -52,10 +52,9 @@ public class SeeThroughTiles : MonoBehaviour
             {
                 GetTilesLeft(tempTile,true);
             }
-
-            if (fullyTransparentMap.GetTile(fullyTransparentMap.WorldToCell(new Vector3(playerGroundColCenterX + extent + 0.5f, collision.bounds.center.y))))
+            tempTile = fullyTransparentMap.WorldToCell(new Vector3(playerGroundColCenterX + extent + 0.5f, collision.bounds.center.y));
+            if (fullyTransparentMap.GetTile(tempTile))
             {
-                tempTile = fullyTransparentMap.WorldToCell(new Vector3(playerGroundColCenterX + extent + 0.5f, collision.bounds.center.y));
                 GetTilesRight(tempTile,true);
             }
 
@@ -96,7 +95,7 @@ public class SeeThroughTiles : MonoBehaviour
             cellPositions.Add(curTileCellPos);
             GetTilesUp(curTileCellPos);
             GetTilesDown(curTileCellPos);
-            curTileCellPos = map.WorldToCell(new Vector3(curTileCellPos.x - 0.5f, curTileCellPos.y, 0));   
+            curTileCellPos = map.WorldToCell(new Vector3(curTileCellPos.x - 1.2f, curTileCellPos.y, 0));   
         }
         curTileCellPos = firstTileToShow;
         if (fullyTransparent)
@@ -106,7 +105,7 @@ public class SeeThroughTiles : MonoBehaviour
                 fullytransparentCellPositions.Add(curTileCellPos);
                 GetTilesUp(curTileCellPos, true);
                 GetTilesDown(curTileCellPos, true);
-                curTileCellPos = fullyTransparentMap.WorldToCell(new Vector3(curTileCellPos.x + 1.2f, curTileCellPos.y, 0));
+                curTileCellPos = fullyTransparentMap.WorldToCell(new Vector3(curTileCellPos.x - 0.5f, curTileCellPos.y, 0));
             }
         }
     }
