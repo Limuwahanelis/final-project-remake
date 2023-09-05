@@ -829,7 +829,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 02a51b4eddc92ca4eb41595e974d0578, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  corutineHolder: {fileID: 0}
+  corutineHolder: {fileID: 6437609286694411236}
   playerMovement: {fileID: 5767090226136095778}
   abilities: {fileID: 11400000, guid: d2e06ae10b536bb49afe12ab876fcfda, type: 2}
   playerInput: {fileID: 5767090226136095779}
@@ -848,16 +848,7 @@ MonoBehaviour:
     useConstant: 0
     constantValue: 0
     variable: {fileID: 11400000, guid: 5334db362bf6ac146a92759cd4098315, type: 2}
-  isJumping: 0
-  isOnGround: 1
   isAlive: 1
-  isAttacking: 0
-  isAirAttacking: 0
-  canPerformAirAttack: 1
-  isInAirAfterPush: 0
-  isNearWall: 0
-  hasWallJumped: 0
-  isNearCeiling: 0
 --- !u!114 &5767090226136095777
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -893,6 +884,10 @@ MonoBehaviour:
     constantValue: 0
     variable: {fileID: 0}
   _invincibilityAfterHitDuration: 1.5
+  _playerCols:
+  - {fileID: 5767090225964765140}
+  - {fileID: 5767090225964765143}
+  - {fileID: 5767090226273579267}
   player: {fileID: 5767090226136095782}
   pushHandle: {fileID: 5767090226429716897}
   pushForce: 6
@@ -928,8 +923,12 @@ MonoBehaviour:
   oldPlayerDirection: 0
   wallJumpHandle: {fileID: 5767090226429716896}
   _player: {fileID: 5767090226136095782}
+  _playerCols:
+  - {fileID: 5767090225964765140}
+  - {fileID: 5767090225964765143}
+  - {fileID: 5767090226273579267}
   speed: 7
-  jumpStrength: 285
+  jumpStrength: 250
   wallJumpStrength: 12.131043
   airAttackSpeed: 30
   slideTime: 1
