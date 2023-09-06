@@ -9,13 +9,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1a55225122a66eb4285d70e9bd242195, type: 3}
-  m_Name: Player abilities
+  m_Script: {fileID: 11500000, guid: 288cfe99784b441478d8ed1552aa4c48, type: 3}
+  m_Name: Attack increase pickup state
   m_EditorClassIdentifier: 
-  abilities:
-  - name: 0
-    unlocked: 0
-  - name: 1
-    unlocked: 0
-  - name: 2
-    unlocked: 0
+  value: 0

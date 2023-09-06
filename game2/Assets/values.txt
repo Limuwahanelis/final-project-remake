@@ -1,0 +1,2 @@
+player max hp - 30
+player base dmg - 5
