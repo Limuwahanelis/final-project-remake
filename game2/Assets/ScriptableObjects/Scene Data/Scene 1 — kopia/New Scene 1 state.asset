@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 25e4ff1e6c418414993d6eeac8140e8c, type: 3}
   m_Name: New Scene 1 state
   m_EditorClassIdentifier: 
+  sceneEnum: {fileID: 11400000, guid: 55ff613b5d97a6344ada53bf12892aba, type: 2}
   puzzleStates:
   - {fileID: 11400000, guid: c1aca966613fad44699524da68eef70e, type: 2}
   pickupStates:

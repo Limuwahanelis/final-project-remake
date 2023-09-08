@@ -25,11 +25,11 @@ public static class SaveSystem
         tmpSave = new SaveData(sceneStates,shortcutStates);
     }
 
-    public static void SaveGame(Player player, PlayerHealthSystem playerHealthSystem,int saveIndex)
+    public static void SaveGame(Player player, PlayerHealthSystem playerHealthSystem,int saveIndex, string sceneName)
     {
         PlayerData playerData = new PlayerData(player, playerHealthSystem, player.abilities);
         string today = DateTime.Today.ToString("dd/MM/yyyy");
-        SaveData saveData = new SaveData(today, saveIndex, playerData,tmpSave.sceneDatas,tmpSave.shortcutDatas);
+        SaveData saveData = new SaveData(today, saveIndex, playerData,tmpSave.sceneDatas,tmpSave.shortcutDatas,sceneName);
         tmpSave = saveData;
         string json = JsonUtility.ToJson(saveData);
         if (!Directory.Exists(saveFolderPath))

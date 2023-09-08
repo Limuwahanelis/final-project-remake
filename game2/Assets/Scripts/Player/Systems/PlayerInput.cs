@@ -32,7 +32,7 @@ public class PlayerInput : MonoBehaviour
     }
     private void Move(float direction)
     {
-            _player.currentState.Move(direction);
+            //_player.currentState.Move(direction);
     }
     void OnJump(InputValue value)
     {
@@ -43,6 +43,7 @@ public class PlayerInput : MonoBehaviour
     void OnVertical(InputValue value)
     {
         direction =value.Get<float>();
+        Debug.Log(direction);
     }
 
     private void OnAttack(InputValue value)

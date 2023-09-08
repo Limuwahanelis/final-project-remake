@@ -7,6 +7,7 @@ public class SaveButton : MonoBehaviour
     [SerializeField]
     private TMP_Text saveDescription;
     public int saveIndex;
+    public string playerSceneName;
 
     public void SetDescription(string date)
     {

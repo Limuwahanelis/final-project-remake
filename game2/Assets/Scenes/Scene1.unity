@@ -2277,7 +2277,7 @@ MonoBehaviour:
         m_CallState: 2
   pickUpsManager: {fileID: 172370659}
   puzzleManager: {fileID: 555840255}
-  sceneNum: 0
+  sceneEnum: {fileID: 0}
   shortcutState: {fileID: 11400000, guid: 86587d01958018946a8127ed1db3ed48, type: 2}
 --- !u!4 &555840253
 Transform:
@@ -2307,6 +2307,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _player: {fileID: 237368005}
   _playerHealthSystem: {fileID: 237368003}
+  _sceneEnum: {fileID: 0}
 --- !u!114 &555840255
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -79852,11 +79853,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5767090226136095783, guid: a6aeac9b7ab8e6544ac4cae3fa5408e2, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 54.44
+      value: 31.1
       objectReference: {fileID: 0}
     - target: {fileID: 5767090226136095783, guid: a6aeac9b7ab8e6544ac4cae3fa5408e2, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -10.75
+      value: -57.3
       objectReference: {fileID: 0}
     - target: {fileID: 5767090226136095783, guid: a6aeac9b7ab8e6544ac4cae3fa5408e2, type: 3}
       propertyPath: m_LocalPosition.z
@@ -79904,11 +79905,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5767090226663683083, guid: a6aeac9b7ab8e6544ac4cae3fa5408e2, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -1.154068
+      value: -1.1540699
       objectReference: {fileID: 0}
     - target: {fileID: 5767090226663683083, guid: a6aeac9b7ab8e6544ac4cae3fa5408e2, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1.63344
+      value: 1.6334381
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a6aeac9b7ab8e6544ac4cae3fa5408e2, type: 3}
