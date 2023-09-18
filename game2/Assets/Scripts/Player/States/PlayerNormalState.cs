@@ -6,7 +6,6 @@ public class PlayerNormalState : PlayerState
 {
 
     private bool _isMoving = false;
-    float lastDirection = -2;
     public PlayerNormalState(PlayerContext playerContext) : base(playerContext)
     {
     }

@@ -29,7 +29,7 @@ public class PlayerWallHangState : PlayerState
         _playerContext.playerMovement.ChangeSpriteToWallJump();//GetComponentInChildren<SpriteRenderer>().sprite = _playerContext.playerMovement.wallJumpSprite;
         //_player.playerMovement.SetGravityScale(2);
         _playerContext.playerMovement.SetRbYAxis(true);
-        _playerContext.playerMovement.WallJump();//WallJump();
+        _playerContext.playerMovement.WallJump();
         _playerContext.playerMovement.RotatePlayerOppositeDirection();
         _playerContext.playerMovement.ChangeRb2DMat(_playerContext.noFrictionMat);
         _playerContext.anim.PlayAnimation("Jump");
