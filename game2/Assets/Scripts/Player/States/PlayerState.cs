@@ -25,9 +25,9 @@ public abstract class PlayerState
     {
         _playerContext.ChangeState(new PlayerDeadState(_playerContext));
     }
-    public virtual void Push()
+    public virtual void Push(IPlayerPusher playerPusher, Collider2D[] playerCols)
     {
-        _playerContext.ChangeState(new PlayerPushedState(_playerContext));
+        _playerContext.ChangeState(new PlayerPushedState(_playerContext,playerPusher,playerCols));
     }
     public abstract void Update();
 }

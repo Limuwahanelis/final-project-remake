@@ -7,20 +7,19 @@ using System;
 [RequireComponent(typeof(AnimationManager))]
 public abstract class Enemy : MonoBehaviour
 {
+
     //[SerializeField]
     //private HealthSystem hpSys;
     // Start is called before the first frame update
     [SerializeField] float invicibilityProgress=0.2f;
-    public BoolReference isGamePaused;
-    public AnimationManager _anim;
-    protected HealthSystem hpSys;
+    [SerializeField] protected float _speed;
+    [SerializeField] protected int _dmg;
+    [SerializeField] protected AnimationManager _anim;
+    [SerializeField] protected BoolReference _isGamePaused;
     protected EnemyAudioManager _audioMan;
-    public float speed;
-    public int dmg;
+    protected HealthSystem hpSys;
 
     protected bool _isAlive = true;
-    protected bool _isIdle = false;
-    protected bool _isHit = false;
 
     protected EnemyState state;
 
@@ -34,47 +33,18 @@ public abstract class Enemy : MonoBehaviour
     {
         return _anim;
     }
+    public void ChangeState(EnemyState newState)
+    {
+        //Debug.Log(newState);
+        state.InterruptState();
+        state = newState;
+        state.SetUpState();
+    }
     public virtual void SetPlayerInRange() { }
     public virtual void SetPlayerNotInRange() { }
     public void IncreaseInvicibilityProgress()
     {
 
-    }
-    protected virtual void StopCurrentActions()
-    {
-        StopAllCoroutines();
-    }
-
-    //protected virtual void Kill()
-    //{
-    //    StopCurrentActions();
-    //    //mainCollider.SetActive(false);
-    //    _isAlive = false;
-    //    currentState = EnemyEnums.State.DEAD;
-    //    hpSys.isInvincible = true;
-    //    _anim.PlayAnimation("Death");
-    //    StartCoroutine(WaitAndExecuteFunction(_anim.GetAnimationLength("Death"), () => Destroy(gameObject)));
-    //}
-
-    //protected virtual void Hit()
-    //{
-    //    StopCurrentActions();
-    //    states.Push(currentState);
-    //    _isHit = true;
-    //    _anim.PlayAnimation("Hit");
-    //    StartCoroutine(WaitAndExecuteFunction(_anim.GetAnimationLength("Hit"), () =>
-    //    {
-    //        states.Push(EnemyEnums.State.IDLE_AFTER_HIT);
-    //        _isHit = false;
-    //        ResumeActions();
-    //    }));
-    //}
-    public IEnumerator StayIdleCor(int numberOfIdleCycles = 1)
-    {
-        _isIdle = true;
-        if (numberOfIdleCycles > 0) _anim.PlayAnimation("Idle");
-        yield return new WaitForSeconds(numberOfIdleCycles * _anim.GetAnimationLength("Idle"));
-        _isIdle = false;
     }
     public IEnumerator WaitAndExecuteFunction(float timeToWait, Action functionToPerform)
     {

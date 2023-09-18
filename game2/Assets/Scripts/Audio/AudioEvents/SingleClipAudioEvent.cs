@@ -14,5 +14,13 @@ public class SingleClipAudioEvent : AudioEvent
         if (audioSource.isPlaying) return;
         audioSource.Play();
     }
+    public override void Play(AudioSource audioSource, bool overPlay = false)
+    {
+        audioSource.clip = audioClip;
+        audioSource.volume = volume;
+        audioSource.pitch = pitch;
+        if (!overPlay) return;
+        audioSource.Play();
+    }
 
 }

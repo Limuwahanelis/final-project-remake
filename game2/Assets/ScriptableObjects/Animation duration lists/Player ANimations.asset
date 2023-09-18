@@ -31,4 +31,4 @@ MonoBehaviour:
     duration: 0.59999996
   - name: Drop Bomb
     duration: 0.13333334
-  animatorController: {fileID: 9100000, guid: 0301f4594637abe479db06d84d8ad1a4, type: 2}
+  animatorController: {fileID: 9100000, guid: 04a28c8199290124c925dcea322c3600, type: 2}

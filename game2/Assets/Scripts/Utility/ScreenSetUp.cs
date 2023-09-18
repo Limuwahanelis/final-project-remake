@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class ScreenSetUp : MonoBehaviour
 {
@@ -15,9 +16,8 @@ public class ScreenSetUp : MonoBehaviour
         {
             GetAllResolutions();
             SaveSystem.SaveConfigs(0.5f, new Settings.MyResolution(availableResolutions[availableResolutions.Count-1]), true);
-
-
         }
+        SceneManager.LoadScene(mainmenuScene);
     }
     void GetAllResolutions()
     {

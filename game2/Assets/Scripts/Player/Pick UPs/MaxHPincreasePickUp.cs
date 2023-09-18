@@ -5,7 +5,6 @@ using UnityEngine.UI;
 
 public class MaxHPincreasePickUp : PickUp
 {
-    //private GameManager gameMan;
     public int maxHPincrease;
     public IntReference playerMaxHealth;
     [SerializeField] IntReference playerHealth;

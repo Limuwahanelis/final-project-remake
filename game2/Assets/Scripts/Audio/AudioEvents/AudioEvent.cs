@@ -11,5 +11,11 @@ public class AudioEvent : ScriptableObject
     public float pitch;
 
     public virtual void Play(AudioSource audioSource) { }
+    /// <summary>
+    /// Plays sounds but allows for restarting it.
+    /// </summary>
+    /// <param name="audioSource"></param>
+    /// <param name="overPlay"></param>
+    public virtual void Play(AudioSource audioSource, bool overPlay = false) { }
 
 }

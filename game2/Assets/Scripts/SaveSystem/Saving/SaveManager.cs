@@ -4,10 +4,9 @@ using UnityEngine;
 
 public class SaveManager : MonoBehaviour
 {
-    [SerializeField]
-    private Player _player;
-    [SerializeField]
-    private PlayerHealthSystem _playerHealthSystem;
+    [SerializeField] Player _player;
+    [SerializeField] PlayerHealthSystem _playerHealthSystem;
+    [SerializeField] SceneEnum _sceneEnum;
     // Start is called before the first frame update
     private void Awake()
     {
@@ -19,6 +18,6 @@ public class SaveManager : MonoBehaviour
     }
     public void Save(int saveIndex)
     {
-        SaveSystem.SaveGame(_player, _playerHealthSystem,saveIndex);
+        SaveSystem.SaveGame(_player, _playerHealthSystem,saveIndex, _sceneEnum.scene);
     }
 }

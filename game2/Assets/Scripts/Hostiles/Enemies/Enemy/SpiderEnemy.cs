@@ -2,13 +2,12 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-[RequireComponent(typeof(SpiderEnemyCollisionInteractionComponent))]
 public class SpiderEnemy : PatrollingEnemy
 {
-    [SerializeField]
-    private SpiderEnemyCollisionInteractionComponent _collisionComponent;
+    [SerializeField] SpiderEnemyCollisionInteractionComponent _collisionComponent;
+    [SerializeField] Transform _mainbody;
 
-    private EnemyPatrollingState _patrolState;
+    private PatrollingEnemyPatrolState _patrolState;
 
     // Start is called before the first frame update
     private void Awake()
@@ -17,28 +16,43 @@ public class SpiderEnemy : PatrollingEnemy
     }
     void Start()
     {
-        if (patrolPoints.Count < 2)
+        for (int i = 0; i < _patrolPoints.Count; i++)
+        {
+            _patrolPositions.Add(_patrolPoints[i].position);
+        }
+        if (_patrolPoints.Count < 2)
         {
             Debug.LogError("Not enough patrol points");
             return;
         }
-        _patrolState = new EnemyPatrollingState(this);
+        SpiderContext context = new SpiderContext(idleCycles)
+        {
+            patrolPoositons = _patrolPositions,
+            patrolPointIndex = 0,
+            anim = _anim,
+            enemy = _mainbody,
+            speed = _speed,
+            isMovingVertically = isMovingVertically,
+            ChangeState = ChangeState,
+        };
+        _patrolState = new PatrollingEnemyPatrolState(context);
         state = _patrolState;
+        state.SetUpState();
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (!isGamePaused.value)
+        if (!_isGamePaused.value)
         {
-            _patrolState.Update();
+            state.Update();
         }
     }
     private void OnValidate()
     {
         if(_collisionComponent!=null)
         {
-            _collisionComponent.SetCollisionDamage(dmg);
+            _collisionComponent.SetCollisionDamage(_dmg);
         }
     }
 }

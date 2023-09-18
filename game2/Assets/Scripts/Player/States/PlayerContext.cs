@@ -20,5 +20,7 @@ public class PlayerContext
     public int maximumNumberOfwallJumps;
     public bool canPerformAirAttack;
     public PlayerHealthSystem playerHealthSystem;
+    public Vector3 pushVector;
+    public Vector3 wallPushVector;
 
 }

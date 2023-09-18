@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 25e4ff1e6c418414993d6eeac8140e8c, type: 3}
   m_Name: Scene 2 state
   m_EditorClassIdentifier: 
+  sceneEnum: {fileID: 11400000, guid: 5a3c9bdb54c76ec49a5766f33e635c2e, type: 2}
   puzzleStates:
   - {fileID: 11400000, guid: 3b1d3627a844b054bb096495e89faa06, type: 2}
   pickupStates:
   - {fileID: 11400000, guid: e89f7e7749f3a35449ec5ccebec0ddb0, type: 2}
-  shortcutState: {fileID: 11400000, guid: 35831671b98f1084695b38e2bbbc3b5d, type: 2}

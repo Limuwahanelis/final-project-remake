@@ -6,7 +6,6 @@ using UnityEditor.Animations;
 using UnityEngine;
 using System;
 
-[RequireComponent(typeof(Animator))]
 public class AnimationManager : MonoBehaviour
 {
     struct AnimState
@@ -14,19 +13,20 @@ public class AnimationManager : MonoBehaviour
         string name;
         float time;
     }
+    public AnimationDurationList animList;
+    [Tooltip("Animator used by manager. If none is assigned it will use first one found in gameobject or its children.")]
+    [SerializeField] Animator _anim;
     private string _currentAnimation;
-    public Animator _anim;
     private float _animLength;
     private bool _overPlayAnimationEnded = true;
     private Coroutine _currentTimer;
     private List<AnimState> _states = new List<AnimState>();
-    public AnimationDurationList animList;
 
 #if UNITY_EDITOR
     private AnimatorController animatorController;
     private void Awake()
     {
-        _anim = GetComponent<Animator>();
+        if(_anim == null) _anim = GetComponentInChildren<Animator>();
         animatorController = (AnimatorController)_anim.runtimeAnimatorController;
         animList.animatorController = animatorController;
         animList.RefreshList();

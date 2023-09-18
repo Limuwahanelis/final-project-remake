@@ -1,0 +1,19 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bcbbc17d4996f604097c5267e23aff59, type: 3}
+  m_Name: New Shortcut State
+  m_EditorClassIdentifier: 
+  Scene1: Main Menu
+  Scene2: Main Menu
+  id: d71b5cb3208d9c048aebb8cb2af09f04
+  IsUnlocked: 0
+  isInitalised: 1

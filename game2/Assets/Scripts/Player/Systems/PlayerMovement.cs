@@ -14,12 +14,12 @@ public class PlayerMovement : MonoBehaviour
     public playerDirection newPlayerDirection;
     public playerDirection oldPlayerDirection;
     public Ringhandle wallJumpHandle;
-    [SerializeField]
-    private Player _player;
+    [SerializeField] Player _player;
+    [SerializeField] Collider2D[] _playerCols;
     private Rigidbody2D _rb;
     public float speed;
     public float jumpStrength;
-    public float wallJumpStrength = Mathf.Abs( 0.5f * (7 / ((-1.154064f / 2) * 0.02f))); // _player mass * (wanted speed/((walljumphandle vector.x/2)*fixed _time))
+    public float wallJumpStrength = Mathf.Abs( 0.5f * (7 / ((-1.154064f / 2) * 0.02f))); // _player mass * (wanted _speed/((walljumphandle vector.x/2)*fixed _time))
     public float airAttackSpeed;
     public float slideTime = 2f;
     public GameObject toRotate;
@@ -130,16 +130,16 @@ public class PlayerMovement : MonoBehaviour
         else return false;
     }
 
-    public void PushPlayer(Vector3 PushForce)
+    public void PushPlayer(Vector3 PushForce, IPlayerPusher playerPusher)
     {
         StopPlayer();
-        _player.currentState.Push();
+        _player.currentState.Push(playerPusher, _playerCols);
         _rb.AddForce(PushForce, ForceMode2D.Impulse);
         
         //StartCoroutine(PushCor());
         
     }
-    public void PushPlayer(playerDirection pushDirection,Vector3 PushForce)
+    public void PushPlayer(playerDirection pushDirection,Vector3 PushForce, IPlayerPusher playerPusher)
     {
         StopPlayer();
         if(pushDirection==playerDirection.RIGHT)
@@ -150,7 +150,7 @@ public class PlayerMovement : MonoBehaviour
         {
             PushForce = new Vector3(-Mathf.Abs(PushForce.x), PushForce.y, PushForce.z);
         }
-        _player.currentState.Push();
+        _player.currentState.Push(playerPusher, _playerCols);
         _rb.AddForce(PushForce, ForceMode2D.Impulse);
 
        // StartCoroutine(PushCor());
@@ -184,9 +184,9 @@ public class PlayerMovement : MonoBehaviour
     //public IEnumerator AirAttackCor(float airAttackDuration)
     //{
     //    _rb.gravityScale = 0;
-    //    _rb.velocity = new Vector2(airAttackSpeed * _player.mainBody.transform.localScale.x, 0);
+    //    _rb._velocity = new Vector2(airAttackSpeed * _player.mainBody.transform.localScale.x, 0);
     //    yield return new WaitForSeconds(airAttackDuration);
-    //    _rb.velocity = new Vector2(0, 0);
+    //    _rb._velocity = new Vector2(0, 0);
     //    _rb.gravityScale = 2;
     //}
     //public IEnumerator JumpCor()

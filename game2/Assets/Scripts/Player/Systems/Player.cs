@@ -2,6 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using System;
+using UnityEngine.Events;
+
 [RequireComponent(typeof(PlayerMovement))]
 [RequireComponent(typeof(PlayerInput))]
 public class Player : MonoBehaviour
@@ -22,23 +24,15 @@ public class Player : MonoBehaviour
     public GameObject normalColliders;
     public PlayerState currentState;
 
-    public GameObject darkPanel;
-    public GameObject gameOverScreen;
+    //public GameObject darkPanel;
+    //public GameObject gameOverScreen;
 
     public PhysicsMaterial2D noFrictionMat;
 
     public BoolReference isGamePaused;
 
-    //public bool isJumping = false;
-    //public bool isOnGround = true;
     public bool isAlive = true;
-    //public bool isAttacking = false;
-    //public bool isAirAttacking = false;
-    //public bool canPerformAirAttack = true;
-    //public bool isInAirAfterPush = false;
-    //public bool isNearWall = false;
-    //public bool hasWallJumped = false;
-    //public bool isNearCeiling = false;
+    public UnityEvent OnPlayerDied;
     // Start is called before the first frame update
     void Start()
     {
@@ -98,7 +92,7 @@ public class Player : MonoBehaviour
     }
     public void ChangeState(PlayerState newState)
     {
-        Debug.Log(newState.GetType());
+        //Debug.Log(newState.GetType());
         currentState.InterruptState();
         currentState = newState;
         currentState.SetUpState();
@@ -130,11 +124,12 @@ public class Player : MonoBehaviour
     public void SetPlayerDead()
     {
         currentState.Kill();
-        ShowGameOverScreen();
+        OnPlayerDied?.Invoke();
+        //ShowGameOverScreen();
     }
-    public void ShowGameOverScreen()
-    {
-        darkPanel.SetActive(true);
-        gameOverScreen.SetActive(true);
-    }
+    //public void ShowGameOverScreen()
+    //{
+    //    darkPanel.SetActive(true);
+    //    gameOverScreen.SetActive(true);
+    //}
 }

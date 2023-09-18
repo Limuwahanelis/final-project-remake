@@ -8,26 +8,28 @@ public class SceneStateManager : MonoBehaviour
 {
 
     public UnityEvent UnlockShortcut;
-    [SerializeField] private PickUpsManager pickUpsManager;
-    [SerializeField] private PuzzleManager puzzleManager;
-    [SerializeField] private int sceneNum;
+    [SerializeField] PickUpsManager pickUpsManager;
+    [SerializeField] PuzzleManager puzzleManager;
+    [SerializeField] SceneEnum sceneEnum;
     [SerializeField] ShortcutState shortcutState;
     private void Start()
     {
         if (SaveSystem.tmpSave.shortcutDatas.Find(x=>x.Id==shortcutState.Id).IsUnlocked) UnlockShortcut?.Invoke();
-            pickUpsManager.DestroyPickedPickUps(SaveSystem.tmpSave.sceneDatas[sceneNum].wasPickUpPicked);
-            puzzleManager.MarkPuzzlesAsSolved(SaveSystem.tmpSave.sceneDatas[sceneNum].wasPuzzleSolved);
+            pickUpsManager.DestroyPickedPickUps(SaveSystem.tmpSave.sceneDatas[sceneEnum.sceneNum].wasPickUpPicked);
+            puzzleManager.MarkPuzzlesAsSolved(SaveSystem.tmpSave.sceneDatas[sceneEnum.sceneNum].wasPuzzleSolved);
     }
 
     public void ChangePickUpState(int index,bool value)
     {
-        SaveSystem.tmpSave.sceneDatas[sceneNum].wasPickUpPicked[index] = value;
+        SaveSystem.tmpSave.sceneDatas[sceneEnum.sceneNum].wasPickUpPicked[index] = value;
     }
     public void ChangePuzzleState(int index,bool value)
     {
-        SaveSystem.tmpSave.sceneDatas[sceneNum].wasPuzzleSolved[index] = value;
+        SaveSystem.tmpSave.sceneDatas[sceneEnum.sceneNum].wasPuzzleSolved[index] = value;
        
     }
+
+    // used by unity event by destructable shortcuts in scene 2
     public void ChangeShortcutStateToUnlocked()
     {
         SaveSystem.tmpSave.shortcutDatas.Find(x => x.Id == shortcutState.Id).IsUnlocked = true;

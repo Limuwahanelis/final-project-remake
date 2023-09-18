@@ -6,6 +6,7 @@ public class PlayerNormalState : PlayerState
 {
 
     private bool _isMoving = false;
+    float lastDirection = -2;
     public PlayerNormalState(PlayerContext playerContext) : base(playerContext)
     {
     }
@@ -18,14 +19,10 @@ public class PlayerNormalState : PlayerState
 
     public override void Move(float direction)
     {
-            if (direction == 0) _isMoving = false;
-            else
-            {
-                _isMoving = true;
-                _playerContext.anim.PlayAnimation("Walk");
-                _playerContext.audioManager.PlayWalkSound();
-            }
-            _playerContext.playerMovement.MovePlayer(direction);
+        //Debug.Log(direction);
+            if (direction ==0) _isMoving = false;
+            else _isMoving = true;
+            _playerContext.playerMovement.MovePlayer(direction);  
     }
 
     public override void Attack()
@@ -36,6 +33,11 @@ public class PlayerNormalState : PlayerState
     public override void Update()
     {
         if(!_isMoving) _playerContext.anim.PlayAnimation("Idle");
+        else
+        {
+            _playerContext.anim.PlayAnimation("Walk");
+            _playerContext.audioManager.PlayWalkSound();
+        }
         if (!_playerContext.playerChecks.IsOnGround) _playerContext.ChangeState(new PlayerInAirState(_playerContext));
     }
     public override void Slide()

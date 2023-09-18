@@ -36,7 +36,7 @@ public class FlyingEyeEnemy : Enemy
     // Update is called once per frame
     void Update()
     {
-        if (!isGamePaused.value)
+        if (!_isGamePaused.value)
         {
             Move();
             if (_isPlayerInRange)

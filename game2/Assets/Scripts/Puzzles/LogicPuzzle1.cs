@@ -5,14 +5,14 @@ using UnityEngine;
 public class LogicPuzzle1 : Puzzle
 {
     public InteractableTorch[] torches = new InteractableTorch[5];
-    public GameObject hpPickUp;
+    public GameObject ObjectToShow;
     private void Start()
     {
 #if UNITY_EDITOR
         if (solved)
         {
             MarkAsSolved();
-            hpPickUp.SetActive(true);
+            ObjectToShow.SetActive(true);
         }
 #endif
     }
@@ -22,7 +22,7 @@ public class LogicPuzzle1 : Puzzle
         {
             if (!torches[i].fireActive) return;
         }
-        hpPickUp.SetActive(true);
+        ObjectToShow.SetActive(true);
         OnSolved?.Invoke(this);
     }
     public override void MarkAsSolved()

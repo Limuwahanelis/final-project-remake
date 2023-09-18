@@ -23,7 +23,7 @@ public class SaveMenu : MonoBehaviour
         {
             SaveSystem.SetSave(save.saveIndex);
             loadSave.value = true;
-            SceneManager.LoadScene(1);
+            SceneManager.LoadScene(SaveSystem.tmpSave.playerSceneName);
         }
     }
 
@@ -46,6 +46,7 @@ public class SaveMenu : MonoBehaviour
         _saveManager.Save(pressedSaveButton.saveIndex);
         isGamePaused.value = false;
         Time.timeScale = 1f;
+        _darkPanel.SetActive(false);
         gameObject.SetActive(false);
     }
 

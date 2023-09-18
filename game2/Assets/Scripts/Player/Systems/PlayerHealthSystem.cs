@@ -16,9 +16,11 @@ public class PlayerHealthSystem : HealthSystem,IPushable
     }
 
     [SerializeField] float _invincibilityAfterHitDuration;
+    [SerializeField] Collider2D[] _playerCols;
     private bool _canBePushed=true;
     private DamageType _invincibiltyType;
     private DamageType _pushInvincibiltyType;
+    private IPlayerPusher _playerPusher;
     public Player player;
     public Ringhandle pushHandle;
     public float pushForce=2f;
@@ -55,11 +57,15 @@ public class PlayerHealthSystem : HealthSystem,IPushable
         if (OnDeathEvent == null) Destroy(gameObject);
         else OnDeathEvent.Invoke();
     }
-    IEnumerator PushCor()
+    IEnumerator PushCor(IPlayerPusher pusher)
     {
         _canBePushed = false;
         yield return new WaitForSeconds(_invincibilityAfterHitDuration);
         _canBePushed = true;
+        if (pusher != null)
+        {
+            pusher.ResumeCollisonsWithPlayer(_playerCols);
+        }
     }
     IEnumerator InvincibilityCor()
     {
@@ -70,13 +76,14 @@ public class PlayerHealthSystem : HealthSystem,IPushable
         _pushInvincibiltyType = DamageType.NONE;
     }
 
-    public void Push(PlayerHealthSystem.DamageType damageType)
+    public void Push(PlayerHealthSystem.DamageType damageType, IPlayerPusher pusher = null)
     {
         if (player.isAlive)
         {
             if (_pushInvincibiltyType == damageType || _pushInvincibiltyType == DamageType.ALL) return;
-            player.playerMovement.PushPlayer(pushHandle.GetPushVector() * pushForce);
-            StartCoroutine(PushCor());
+            player.playerMovement.PushPlayer(pushHandle.GetPushVector() * pushForce,pusher);
+            if (pusher != null) pusher.PreventCollisionWithPlayer(_playerCols);
+            StartCoroutine(PushCor(pusher));
         }
     }
     public void Push(PlayerMovement.playerDirection direction, DamageType damageType)
@@ -84,8 +91,18 @@ public class PlayerHealthSystem : HealthSystem,IPushable
         if (player.isAlive)
         {
             if (_pushInvincibiltyType == damageType || _pushInvincibiltyType == DamageType.ALL) return;
-            player.playerMovement.PushPlayer(direction, pushHandle.GetPushVector() * pushForce);
-            StartCoroutine(PushCor());
+            player.playerMovement.PushPlayer(direction, pushHandle.GetPushVector() * pushForce, null);
+            StartCoroutine(PushCor(null));
+        }
+    }
+    public void Push(PlayerMovement.playerDirection direction, DamageType damageType, IPlayerPusher pusher)
+    {
+        if (player.isAlive)
+        {
+            if (_pushInvincibiltyType == damageType || _pushInvincibiltyType == DamageType.ALL) return;
+            player.playerMovement.PushPlayer(direction, pushHandle.GetPushVector() * pushForce, pusher);
+            _playerPusher = pusher;
+            StartCoroutine(PushCor(pusher));
         }
     }
     public void IncreaseHealthBarMaxValue()

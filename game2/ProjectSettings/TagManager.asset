@@ -59,6 +59,9 @@ TagManager:
   - name: Enemies
     uniqueID: 3581816591
     locked: 0
+  - name: Dark ground
+    uniqueID: 2312936777
+    locked: 0
   - name: Gropund
     uniqueID: 1525370575
     locked: 0

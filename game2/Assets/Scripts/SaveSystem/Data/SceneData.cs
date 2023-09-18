@@ -8,7 +8,8 @@ public class SceneData
     public List<bool> wasPickUpPicked=new List<bool>();
     public List<bool> wasPuzzleSolved=new List<bool>();
     public List<bool> wasAbilityUnlocked =new List<bool>();
-    public SceneData(List<bool> pickUpValues, List<bool>puzzlesValues)
+    public string sceneName;
+    public SceneData(List<bool> pickUpValues, List<bool>puzzlesValues, string sceneName)
     {
         for(int i=0;i< pickUpValues.Count;i++)
         {
@@ -18,8 +19,9 @@ public class SceneData
         {
             wasPuzzleSolved.Add(puzzleSol);
         }
+        this.sceneName = sceneName;
     }
-    public SceneData(SceneData sceneData)
+    public SceneData(SceneData sceneData, string sceneName)
     {
         for (int i = 0; i < sceneData.wasPickUpPicked.Count; i++)
         {
@@ -29,6 +31,7 @@ public class SceneData
         {
             wasPuzzleSolved.Add(puzzleSol);
         }
+        this.sceneName = sceneName;
     }
 
     public SceneData()

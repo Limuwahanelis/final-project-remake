@@ -1047,6 +1047,14 @@ PrefabInstance:
       propertyPath: loadSave.variable
       value: 
       objectReference: {fileID: 11400000, guid: 7661ca44aa59f764ba109a1de891fb0c, type: 2}
+    - target: {fileID: 4596339844808739494, guid: 8661335f826c01a45a79a821b5f56d94, type: 3}
+      propertyPath: isGamePaused.variable
+      value: 
+      objectReference: {fileID: 11400000, guid: 5334db362bf6ac146a92759cd4098315, type: 2}
+    - target: {fileID: 4596339844808739494, guid: 8661335f826c01a45a79a821b5f56d94, type: 3}
+      propertyPath: isGamePaused.useConstant
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6849403902055428046, guid: 8661335f826c01a45a79a821b5f56d94, type: 3}
       propertyPath: m_AnchorMax.x
       value: 0
@@ -1227,7 +1235,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d611ed127161bf149bf098cdef07e99d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  firstScene: Scene1
+  firstScene: new scene1
 --- !u!114 &6396541768223424500
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1241,7 +1249,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sceneDataList:
-  - {fileID: 11400000, guid: 7cf575fd6c90de14f9bce2e0bd35fd60, type: 2}
+  - {fileID: 11400000, guid: c55ee11c81cd7f74bbb68288f6122bdd, type: 2}
   - {fileID: 11400000, guid: 7a5f104603cbc744eb1f43289f7fee13, type: 2}
   shortcutDataList:
   - {fileID: 11400000, guid: 86587d01958018946a8127ed1db3ed48, type: 2}

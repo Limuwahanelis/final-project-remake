@@ -4,13 +4,11 @@ using UnityEngine;
 using System;
 public class MushroomGuyEnemy : PatrollingEnemy
 {
-    public bool IsPlayerInRange{ get { return _isPlayerInRange; } }
-    [SerializeField]
-    private Beam beam;
+    [SerializeField] private Beam beam;
     private PlayerDetection _playerDetection;
-    private bool _isPlayerInRange;
     private MushroomGuyPatrollingState _patrolState;
-    
+    private Action<bool> OnPlayerInRange;
+    MushroomGuyContext context;
     private void Awake()
     {
 
@@ -18,18 +16,36 @@ public class MushroomGuyEnemy : PatrollingEnemy
     }
     private void Start()
     {
-        if (patrolPoints.Count < 2)
+        for (int i = 0; i < _patrolPoints.Count; i++)
+        {
+            _patrolPositions.Add(_patrolPoints[i].position);
+        }
+        if (_patrolPoints.Count < 2)
         {
             Debug.LogError("Not enough patrol points");
             return;
         }
-        _patrolState = new MushroomGuyPatrollingState(this);
+        context = new MushroomGuyContext(idleCycles)
+        {
+            patrolPoositons = _patrolPositions,
+            patrolPointIndex = 0,
+            anim = _anim,
+            enemy = transform,
+            speed = _speed,
+            isMovingVertically = isMovingVertically,
+            OnSetPlayerInRange = OnPlayerInRange,
+            ChangeState = ChangeState,
+            Rotate = Rotate,
+            audio = _audioMan
+        };
+        OnPlayerInRange += context.SetPlayerInRange;
+        _patrolState = new MushroomGuyPatrollingState(context);
         state = _patrolState;
         hpSys.OnHitEvent = Hit;
     }
     private void Update()
     {
-        if (!isGamePaused.value)
+        if (!_isGamePaused.value)
         {
             state.Update();
         }
@@ -43,24 +59,19 @@ public class MushroomGuyEnemy : PatrollingEnemy
     }
     public override void SetPlayerInRange()
     {
-        _isPlayerInRange = true;
+        OnPlayerInRange?.Invoke(true);
 
     }
 
     public override void SetPlayerNotInRange()
     {
-        _isPlayerInRange = false;
+        OnPlayerInRange?.Invoke(false);
     }
     public void ReturnToPatrol()
     {
         state = _patrolState;
         state.SetUpState();
         _anim.PlayAnimation("Move");
-    }
-    public void ChangeState(EnemyState newState)
-    {
-        state = newState;
-        state.SetUpState();
     }
     public EnemyAudioManager GetAudioManager()
     {
@@ -82,7 +93,11 @@ public class MushroomGuyEnemy : PatrollingEnemy
     }
     private void OnValidate()
     {
-        if (beam != null) beam.damage = dmg;
+        if (beam != null) beam.damage = _dmg;
+    }
+    private void OnDisable()
+    {
+        OnPlayerInRange -= context.SetPlayerInRange;
     }
 
 }

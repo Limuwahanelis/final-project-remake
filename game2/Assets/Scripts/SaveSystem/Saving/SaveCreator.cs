@@ -20,6 +20,17 @@ public class SaveCreator : MonoBehaviour
     private void Awake()
     {
         if(createSaveOnStart) CreateTmpSave();
+
+    }
+
+    private void OnValidate()
+    {
+        int i = 0;
+        foreach(SceneState s in sceneDataList)
+        {
+            s.sceneEnum.sceneNum = i;
+            i++;
+        }
     }
 #endif
 }

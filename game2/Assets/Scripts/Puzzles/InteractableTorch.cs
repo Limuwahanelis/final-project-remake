@@ -5,7 +5,6 @@ using UnityEngine.Experimental.Rendering.Universal;
 
 public class InteractableTorch : MonoBehaviour,IInteractable
 {
-    private Light2D mainLight;
     public GameObject fire;
     public GameObject canvas;
     public bool fireActive = false;
@@ -13,12 +12,13 @@ public class InteractableTorch : MonoBehaviour,IInteractable
     public InteractableTorch torch2;
     public int torchIndex;
     public LogicPuzzle1 LogicPuzzle1;
+    private Light2D[] mainLights;
     private PlayerInteract _playerInteract;
     private bool _canInteract = true;
     // Start is called before the first frame update
     void Awake()
     {
-        mainLight = transform.GetComponentInChildren<Light2D>();
+        mainLights = transform.GetComponentsInChildren<Light2D>();
     }
     void Start()
     {
@@ -34,7 +34,7 @@ public class InteractableTorch : MonoBehaviour,IInteractable
     public void Interact()
     {
         if (!_canInteract) return;
-        mainLight.enabled = true;
+        foreach (var light in mainLights) light.enabled = true;
         fireActive = !fireActive;
         fire.SetActive(fireActive);
         torch1.OtherTorchInteract();
@@ -47,7 +47,7 @@ public class InteractableTorch : MonoBehaviour,IInteractable
         fireActive = !fireActive;
         _canInteract = !_canInteract;
         fire.SetActive(fireActive);
-        mainLight.enabled = !mainLight.enabled;
+        foreach (var light in mainLights) light.enabled = !light.enabled;
         
     }
     private void OnTriggerEnter2D(Collider2D collision)
@@ -81,7 +81,7 @@ public class InteractableTorch : MonoBehaviour,IInteractable
     }
     public void LightUp()
     {
-        mainLight.enabled = true;
+        foreach (var light in mainLights) light.enabled = true;
         fire.SetActive(true);
     }
 }
