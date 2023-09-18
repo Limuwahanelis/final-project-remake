@@ -237,7 +237,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -2004586473
-  m_SortingLayer: 9
+  m_SortingLayer: 10
   m_SortingOrder: 0
   m_Sprite: {fileID: -3316437661583186769, guid: 473f357f441c84c4c8fdedf3c31eef0a, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -764,7 +764,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5767090226080053571}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -1.4266818, y: 1.4016342, z: 0}
+  m_LocalPosition: {x: -1.4266815, y: 1.4016342, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 5767090225051829743}
@@ -841,14 +841,15 @@ MonoBehaviour:
   anim: {fileID: 5767090226136095791}
   slideColliders: {fileID: 5767090225420140679}
   normalColliders: {fileID: 5767090224678561135}
-  darkPanel: {fileID: 0}
-  gameOverScreen: {fileID: 0}
   noFrictionMat: {fileID: 6200000, guid: c99a593e689874b4289fad24afe10a6f, type: 2}
   isGamePaused:
     useConstant: 0
     constantValue: 0
     variable: {fileID: 11400000, guid: 5334db362bf6ac146a92759cd4098315, type: 2}
   isAlive: 1
+  OnPlayerDied:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!114 &5767090226136095777
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -905,8 +906,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _player: {fileID: 5767090226136095782}
   controls: {fileID: -944628639613478452, guid: 839f772f7f637cb48848d3298639247c, type: 3}
-  pauseMenu: {fileID: 0}
-  darkPanel: {fileID: 0}
 --- !u!114 &5767090226136095778
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -929,7 +928,7 @@ MonoBehaviour:
   - {fileID: 5767090226273579267}
   speed: 7
   jumpStrength: 250
-  wallJumpStrength: 12.131043
+  wallJumpStrength: 12.5
   airAttackSpeed: 30
   slideTime: 1
   toRotate: {fileID: 5767090225051829742}
@@ -971,8 +970,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6c02345f6b4e23846bb862f3ee53d9d5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _anim: {fileID: 5767090226136095784}
   animList: {fileID: 11400000, guid: 7fca9c3c31916e24982e8c8fe9537d19, type: 2}
+  _anim: {fileID: 5767090226136095784}
 --- !u!114 &5767090226136095790
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1287,7 +1286,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5767090226663683082}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -1.1540682, y: 1.63344, z: 0}
+  m_LocalPosition: {x: -0.76864624, y: 1.8463974, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 5767090225051829743}
