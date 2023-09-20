@@ -85,7 +85,7 @@ public class Player : MonoBehaviour
     }
     public void ChangeState(PlayerState newState)
     {
-        //Debug.Log(newState.GetType());
+        Debug.Log(newState.GetType());
         currentState.InterruptState();
         currentState = newState;
         currentState.SetUpState();
@@ -103,6 +103,7 @@ public class Player : MonoBehaviour
     }
     public void SetPlayerDead()
     {
+        isAlive = false;
         currentState.Kill();
         OnPlayerDied?.Invoke();
     }

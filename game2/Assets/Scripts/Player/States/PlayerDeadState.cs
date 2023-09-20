@@ -17,4 +17,12 @@ public class PlayerDeadState : PlayerState
     {
 
     }
+    public override void Kill()
+    { 
+    }
+
+    public override void Push(IPlayerPusher playerPusher, Collider2D[] playerCols)
+    { 
+    }
 }
+
