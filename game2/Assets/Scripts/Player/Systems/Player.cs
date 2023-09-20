@@ -24,9 +24,6 @@ public class Player : MonoBehaviour
     public GameObject normalColliders;
     public PlayerState currentState;
 
-    //public GameObject darkPanel;
-    //public GameObject gameOverScreen;
-
     public PhysicsMaterial2D noFrictionMat;
 
     public BoolReference isGamePaused;
@@ -81,10 +78,6 @@ public class Player : MonoBehaviour
             normalColliders.SetActive(true);
         }
     }
-    //public void Slide()
-    //{
-    //    ChangeState(new PlayerSlideState(this));
-    //}
     public IEnumerator WaitAndExecuteFunction(float timeToWait, Action function)
     {
         yield return new WaitForSeconds(timeToWait);
@@ -97,19 +90,6 @@ public class Player : MonoBehaviour
         currentState = newState;
         currentState.SetUpState();
     }
-
-    //public IEnumerator LeaveCeilingCor()
-    //{
-    //    while(isNearCeiling)
-    //    {
-    //        yield return null;
-    //    }
-    //    ChangeState(new PlayerNormalState(this));
-    //    playerMovement.StopPlayer();
-    //    slideColliders.SetActive(false);
-    //    normalColliders.SetActive(true);
-    //    StopAllCoroutines();
-    //}
 
     public void LoadData(PlayerData playerData)
     {
@@ -125,11 +105,5 @@ public class Player : MonoBehaviour
     {
         currentState.Kill();
         OnPlayerDied?.Invoke();
-        //ShowGameOverScreen();
     }
-    //public void ShowGameOverScreen()
-    //{
-    //    darkPanel.SetActive(true);
-    //    gameOverScreen.SetActive(true);
-    //}
 }

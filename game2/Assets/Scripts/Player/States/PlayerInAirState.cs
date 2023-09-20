@@ -21,6 +21,7 @@ public class PlayerInAirState : PlayerState
         if (_playerContext.playerChecks.IsOnGround && Mathf.Abs(_playerContext.playerMovement.GetPlayerVelocity().y)<0.0004 )//&& !_playerContext.isJumping && !_playerContext.isAirAttacking )
         {
             _playerContext.playerMovement.ChangeRb2DMat(null);
+            _playerContext.playerMovement.StopPlayer();
             _playerContext.ChangeState(new PlayerNormalState(_playerContext));
             return;
         }
