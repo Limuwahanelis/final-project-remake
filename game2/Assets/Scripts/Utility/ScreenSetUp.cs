@@ -18,6 +18,7 @@ public class ScreenSetUp : MonoBehaviour
             //Screen.SetResolution(allResolutions[0].width, availableResolutions[0].height, true);
             Debug.Log("org res: " + availableResolutions[availableResolutions.Count - 1]);
             SaveSystem.SaveConfigs(0.5f, new Settings.MyResolution(availableResolutions[availableResolutions.Count-1]), true);
+            Screen.SetResolution(availableResolutions[availableResolutions.Count - 1].width, availableResolutions[availableResolutions.Count - 1].height, Screen.fullScreen);
         }
         SceneManager.LoadScene(mainmenuScene);
     }
