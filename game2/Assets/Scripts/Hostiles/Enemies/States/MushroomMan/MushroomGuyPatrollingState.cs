@@ -32,6 +32,10 @@ public class MushroomGuyPatrollingState : PatrollingEnemyPatrolState
     {
         (_context as MushroomGuyContext).isPlayerInRange = isPlayerInRange;
     }
+    protected override void StayIdleAtPatrolPoint()
+    {
+        _context.ChangeState(new MushroomGuyIdleState((_context as MushroomGuyContext), this, _context.NumberOfIdleCycles));
+    }
     public override void InterruptState()
     {
         base.InterruptState();
