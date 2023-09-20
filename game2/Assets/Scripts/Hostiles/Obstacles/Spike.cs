@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Spike : MonoBehaviour
 {
-    int dmg = 4;
+    int dmg = 16;
     private void OnCollisionStay2D(Collision2D collision)
     {
         IDamagable player = collision.transform.GetComponent<PlayerHealthSystem>();
