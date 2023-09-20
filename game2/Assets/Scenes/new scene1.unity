@@ -9916,6 +9916,22 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 990913855163726466, guid: 7cff4dbd432583245a88bf26ee0a3231, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 990913855172964229, guid: 7cff4dbd432583245a88bf26ee0a3231, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 990913855172964229, guid: 7cff4dbd432583245a88bf26ee0a3231, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 990913855172964229, guid: 7cff4dbd432583245a88bf26ee0a3231, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6636240038865158862, guid: 7cff4dbd432583245a88bf26ee0a3231, type: 3}
       propertyPath: _saveManager
       value: 
