@@ -89,8 +89,10 @@ public class Settings : MonoBehaviour
             Debug.Log(resolution.ToString());
         }
         fullScreen = configs.fullScreen;
+        Debug.Log(_currentResIndex);
         if (_currentResIndex != -1)
         {
+            
             SetResolution(_currentResIndex);
             resolutionDropdown.value = _currentResIndex;
         }

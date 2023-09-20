@@ -658,7 +658,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 7855664050039180013}
         m_TargetAssemblyTypeName: SaveMenu, Assembly-CSharp
-        m_MethodName: SaveGame
+        m_MethodName: LoadSave
         m_Mode: 2
         m_Arguments:
           m_ObjectArgument: {fileID: 7593072157822579718}
@@ -682,6 +682,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   saveDescription: {fileID: 4306128281578381390}
   saveIndex: 0
+  playerSceneName: 
 --- !u!1 &990913856380613788
 GameObject:
   m_ObjectHideFlags: 0
@@ -4867,7 +4868,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 7855664050039180013}
         m_TargetAssemblyTypeName: SaveMenu, Assembly-CSharp
-        m_MethodName: SaveGame
+        m_MethodName: LoadSave
         m_Mode: 2
         m_Arguments:
           m_ObjectArgument: {fileID: 1704958956276418683}
@@ -4891,6 +4892,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   saveDescription: {fileID: 4975150604766174259}
   saveIndex: 1
+  playerSceneName: 
 --- !u!1 &8289252384256963560
 GameObject:
   m_ObjectHideFlags: 0
@@ -5016,7 +5018,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 7855664050039180013}
         m_TargetAssemblyTypeName: SaveMenu, Assembly-CSharp
-        m_MethodName: SaveGame
+        m_MethodName: LoadSave
         m_Mode: 2
         m_Arguments:
           m_ObjectArgument: {fileID: 1704958956430751568}
@@ -5040,6 +5042,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   saveDescription: {fileID: 4975150604931212056}
   saveIndex: 4
+  playerSceneName: 
 --- !u!1 &8289252384821460808
 GameObject:
   m_ObjectHideFlags: 0
@@ -5244,7 +5247,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 7855664050039180013}
         m_TargetAssemblyTypeName: SaveMenu, Assembly-CSharp
-        m_MethodName: SaveGame
+        m_MethodName: LoadSave
         m_Mode: 2
         m_Arguments:
           m_ObjectArgument: {fileID: 1704958955977572149}
@@ -5268,6 +5271,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   saveDescription: {fileID: 4975150605417556861}
   saveIndex: 3
+  playerSceneName: 
 --- !u!1 &8289252384947556025
 GameObject:
   m_ObjectHideFlags: 0
@@ -5393,7 +5397,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 7855664050039180013}
         m_TargetAssemblyTypeName: SaveMenu, Assembly-CSharp
-        m_MethodName: SaveGame
+        m_MethodName: LoadSave
         m_Mode: 2
         m_Arguments:
           m_ObjectArgument: {fileID: 1704958955476027905}
@@ -5417,6 +5421,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   saveDescription: {fileID: 4975150605041884745}
   saveIndex: 2
+  playerSceneName: 
 --- !u!1 &8289252385517188406
 GameObject:
   m_ObjectHideFlags: 0
@@ -5858,7 +5863,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 7855664050039180013}
         m_TargetAssemblyTypeName: SaveMenu, Assembly-CSharp
-        m_MethodName: SaveGame
+        m_MethodName: LoadSave
         m_Mode: 2
         m_Arguments:
           m_ObjectArgument: {fileID: 1704958956786549253}
@@ -5882,6 +5887,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   saveDescription: {fileID: 4975150606217926221}
   saveIndex: 5
+  playerSceneName: 
 --- !u!1 &8426819223780883006
 GameObject:
   m_ObjectHideFlags: 0

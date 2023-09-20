@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class AbilityUnlockLoadComponent : MonoBehaviour
 {
-    //public BoolReference isGameLoaded;
 
     [SerializeField] AbilityUnlock _abilityUnlock;
     // Start is called before the first frame update

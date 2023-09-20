@@ -12,6 +12,7 @@ public class PauseMenu : MonoBehaviour
     [SerializeField] GameObject _pausePanel;
     [SerializeField] GameObject _savePanel;
     [SerializeField] InputActionReference _menuAction;
+    bool _canPause = true;
     private void Awake()
     {
         _menuAction.action.started += Pause;
@@ -25,6 +26,7 @@ public class PauseMenu : MonoBehaviour
     }
     public void SetPause(bool value)
     {
+        if (!_canPause) return;
         _isGamePaused.value = value;
         Time.timeScale = _isGamePaused.value ? 0f:1f;
         _darkPanel.SetActive(_isGamePaused.value);
@@ -59,6 +61,11 @@ public class PauseMenu : MonoBehaviour
 
         SetPause(!_isGamePaused.value);
         SetPausePanel(_isGamePaused.value);
+    }
+
+    public void DisablePause()
+    {
+        _canPause = false;
     }
 
     private void OnDestroy()

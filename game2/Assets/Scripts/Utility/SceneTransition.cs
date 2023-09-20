@@ -15,13 +15,15 @@ public class SceneTransition : MonoBehaviour
     [SerializeField] SceneTransitionManager.TransitionTags _transitionTag;
     [SerializeField] Transform _playerSpawnPos;
     [SerializeField] GameObject _player;
-    [SerializeField] Animator _anim;
     [SerializeField] InputActionAsset _playerControls;
+    Animator _anim;
     //[SerializeField] InputActionAsset _menuControls;
     private void Start()
     {
-        if(SceneTransitionManager.tagToTeleportPlayer == _transitionTag)
+        _anim = _transitionCircleTransform.GetComponent<Animator>();
+        if (SceneTransitionManager.tagToTeleportPlayer == _transitionTag)
         {
+
             _anim.SetTrigger("FadeIn");
             _player.transform.position = _playerSpawnPos.position;
             _playerControls.Enable();

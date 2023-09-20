@@ -10,7 +10,7 @@ using UnityEditor.Animations;
 public class AnimationDurationList : ScriptableObject
 {
     [SerializeField]
-    public List<Ann> animations;
+    public List<AnimationData> animations;
 #if UNITY_EDITOR
     [HideInInspector]
     public AnimatorController animatorController;
@@ -26,7 +26,7 @@ public class AnimationDurationList : ScriptableObject
             if (state.motion == null)
             {
                 serializedProperty.InsertArrayElementAtIndex(i);
-                Ann tmp2 = new Ann(state.name, 0);
+                AnimationData tmp2 = new AnimationData(state.name, 0);
                 serializedProperty.GetArrayElementAtIndex(i).FindPropertyRelative("name").stringValue = tmp2.name;
                 serializedProperty.GetArrayElementAtIndex(i).FindPropertyRelative("duration").floatValue = tmp2.duration;
                 continue;

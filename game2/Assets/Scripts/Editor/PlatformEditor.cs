@@ -33,6 +33,8 @@ public class PlatformEditor : Editor
 
     private void UpdateSprite()
     {
+        Undo.RecordObject((_renderer.objectReferenceValue as SpriteRenderer), "renderer");
+        Undo.RecordObject(_collider.objectReferenceValue as BoxCollider2D, "collider");
         (_renderer.objectReferenceValue as SpriteRenderer).size = new Vector2(_platformX.floatValue, _platformY.floatValue);
         (_collider.objectReferenceValue as BoxCollider2D).size = new Vector2((_renderer.objectReferenceValue as SpriteRenderer).size.x, _platformY.floatValue);
     }
